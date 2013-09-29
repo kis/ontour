@@ -1043,12 +1043,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/fabpot/Goutte.git",
-            "reference": "11ce3d1d91c8b35ee98341472281a9c96f296e78"
+            "reference": "v1.0.2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/fabpot/Goutte/zipball/11ce3d1d91c8b35ee98341472281a9c96f296e78",
-            "reference": "11ce3d1d91c8b35ee98341472281a9c96f296e78",
+            "url": "https://api.github.com/repos/fabpot/Goutte/zipball/v1.0.2",
+            "reference": "v1.0.2",
             "shasum": ""
         },
         "require": {
@@ -1867,18 +1867,66 @@
         ]
     },
     {
+        "name": "fzaninotto/faker",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/fzaninotto/Faker.git",
+            "reference": "3613b1466d5e9518b83f87d828f93f962ff0f997"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/3613b1466d5e9518b83f87d828f93f962ff0f997",
+            "reference": "3613b1466d5e9518b83f87d828f93f962ff0f997",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2013-07-15 16:26:12",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.2.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Faker": "src/",
+                "Faker\\PHPUnit": "test/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "François Zaninotto"
+            }
+        ],
+        "description": "Faker is a PHP library that generates fake data for you.",
+        "keywords": [
+            "data",
+            "faker",
+            "fixtures"
+        ]
+    },
+    {
         "name": "yiisoft/yii2",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/yiisoft/yii2-framework.git",
-            "reference": "e10e17c2f0cc7c787cc3960c0f73432347ce6f20"
+            "reference": "9932431a9e848e9fb935196fb0d97317de668116"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e10e17c2f0cc7c787cc3960c0f73432347ce6f20",
-            "reference": "e10e17c2f0cc7c787cc3960c0f73432347ce6f20",
+            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/9932431a9e848e9fb935196fb0d97317de668116",
+            "reference": "9932431a9e848e9fb935196fb0d97317de668116",
             "shasum": ""
         },
         "require": {
@@ -1892,7 +1940,7 @@
             "smarty/smarty": "Required by SmartyViewRenderer.",
             "twig/twig": "Required by TwigViewRenderer."
         },
-        "time": "2013-07-18 22:21:21",
+        "time": "2013-07-20 11:28:22",
         "type": "library",
         "installation-source": "source",
         "autoload": {

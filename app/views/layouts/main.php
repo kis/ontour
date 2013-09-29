@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 use yii\widgets\Menu;
 use yii\widgets\Breadcrumbs;
@@ -38,9 +39,8 @@ if ($guest) {
     <div class="container">
         <?php $this->beginBody(); ?>
         <div class="masthead">
-            <h3 class="muted">My Company</h3>
 
-            <div class="navbar">
+            <div class="navbar navbar-fixed-top">
                 <div class="navbar-inner">
                     <div class="container">
                         <?php echo Menu::widget(array(
@@ -53,22 +53,28 @@ if ($guest) {
             <!-- /.navbar -->
         </div>
 
-        <?php echo Breadcrumbs::widget(array(
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : array(),
-        )); ?>
+        <div class="main-container">
 
-        <?php echo $content; ?>
+            <?php echo Breadcrumbs::widget(array(
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : array(),
+            )); ?>
 
-        <hr>
+            <?php echo $content; ?>
 
-        <div class="footer">
-            <p>&copy; My Company <?php echo date('Y'); ?></p>
-            <p>
-                <?php echo Yii::powered(); ?>
-                Template by <a href="http://twitter.github.io/bootstrap/">Twitter Bootstrap</a>
-            </p>
+            <hr>
+
+            <div class="footer">
+                <p>&copy; My Company <?php echo date('Y'); ?></p>
+                <p>
+                    <?php echo Yii::powered(); ?>
+                    Template by <a href="http://twitter.github.io/bootstrap/">Twitter Bootstrap</a>
+                </p>
+            </div>
+
+            <?php $this->endBody(); ?>
+
         </div>
-        <?php $this->endBody(); ?>
+
     </div>
 </body>
 </html>

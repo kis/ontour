@@ -26,6 +26,8 @@ return array(
     'Guzzle\\Http' => array($vendorDir . '/guzzle/http'),
     'Guzzle\\Common' => array($vendorDir . '/guzzle/common'),
     'Goutte' => array($vendorDir . '/fabpot/goutte'),
+    'Faker\\PHPUnit' => array($vendorDir . '/fzaninotto/faker/test'),
+    'Faker' => array($vendorDir . '/fzaninotto/faker/src'),
     'Codeception' => array($vendorDir . '/codeception/codeception/src'),
     'Behat\\Mink\\Driver' => array($vendorDir . '/behat/mink-zombie-driver/src', $vendorDir . '/behat/mink-selenium2-driver/src', $vendorDir . '/behat/mink-selenium-driver/src', $vendorDir . '/behat/mink-browserkit-driver/src', $vendorDir . '/behat/mink-goutte-driver/src'),
     'Behat\\Mink' => array($vendorDir . '/behat/mink/src'),

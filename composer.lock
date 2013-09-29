@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "729428a9131b32ccc37a23e848c99b85",
+    "hash": "6346c0c619c83ede1c69cece568da565",
     "packages": [
         {
             "name": "alexandresalome/php-selenium",
@@ -443,12 +443,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Goutte.git",
-                "reference": "11ce3d1d91c8b35ee98341472281a9c96f296e78"
+                "reference": "v1.0.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Goutte/zipball/11ce3d1d91c8b35ee98341472281a9c96f296e78",
-                "reference": "11ce3d1d91c8b35ee98341472281a9c96f296e78",
+                "url": "https://api.github.com/repos/fabpot/Goutte/zipball/v1.0.2",
+                "reference": "v1.0.2",
                 "shasum": ""
             },
             "require": {
@@ -535,6 +535,52 @@
                 "sdk"
             ],
             "time": "2013-01-15 21:37:15"
+        },
+        {
+            "name": "fzaninotto/faker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "3613b1466d5e9518b83f87d828f93f962ff0f997"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/3613b1466d5e9518b83f87d828f93f962ff0f997",
+                "reference": "3613b1466d5e9518b83f87d828f93f962ff0f997",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Faker": "src/",
+                    "Faker\\PHPUnit": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2013-07-15 16:26:12"
         },
         {
             "name": "guzzle/common",
@@ -1764,12 +1810,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "e10e17c2f0cc7c787cc3960c0f73432347ce6f20"
+                "reference": "9932431a9e848e9fb935196fb0d97317de668116"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e10e17c2f0cc7c787cc3960c0f73432347ce6f20",
-                "reference": "e10e17c2f0cc7c787cc3960c0f73432347ce6f20",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/9932431a9e848e9fb935196fb0d97317de668116",
+                "reference": "9932431a9e848e9fb935196fb0d97317de668116",
                 "shasum": ""
             },
             "require": {
@@ -1850,7 +1896,7 @@
                 "framework",
                 "yii"
             ],
-            "time": "2013-07-18 22:21:21"
+            "time": "2013-07-20 11:28:22"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -1907,7 +1953,8 @@
     "stability-flags": {
         "yiisoft/yii2": 20,
         "yiisoft/yii2-composer": 20,
-        "codeception/codeception": 20
+        "codeception/codeception": 20,
+        "fzaninotto/faker": 20
     },
     "platform": {
         "php": ">=5.3.0"

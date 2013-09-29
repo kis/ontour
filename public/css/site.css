@@ -1,0 +1,29 @@
+
+#show_profile {
+    cursor: pointer;
+}
+
+#login_button {
+    cursor: pointer;
+}
+
+#token {
+    cursor: pointer;
+}
+
+#oauth {
+    cursor: pointer;
+}
+
+#audio {
+    cursor: pointer;
+}
+
+#user_pic {
+    display: inline-block;
+    padding: 5px;
+}
+
+.user_image {
+    border-radius: 5px;
+}
