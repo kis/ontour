@@ -1,21 +1,9 @@
 
-#show_profile {
-    cursor: pointer;
-}
+/*
+ *  Vk
+ */
 
-#login_button {
-    cursor: pointer;
-}
-
-#token {
-    cursor: pointer;
-}
-
-#oauth {
-    cursor: pointer;
-}
-
-#audio {
+#show_profile, #login_button, #token, #oauth, #audio {
     cursor: pointer;
 }
 
@@ -27,3 +15,12 @@
 .user_image {
     border-radius: 5px;
 }
+
+/*
+ *  LastFM
+ */
+
+#lastfm_auth, #fetch_session {
+    cursor: pointer;
+}
+

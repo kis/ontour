@@ -39,6 +39,7 @@ echo Html::a('auth', null, array(
 ));
 
 echo Html::tag('br');
+echo Html::tag('br');
 
 echo Html::a('audio', null, array(
     'id' => 'audio'

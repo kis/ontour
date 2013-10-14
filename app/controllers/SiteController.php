@@ -9,6 +9,10 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionLastfm() {
+        return $this->render('lastfm');
+    }
+
     public  function actionMailer()
     {
         $mail = Yii::$app->getComponent('mail');

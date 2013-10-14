@@ -14,15 +14,14 @@ $this->beginPage();
 $guest = Yii::$app->getUser()->getIsGuest();
 
 $items = array(
-    array('label' => 'Home', 'url' => array('/site/index')),
+    array('label' => 'VK', 'url' => array('/site/index')),
+    array('label' => 'LastFM', 'url' => array('/site/lastfm')),
 );
 
 if ($guest) {
-    $items[] = array('label' => 'Login', 'url' => array('/auth/login'));
-    $items[] = array('label' => 'Registration', 'url' => array('/auth/registration'));
+
 } else {
-    $items[] = array('label' => 'Messages', 'url' => array('/message/conversation'));
-    $items[] = array('label' => 'Logout', 'url' => array('/auth/logout'));
+
 }
 
 ?>
