@@ -13,6 +13,11 @@ class SiteController extends Controller
         return $this->render('lastfm');
     }
 
+    public function actionArtists() {
+        return $this->render('artists');
+    }
+
+
     public function actionMailer()
     {
         $mail = Yii::$app->getComponent('mail');

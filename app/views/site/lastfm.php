@@ -51,10 +51,10 @@ if(isset($_GET['token'])) {
         'id' => 'auth',
         'token' => $_GET['token']
     ));
-}
 
-echo Html::tag('br');
-echo Html::tag('br');
+    echo Html::tag('br');
+    echo Html::tag('br');
+}
 
 /*
  *  LastFM API Request. Get artist information. No need to authorize

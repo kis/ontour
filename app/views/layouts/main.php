@@ -16,6 +16,7 @@ $guest = Yii::$app->getUser()->getIsGuest();
 $items = array(
     array('label' => 'VK', 'url' => array('/site/index')),
     array('label' => 'LastFM', 'url' => array('/site/lastfm')),
+    array('label' => 'Artists', 'url' => array('/site/artists')),
 );
 
 if ($guest) {

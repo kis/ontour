@@ -29,20 +29,41 @@ $(function() {
      *  LastFM API Request. Get artist information. No need to authorize
      */
 
-    $("a#artist").on({
+    $("button#artistButton").on({
         click: function() {
 
-            var lastfm = new LastFM({
-                apiKey    : 'dd349d2176d3b97b8162bb0c0e583b1c',
-                apiSecret : '1aaac60ed1acb3d7a10d5b1caa08d116',
-            });
+            var artistName = $('input#artistField').val();
 
-            lastfm.artist.getInfo({artist: "Linkin Park"}, {success: function(data){
-                alert(data.artist.url); 
-            }, error: function(code, message){
-                if (code == 4)
-                    alert('error!');
-            }});
+            if(!artistName) {
+                alert('Enter artist name..');
+            } else {
+                var lastfm = new LastFM({
+                    apiKey    : 'dd349d2176d3b97b8162bb0c0e583b1c',
+                    apiSecret : '1aaac60ed1acb3d7a10d5b1caa08d116'
+                });
+
+                lastfm.artist.getEvents({artist: artistName}, {success: function(data){
+
+                    var events = data.events.event;
+
+                    events.forEach(function(value, index) {
+                        $('#artist-info').append(
+                            value.id + '<br/>' +
+                            value.venue.name + '<br/>' +
+                            value.venue.location.city + '<br/>' +
+                            value.venue.location.country + '<br/>' +
+                            value.venue.location['geo:point']['geo:lat'] + '<br/>' +
+                            value.venue.location['geo:point']['geo:long'] + '<br/>' +
+                            value.startDate + '<br/>' + //value.startTime +
+                                '<br/><br/>');
+                        //$('#artist-info').append(data.events.event[0].id + '<br/>');
+                    });
+
+                }, error: function(code, message){
+                    if (code == 4)
+                        alert('error!');
+                }});
+            }
         }
     });
 
