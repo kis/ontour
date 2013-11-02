@@ -13,7 +13,7 @@ class SiteController extends Controller
         return $this->render('lastfm');
     }
 
-    public  function actionMailer()
+    public function actionMailer()
     {
         $mail = Yii::$app->getComponent('mail');
         //$mail->setTo('aivus@aivus.name');
@@ -26,4 +26,5 @@ class SiteController extends Controller
 
         return 'Successfully sent ' . $sent . ' messages.';
     }
+
 }

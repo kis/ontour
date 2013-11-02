@@ -20,7 +20,7 @@
  *  LastFM
  */
 
-#lastfm_auth, #fetch_session {
+#lastfm_auth, #fetch_session, #auth, #artist {
     cursor: pointer;
 }
 

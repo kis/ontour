@@ -22,6 +22,9 @@ class AppAsset extends AssetBundle
 	);
 	public $js = array(
         'js/lib/jquery-2.0.3.min.js',
+        'js/lib/lastfm.api.js',
+        'js/lib/lastfm.api.cache.js',
+        'js/lib/md5-min.js',
         'js/vk.js',
         'js/lastfm.js'
 	);
