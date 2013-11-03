@@ -24,3 +24,11 @@
     cursor: pointer;
 }
 
+.noData {
+	border: 1px solid red;
+}
+
+.event {
+	border-top: 1px solid #c5c5c5;
+	padding: 20px;
+}

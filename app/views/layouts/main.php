@@ -39,39 +39,34 @@ if ($guest) {
     <div class="container">
         <?php $this->beginBody(); ?>
         <div class="masthead">
-
-            <div class="navbar navbar-fixed-top">
-                <div class="navbar-inner">
-                    <div class="container">
-                        <?php echo Menu::widget(array(
-                            'options' => array('class' => 'nav'),
-                            'items' => $items,
-                        )); ?>
-                    </div>
-                </div>
+            <div class="row navbar" id="nav1">
+                <?php echo Menu::widget(array(
+                    'options' => array('class' => 'eight columns'),
+                    'items' => $items,
+                )); ?>
             </div>
-            <!-- /.navbar -->
         </div>
 
         <div class="main-container">
 
-            <?php echo Breadcrumbs::widget(array(
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : array(),
-            )); ?>
+            <div class="row">
+                <div class="centered seven columns">
 
-            <?php echo $content; ?>
+                <?php echo Breadcrumbs::widget(array(
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : array(),
+                )); ?>
 
-            <hr>
+                <?php echo $content; ?>
 
-            <div class="footer">
-                <p>&copy; My Company <?php echo date('Y'); ?></p>
-                <p>
-                    <?php echo Yii::powered(); ?>
-                    Template by <a href="http://twitter.github.io/bootstrap/">Twitter Bootstrap</a>
-                </p>
+                <hr>
+
+                <div class="footer">
+                    Kirill Styopkin, 2013
+                </div>
+
+                <?php $this->endBody(); ?>
+                </div>
             </div>
-
-            <?php $this->endBody(); ?>
 
         </div>
 

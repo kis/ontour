@@ -56,12 +56,4 @@ if(isset($_GET['token'])) {
     echo Html::tag('br');
 }
 
-/*
- *  LastFM API Request. Get artist information. No need to authorize
- */
-
-echo Html::a('artists', null, array(
-    'id' => 'artist'
-));
-
 ?>
