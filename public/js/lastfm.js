@@ -35,9 +35,9 @@ $(function() {
             var artistName = $('input#artistField').val();
 
             if(!artistName) {
-                $('input#artistField').addClass('noData');
+                $('input#artistField').parent().addClass('danger');
             } else {
-                $('input#artistField').removeClass('noData');
+                $('input#artistField').parent().removeClass('danger');
 
                 var lastfm = new LastFM({
                     apiKey    : 'dd349d2176d3b97b8162bb0c0e583b1c',
