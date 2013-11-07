@@ -1,5 +1,23 @@
 $(function() {
 
+    /*$(window).load(function() {
+
+        initialize();
+
+        //google.maps.event.addDomListener(window, 'load', initialize);
+    });
+*/
+
+    function initialize(lat, lon) {
+      var mapOptions = {
+        zoom: 8,
+        center: new google.maps.LatLng(lat, lon),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+    }
+
+
     /*
      *  Getting LastFM session key if pass authorization and get access token. Step 2
      */
@@ -68,6 +86,9 @@ $(function() {
                                 value.venue.location['geo:point']['geo:long'] + '<br/>' +
                                 value.startDate + '<br/>' + //value.startTime +
                                     '</div><br/><br/>');
+
+                            initialize(value.venue.location['geo:point']['geo:lat'], 
+                                       value.venue.location['geo:point']['geo:long']);
                             //$('#artist-info').append(data.events.event[0].id + '<br/>');
                         });
                     } else {
@@ -87,6 +108,7 @@ $(function() {
                     if (code == 4)
                         alert('error!');
                 }});
+
             }
         }
     });

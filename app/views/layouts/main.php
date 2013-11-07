@@ -30,6 +30,7 @@ if ($guest) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8"/>
     <title><?php echo Html::encode($this->title); ?></title>
     <?php $this->head(); ?>
@@ -37,37 +38,37 @@ if ($guest) {
 
 <body>
     <div class="container">
+        
         <?php $this->beginBody(); ?>
-        <div class="masthead">
-            <div class="row navbar" id="nav1">
-                <?php echo Menu::widget(array(
-                    'options' => array('class' => 'eight columns'),
-                    'items' => $items,
-                )); ?>
-            </div>
+        
+        <div class="row navbar" id="nav1" gumby-fixed="top">
+            <?php echo Menu::widget(array(
+                'options' => array('class' => 'six columns'),
+                'items' => $items,
+            )); ?>
         </div>
 
         <div class="main-container">
-
             <div class="row">
-                <div class="centered seven columns">
+                <div class="two columns" id="performers-list">
+                    <?php echo Breadcrumbs::widget(array(
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : array(),
+                    )); ?>
 
-                <?php echo Breadcrumbs::widget(array(
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : array(),
-                )); ?>
+                    <?php echo $content; ?>
 
-                <?php echo $content; ?>
-
-                <hr>
-
-                <div class="footer">
-                    Kirill Styopkin, 2013
                 </div>
 
-                <?php $this->endBody(); ?>
+                <div class="ten columns" id="map-area">
+                    <div id="map-canvas"></div>
                 </div>
             </div>
 
+            <!-- <div class="footer">
+                Kirill Styopkin, 2013
+            </div> -->
+
+            <?php $this->endBody(); ?>
         </div>
 
     </div>

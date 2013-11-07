@@ -8,31 +8,27 @@ require '../vendor/autoload.php';
  *  LastFM API Request. Get artist events information. No need to authorize
  */
 
-echo Html::tag('br');
-echo Html::tag('br');
+?>
 
-echo '<div class="field">';
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
-echo Html::input('text', 'artist', null, array(
-    'placeholder' => 'Enter artist name..',
-    'id' => 'artistField',
-    'class' => 'input'
-));
+<br/>
+<br/>
 
-echo '</div>';
+<div class="field">
 
-echo '<div class="xlarge primary btn">';
+	<input type='text' id='artistField' placeholder='Enter artist name..' class='input'>
 
-echo Html::a('Boom!', null, array(
-    'id' => 'artistButton',
-));
+</div>
 
-echo '</div>';
+<div class="large btn default">
 
-echo Html::tag('br');
-echo Html::tag('br');
+	<a id='artistButton'>Boom!</a>
 
-echo Html::tag('div', null, array(
-    'id' => 'artist-info'
-));
+</div>
+
+<br/>
+<br/>
+
+<div id='artist-info'></div>
 	

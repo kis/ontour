@@ -32,3 +32,28 @@
 	border-top: 1px solid #c5c5c5;
 	padding: 20px;
 }
+
+.footer {
+	border-top: 1px solid #c5c5c5;
+	padding: 15px;
+}
+
+#map-canvas {	
+	width: 800px;
+    height: 600px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#performers-list {
+    position: relative;
+    top: 50px;
+    z-index: 1;
+}
+
+#map-area {
+    position: fixed;
+    left: 20%;
+    top: 100px;
+    z-index: 2;
+}
