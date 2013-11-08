@@ -8,13 +8,19 @@ $(function() {
     });
 */
 
+    initialize(0, 0);
+
+    var latNext, lonNext;
+
+    var map;
+
     function initialize(lat, lon) {
       var mapOptions = {
-        zoom: 8,
+        zoom: 2,
         center: new google.maps.LatLng(lat, lon),
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
-      var map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+      map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
     }
 
 
@@ -62,6 +68,8 @@ $(function() {
                     apiSecret : '1aaac60ed1acb3d7a10d5b1caa08d116'
                 });
 
+                initialize(0, 0);
+
                 lastfm.artist.getEvents({artist: artistName}, {success: function(data){
                     var events = data.events.event;
 
@@ -87,8 +95,38 @@ $(function() {
                                 value.startDate + '<br/>' + //value.startTime +
                                     '</div><br/><br/>');
 
-                            initialize(value.venue.location['geo:point']['geo:lat'], 
-                                       value.venue.location['geo:point']['geo:long']);
+
+
+                                var marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(value.venue.location['geo:point']['geo:lat'], 
+                                        value.venue.location['geo:point']['geo:long']),
+                                    title: value.startDate + ' - ' + value.venue.location.city
+                                });
+
+                                // To add the marker to the map, call setMap();
+                                marker.setMap(map);
+
+
+
+                                //add Path between Markers to the Map 
+
+                                latNext = events[index+1].venue.location['geo:point']['geo:lat'];
+                                lonNext = events[index+1].venue.location['geo:point']['geo:long'];
+
+                                var flightPlanCoordinates = [
+                                    new google.maps.LatLng(value.venue.location['geo:point']['geo:lat'], value.venue.location['geo:point']['geo:long']),
+                                    new google.maps.LatLng(latNext, lonNext)
+                                ];
+                                
+                                var flightPath = new google.maps.Polyline({
+                                    path: flightPlanCoordinates,
+                                    strokeColor: "#FF0000",
+                                    strokeOpacity: 1.0,
+                                    strokeWeight: 1
+                                });
+
+                                flightPath.setMap(map);
+
                             //$('#artist-info').append(data.events.event[0].id + '<br/>');
                         });
                     } else {
