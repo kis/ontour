@@ -28,6 +28,10 @@
 	border: 1px solid red;
 }
 
+.eventListTitle {
+    padding: 20px;
+}
+
 .event {
 	border-top: 1px solid #c5c5c5;
 	padding: 20px;
@@ -56,4 +60,9 @@
     left: 20%;
     top: 100px;
     z-index: 2;
+}
+
+#infoWindow {
+    background: white;
+    color: black;
 }

@@ -5,8 +5,7 @@ $(function() {
         initialize();
 
         //google.maps.event.addDomListener(window, 'load', initialize);
-    });
-*/
+    });*/
 
     initialize(0, 0);
 
@@ -23,6 +22,13 @@ $(function() {
       map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
     }
 
+    $('#artistField').on({
+        keyup: function(e) {
+            if (e.keyCode === 13) {
+                $("#artistButton").trigger('click');
+            }
+        }
+    });
 
     /*
      *  Getting LastFM session key if pass authorization and get access token. Step 2
@@ -76,39 +82,58 @@ $(function() {
                     $('#artist-info').children().detach();
 
                     if(data.events.event == undefined) {
-                        $('#artist-info').append('<h4>Такого артиста не существует </h4><br/><br/>');
+                        $('#artist-info').append('<h4>Not found </h4>');
                         return;
                     }
 
                     if(events.length != undefined) {
-                        $('#artist-info').append('<h4>Найдено ' +events.length+ ' предстоящих событий </h4><br/><br/>');
+                        $('#artist-info').append('<div class="eventListTitle"><h4>' +events.length+ 
+                                ' upcoming events found </h4></div>');
 
                         events.forEach(function(value, index) {
                             $('#artist-info').append(
                                 '<div class="event">' +
-                                value.id + '<br/>' +
+                                //value.id + '<br/>' +
+                                value.startDate + '<br/>' + //value.startTime +
                                 value.venue.name + '<br/>' +
                                 value.venue.location.city + '<br/>' +
                                 value.venue.location.country + '<br/>' +
-                                value.venue.location['geo:point']['geo:lat'] + '<br/>' +
-                                value.venue.location['geo:point']['geo:long'] + '<br/>' +
-                                value.startDate + '<br/>' + //value.startTime +
-                                    '</div><br/><br/>');
+                                //value.venue.location['geo:point']['geo:lat'] + '<br/>' +
+                                //value.venue.location['geo:point']['geo:long'] + '<br/>' +
+                                    '</div>');
 
-
+                                //add markers
 
                                 var marker = new google.maps.Marker({
                                     position: new google.maps.LatLng(value.venue.location['geo:point']['geo:lat'], 
                                         value.venue.location['geo:point']['geo:long']),
-                                    title: value.startDate + ' - ' + value.venue.location.city
+                                    map: map,
+                                    title: value.startDate + ' - ' + value.venue.location.city,
+
                                 });
 
-                                // To add the marker to the map, call setMap();
-                                marker.setMap(map);
+
+                                //add information windows
+
+                                var infowindow = new google.maps.InfoWindow({
+                                    content: '<div id="infoWindow">' +
+                                        '<p>' + value.startDate + '</p>' +
+                                        value.venue.name + '<br/>' +
+                                        value.venue.location.city + '<br/>' +
+                                        value.venue.location.country + '<br/>' +
+                                            '</div>'
+                                });
+
+                                google.maps.event.addListener(marker, 'mouseover', function() {
+                                    infowindow.open(map,marker);
+                                });
+
+                                google.maps.event.addListener(marker, 'mouseout', function() {
+                                    infowindow.close(map,marker);
+                                });
 
 
-
-                                //add Path between Markers to the Map 
+                                //add paths between markers
 
                                 latNext = events[index+1].venue.location['geo:point']['geo:lat'];
                                 lonNext = events[index+1].venue.location['geo:point']['geo:long'];
@@ -122,10 +147,9 @@ $(function() {
                                     path: flightPlanCoordinates,
                                     strokeColor: "#FF0000",
                                     strokeOpacity: 1.0,
-                                    strokeWeight: 1
+                                    strokeWeight: 1,
+                                    map: map
                                 });
-
-                                flightPath.setMap(map);
 
                             //$('#artist-info').append(data.events.event[0].id + '<br/>');
                         });

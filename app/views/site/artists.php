@@ -23,7 +23,7 @@ require '../vendor/autoload.php';
 
 <div class="large btn default">
 
-	<a id='artistButton'>Boom!</a>
+	<a id='artistButton'>Search</a>
 
 </div>
 
