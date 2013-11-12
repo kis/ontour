@@ -142,12 +142,21 @@ $(function() {
                                     new google.maps.LatLng(value.venue.location['geo:point']['geo:lat'], value.venue.location['geo:point']['geo:long']),
                                     new google.maps.LatLng(latNext, lonNext)
                                 ];
+
+                                var lineSymbol = {
+                                    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+                                    scale: 3
+                                };
                                 
                                 var flightPath = new google.maps.Polyline({
                                     path: flightPlanCoordinates,
                                     strokeColor: "#FF0000",
                                     strokeOpacity: 1.0,
                                     strokeWeight: 1,
+                                    icons: [{
+                                        icon: lineSymbol,
+                                        offset: '100%'
+                                    }],
                                     map: map
                                 });
 
