@@ -2,8 +2,6 @@ $(function() {
 
     initialize(0, 0);
 
-    var latNext, lonNext;
-
     var map;
 
     function initialize(lat, lon) {
@@ -13,6 +11,57 @@ $(function() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+    }
+
+    function addMarker(lat, lon, map, date, city) {
+        return new google.maps.Marker({
+            position: new google.maps.LatLng(lat, lon),
+            map: map,
+            title: date + ' - ' + city
+        });
+    }
+
+    function addInfoWindow(date, name, city, country, map, marker) {
+        var infowindow = new google.maps.InfoWindow({
+            content: '<div class="box normal asphalt">' +
+                     '<p>' + date + '</p>' +
+                     name + '<br/>' +
+                     city + '<br/>' +
+                     country + '<br/>' +
+                     '</div>'
+        });
+
+        google.maps.event.addListener(marker, 'mouseover', function() {
+            infowindow.open(map, marker);
+        });
+
+        google.maps.event.addListener(marker, 'mouseout', function() {
+            infowindow.close(map, marker);
+        });
+    }
+
+    function addPath(lat, lon, latNext, lonNext, map) {
+        var flightPlanCoordinates = [
+            new google.maps.LatLng(lat, lon),
+            new google.maps.LatLng(latNext, lonNext)
+        ];
+
+        var lineSymbol = {
+            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+            scale: 2
+        };
+        
+        var flightPath = new google.maps.Polyline({
+            path: flightPlanCoordinates,
+            strokeColor: "#FF0000",
+            strokeOpacity: 1.0,
+            strokeWeight: 1,
+            icons: [{
+                icon: lineSymbol,
+                offset: '100%'
+            }],
+            map: map
+        });    
     }
 
     $('#artistField').on({
@@ -79,7 +128,7 @@ $(function() {
                 $('#artist-info').children().detach();
 
                 if(data.events.event == undefined) {
-                    $('#artist-info').append('<div class="box square asphalt event"><h4>Not found </h4></div>');
+                    $('#artist-info').append('<div class="box normal asphalt event"><h4>Not found </h4></div>');
                     return;
                 }
 
@@ -91,77 +140,45 @@ $(function() {
                     ev = events;
                 }
 
-                $('#artist-info').append('<div class="box square asphalt event"><h4>' +ev.length+ 
+                $('#artist-info').append('<div class="box normal asphalt event"><h4>' +ev.length+ 
                         ' upcoming events found </h4></div>');
 
                 ev.forEach(function(value, index) {
                     $('#artist-info').append(
-                        '<div class="box square asphalt event">' +
+                        '<div class="box normal asphalt event">' +
                         //value.id + '<br/>' +
                         value.startDate + '<br/>' + //value.startTime +
                         value.venue.name + '<br/>' +
                         value.venue.location.city + '<br/>' +
                         value.venue.location.country + '<br/>' +
-                        //value.venue.location['geo:point']['geo:lat'] + '<br/>' +
-                        //value.venue.location['geo:point']['geo:long'] + '<br/>' +
                         '</div>');
 
                     //add markers
 
-                    var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(value.venue.location['geo:point']['geo:lat'], 
-                            value.venue.location['geo:point']['geo:long']),
-                        map: map,
-                        title: value.startDate + ' - ' + value.venue.location.city
-                    });
-
+                    var marker = addMarker(value.venue.location['geo:point']['geo:lat'], 
+                                           value.venue.location['geo:point']['geo:long'], 
+                                           map, 
+                                           value.startDate, 
+                                           value.venue.location.city);
 
                     //add information windows
 
-                    var infowindow = new google.maps.InfoWindow({
-                        content: '<div id="infoWindow">' +
-                            '<p>' + value.startDate + '</p>' +
-                            value.venue.name + '<br/>' +
-                            value.venue.location.city + '<br/>' +
-                            value.venue.location.country + '<br/>' +
-                            '</div>'
-                    });
-
-                    google.maps.event.addListener(marker, 'mouseover', function() {
-                        infowindow.open(map,marker);
-                    });
-
-                    google.maps.event.addListener(marker, 'mouseout', function() {
-                        infowindow.close(map,marker);
-                    });
-
+                    addInfoWindow(value.startDate, 
+                                  value.venue.name, 
+                                  value.venue.location.city, 
+                                  value.venue.location.country, 
+                                  map, 
+                                  marker);
 
                     //add paths between markers
 
-                    latNext = events[index+1].venue.location['geo:point']['geo:lat'];
-                    lonNext = events[index+1].venue.location['geo:point']['geo:long'];
-
-                    var flightPlanCoordinates = [
-                        new google.maps.LatLng(value.venue.location['geo:point']['geo:lat'], value.venue.location['geo:point']['geo:long']),
-                        new google.maps.LatLng(latNext, lonNext)
-                    ];
-
-                    var lineSymbol = {
-                        path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-                        scale: 3
-                    };
-                    
-                    var flightPath = new google.maps.Polyline({
-                        path: flightPlanCoordinates,
-                        strokeColor: "#FF0000",
-                        strokeOpacity: 1.0,
-                        strokeWeight: 1,
-                        icons: [{
-                            icon: lineSymbol,
-                            offset: '100%'
-                        }],
-                        map: map
-                    });
+                    if(index < ev.length-1) {
+                        addPath(value.venue.location['geo:point']['geo:lat'], 
+                                value.venue.location['geo:point']['geo:long'], 
+                                ev[index+1].venue.location['geo:point']['geo:lat'], 
+                                ev[index+1].venue.location['geo:point']['geo:long'], 
+                                map);
+                    }
                 });
 
             }, error: function(code, message){

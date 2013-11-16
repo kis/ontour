@@ -39,8 +39,8 @@ if ($guest) {
 <body>
     <?php $this->beginBody(); ?>
     <div id="top_menu" class="row fixed">
-        <nav class="nav asphalt square">
-            <div class="collapse navbar-collapse" >
+        <nav class="nav asphalt normal">
+            <div class="collapse navbar-collapse">
                 <?php echo Menu::widget(array(
                     'items' => $items,
                 )); ?>
