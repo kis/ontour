@@ -37,41 +37,34 @@ if ($guest) {
 </head>
 
 <body>
-    <div class="container">
-        
-        <?php $this->beginBody(); ?>
-        
-        <div class="row navbar" id="nav1" gumby-fixed="top">
-            <?php echo Menu::widget(array(
-                'options' => array('class' => 'six columns'),
-                'items' => $items,
-            )); ?>
-        </div>
-
-        <div class="main-container">
-            <div class="row">
-                <div class="two columns" id="performers-list">
-                    <?php echo Breadcrumbs::widget(array(
-                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : array(),
-                    )); ?>
-
-                    <?php echo $content; ?>
-
-                </div>
-
-                <div class="ten columns" id="map-area">
-                    <div id="map-canvas"></div>
-                </div>
+    <?php $this->beginBody(); ?>
+    <div id="top_menu" class="row fixed">
+        <nav class="nav asphalt square">
+            <div class="collapse navbar-collapse" >
+                <?php echo Menu::widget(array(
+                    'items' => $items,
+                )); ?>
             </div>
+        </nav>
+    </div>
 
-            <!-- <div class="footer">
-                Kirill Styopkin, 2013
-            </div> -->
+    <div id="main_area" class="row">
 
-            <?php $this->endBody(); ?>
+        <div class="one fifth" id="performers-list">
+            <?php echo Breadcrumbs::widget(array(
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : array(),
+            )); ?>
+
+            <?php echo $content; ?>
         </div>
 
+        <div class="four fifth" id="map-area">
+            <div id="map-canvas"></div>
+        </div>
     </div>
+
+    <?php $this->endBody(); ?>
+
 </body>
 </html>
 <?php $this->endPage(); ?>

@@ -1,0 +1,370 @@
+// =============================================
+//              Layout Helpers
+//          Last Updated:2013-8-16
+// =============================================
+
+$positioning-classes: true !default;
+
+$spacer-classes:      true !default;
+$spacer-helpers:      "padded" "pad-top" "pad-right" "pad-bottom" "pad-left"
+                      "gapped" "gap-top" "gap-right" "gap-bottom" "gap-left"
+                      "offset" "offset-top" "offset-right" "offset-bottom" "offset-left" !default;
+
+$spacer-mod-classes:  true !default;
+$spacer-modifiers:    "half" "double" "triple" !default;
+
+$size-classes:        true !default;
+$size-helpers:        "small" "medium" "large" !default;
+
+$layout-classes:      true !default;
+$layout-helpers:      "inline" "inline-block" "block"
+                      "hidden"
+                      "zero"
+                      "pull-right" "pull-left" "pull-none" "clear"
+                      "center" !default;
+
+$typography-classes:  true !default;
+$typography-helpers:  "align-top" "align-right" "align-bottom" "align-left" "align-center" "justify"
+                      "truncate" "unstyled" !default;
+
+$border-classes:      true !default;
+$border-helpers:      "bordered" "border-right" "border-left" "border-top" "border-bottom" !default;
+
+$radius-classes:      true !default;
+$radius-helpers:      "square" "round" !default;
+
+$rotation-classes:    true !default;
+$rotation-helpers:    "rotate-90" "rotate-90-ctr" "rotate-180" "rotate-180-ctr" "rotate-270" "rotate-270-ctr" "rotate-360" "rotate-360-ctr" !default;
+
+$transition-classes:  true !default;
+$gutter:              10px !default;
+
+
+///////////////////////
+//       mixins      //
+///////////////////////
+
+@mixin _clear                       { clear: both;
+  &:after                           { content: " "; display: block; height: 0; font-size: 0; clear: both; visibility: hidden; }
+}
+@mixin _clearfix                    { @include _clear; } // alias
+
+@mixin _padded($multiple: 1)        { padding: $gutter * $multiple; }
+@mixin _pad-top($multiple: 1)       { padding-top: $gutter * $multiple; }
+@mixin _pad-right($multiple: 1)     { padding-right: $gutter * $multiple; }
+@mixin _pad-bottom($multiple: 1)    { padding-bottom: $gutter * $multiple; }
+@mixin _pad-left($multiple: 1)      { padding-left: $gutter * $multiple; }
+
+@mixin _gapped($multiple: 1)        { margin: $gutter * $multiple; }
+@mixin _gap-top($multiple: 1)       { margin-top: $gutter * $multiple; }
+@mixin _gap-right($multiple: 1)     { margin-right: $gutter * $multiple; }
+@mixin _gap-bottom($multiple: 1)    { margin-bottom: $gutter * $multiple; }
+@mixin _gap-left($multiple: 1)      { margin-left: $gutter * $multiple; }
+
+@mixin _offset($multiple: 1)        { margin: (-$gutter * $multiple); }
+@mixin _offset-top($multiple: 1)    { margin-top: (-$gutter * $multiple); }
+@mixin _offset-right($multiple: 1)  { margin-right: (-$gutter * $multiple); }
+@mixin _offset-bottom($multiple: 1) { margin-bottom: (-$gutter * $multiple); }
+@mixin _offset-left($multiple: 1)   { margin-left: (-$gutter * $multiple); }
+
+@mixin _fixed($position: null) {
+  position: fixed;
+  @each $anchor in top, right, bottom, left {
+    @if $position == $anchor {#{$position}: 0;}
+  }
+  @if $position == middle {top: 50%;}
+  @if $position == center {left: 50%;}
+}
+
+@mixin _absolute($position: null) {
+  position: absolute;
+  @each $anchor in top, right, bottom, left {
+    @if $position == $anchor {#{$position}: 0;}
+  }
+  @if $position == middle {top: 50%;}
+  @if $position == center {left: 50%;}
+}
+
+@mixin _relative                  { position: relative; }
+@mixin _static                    { position: static; }
+
+@mixin _inline                    { display:inline; }
+@mixin _inline-block              { display:inline-block; width:auto; }
+@mixin _block                     { display:block; }
+@mixin _hidden                    { display:none !important; }
+
+@mixin _small                     { font-size:0.8em; }
+@mixin _medium                    { font-size:1em; }
+@mixin _large                     { font-size:1.5em; }
+
+@mixin _italic                    { font-style: italic; }
+@mixin _bold                      { font-weight: 900; }
+
+@mixin _zero                      { margin:0; padding:0; }
+
+@mixin _pull-right                { float:right; }
+@mixin _pull-left                 { float:left; }
+@mixin _pull-none                 { float:none; }
+
+@mixin _bordered                  { border: 1px solid $border-color; }
+@mixin _border-top                { border-top:1px solid $border-color; }
+@mixin _border-right              { border-right:1px solid $border-color; }
+@mixin _border-bottom             { border-bottom:1px solid $border-color; }
+@mixin _border-left               { border-left:1px solid $border-color; }
+
+@mixin _align-top                 { display:table-cell; vertical-align:top; } // must have height (experimental)
+@mixin _align-right               { text-align:right; }
+@mixin _align-bottom              { display:table-cell; vertical-align:bottom; } // must have height (experimental)
+@mixin _align-left                { text-align:left; }
+@mixin _align-center              { text-align:center; }
+@mixin _justify                   { text-align:justify; }
+@mixin _unstyled                  { margin: 0; padding: 0; list-style: none; }
+
+
+@mixin _truncate                  { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+
+@mixin _center                    { @include _block; margin:0 auto; }
+
+@mixin _square                    { @include border-radius(0); }
+@mixin _round                     { @include rounded(9999em); }
+
+@mixin _rotate-90                 { @include _inline-block; @include rotate(90deg); }
+@mixin _rotate-180                { @include _inline-block; @include rotate(180deg); }
+@mixin _rotate-270                { @include _inline-block; @include rotate(270deg); }
+@mixin _rotate-360                { @include _inline-block; @include rotate(360deg); }
+@mixin _rotate-90-ctr             { @include _inline-block; @include rotate(-90deg); }
+@mixin _rotate-180-ctr            { @include _inline-block; @include rotate(-180deg); }
+@mixin _rotate-270-ctr            { @include _inline-block; @include rotate(-270deg); }
+@mixin _rotate-360-ctr            { @include _inline-block; @include rotate(-360deg); }
+
+
+
+
+///////////////////////
+//    placeholders   //
+///////////////////////
+
+%clear, %clearfix { clear: both;
+  &:after         { content: " "; display: block; height: 0; font-size: 0; clear: both; visibility: hidden; }
+}
+
+%padded               { @include _padded; }
+%half-padded          { @include _padded(0.5); }
+%double-padded        { @include _padded(2); }
+%triple-padded        { @include _padded(3); }
+
+%pad-top              { @include _pad-top; }
+%half-pad-top         { @include _pad-top(0.5); }
+%double-pad-top       { @include _pad-top(2); }
+%triple-pad-top       { @include _pad-top(3); }
+
+%pad-right            { @include _pad-right; }
+%half-pad-right       { @include _pad-right(0.5); }
+%double-pad-right     { @include _pad-right(2); }
+%triple-pad-right     { @include _pad-right(3); }
+
+%pad-bottom           { @include _pad-bottom; }
+%half-pad-bottom      { @include _pad-bottom(0.5); }
+%double-pad-bottom    { @include _pad-bottom(2); }
+%triple-pad-bottom    { @include _pad-bottom(3); }
+
+%pad-left             { @include _pad-left; }
+%half-pad-left        { @include _pad-left(0.5); }
+%double-pad-left      { @include _pad-left(2); }
+%triple-pad-left      { @include _pad-left(3); }
+
+%gapped               { @include _gapped; }
+%half-gapped          { @include _gapped(0.5); }
+%double-gapped        { @include _gapped(2); }
+%triple-gapped        { @include _gapped(3); }
+
+%gap-top              { @include _gap-top; }
+%half-gap-top         { @include _gap-top(0.5); }
+%double-gap-top       { @include _gap-top(2); }
+%triple-gap-top       { @include _gap-top(3); }
+
+%gap-right            { @include _gap-right; }
+%half-gap-right       { @include _gap-right(0.5); }
+%double-gap-right     { @include _gap-right(2); }
+%triple-gap-right     { @include _gap-right(3); }
+
+%gap-bottom           { @include _gap-bottom; }
+%half-gap-bottom      { @include _gap-bottom(0.5); }
+%double-gap-bottom    { @include _gap-bottom(2); }
+%triple-gap-bottom    { @include _gap-bottom(3); }
+
+%gap-left             { @include _gap-left; }
+%half-gap-left        { @include _gap-left(0.5); }
+%double-gap-left      { @include _gap-left(2); }
+%triple-gap-left      { @include _gap-left(3); }
+
+%offset               { @include _offset; }
+%half-offset          { @include _offset(0.5); }
+%double-offset        { @include _offset(2); }
+%triple-offset        { @include _offset(3); }
+
+%offset-top           { @include _offset-top; }
+%half-offset-top      { @include _offset-top(0.5); }
+%double-offset-top    { @include _offset-top(2); }
+%triple-offset-top    { @include _offset-top(3); }
+
+%offset-right         { @include _offset-right; }
+%half-offset-right    { @include _offset-right(0.5); }
+%double-offset-right  { @include _offset-right(2); }
+%triple-offset-right  { @include _offset-right(3); }
+
+%offset-bottom        { @include _offset-bottom; }
+%half-offset-bottom   { @include _offset-bottom(0.5); }
+%double-offset-bottom { @include _offset-bottom(2); }
+%triple-offset-bottom { @include _offset-bottom(3); }
+
+%offset-left          { @include _offset-left; }
+%half-offset-left     { @include _offset-left(0.5); }
+%double-offset-left   { @include _offset-left(2); }
+%triple-offset-left   { @include _offset-left(3); }
+
+%fixed            { @include _fixed; }
+%fixed-top        { @include _fixed(top); }
+%fixed-right      { @include _fixed(right); }
+%fixed-bottom     { @include _fixed(bottom); }
+%fixed-left       { @include _fixed(left); }
+%fixed-middle     { @include _fixed(middle); }
+%fixed-center     { @include _fixed(center); }
+
+%absolute         { @include _absolute; }
+%absolute-top     { @include _absolute(top); }
+%absolute-right   { @include _absolute(right); }
+%absolute-bottom  { @include _absolute(bottom); }
+%absolute-left    { @include _absolute(left); }
+%absolute-middle  { @include _absolute(middle); }
+%absolute-center  { @include _absolute(center); }
+
+%relative         { @include _relative; }
+%static           { @include _static; }
+
+%inline           { @include _inline; }
+%inline-block     { @include _inline-block; }
+%block            { @include _block; }
+%hidden           { @include _hidden; }
+
+%small            { @include _small; }
+%medium           { @include _medium; }
+%big, %large      { @include _large; }
+
+%em, %italic      { @include _italic; }
+%b, %bold, %strong{ @include _bold; }
+
+%zero             { @include _zero; }
+
+%pull-right       { @include _pull-right; }
+%pull-left        { @include _pull-left; }
+%pull-none        { @include _pull-none; }
+
+%bordered         { @include _bordered; }
+%border-top       { @include _border-top; }
+%border-right     { @include _border-right; }
+%border-bottom    { @include _border-bottom; }
+%border-left      { @include _border-left; }
+
+%align-top        { @include _align-top; } // must have height (experimental)
+%align-right      { @include _align-right; }
+%align-bottom     { @include _align-bottom; } // must have height (experimental)
+%align-left       { @include _align-left; }
+%align-center     { @include _align-center; }
+%justify          { @include _justify; }
+%unstyled         { @extend %zero; list-style: none; }
+
+%truncate         { @include _truncate; }
+
+%center           { @include _center; }
+
+%square           { @include _square; }
+%round            { @include _round; }
+
+%rotate-90        { @include _rotate-90; }
+%rotate-90-ctr    { @include _rotate-90-ctr; }
+%rotate-180       { @include _rotate-180; }
+%rotate-180-ctr   { @include _rotate-180-ctr; }
+%rotate-270       { @include _rotate-270; }
+%rotate-270-ctr   { @include _rotate-270-ctr; }
+%rotate-360       { @include _rotate-360; }
+%rotate-360-ctr   { @include _rotate-360-ctr; }
+
+
+
+
+///////////////////////
+//      classes      //
+///////////////////////
+
+@if $layout-classes {
+  @for $i from 1 through length($layout-helpers) {
+    .#{nth($layout-helpers, $i)} { @extend %#{nth($layout-helpers, $i)}; }
+  }
+  .clear, .clearfix { @extend %clear; }
+}
+@if $positioning-classes {
+  .stick, .fixed    { @extend %fixed;
+    &.top           { @extend %fixed-top; }
+    &.right         { @extend %fixed-right; }
+    &.bottom        { @extend %fixed-bottom; }
+    &.left          { @extend %fixed-left; }
+    &.middle        { @extend %fixed-middle; }
+    &.center        { @extend %fixed-center; }
+  }
+  .absolute         { @extend %absolute;
+    &.top           { @extend %absolute-top; }
+    &.right         { @extend %absolute-right; }
+    &.bottom        { @extend %absolute-bottom; }
+    &.left          { @extend %absolute-left; }
+    &.middle        { @extend %absolute-middle; }
+    &.center        { @extend %absolute-center; }
+  }
+  .relative         { @extend %relative; }
+  .static           { @extend %static; }
+}
+@if $typography-classes {
+  @for $i from 1 through length($typography-helpers) {
+    .#{nth($typography-helpers, $i)} { @extend %#{nth($typography-helpers, $i)}; }
+  }
+}
+@if $size-classes {
+  @for $i from 1 through length($size-helpers) {
+    .#{nth($size-helpers, $i)} { @extend %#{nth($size-helpers, $i)}; }
+  }
+}
+@if $border-classes {
+  @for $i from 1 through length($border-helpers) {
+    .#{nth($border-helpers, $i)} { @extend %#{nth($border-helpers, $i)}; }
+  }
+}
+@if $radius-classes {
+  @for $i from 1 through length($radius-helpers) {
+    .#{nth($radius-helpers, $i)} { @extend %#{nth($radius-helpers, $i)}; }
+  }
+}
+@if $rotation-classes {
+  @for $i from 1 through length($rotation-helpers) {
+    .#{nth($rotation-helpers, $i)} { @extend %#{nth($rotation-helpers, $i)}; }
+  }
+}
+@if $spacer-classes {
+  @for $i from 1 through length($spacer-helpers) {
+    .#{nth($spacer-helpers, $i)} {
+      @extend %#{nth($spacer-helpers, $i)};
+    }
+    @if $spacer-mod-classes {
+      @for $j from 1 through length($spacer-modifiers) {
+        .#{nth($spacer-modifiers, $j)}-#{nth($spacer-helpers, $i)} { @extend %#{nth($spacer-modifiers, $j)}-#{nth($spacer-helpers, $i)}; }
+      }
+    }
+  }
+}
+@if $transition-classes {
+  .transition {
+    @include transition();
+  }
+  .no-transition {
+    transition: none !important;
+  }
+}

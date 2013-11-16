@@ -24,42 +24,52 @@
     cursor: pointer;
 }
 
-.noData {
-	border: 1px solid red;
+/******************************/
+
+#top_menu {
+    z-index: 3;
 }
 
-.eventListTitle {
-    padding: 20px;
+#main_area {
+    padding-left: 20px;
 }
 
-.event {
-	border-top: 1px solid #c5c5c5;
-	padding: 20px;
+#search-area {
+    position: fixed;
+    width: 400px;
+    height: 150px;
+    z-index: 4;
+    background: white;
 }
 
-.footer {
-	border-top: 1px solid #c5c5c5;
-	padding: 15px;
-}
-
-#map-canvas {	
-	width: 800px;
-    height: 600px;
-    margin: 0px;
-    padding: 0px;
+#search-box {
+    top: 50px;
 }
 
 #performers-list {
     position: relative;
-    top: 50px;
+    top: 150px;
     z-index: 1;
+}
+
+.event {
+    width: 400px;
+    padding: 20px;
+    margin-bottom: 5px;
 }
 
 #map-area {
     position: fixed;
-    left: 20%;
-    top: 100px;
+    left: 35%;
+    top: 50px;
     z-index: 2;
+}
+
+#map-canvas {   
+    width: 800px;
+    height: 600px;
+    margin: 0px;
+    padding: 0px;
 }
 
 #infoWindow {

@@ -18,21 +18,18 @@ class AppAsset extends AssetBundle
 	public $basePath = '@wwwroot';
 	public $baseUrl = '@www';
 	public $css = array(
-        'gumby/css/gumby.css',
-        'gumby/css/style.css',
+        'groundwork/css/groundwork-core.css',
+        'groundwork/css/groundwork-type.css',
+        'groundwork/css/groundwork-ui.css',
+        'groundwork/css/groundwork-anim.css',
+        'groundwork/css/groundwork-ie.css',
 
 		'css/site.css'
 	);
 	public $js = array(
-		'gumby/js/libs/jquery-1.10.1.min.js',
-        'gumby/js/libs/jquery-1.10.1.min.map',
-        'gumby/js/libs/jquery-2.0.2.min.js',
-        'gumby/js/libs/jquery-2.0.2.min.map',
-        //'gumby/js/main.js',
-        //'gumby/js/plugins.js',
-        //'gumby/js/libs/gumby.init.js',
-        'gumby/js/libs/modernizr-2.6.2.min.js',
-        'gumby/js/libs/gumby.min.js',
+        'groundwork/js/libs/jquery-1.10.2.min.js',
+        'groundwork/js/groundwork.all.js',
+        'groundwork/js/libs/modernizr-2.6.2.min.js',
 
         'js/lib/jquery-2.0.3.min.js',
         'js/lib/jquery-2.0.3.min.map',

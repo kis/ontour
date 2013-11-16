@@ -1,0 +1,202 @@
+// =============================================
+//                  Desktop
+//          Last Updated:2013-8-16
+// =============================================
+
+$responsive: true !default;
+$navigation-classes: true !default;
+$multi-column-classes:      true !default;
+$multi-column-names:        "one-column" "two-column" "three-column" "four-column" "five-column" !default;
+$inline-conditional-helpers: false !default;
+
+
+@mixin desktop {
+  @if $responsive {
+    @media #{$desktop} {
+      // conditional helpers
+      .desktop-only { display: block !important; }
+      .ipad-only { display: none !important; }
+      .small-tablet-only { display: none !important; }
+      .mobile-only { display: none !important; }
+      .hide-on-desktop { display: none !important; }
+      @if $inline-conditional-helpers {
+        span.desktop-only { display: inline !important; }
+      }
+      .no-border-desktop { border: 0; }
+      @if $size-classes {
+        .small-desktop                { @include _small; }
+        .medium-desktop               { @include _medium; }
+        .large-desktop                { @include _large; }
+      }
+      @if $spacer-classes {
+        // spacer overrides
+        .zero-desktop                 { @include helper_reset; }
+        .padded-desktop               { @include _padded; }
+        .pad-top-desktop              { @include _pad-top; }
+        .pad-right-desktop            { @include _pad-right; }
+        .pad-bottom-desktop           { @include _pad-bottom; }
+        .pad-left-desktop             { @include _pad-left; }
+        .no-padding-desktop,
+        .no-padded-desktop,
+        .no-pad-desktop               { @include helper_reset(padding, $spacers: padded pad-top pad-right pad-bottom pad-left); }
+        .no-pad-top-desktop           { @include _pad-top(0); }
+        .no-pad-right-desktop         { @include _pad-right(0); }
+        .no-pad-bottom-desktop        { @include _pad-bottom(0); }
+        .no-pad-left-desktop          { @include _pad-left(0); }
+        .gapped-desktop               { @include _gapped; }
+        .gap-top-desktop              { @include _gap-top; }
+        .gap-right-desktop            { @include _gap-right; }
+        .gap-bottom-desktop           { @include _gap-bottom; }
+        .gap-left-desktop             { @include _gap-left; }
+        .no-margin-desktop,
+        .no-gapped-desktop,
+        .no-gap-desktop               { @include helper_reset(margin, $spacers: gapped gap-top gap-right gap-bottom gap-left); }
+        .no-gap-top-desktop           { @include _gap-top(0); }
+        .no-gap-right-desktop         { @include _gap-right(0); }
+        .no-gap-bottom-desktop        { @include _gap-bottom(0); }
+        .no-gap-left-desktop          { @include _gap-left(0); }
+        .offset-desktop               { @include _offset; }
+        .offset-top-desktop           { @include _offset-top; }
+        .offset-right-desktop         { @include _offset-right; }
+        .offset-bottom-desktop        { @include _offset-bottom; }
+        .offset-left-desktop          { @include _offset-left; }
+        .no-offset-top-desktop        { @include _offset-top(0); }
+        .no-offset-right-desktop      { @include _offset-right(0); }
+        .no-offset-bottom-desktop     { @include _offset-bottom(0); }
+        .no-offset-left-desktop       { @include _offset-left(0); }
+      }
+      @if $spacer-mod-classes {
+        .half-padded-desktop          { @include _padded(0.5); }
+        .double-padded-desktop        { @include _padded(2); }
+        .triple-padded-desktop        { @include _padded(3); }
+
+        .half-pad-top-desktop         { @include _pad-top(0.5); }
+        .double-pad-top-desktop       { @include _pad-top(2); }
+        .triple-pad-top-desktop       { @include _pad-top(3); }
+
+        .half-pad-right-desktop       { @include _pad-right(0.5); }
+        .double-pad-right-desktop     { @include _pad-right(2); }
+        .triple-pad-right-desktop     { @include _pad-right(3); }
+
+        .half-pad-bottom-desktop      { @include _pad-bottom(0.5); }
+        .double-pad-bottom-desktop    { @include _pad-bottom(2); }
+        .triple-pad-bottom-desktop    { @include _pad-bottom(3); }
+
+        .half-pad-left-desktop        { @include _pad-left(0.5); }
+        .double-pad-left-desktop      { @include _pad-left(2); }
+        .triple-pad-left-desktop      { @include _pad-left(3); }
+
+        .half-gapped-desktop          { @include _gapped(0.5); }
+        .double-gapped-desktop        { @include _gapped(2); }
+        .triple-gapped-desktop        { @include _gapped(3); }
+
+        .half-gap-top-desktop         { @include _gap-top(0.5); }
+        .double-gap-top-desktop       { @include _gap-top(2); }
+        .triple-gap-top-desktop       { @include _gap-top(3); }
+
+        .half-gap-right-desktop       { @include _gap-right(0.5); }
+        .double-gap-right-desktop     { @include _gap-right(2); }
+        .triple-gap-right-desktop     { @include _gap-right(3); }
+
+        .half-gap-bottom-desktop      { @include _gap-bottom(0.5); }
+        .double-gap-bottom-desktop    { @include _gap-bottom(2); }
+        .triple-gap-bottom-desktop    { @include _gap-bottom(3); }
+
+        .half-gap-left-desktop        { @include _gap-left(0.5); }
+        .double-gap-left-desktop      { @include _gap-left(2); }
+        .triple-gap-left-desktop      { @include _gap-left(3); }
+
+        .half-offset-desktop          { @include _offset(0.5); }
+        .double-offset-desktop        { @include _offset(2); }
+        .triple-offset-desktop        { @include _offset(3); }
+
+        .half-offset-top-desktop      { @include _offset-top(0.5); }
+        .double-offset-top-desktop    { @include _offset-top(2); }
+        .triple-offset-top-desktop    { @include _offset-top(3); }
+
+        .half-offset-right-desktop    { @include _offset-right(0.5); }
+        .double-offset-right-desktop  { @include _offset-right(2); }
+        .triple-offset-right-desktop  { @include _offset-right(3); }
+
+        .half-offset-bottom-desktop   { @include _offset-bottom(0.5); }
+        .double-offset-bottom-desktop { @include _offset-bottom(2); }
+        .triple-offset-bottom-desktop { @include _offset-bottom(3); }
+
+        .half-offset-left-desktop     { @include _offset-left(0.5); }
+        .double-offset-left-desktop   { @include _offset-left(2); }
+        .triple-offset-left-desktop   { @include _offset-left(3); }
+      }
+      @if $positioning-classes {
+        .fixed-desktop           { @include _fixed; }
+        .fixed-top-desktop       { @include _fixed(top); }
+        .fixed-right-desktop     { @include _fixed(right); }
+        .fixed-bottom-desktop    { @include _fixed(bottom); }
+        .fixed-left-desktop      { @include _fixed(left); }
+        .fixed-middle-desktop    { @include _fixed(middle); }
+        .fixed-center-desktop    { @include _fixed(center); }
+        .absolute-desktop        { @include _absolute; }
+        .absolute-top-desktop    { @include _absolute(top); }
+        .absolute-right-desktop  { @include _absolute(right); }
+        .absolute-bottom-desktop { @include _absolute(bottom); }
+        .absolute-left-desktop   { @include _absolute(left); }
+        .absolute-middle-desktop { @include _absolute(middle); }
+        .absolute-center-desktop { @include _absolute(center); }
+        .static-desktop          { @include _static; }
+      }
+      @if $layout-classes {
+        .inline-desktop          { @include _inline; }
+        .block-desktop           { @include _block; }
+        .clear-desktop           { @include _clear; }
+        .center-desktop          { @include _center; }
+        .pull-right-desktop      { @include _pull-right; }
+        .pull-left-desktop       { @include _pull-left; }
+        .pull-none-desktop       { @include _pull-none; }
+      }
+      @if $border-classes {
+        .bordered-desktop        { @include _bordered; }
+        .border-top-desktop      { @include _border-top; }
+        .border-right-desktop    { @include _border-right; }
+        .border-bottom-desktop   { @include _border-bottom; }
+        .border-left-desktop     { @include _border-left; }
+      }
+      @if $typography-helpers {
+        .align-top-desktop       { @include _align-top; }
+        .align-right-desktop     { @include _align-right; }
+        .align-bottom-desktop    { @include _align-bottom; }
+        .align-left-desktop      { @include _align-left; }
+        .align-center-desktop    { @include _align-center; }
+        .justify-desktop         { @include _justify; }
+        .truncate-desktop        { @include _truncate; }
+      }
+      @if $rotation-classes {
+        .rotate-90-desktop       { @include _rotate-90; }
+        .rotate-90-ctr-desktop   { @include _rotate-90-ctr; }
+        .rotate-180-desktop      { @include _rotate-180; }
+        .rotate-180-ctr-desktop  { @include _rotate-180-ctr; }
+        .rotate-270-desktop      { @include _rotate-270; }
+        .rotate-270-ctr-desktop  { @include _rotate-270-ctr; }
+        .rotate-360-desktop      { @include _rotate-360; }
+        .rotate-360-ctr-desktop  { @include _rotate-360-ctr; }
+      }
+      @if $multi-column-classes {
+        @for $i from 1 through length($multi-column-names) {
+          .#{nth($multi-column-names, $i)}-desktop, .#{nth($multi-column-names, $i)}s-desktop {
+            @include _multi-column($i);
+          }
+        }
+      }
+      @content;
+    }
+  }
+}
+
+
+///////////////////////
+//      desktop      //
+///////////////////////
+
+@if $responsive {
+  @include desktop {
+    // do not remove -- required for desktop helpers
+  }
+}

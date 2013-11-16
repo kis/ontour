@@ -1,0 +1,57 @@
+// =============================================
+//              Spin Animations
+//          Last Updated:2013-8-9
+// =============================================
+
+$spin-animations:     true !default;
+$spin-helpers:        "spin" "spin-once" "spin-twice" "spin-thrice"
+                      "spin-fast" "spin-fast-once" "spin-fast-twice" "spin-fast-thrice"
+                      "spin-slow" "spin-slow-once" "spin-slow-twice" "spin-slow-thrice" !default;
+
+@mixin animation($animation: spin, $count: infinite, $speed: 2s, $easing: linear) {
+  animation: $animation $speed $easing;
+  animation-iteration-count: $count;
+}
+@mixin spin($count: infinite, $speed: 2s) {
+  @include animation(spin, $count, $speed);
+}
+
+@mixin _spin                      { @include _inline; @include spin; }
+@mixin _spin-once                 { @include _inline; @include spin(1); }
+@mixin _spin-twice                { @include _inline; @include spin(2); }
+@mixin _spin-thrice               { @include _inline; @include spin(3); }
+@mixin _spin-fast                 { @include _inline; @include spin(infinite,1s); }
+@mixin _spin-fast-once            { @include _inline; @include spin(1,1s); }
+@mixin _spin-fast-twice           { @include _inline; @include spin(2,1s); }
+@mixin _spin-fast-thrice          { @include _inline; @include spin(3,1s); }
+@mixin _spin-slow                 { @include _inline; @include spin(infinite,5s); }
+@mixin _spin-slow-once            { @include _inline; @include spin(1,5s); }
+@mixin _spin-slow-twice           { @include _inline; @include spin(2,5s); }
+@mixin _spin-slow-thrice          { @include _inline; @include spin(3,5s); }
+
+%spin             { @include _spin; }
+%spin-once        { @include _spin-once; }
+%spin-twice       { @include _spin-twice; }
+%spin-thrice      { @include _spin-thrice; }
+%spin-fast        { @include _spin-fast; }
+%spin-fast-once   { @include _spin-fast-once; }
+%spin-fast-twice  { @include _spin-fast-twice; }
+%spin-fast-thrice { @include _spin-fast-thrice; }
+%spin-slow        { @include _spin-slow; }
+%spin-slow-once   { @include _spin-slow-once; }
+%spin-slow-twice  { @include _spin-slow-twice; }
+%spin-slow-thrice { @include _spin-slow-thrice; }
+
+@if $spin-animations {
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(359deg); }
+  }
+
+  @for $i from 1 through length($spin-helpers) {
+    .#{nth($spin-helpers, $i)} {
+      @extend %#{nth($spin-helpers, $i)};
+    }
+  }
+}

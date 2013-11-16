@@ -12,23 +12,20 @@ require '../vendor/autoload.php';
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
-<br/>
-<br/>
-
-<div class="field">
-
-	<input type='text' id='artistField' placeholder='Enter artist name..' class='input'>
-
+<div id="search-area" class="row">
+	<div id="search-box" class="box square asphalt">
+		<div class="row gap-bottom">
+			<div class="four fourths">
+		    	<input id='artistField' placeholder='Enter artist name..' class='square'>
+		  	</div>
+		</div>
+	    <div class="row">
+	    	<div class="two fourths">
+	      		<a id='artistButton' class="block white square medium button">Search</a>
+	    	</div>
+	    </div>
+	</div>
 </div>
 
-<div class="large btn default">
-
-	<a id='artistButton'>Search</a>
-
-</div>
-
-<br/>
-<br/>
-
-<div id='artist-info'></div>
+<div id='artist-info' class="row square asphalt"></div>
 	
