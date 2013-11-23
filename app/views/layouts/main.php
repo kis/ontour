@@ -40,7 +40,7 @@ if ($guest) {
     <?php $this->beginBody(); ?>
     <div id="top_menu" class="row fixed">
         <nav class="nav asphalt normal">
-            <div class="collapse navbar-collapse">
+            <div class="collapse navbar-collapse museo-slab">
                 <?php echo Menu::widget(array(
                     'items' => $items,
                 )); ?>
