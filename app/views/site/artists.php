@@ -36,7 +36,7 @@ require '../vendor/autoload.php';
 	    <div class="row">
 	    	<div class="two fourths">
 	      		<a id='artistButton' class="block white normal medium button"><div class="museo-slab">Search</div></a>
-	      		<a id='cityButton' class="block white normal medium button"><b class="museo-slab">Search</b></a>
+	      		<a id='cityButton' class="block white normal medium button"><div class="museo-slab">Search</div></a>
 	    	</div>
 	    </div>
 

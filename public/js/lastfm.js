@@ -13,18 +13,20 @@ $(function() {
       map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
     }
 
-    function addMarker(lat, lon, map, date, city) {
+    function addMarker(lat, lon, map, date, city, image) {
         return new google.maps.Marker({
             position: new google.maps.LatLng(lat, lon),
             map: map,
-            title: date + ' - ' + city
+            title: date + ' - ' + city,
+            icon: image
         });
     }
 
-    function addInfoWindow(date, name, city, country, map, marker) {
+    function addInfoWindow(title, date, name, city, country, map, marker) {
         var infowindow = new google.maps.InfoWindow({
-            content: '<div class="box normal asphalt">' +
-                     '<p>' + date + '</p>' +
+            content: '<div class="box normal asphalt museo-slab">' +
+                     '<p>' + title + '</p>' +
+                     date + '<br/>' +
                      name + '<br/>' +
                      city + '<br/>' +
                      country + '<br/>' +
@@ -162,7 +164,7 @@ $(function() {
             $('#artist-info').append('<div class="box normal asphalt event"><h4 class="museo-slab">' +ev.length+ 
                     ' upcoming events found </h4></div>');
 
-            var lat, lon;
+            var lat, lon, image;
 
             ev.forEach(function(value, index) {
                 $('#artist-info').append(
@@ -174,6 +176,7 @@ $(function() {
                     value.venue.location.street + '<br/>' +
                     value.venue.location.city + '<br/>' +
                     value.venue.location.country + '<br/>' +
+                    // '<img src="'+value.image[0]['#text']+'" >' +
                     '</div>');
 
                 //add markers
@@ -181,15 +184,22 @@ $(function() {
                 lat = value.venue.location['geo:point']['geo:lat'];
                 lon = value.venue.location['geo:point']['geo:long'];
 
+                image = new google.maps.MarkerImage(value.image[2]['#text'],
+                        new google.maps.Size(50, 50),
+                        new google.maps.Point(0,0),
+                        new google.maps.Point(0, 50));
+
                 var marker = addMarker(lat, 
                                        lon, 
                                        map, 
                                        value.startDate, 
-                                       value.venue.location.city);
+                                       value.venue.location.city,
+                                       image);
 
                 //add information windows
 
-                addInfoWindow(value.startDate, 
+                addInfoWindow(value.title,
+                              value.startDate, 
                               value.venue.name, 
                               value.venue.location.city, 
                               value.venue.location.country, 
@@ -265,7 +275,7 @@ $(function() {
                         '</div>');
 
                     //add markers
-
+                    
                     var marker = addMarker(value.venue.location['geo:point']['geo:lat'], 
                                            value.venue.location['geo:point']['geo:long'], 
                                            map, 
@@ -274,7 +284,8 @@ $(function() {
 
                     //add information windows
 
-                    addInfoWindow(value.startDate, 
+                    addInfoWindow(value.title,
+                                  value.startDate, 
                                   value.venue.name, 
                                   value.venue.location.city, 
                                   value.venue.location.country, 
