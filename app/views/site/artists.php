@@ -18,25 +18,26 @@ require '../vendor/autoload.php';
 		<div class="row gap-bottom">
 		  <ul class="button-group">
 		    <li>
-		      <button aria-selected="true" class="white museo-slab">By artist</button>
+		      <button id="artistTab" aria-selected="true" class="white museo-slab">By artist</button>
 		    </li>
 		    <li>
-		      <button class="white museo-slab">By city</button>
+		      <button id="cityTab" class="white museo-slab">By country/city</button>
+		    </li>
+		    <li>
+		      <button id="venueTab" class="white museo-slab">Venues</button>
 		    </li>
 		  </ul>
 		</div>
 
 		<div class="row gap-bottom">
 			<div class="five fifth">
-		    	<input id='artistField' placeholder='Enter artist name..' class='normal museo-slab'>
-		    	<input id='cityField' placeholder='Enter city..' class='normal museo-slab'>
+		    	<input id='artistField' name='search-field' placeholder='Enter artist name..' class='normal museo-slab'>
 		  	</div>
 		</div>
 
 	    <div class="row">
 	    	<div class="two fourths">
-	      		<a id='artistButton' class="block white normal medium button"><div class="museo-slab">Search</div></a>
-	      		<a id='cityButton' class="block white normal medium button"><div class="museo-slab">Search</div></a>
+	      		<a id='artistButton' name='search-go' class="block white normal medium button"><div class="museo-slab">Search</div></a>
 	    	</div>
 	    </div>
 
