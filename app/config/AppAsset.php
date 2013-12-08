@@ -23,8 +23,7 @@ class AppAsset extends AssetBundle
         'groundwork/css/groundwork-ui.css',
         'groundwork/css/groundwork-anim.css',
         'groundwork/css/groundwork-ie.css',
-
-		'css/site.css'
+        'css/site.css'
 	);
 	public $js = array(
         'groundwork/js/libs/jquery-1.10.2.min.js',
@@ -37,7 +36,9 @@ class AppAsset extends AssetBundle
         'js/lib/lastfm.api.cache.js',
         'js/lib/md5-min.js',
         'js/vk.js',
-        'js/lastfm.js'
+        'js/lastfm.js',
+        'js/lastfm_auth.js',
+        'js/map.js'
 	);
 	public $depends = array(
 		//'yii\web\YiiAsset',
