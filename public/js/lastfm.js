@@ -109,7 +109,7 @@ $(function() {
                         new google.maps.Point(0,0),
                         new google.maps.Point(0, 50));*/
 
-                if (lat != 0 && lon != 0) {
+                if (lat && lon) {
 
                     //add markers
 
@@ -210,7 +210,7 @@ $(function() {
                         new google.maps.Point(0,0),
                         new google.maps.Point(0, 50));
 
-                if (lat != 0 && lon != 0) {
+                if (lat && lon) {
 
                     //add markers
 
@@ -304,7 +304,7 @@ $(function() {
                 lat = value.venue.location['geo:point']['geo:lat'];
                 lon = value.venue.location['geo:point']['geo:long'];
 
-                if (lat != 0 && lon != 0) {
+                if (lat && lon) {
 
                     //add markers
 
@@ -327,8 +327,8 @@ $(function() {
                     //add paths between markers
 
                     if (index < ev.length-1 && 
-                        ev[index+1].venue.location['geo:point']['geo:lat'] != 0 &&
-                        ev[index+1].venue.location['geo:point']['geo:long'] != 0) {
+                        ev[index+1].venue.location['geo:point']['geo:lat'] &&
+                        ev[index+1].venue.location['geo:point']['geo:long']) {
 
                         map.addPath(lat, 
                                     lon, 
