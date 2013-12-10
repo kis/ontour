@@ -23,7 +23,7 @@ $(function() {
         var $field = $("#search-box input");
         var $link = $("#search-box a");
 
-        $field.val('');
+        $field.val('').removeClass("invalid");
 
         switch ($(this).attr('id')) {
             case 'artistTab':

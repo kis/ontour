@@ -76,3 +76,7 @@
     margin: 0px;
     padding: 0px;
 }
+
+#search-box button, a, input {
+    outline: none;
+}
