@@ -134,7 +134,7 @@ function LastFM(options){
 				else if(typeof(callbacks.success) != 'undefined'){
 					callbacks.success(data);
 				}
-
+				
 				/* Garbage collect. */
 				window[jsonp] = undefined;
 

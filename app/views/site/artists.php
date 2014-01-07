@@ -44,6 +44,10 @@ require '../vendor/autoload.php';
 	</div>
 </div>
 
-<div id='artist-info' class="row normal asphalt"></div>
+<div id='artist-info' class="row normal asphalt">
+	
+	<button id="animateTest" class="large asphalt animated flash">I do awesome things.</button>
+
+</div>
 
 	

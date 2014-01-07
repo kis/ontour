@@ -80,3 +80,10 @@
 #search-box button, a, input {
     outline: none;
 }
+
+#animateTest {
+    visibility: hidden;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-delay: 1s;
+    -webkit-animation-iteration-count: infinite;
+}

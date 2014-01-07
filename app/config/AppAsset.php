@@ -23,7 +23,8 @@ class AppAsset extends AssetBundle
         'groundwork/css/groundwork-ui.css',
         'groundwork/css/groundwork-anim.css',
         'groundwork/css/groundwork-ie.css',
-        'css/site.css'
+        'css/site.css',
+        'css/lib/animate.css'
 	);
 	public $js = array(
         'groundwork/js/libs/jquery-1.10.2.min.js',
