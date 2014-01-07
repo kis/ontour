@@ -30,12 +30,13 @@ Map.prototype.addMarker = function(lat, lon, map, date, city, image) {
     });
 }
 
-Map.prototype.addInfoWindow = function(title, date, name, city, country, map, marker) {
+Map.prototype.addInfoWindow = function(title, date, name, street, city, country, map, marker) {
     var infowindow = new google.maps.InfoWindow({
         content: '<div class="box normal asphalt museo-slab">' +
                  '<p>' + title + '</p>' +
                  date + '<br/>' +
                  name + '<br/>' +
+                 street + '<br/>' +
                  city + '<br/>' +
                  country + '<br/>' +
                  '</div>'

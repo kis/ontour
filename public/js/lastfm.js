@@ -93,9 +93,9 @@ $(function() {
                     '<div class="box normal asphalt event museo-slab">' +
                     //value.id + '<br/>' +
                     value.name + '<br/><br/>' +
+                    value.location.street + '<br/>' + 
                     value.location.city + '<br/>' +
                     value.location.country + '<br/>' +
-                    value.location.street + '<br/>' +
                     // '<img src="'+value.image[0]['#text']+'" >' +
                     '</div>');
 
@@ -119,18 +119,21 @@ $(function() {
 
                     //add information windows
 
-                    /*addInfoWindow(value.title,
-                                  value.startDate, 
-                                  value.venue.name, 
-                                  value.venue.location.city, 
-                                  value.venue.location.country, 
-                                  map, 
-                                  marker);*/
+                    map.addInfoWindow(value.name, 
+                                      '',
+                                      '',
+                                      value.location.street, 
+                                      value.location.city, 
+                                      value.location.country, 
+                                      map.getMap(), 
+                                      marker);
                 }
             });
 
-            // map.getMap().setCenter(new google.maps.LatLng(lat, lon));
-            // map.getMap().setZoom(12);
+            if (lat && lon) {
+                map.getMap().setCenter(new google.maps.LatLng(lat, lon));
+                map.getMap().setZoom(12);
+            }
 
         }, error: function(code, message) {
             $('#artist-info').append('<div class="box normal asphalt event"><h4 class="museo-slab">Not found </h4></div>');
@@ -226,6 +229,7 @@ $(function() {
                         map.addInfoWindow(value.title,
                                           value.startDate, 
                                           value.venue.name, 
+                                          value.venue.location.street, 
                                           value.venue.location.city, 
                                           value.venue.location.country, 
                                           map.getMap(), 
@@ -233,8 +237,10 @@ $(function() {
                     }
                 });
 
-                // map.getMap().setCenter(new google.maps.LatLng(lat, lon));
-                // map.getMap().setZoom(12);
+                if (lat && lon) {
+                    map.getMap().setCenter(new google.maps.LatLng(lat, lon));
+                    map.getMap().setZoom(12);
+                }
             }, 
             error: function(code, message) {
                 $('#artist-info').append('<div class="box normal asphalt event"><h4 class="museo-slab">Not found </h4></div>');
@@ -247,7 +253,7 @@ $(function() {
     });
 
     /*
-     *  LastFM API Request. Get artist information. No need to authorize
+     *  Get artist info
      */
 
     $(document).on('click', "#artistButton", function() {
@@ -312,8 +318,9 @@ $(function() {
                     $('#artist-info').append(
                         '<div class="box normal asphalt event museo-slab">' +
                         //value.id + '<br/>' +
-                        value.startDate + '<br/>' + //value.startTime +
+                        value.startDate + '<br/>' +
                         value.venue.name + '<br/>' +
+                        value.venue.location.street + '<br/>' +  
                         value.venue.location.city + '<br/>' +
                         value.venue.location.country + '<br/>' +
                         '</div>');
@@ -335,7 +342,8 @@ $(function() {
 
                         map.addInfoWindow(value.title,
                                           value.startDate, 
-                                          value.venue.name, 
+                                          value.venue.name,
+                                          value.venue.location.street,  
                                           value.venue.location.city, 
                                           value.venue.location.country, 
                                           map.getMap(), 
