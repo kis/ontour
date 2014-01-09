@@ -26,6 +26,15 @@
 
 /******************************/
 
+#autocomplete {
+    display: none;
+    position: absolute;
+}
+
+#autocomplete a {
+    cursor: pointer;
+}
+
 #top_menu {
     z-index: 3;
 }

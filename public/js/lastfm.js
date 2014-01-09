@@ -8,7 +8,44 @@ $(function() {
             if (e.keyCode === 13) {
                 $('a[name="search-go"]').trigger('click');
             }
+        },
+        input: function(e) {
+            var name = $('input[name="search-field"]').val();
+
+            var lastfm = new LastFM({
+                apiKey    : 'dd349d2176d3b97b8162bb0c0e583b1c',
+                apiSecret : '1aaac60ed1acb3d7a10d5b1caa08d116'
+            });
+
+            lastfm.artist.search({artist: name, limit: 10}, {
+                success: function(data) {
+
+                    if (typeof data != 'undefined') {
+
+                        $('#autocomplete')
+                            .show()
+                            .children().detach();
+
+                        var res = data.results.artistmatches.artist;
+
+                        res.forEach(function(value, index) {
+                            $('#autocomplete').append('<a>' + value.name + '</a><br/>');
+                        });
+
+                    }
+ 
+                }, error: function(code, message) {
+                    if (code == 4)
+                        alert('error!');
+                } 
+            });
+
         }
+    });
+
+    $('#autocomplete').on('click', 'a', function() {
+        $("input[name='search-field']").val($(this).text());
+        $('#autocomplete').hide();
     });
 
     $('.button-group button').on('click', function() {

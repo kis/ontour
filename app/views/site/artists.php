@@ -35,6 +35,8 @@ require '../vendor/autoload.php';
 		  	</div>
 		</div>
 
+		<p id='autocomplete' class="question box square"></p>
+
 	    <div class="row">
 	    	<div class="two fourths">
 	      		<a id='artistButton' name='search-go' class="block white normal medium button"><div class="museo-slab">Search</div></a>
