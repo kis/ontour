@@ -95,6 +95,7 @@ $(function() {
     $('#autocomplete').on('click', 'a', function() {
         $("input[name='search-field']").val($(this).text());
         $('#autocomplete').hide();
+        $('a[name="search-go"]').trigger('click');
     });
 
     /**
@@ -131,11 +132,12 @@ $(function() {
         }
     });
 
+
     /**
-     *  Get venue
+     * Search field validation
      */
-    
-    $(document).on('click', "#venueButton", function() {
+
+    function isValidSearch() {
 
         var field = $('input[name="search-field"]');
 
@@ -143,6 +145,7 @@ $(function() {
 
         if(!search_val) {
             field.addClass("invalid");
+            $('#artist-info').children().detach();
             return;
         }
         
@@ -151,6 +154,23 @@ $(function() {
         map.initialize();
 
         $('#artist-info').children().detach();
+
+        return search_val;
+
+    }
+
+
+    /**
+     *  Get venue
+     */
+    
+    $(document).on('click', "#venueButton", function() {
+
+        var search_val = isValidSearch();
+
+        if (!search_val) {
+            return false;
+        }
 
         lastfm.venue.search({venue: search_val, limit: 1000}, {success: function(data) {
             var results = data.results.venuematches.venue;
@@ -231,20 +251,11 @@ $(function() {
     
     $(document).on('click', "#cityButton", function() {
 
-        var field = $('input[name="search-field"]');
+        var search_val = isValidSearch();
 
-        var search_val = field.val();
-
-        if(!search_val) {
-            field.addClass("invalid");
-            return;
+        if (!search_val) {
+            return false;
         }
-        
-        field.removeClass("invalid");
-
-        map.initialize();
-
-        $('#artist-info').children().detach();
 
         lastfm.geo.getEvents({location: search_val, limit: 1000}, {
             success: function(data) {
@@ -337,20 +348,11 @@ $(function() {
 
     $(document).on('click', "#artistButton", function() {
 
-        var field = $('input[name="search-field"]');
-
-        var search_val = field.val();
+        var search_val = isValidSearch();
 
         if (!search_val) {
-            field.addClass("invalid");
-            return;
+            return false;
         }
-        
-        field.removeClass("invalid");
-
-        map.initialize();
-
-        $('#artist-info').children().detach();
 
         lastfm.artist.getEvents(
             {artist: search_val, autocorrect: 1, limit: 1000}, {
