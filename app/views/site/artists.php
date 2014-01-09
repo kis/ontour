@@ -35,7 +35,7 @@ require '../vendor/autoload.php';
 		  	</div>
 		</div>
 
-		<p id='autocomplete' class="question box square"></p>
+		<div id='autocomplete' class="question box square"></div>
 
 	    <div class="row">
 	    	<div class="two fourths">
