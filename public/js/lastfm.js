@@ -1,7 +1,17 @@
 $(function() {
 
+    /**
+     * Initialize map
+     */
+
     var map = new Map();
     map.initialize();
+
+
+    /**
+     * Search by enter click
+     * Autocomplete on input characters
+     */
 
     $('input[name="search-field"]').on({
         keyup: function(e) {
@@ -65,17 +75,26 @@ $(function() {
     });
 
     
+    /**
+     * Hide autocomplete on window area click
+     */
+    
     $(window).on('click', function() {
         $('#autocomplete').hide();
     });
 
+    /**
+     * Paste search word to input field and hide autocomplete
+     */
 
     $('#autocomplete').on('click', 'a', function() {
         $("input[name='search-field']").val($(this).text());
         $('#autocomplete').hide();
     });
 
-
+    /**
+     * Switch search field/button options for different tabs
+     */
 
     $('.button-group button').on('click', function() {
         $('.button-group button').each(function() {
@@ -167,11 +186,6 @@ $(function() {
 
                 lat = value.location['geo:point']['geo:lat'];
                 lon = value.location['geo:point']['geo:long'];
-
-                /*image = new google.maps.MarkerImage(value.image[2]['#text'],
-                        new google.maps.Size(50, 50),
-                        new google.maps.Point(0,0),
-                        new google.maps.Point(0, 50));*/
 
                 if (lat && lon) {
 
@@ -341,17 +355,6 @@ $(function() {
         map.initialize();
 
         $('#artist-info').children().detach();
-
-        /*lastfm.artist.getCorrection(
-            {artist: artistName}, {
-                success: function(data) {
-                    artistName = data.corrections.correction.artist.name;
-                },
-                error: function(code, message){
-                    if (code == 4)
-                        alert('error!');
-                }
-            });*/
 
         lastfm.artist.getEvents(
             {artist: artistName, autocorrect: 1, limit: 1000}, {
