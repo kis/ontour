@@ -43,10 +43,18 @@ $(function() {
         }
     });
 
+    
+    $(window).on('click', function() {
+        $('#autocomplete').hide();
+    });
+
+
     $('#autocomplete').on('click', 'a', function() {
         $("input[name='search-field']").val($(this).text());
         $('#autocomplete').hide();
     });
+
+
 
     $('.button-group button').on('click', function() {
         $('.button-group button').each(function() {
