@@ -7,6 +7,15 @@ $(function() {
     var map = new Map();
     map.initialize();
 
+    /**
+     * Initialize LastFM lib
+     */
+
+    var lastfm = new LastFM({
+        apiKey    : 'dd349d2176d3b97b8162bb0c0e583b1c',
+        apiSecret : '1aaac60ed1acb3d7a10d5b1caa08d116'
+    });
+
 
     /**
      * Search by enter click
@@ -20,11 +29,6 @@ $(function() {
             }
         },
         input: function(e) {
-            var lastfm = new LastFM({
-                apiKey    : 'dd349d2176d3b97b8162bb0c0e583b1c',
-                apiSecret : '1aaac60ed1acb3d7a10d5b1caa08d116'
-            });
-
             var field = $('input[name="search-field"]'),
                 name = field.val(),
                 term,
@@ -41,6 +45,7 @@ $(function() {
                     term_in = {venue: name, limit: 10};
                     break;
                 default:
+                    return;
                     break;
             }
 
@@ -132,25 +137,22 @@ $(function() {
     
     $(document).on('click', "#venueButton", function() {
 
-        var city = $('#venueField').val();
+        var field = $('input[name="search-field"]');
 
-        if(!city) {
-            $('#venueField').addClass("invalid");
+        var search_val = field.val();
+
+        if(!search_val) {
+            field.addClass("invalid");
             return;
         }
         
-        $('#venueField').removeClass("invalid");
-
-        var lastfm = new LastFM({
-            apiKey    : 'dd349d2176d3b97b8162bb0c0e583b1c',
-            apiSecret : '1aaac60ed1acb3d7a10d5b1caa08d116'
-        });
+        field.removeClass("invalid");
 
         map.initialize();
 
         $('#artist-info').children().detach();
 
-        lastfm.venue.search({venue: city, limit: 1000}, {success: function(data) {
+        lastfm.venue.search({venue: search_val, limit: 1000}, {success: function(data) {
             var results = data.results.venuematches.venue;
 
             var ev = [];
@@ -229,25 +231,22 @@ $(function() {
     
     $(document).on('click', "#cityButton", function() {
 
-        var city = $('#cityField').val();
+        var field = $('input[name="search-field"]');
 
-        if(!city) {
-            $('#cityField').addClass("invalid");
+        var search_val = field.val();
+
+        if(!search_val) {
+            field.addClass("invalid");
             return;
         }
         
-        $('#cityField').removeClass("invalid");
-
-        var lastfm = new LastFM({
-            apiKey    : 'dd349d2176d3b97b8162bb0c0e583b1c',
-            apiSecret : '1aaac60ed1acb3d7a10d5b1caa08d116'
-        });
+        field.removeClass("invalid");
 
         map.initialize();
 
         $('#artist-info').children().detach();
 
-        lastfm.geo.getEvents({location: city, limit: 1000}, {
+        lastfm.geo.getEvents({location: search_val, limit: 1000}, {
             success: function(data) {
                 
                 var events = data.events.event;
@@ -338,26 +337,23 @@ $(function() {
 
     $(document).on('click', "#artistButton", function() {
 
-        var artistName = $('#artistField').val();
+        var field = $('input[name="search-field"]');
 
-        if (!artistName) {
-            $('#artistField').addClass("invalid");
+        var search_val = field.val();
+
+        if (!search_val) {
+            field.addClass("invalid");
             return;
         }
         
-        $('#artistField').removeClass("invalid");
-
-        var lastfm = new LastFM({
-            apiKey    : 'dd349d2176d3b97b8162bb0c0e583b1c',
-            apiSecret : '1aaac60ed1acb3d7a10d5b1caa08d116'
-        });
+        field.removeClass("invalid");
 
         map.initialize();
 
         $('#artist-info').children().detach();
 
         lastfm.artist.getEvents(
-            {artist: artistName, autocorrect: 1, limit: 1000}, {
+            {artist: search_val, autocorrect: 1, limit: 1000}, {
 
             success: function(data) {
 
