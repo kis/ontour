@@ -144,7 +144,7 @@ $(function() {
         var search_val = field.val();
 
         if(!search_val) {
-            field.addClass("invalid");
+            field.addClass("invalid").focus();
             $('#artist-info').children().detach();
             return;
         }
