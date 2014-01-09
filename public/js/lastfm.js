@@ -10,14 +10,31 @@ $(function() {
             }
         },
         input: function(e) {
-            var name = $('input[name="search-field"]').val();
-
             var lastfm = new LastFM({
                 apiKey    : 'dd349d2176d3b97b8162bb0c0e583b1c',
                 apiSecret : '1aaac60ed1acb3d7a10d5b1caa08d116'
             });
 
-            lastfm.artist.search({artist: name, limit: 10}, {
+            var field = $('input[name="search-field"]'),
+                name = field.val(),
+                term,
+                term_in,
+                res;
+
+            switch (field.attr('id')) {
+                case 'artistField':
+                    term = lastfm.artist;
+                    term_in = {artist: name, limit: 10};
+                    break;
+                case 'venueField':
+                    term = lastfm.venue;
+                    term_in = {venue: name, limit: 10};
+                    break;
+                default:
+                    break;
+            }
+
+            term.search(term_in, {
                 success: function(data) {
 
                     if (typeof data != 'undefined') {
@@ -26,7 +43,11 @@ $(function() {
                             .show()
                             .children().detach();
 
-                        var res = data.results.artistmatches.artist;
+                        if (field.attr('id') == 'artistField') {
+                            res = data.results.artistmatches.artist;
+                        } else {
+                            res = data.results.venuematches.venue;
+                        }
 
                         res.forEach(function(value, index) {
                             $('#autocomplete').append('<a>' + value.name + '</a><br/>');
