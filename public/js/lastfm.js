@@ -116,15 +116,15 @@ $(function() {
 
         switch ($(this).attr('id')) {
             case 'artistTab':
-                $field.attr({'id': 'artistField', 'placeholder': 'Enter artist name..'});
+                $field.attr({'id': 'artistField', 'placeholder': 'Enter artist name..'}).focus();
                 $link.attr('id', 'artistButton');
                 break;
             case 'cityTab':
-                $field.attr({'id': 'cityField', 'placeholder': 'Enter country or city..'});
+                $field.attr({'id': 'cityField', 'placeholder': 'Enter country or city..'}).focus();
                 $link.attr('id', 'cityButton');
                 break;
             case 'venueTab':
-                $field.attr({'id': 'venueField', 'placeholder': 'Enter venue..'});
+                $field.attr({'id': 'venueField', 'placeholder': 'Enter venue..'}).focus();
                 $link.attr('id', 'venueButton');
                 break;
             default:
