@@ -171,83 +171,107 @@ $(function() {
             return false;
         }
 
-        for (var page = 1; page <= 100; page++) {
+        var totalPages, 
+            total, 
+            page = 1,
+            isFoundBox = false;
 
-            lastfm.venue.search({venue: search_val, page: page, limit: 10}, {success: function(data) {
-                var results = data.results.venuematches.venue;
+        var timerId = setInterval( 
 
-                var ev = [];
+            function() {
 
-                if (typeof results == 'undefined') {
-                    $('#artist-info').append('<div class="box normal asphalt event"><h4 class="museo-slab">Not found </h4></div>');
-                    return;
-                }
+                lastfm.venue.search({venue: search_val, page: page, limit: 10}, {
+                    success: function(data) {
+                        var results = data.results.venuematches.venue;
 
-                //$('#artist-info').append(data.events.event[0].id + '<br/>');
+                        if (typeof results == 'undefined') {
+                            $('#artist-info').append('<div class="box normal error event"><h4 class="museo-slab">Not found </h4></div>');
+                            clearInterval(timerId);
+                        }
 
-                if (results.length == undefined) {
-                    ev.push(results);
-                } else {
-                    ev = results;
-                }
+                        if (typeof results.length == 'undefined') {
+                            var ev = [];
+                            ev.push(results);
+                            results = ev;
+                        }
 
-                /*$('#artist-info').append('<div class="box normal asphalt event"><h4 class="museo-slab">' +ev.length+ 
-                        ' venues found </h4></div>');*/
+                        total = data.results['opensearch:totalResults'];
+                        totalPages = (total % 10) ? Math.floor((+total + 10) / 10) : total / 10 ;
 
-                var lat, lon, image, marker;
+                        if (page == 2 && isFoundBox == false) {
+                            $('#artist-info').append('<div class="success box normal event"><h4 class="museo-slab">' +total+ 
+                                ' venues found </h4></div>');
+                            isFoundBox = true;
+                        }
 
-                ev.forEach(function(value, index) {
-                    $('#artist-info').append(
-                        '<div class="box normal asphalt event museo-slab">' +
-                        //value.id + '<br/>' +
-                        value.name + '<br/><br/>' +
-                        value.location.street + '<br/>' + 
-                        value.location.city + '<br/>' +
-                        value.location.country + '<br/>' +
-                        // '<img src="'+value.image[0]['#text']+'" >' +
-                        '</div>');
+                        var lat, lon, image, marker;
 
-                    lat = value.location['geo:point']['geo:lat'];
-                    lon = value.location['geo:point']['geo:long'];
+                        results.forEach(function(value, index) {
+                            $('#artist-info').append(
+                                '<div class="box normal asphalt event museo-slab">' +
+                                //value.id + '<br/>' +
+                                value.name + '<br/><br/>' +
+                                value.location.street + '<br/>' + 
+                                value.location.city + '<br/>' +
+                                value.location.country + '<br/>' +
+                                // '<img src="'+value.image[0]['#text']+'" >' +
+                                '</div>');
 
-                    if (lat && lon) {
+                            lat = value.location['geo:point']['geo:lat'];
+                            lon = value.location['geo:point']['geo:long'];
 
-                        //add markers
+                            if (lat && lon) {
 
-                        marker = map.addMarker(lat, 
-                                               lon, 
-                                               map.getMap(), 
-                                               value.startDate, 
-                                               value.location.city);
+                                //add markers
 
-                        //add information windows
+                                marker = map.addMarker(lat, 
+                                                       lon, 
+                                                       map.getMap(), 
+                                                       value.startDate, 
+                                                       value.location.city);
 
-                        map.addInfoWindow(value.name, 
-                                          '',
-                                          '',
-                                          value.location.street, 
-                                          value.location.city, 
-                                          value.location.country, 
-                                          map.getMap(), 
-                                          marker);
+                                //add information windows
+
+                                map.addInfoWindow(value.name, 
+                                                  '',
+                                                  '',
+                                                  value.location.street, 
+                                                  value.location.city, 
+                                                  value.location.country, 
+                                                  map.getMap(), 
+                                                  marker);
+                            }
+                        });
+
+                        if (page == 2 && totalPages == 1) {
+                            clearInterval(timerId);
+                        }
+
+                        if (lat && lon) {
+                            // map.getMap().setCenter(new google.maps.LatLng(lat, lon));
+                            // map.getMap().setZoom(12);
+                        }
+
+                    }, 
+                    error: function(code, message) {
+                        $('#artist-info').append('<div class="box normal error event"><h4 class="museo-slab">Not found </h4></div>');
+                        clearInterval(timerId);
+
+                        if (code == 4)
+                            alert('error!');
                     }
                 });
 
-                if (lat && lon) {
-                    map.getMap().setCenter(new google.maps.LatLng(lat, lon));
-                    map.getMap().setZoom(12);
+                if (page != totalPages) {
+                    page++;                    
+                } else {
+                    clearInterval(timerId);
                 }
+            
+            },
 
-            }, error: function(code, message) {
-                $('#artist-info').append('<div class="box normal asphalt event"><h4 class="museo-slab">Not found </h4></div>');
+            2000);
 
-                if (code == 4)
-                    alert('error!');
-            }});
-
-        }
-
-                    
     });
 
     /**
@@ -262,6 +286,11 @@ $(function() {
             return false;
         }
 
+        var totalPages, 
+            total, 
+            page = 1,
+            isFoundBox = false;
+
         var timerId = setInterval( 
 
             function() {
@@ -271,25 +300,29 @@ $(function() {
                         
                         var events = data.events.event;
 
-                        var ev = [];
-
                         if (typeof events == 'undefined') {
-                            $('#artist-info').append('<div class="box normal asphalt event"><h4 class="museo-slab">Not found </h4></div>');
-                            return;
+                            $('#artist-info').append('<div class="box normal error event"><h4 class="museo-slab">Not found </h4></div>');
+                            clearInterval(timerId);
                         }
 
-                        if (events.length == undefined) {
+                        if (typeof events.length == 'undefined') {
+                            var ev = [];
                             ev.push(events);
-                        } else {
-                            ev = events;
+                            events = ev;
                         }
 
-                        /*$('#artist-info').append('<div class="box normal asphalt event"><h4 class="museo-slab">' +ev.length+ 
-                                ' upcoming events found </h4></div>');*/
+                        totalPages = data.events["@attr"].totalPages;
+                        total = data.events["@attr"].total;
+
+                        if (page == 2 && isFoundBox == false) {
+                            $('#artist-info').append('<div class="success box normal event"><h4 class="museo-slab">' +total+ 
+                                ' upcoming events found </h4></div>');
+                            isFoundBox = true;
+                        }
 
                         var lat, lon, image, marker;
 
-                        ev.forEach(function(value, index) {
+                        events.forEach(function(value, index) {
                             $('#artist-info').append(
                                 '<div class="box normal asphalt event museo-slab">' +
                                 //value.id + '<br/>' +
@@ -334,13 +367,19 @@ $(function() {
                             }
                         });
 
-                        if (lat && lon) {
+                        if (page == 2 && totalPages == 1) {
+                            clearInterval(timerId);
+                        }
+
+                        if (page == 2 && lat && lon) {
                             map.getMap().setCenter(new google.maps.LatLng(lat, lon));
                             map.getMap().setZoom(12);
                         }
+
                     }, 
                     error: function(code, message) {
-                        $('#artist-info').append('<div class="box normal asphalt event"><h4 class="museo-slab">Not found </h4></div>');
+                        $('#artist-info').append('<div class="box normal error event"><h4 class="museo-slab">Not found </h4></div>');
+                        clearInterval(timerId);
 
                         if (code == 4)
                             alert('error!');
@@ -355,7 +394,7 @@ $(function() {
             
             },
 
-            1500);
+            2000);
 
     });
 
@@ -478,6 +517,9 @@ $(function() {
                     }, 
 
                     error: function(code, message) {
+                        $('#artist-info').append('<div class="box normal error event"><h4 class="museo-slab">Not found </h4></div>');
+                        clearInterval(timerId);
+
                         if (code == 4)
                             alert('error!');
                     }
