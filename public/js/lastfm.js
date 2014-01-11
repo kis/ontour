@@ -262,93 +262,100 @@ $(function() {
             return false;
         }
 
-        for (var page = 1; page <= 100; page++) {
+        var timerId = setInterval( 
 
-            lastfm.geo.getEvents({location: search_val, page: page, limit: 10}, {
-                success: function(data) {
-                    
-                    var events = data.events.event;
+            function() {
 
-                    var ev = [];
+                lastfm.geo.getEvents({location: search_val, page: page, limit: 10}, {
+                    success: function(data) {
+                        
+                        var events = data.events.event;
 
-                    if (typeof events == 'undefined') {
-                        $('#artist-info').append('<div class="box normal asphalt event"><h4 class="museo-slab">Not found </h4></div>');
-                        return;
-                    }
+                        var ev = [];
 
-                    //$('#artist-info').append(data.events.event[0].id + '<br/>');
+                        if (typeof events == 'undefined') {
+                            $('#artist-info').append('<div class="box normal asphalt event"><h4 class="museo-slab">Not found </h4></div>');
+                            return;
+                        }
 
-                    if (events.length == undefined) {
-                        ev.push(events);
-                    } else {
-                        ev = events;
-                    }
+                        if (events.length == undefined) {
+                            ev.push(events);
+                        } else {
+                            ev = events;
+                        }
 
-                    /*$('#artist-info').append('<div class="box normal asphalt event"><h4 class="museo-slab">' +ev.length+ 
-                            ' upcoming events found </h4></div>');*/
+                        /*$('#artist-info').append('<div class="box normal asphalt event"><h4 class="museo-slab">' +ev.length+ 
+                                ' upcoming events found </h4></div>');*/
 
-                    var lat, lon, image, marker;
+                        var lat, lon, image, marker;
 
-                    ev.forEach(function(value, index) {
-                        $('#artist-info').append(
-                            '<div class="box normal asphalt event museo-slab">' +
-                            //value.id + '<br/>' +
-                            value.title + '<br/><br/>' +
-                            value.startDate + '<br/>' + //value.startTime +
-                            value.venue.name + '<br/>' +
-                            value.venue.location.street + '<br/>' +
-                            value.venue.location.city + '<br/>' +
-                            value.venue.location.country + '<br/>' +
-                            // '<img src="'+value.image[0]['#text']+'" >' +
-                            '</div>');
+                        ev.forEach(function(value, index) {
+                            $('#artist-info').append(
+                                '<div class="box normal asphalt event museo-slab">' +
+                                //value.id + '<br/>' +
+                                value.title + '<br/><br/>' +
+                                value.startDate + '<br/>' + //value.startTime +
+                                value.venue.name + '<br/>' +
+                                value.venue.location.street + '<br/>' +
+                                value.venue.location.city + '<br/>' +
+                                value.venue.location.country + '<br/>' +
+                                // '<img src="'+value.image[0]['#text']+'" >' +
+                                '</div>');
 
-                        lat = value.venue.location['geo:point']['geo:lat'];
-                        lon = value.venue.location['geo:point']['geo:long'];
+                            lat = value.venue.location['geo:point']['geo:lat'];
+                            lon = value.venue.location['geo:point']['geo:long'];
 
-                        image = new google.maps.MarkerImage(value.image[2]['#text'],
-                                new google.maps.Size(50, 50),
-                                new google.maps.Point(0,0),
-                                new google.maps.Point(0, 50));
+                            image = new google.maps.MarkerImage(value.image[2]['#text'],
+                                    new google.maps.Size(50, 50),
+                                    new google.maps.Point(0,0),
+                                    new google.maps.Point(0, 50));
+
+                            if (lat && lon) {
+
+                                //add markers
+
+                                marker = map.addMarker(lat, 
+                                                       lon, 
+                                                       map.getMap(), 
+                                                       value.startDate, 
+                                                       value.venue.location.city,
+                                                       image);
+
+                                //add information windows
+
+                                map.addInfoWindow(value.title,
+                                                  value.startDate, 
+                                                  value.venue.name, 
+                                                  value.venue.location.street, 
+                                                  value.venue.location.city, 
+                                                  value.venue.location.country, 
+                                                  map.getMap(), 
+                                                  marker);
+                            }
+                        });
 
                         if (lat && lon) {
-
-                            //add markers
-
-                            marker = map.addMarker(lat, 
-                                                   lon, 
-                                                   map.getMap(), 
-                                                   value.startDate, 
-                                                   value.venue.location.city,
-                                                   image);
-
-                            //add information windows
-
-                            map.addInfoWindow(value.title,
-                                              value.startDate, 
-                                              value.venue.name, 
-                                              value.venue.location.street, 
-                                              value.venue.location.city, 
-                                              value.venue.location.country, 
-                                              map.getMap(), 
-                                              marker);
+                            map.getMap().setCenter(new google.maps.LatLng(lat, lon));
+                            map.getMap().setZoom(12);
                         }
-                    });
+                    }, 
+                    error: function(code, message) {
+                        $('#artist-info').append('<div class="box normal asphalt event"><h4 class="museo-slab">Not found </h4></div>');
 
-                    if (lat && lon) {
-                        map.getMap().setCenter(new google.maps.LatLng(lat, lon));
-                        map.getMap().setZoom(12);
+                        if (code == 4)
+                            alert('error!');
                     }
-                }, 
-                error: function(code, message) {
-                    $('#artist-info').append('<div class="box normal asphalt event"><h4 class="museo-slab">Not found </h4></div>');
+                });
 
-                    if (code == 4)
-                        alert('error!');
+                if (page != totalPages) {
+                    page++;                    
+                } else {
+                    clearInterval(timerId);
                 }
-            });
+            
+            },
 
-        }
-
+            1500);
 
     });
 
@@ -366,11 +373,8 @@ $(function() {
 
         var totalPages, 
             total, 
-            ev = [],
-            page = 1;
-
-        /*$('#artist-info').append('<div class="success box normal event"><h4 class="museo-slab">' +total+ 
-                            ' upcoming events found </h4></div>');*/
+            page = 1,
+            isFoundBox = false;
 
         /**
          * Use interval as solution to set right param and get events in right order as result of few async requests 
@@ -390,17 +394,24 @@ $(function() {
                         // 0 events found
                         if (typeof events == 'undefined') {
                             $('#artist-info').append('<div class="box normal error event"><h4 class="museo-slab">Not found </h4></div>');
-                            return false;
+                            clearInterval(timerId);
                         }
 
                         //1 event found - length is undefined, using secondary array
                         if (typeof events.length == 'undefined') {
+                            var ev = [];
                             ev.push(events);
                             events = ev;
                         }
 
                         totalPages = data.events["@attr"].totalPages;
                         total = data.events["@attr"].total;
+
+                        if (page == 2 && isFoundBox == false) {
+                            $('#artist-info').append('<div class="success box normal event"><h4 class="museo-slab">' +total+ 
+                                ' upcoming events found </h4></div>');
+                            isFoundBox = true;
+                        }
 
                         var lat, lon, marker;
 
@@ -460,6 +471,10 @@ $(function() {
                             
                         });
 
+                        if (page == 2 && totalPages == 1) {
+                            clearInterval(timerId);
+                        }
+
                     }, 
 
                     error: function(code, message) {
@@ -469,7 +484,7 @@ $(function() {
 
                 });
 
-                if (page != totalPages) {
+                if (page != totalPages && totalPages != 1) {
                     page++;                    
                 } else {
                     clearInterval(timerId);
@@ -477,7 +492,7 @@ $(function() {
             
             },
 
-            1500); 
+            2000); 
 
     });
 
