@@ -368,8 +368,12 @@ $(function() {
             total, 
             ev = [];
 
+        /**
+         * Get total number of events, total pages. 1 page/10 events 
+         */
+
         lastfm.artist.getEvents(
-                {artist: search_val, autocorrect: 1, page: 100, limit: 10}, {
+                {artist: search_val, autocorrect: 1, page: 1, limit: 10}, {
 
                 success: function(data) {
 
@@ -381,14 +385,26 @@ $(function() {
                         return;
                     }
 
+                    /**
+                     * When 1 event found - length is undefined. Using secondary massive
+                     */
+
                     if (typeof events.length == 'undefined') {
                         ev.push(events);
                     }
 
                     totalPages = data.events["@attr"].totalPages;
                     total = data.events["@attr"].total;                        
+                }, 
+                error: function(code, message){
+                    if (code == 4)
+                        alert('error!');
                 }
             });
+
+        /**
+         * Use timeout to get know totalPages, total, ev from the request above
+         */
 
         setTimeout(
 
@@ -400,90 +416,109 @@ $(function() {
                 getDataByPages(totalPages, total, ev); 
             }, 
 
-            1000);
+            1500);
 
         function getDataByPages(totalPages, total, ev) {
+
+            var page = 1;
 
             $('#artist-info').append('<div class="success box normal event"><h4 class="museo-slab">' +total+ 
                                 ' upcoming events found </h4></div>');
 
-            for (var page = 1; page <= totalPages; page++) {
+            /**
+             * Use interval as solution to set right param and get events in right order as result of few async requests 
+             */
 
-                lastfm.artist.getEvents(
-                    {artist: search_val, autocorrect: 1, page: page, limit: 10}, {
+            var timerId = setInterval( 
 
-                    success: function(data) {
+                function() {
 
-                        var events = (total != 1) ? data.events.event : ev;
+                    lastfm.artist.getEvents(
+                        {artist: search_val, autocorrect: 1, page: page, limit: 10}, {
 
-                        var lat, lon, marker;
+                        success: function(data) {
 
-                        events.forEach(function(value, index) {
-                            $('#artist-info').append(
-                                '<div class="box normal asphalt event museo-slab">' +
-                                //value.id + '<br/>' +
-                                value.startDate + '<br/>' +
-                                value.venue.name + '<br/>' +
-                                value.venue.location.street + '<br/>' +  
-                                value.venue.location.city + '<br/>' +
-                                value.venue.location.country + '<br/>' +
-                                '</div>');
+                            //is using secondary massive?
+                            var events = (total != 1) ? data.events.event : ev;
 
-                            lat = value.venue.location['geo:point']['geo:lat'];
-                            lon = value.venue.location['geo:point']['geo:long'];
+                            var lat, lon, marker;
 
-                            if (lat && lon) {
+                            $('#artist-info').append('<div class="success box normal event"></div>');
 
-                                //add markers
+                            events.forEach(function(value, index) {
 
-                                marker = map.addMarker(lat, 
-                                                       lon, 
-                                                       map.getMap(), 
-                                                       value.startDate, 
-                                                       value.venue.location.city);
+                                $('#artist-info').append(
+                                    '<div class="box normal asphalt event museo-slab">' +
+                                    //value.id + '<br/>' +
+                                    value.startDate + '<br/>' +
+                                    value.venue.name + '<br/>' +
+                                    value.venue.location.street + '<br/>' +  
+                                    value.venue.location.city + '<br/>' +
+                                    value.venue.location.country + '<br/>' +
+                                    '</div>');
 
-                                //add information windows
+                                lat = value.venue.location['geo:point']['geo:lat'];
+                                lon = value.venue.location['geo:point']['geo:long'];
 
-                                map.addInfoWindow(value.title,
-                                                  value.startDate, 
-                                                  value.venue.name,
-                                                  value.venue.location.street,  
-                                                  value.venue.location.city, 
-                                                  value.venue.location.country, 
-                                                  map.getMap(), 
-                                                  marker);
+                                if (lat && lon) {
 
-                                //add paths between markers
+                                    //add markers
 
-                                if (index < events.length-1 && 
-                                    events[index+1].venue.location['geo:point']['geo:lat'] &&
-                                    events[index+1].venue.location['geo:point']['geo:long']) {
+                                    marker = map.addMarker(lat, 
+                                                           lon, 
+                                                           map.getMap(), 
+                                                           value.startDate, 
+                                                           value.venue.location.city);
 
-                                    map.addPath(lat, 
-                                                lon, 
-                                                events[index+1].venue.location['geo:point']['geo:lat'], 
-                                                events[index+1].venue.location['geo:point']['geo:long'], 
-                                                map.getMap());
-                                }
-                            }                    
-                            
-                        });
+                                    //add information windows
 
-                    }, 
+                                    map.addInfoWindow(value.title,
+                                                      value.startDate, 
+                                                      value.venue.name,
+                                                      value.venue.location.street,  
+                                                      value.venue.location.city, 
+                                                      value.venue.location.country, 
+                                                      map.getMap(), 
+                                                      marker);
 
-                    error: function(code, message){
-                        if (code == 4)
-                            alert('error!');
+                                    //add paths between markers
+                                    //TODO remember last point cause of working with more than one page
+                                    //other way we see the number of separated paths
+
+                                    if (index < events.length-1 && 
+                                        events[index+1].venue.location['geo:point']['geo:lat'] &&
+                                        events[index+1].venue.location['geo:point']['geo:long']) {
+
+                                        map.addPath(lat, 
+                                                    lon, 
+                                                    events[index+1].venue.location['geo:point']['geo:lat'], 
+                                                    events[index+1].venue.location['geo:point']['geo:long'], 
+                                                    map.getMap());
+                                    }
+                                }                    
+                                
+                            });
+
+                        }, 
+
+                        error: function(code, message) {
+                            if (code == 4)
+                                alert('error!');
+                        }
+
+                    });
+
+                    if (page != totalPages) {
+                        page++;                    
+                    } else {
+                        clearInterval(timerId);
                     }
+                
+                },
 
-                });
+                1500); 
 
-
-            }
-
-        }
-
-        
+        }        
 
     });
 
