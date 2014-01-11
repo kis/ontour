@@ -366,159 +366,118 @@ $(function() {
 
         var totalPages, 
             total, 
-            ev = [];
+            ev = [],
+            page = 1;
+
+        /*$('#artist-info').append('<div class="success box normal event"><h4 class="museo-slab">' +total+ 
+                            ' upcoming events found </h4></div>');*/
 
         /**
-         * Get total number of events, total pages. 1 page/10 events 
+         * Use interval as solution to set right param and get events in right order as result of few async requests 
          */
 
-        lastfm.artist.getEvents(
-                {artist: search_val, autocorrect: 1, page: 1, limit: 10}, {
+        var timerId = setInterval( 
 
-                success: function(data) {
+            function() {
 
-                    var events = data.events.event;
+                lastfm.artist.getEvents(
+                    {artist: search_val, autocorrect: 1, page: page, limit: 10}, {
 
-                    if (typeof events == 'undefined') {
-                        $('#artist-info').append('<div class="box normal error event"><h4 class="museo-slab">Not found </h4></div>');
-                        total = 0;
-                        return;
-                    }
+                    success: function(data) {
 
-                    /**
-                     * When 1 event found - length is undefined. Using secondary massive
-                     */
+                        var events = data.events.event;
 
-                    if (typeof events.length == 'undefined') {
-                        ev.push(events);
-                    }
-
-                    totalPages = data.events["@attr"].totalPages;
-                    total = data.events["@attr"].total;                        
-                }, 
-                error: function(code, message){
-                    if (code == 4)
-                        alert('error!');
-                }
-            });
-
-        /**
-         * Use timeout to get know totalPages, total, ev from the request above
-         */
-
-        setTimeout(
-
-            function() { 
-                if (!total) {
-                    return false;
-                }
-
-                getDataByPages(totalPages, total, ev); 
-            }, 
-
-            1500);
-
-        function getDataByPages(totalPages, total, ev) {
-
-            var page = 1;
-
-            $('#artist-info').append('<div class="success box normal event"><h4 class="museo-slab">' +total+ 
-                                ' upcoming events found </h4></div>');
-
-            /**
-             * Use interval as solution to set right param and get events in right order as result of few async requests 
-             */
-
-            var timerId = setInterval( 
-
-                function() {
-
-                    lastfm.artist.getEvents(
-                        {artist: search_val, autocorrect: 1, page: page, limit: 10}, {
-
-                        success: function(data) {
-
-                            //is using secondary massive?
-                            var events = (total != 1) ? data.events.event : ev;
-
-                            var lat, lon, marker;
-
-                            $('#artist-info').append('<div class="success box normal event"></div>');
-
-                            events.forEach(function(value, index) {
-
-                                $('#artist-info').append(
-                                    '<div class="box normal asphalt event museo-slab">' +
-                                    //value.id + '<br/>' +
-                                    value.startDate + '<br/>' +
-                                    value.venue.name + '<br/>' +
-                                    value.venue.location.street + '<br/>' +  
-                                    value.venue.location.city + '<br/>' +
-                                    value.venue.location.country + '<br/>' +
-                                    '</div>');
-
-                                lat = value.venue.location['geo:point']['geo:lat'];
-                                lon = value.venue.location['geo:point']['geo:long'];
-
-                                if (lat && lon) {
-
-                                    //add markers
-
-                                    marker = map.addMarker(lat, 
-                                                           lon, 
-                                                           map.getMap(), 
-                                                           value.startDate, 
-                                                           value.venue.location.city);
-
-                                    //add information windows
-
-                                    map.addInfoWindow(value.title,
-                                                      value.startDate, 
-                                                      value.venue.name,
-                                                      value.venue.location.street,  
-                                                      value.venue.location.city, 
-                                                      value.venue.location.country, 
-                                                      map.getMap(), 
-                                                      marker);
-
-                                    //add paths between markers
-                                    //TODO remember last point cause of working with more than one page
-                                    //other way we see the number of separated paths
-
-                                    if (index < events.length-1 && 
-                                        events[index+1].venue.location['geo:point']['geo:lat'] &&
-                                        events[index+1].venue.location['geo:point']['geo:long']) {
-
-                                        map.addPath(lat, 
-                                                    lon, 
-                                                    events[index+1].venue.location['geo:point']['geo:lat'], 
-                                                    events[index+1].venue.location['geo:point']['geo:long'], 
-                                                    map.getMap());
-                                    }
-                                }                    
-                                
-                            });
-
-                        }, 
-
-                        error: function(code, message) {
-                            if (code == 4)
-                                alert('error!');
+                        // 0 events found
+                        if (typeof events == 'undefined') {
+                            $('#artist-info').append('<div class="box normal error event"><h4 class="museo-slab">Not found </h4></div>');
+                            return false;
                         }
 
-                    });
+                        //1 event found - length is undefined, using secondary array
+                        if (typeof events.length == 'undefined') {
+                            ev.push(events);
+                            events = ev;
+                        }
 
-                    if (page != totalPages) {
-                        page++;                    
-                    } else {
-                        clearInterval(timerId);
+                        totalPages = data.events["@attr"].totalPages;
+                        total = data.events["@attr"].total;
+
+                        var lat, lon, marker;
+
+                        // $('#artist-info').append('<div class="success box normal event"></div>');
+
+                        events.forEach(function(value, index) {
+
+                            $('#artist-info').append(
+                                '<div class="box normal asphalt event museo-slab">' +
+                                //value.id + '<br/>' +
+                                value.startDate + '<br/>' +
+                                value.venue.name + '<br/>' +
+                                value.venue.location.street + '<br/>' +  
+                                value.venue.location.city + '<br/>' +
+                                value.venue.location.country + '<br/>' +
+                                '</div>');
+
+                            lat = value.venue.location['geo:point']['geo:lat'];
+                            lon = value.venue.location['geo:point']['geo:long'];
+
+                            if (lat && lon) {
+
+                                //add markers
+
+                                marker = map.addMarker(lat, 
+                                                       lon, 
+                                                       map.getMap(), 
+                                                       value.startDate, 
+                                                       value.venue.location.city);
+
+                                //add information windows
+
+                                map.addInfoWindow(value.title,
+                                                  value.startDate, 
+                                                  value.venue.name,
+                                                  value.venue.location.street,  
+                                                  value.venue.location.city, 
+                                                  value.venue.location.country, 
+                                                  map.getMap(), 
+                                                  marker);
+
+                                //add paths between markers
+                                //TODO remember last point cause of working with more than one page
+                                //other way we see the number of separated paths
+
+                                if (index < events.length-1 && 
+                                    events[index+1].venue.location['geo:point']['geo:lat'] &&
+                                    events[index+1].venue.location['geo:point']['geo:long']) {
+
+                                    map.addPath(lat, 
+                                                lon, 
+                                                events[index+1].venue.location['geo:point']['geo:lat'], 
+                                                events[index+1].venue.location['geo:point']['geo:long'], 
+                                                map.getMap());
+                                }
+                            }                    
+                            
+                        });
+
+                    }, 
+
+                    error: function(code, message) {
+                        if (code == 4)
+                            alert('error!');
                     }
-                
-                },
 
-                1500); 
+                });
 
-        }        
+                if (page != totalPages) {
+                    page++;                    
+                } else {
+                    clearInterval(timerId);
+                }
+            
+            },
+
+            1500); 
 
     });
 
