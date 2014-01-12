@@ -37,6 +37,10 @@
     cursor: pointer;
 }
 
+.selectedTermin {
+    background-color: white;
+}
+
 #top_menu {
     z-index: 3;
 }

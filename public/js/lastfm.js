@@ -25,7 +25,34 @@ $(function() {
     $('input[name="search-field"]').on({
         keyup: function(e) {
             if (e.keyCode === 13) {
+                //enter
+
+                if ($('#autocomplete').has('.selectedTermin').toArray().length) {
+                    $("input[name='search-field']").val($('.selectedTermin a').text()); 
+                } 
+
                 $('a[name="search-go"]').trigger('click');
+
+            } else if (e.keyCode === 38) {
+                //up
+
+                if ($('#autocomplete').has('.selectedTermin').toArray().length) {
+                    $('.selectedTermin').removeClass('selectedTermin')
+                                        .prev().addClass('selectedTermin');
+                } else {
+                    $('#autocomplete div:last').addClass('selectedTermin');
+                }
+
+            } else if (e.keyCode === 40) {
+                //down
+                
+                if ($('#autocomplete').has('.selectedTermin').toArray().length) {
+                    $('.selectedTermin').removeClass('selectedTermin')
+                                        .next().addClass('selectedTermin');
+                } else {
+                    $('#autocomplete div:first').addClass('selectedTermin');
+                }
+
             }
         },
         input: function(e) {
@@ -65,7 +92,7 @@ $(function() {
                         }
 
                         res.forEach(function(value, index) {
-                            $('#autocomplete').append('<a>' + value.name + '</a><br/>');
+                            $('#autocomplete').append('<div><a>' + value.name + '</a></div>');
                         });
 
                     }
