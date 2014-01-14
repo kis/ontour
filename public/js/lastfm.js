@@ -24,41 +24,50 @@ $(function() {
 
     $('input[name="search-field"]').on({
         keydown: function(e) {
-            if (e.keyCode === 13) {
-                //enter
 
-                if ($('#autocomplete').has('.selectedTermin').toArray().length) {
-                    $("input[name='search-field']").val($('.selectedTermin a').text()); 
-                } 
+            switch (e.keyCode) {
+                case 13:
+                    //enter - get termin to input and search
 
-                $('a[name="search-go"]').trigger('click');
+                    if ($('#autocomplete').has('.selectedTermin').toArray().length) {
+                        $("input[name='search-field']").val($('.selectedTermin a').text()); 
+                    } 
 
-            } else if (e.keyCode === 27) {
-                //esc
+                    $('a[name="search-go"]').trigger('click');
 
-                $('#autocomplete').hide();
+                    break;
+                case 27:
+                    //esc - hide autocomplete
 
-            } else if (e.keyCode === 38) {
-                //up
+                    $('#autocomplete').hide();
 
-                if ($('#autocomplete').has('.selectedTermin').toArray().length) {
-                    $('.selectedTermin').removeClass('selectedTermin')
-                                        .prev().addClass('selectedTermin');
-                } else {
-                    $('#autocomplete div:last').addClass('selectedTermin');
-                }
+                    break;
+                case 38:
+                    //up
 
-            } else if (e.keyCode === 40) {
-                //down
-                
-                if ($('#autocomplete').has('.selectedTermin').toArray().length) {
-                    $('.selectedTermin').removeClass('selectedTermin')
-                                        .next().addClass('selectedTermin');
-                } else {
-                    $('#autocomplete div:first').addClass('selectedTermin');
-                }
+                    if ($('#autocomplete').has('.selectedTermin').toArray().length) {
+                        $('.selectedTermin').removeClass('selectedTermin')
+                                            .prev().addClass('selectedTermin');
+                    } else {
+                        $('#autocomplete div:last').addClass('selectedTermin');
+                    }
 
+                    break;
+                case 40:
+                    //down
+                    
+                    if ($('#autocomplete').has('.selectedTermin').toArray().length) {
+                        $('.selectedTermin').removeClass('selectedTermin')
+                                            .next().addClass('selectedTermin');
+                    } else {
+                        $('#autocomplete div:first').addClass('selectedTermin');
+                    }
+
+                    break;
+                default:
+                    break;
             }
+
         },
         input: function(e) {
             var field = $('input[name="search-field"]'),
@@ -446,7 +455,9 @@ $(function() {
         var totalPages, 
             total, 
             page = 1,
-            isFoundBox = false;
+            isFoundBox = false,
+            latLast, 
+            lonLast;
 
         /**
          * Use interval as solution to set right param and get events in right order as result of few async requests 
@@ -526,20 +537,19 @@ $(function() {
                                                   marker);
 
                                 //add paths between markers
-                                //TODO remember last point cause of working with more than one page
-                                //other way we see the number of separated paths
 
-                                if (index < events.length-1 && 
-                                    events[index+1].venue.location['geo:point']['geo:lat'] &&
-                                    events[index+1].venue.location['geo:point']['geo:long']) {
+                                if (latLast && lonLast) {
 
-                                    map.addPath(lat, 
+                                    map.addPath(latLast, 
+                                                lonLast, 
+                                                lat, 
                                                 lon, 
-                                                events[index+1].venue.location['geo:point']['geo:lat'], 
-                                                events[index+1].venue.location['geo:point']['geo:long'], 
                                                 map.getMap());
                                 }
-                            }                    
+                            }   
+
+                            latLast = lat;
+                            lonLast = lon;                 
                             
                         });
 
