@@ -139,6 +139,15 @@ $(function() {
         $('a[name="search-go"]').trigger('click');
     });
 
+
+    //if we have selected area - remove it
+
+    $('#autocomplete').on('mouseenter', 'div', function() {
+        if ($('#autocomplete').has('.selectedTermin').toArray().length) {
+            $('.selectedTermin').removeClass('selectedTermin');
+        }
+    });
+
     /**
      * Switch search field/button options for different tabs
      */

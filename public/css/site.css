@@ -37,18 +37,16 @@
 #autocomplete a {
     color: #34495e;
     cursor: pointer;
+    text-decoration: none;
 }
+
+#autocomplete div:hover {
+    text-decoration: none;
+    background-color: #acbcc9;
+} 
 
 .selectedTermin {
     background-color: #acbcc9;
-    /*
-    #acbcc9 
-    #34495e
-    */
-}
-
-.selectedTermin a {
-    /*color: white !important;*/
 }
 
 #top_menu {
