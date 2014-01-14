@@ -31,14 +31,24 @@
     position: absolute;
     z-index: 5;
     width: 350px;
+    border: 2px solid #34495e;
 }
 
 #autocomplete a {
+    color: #34495e;
     cursor: pointer;
 }
 
 .selectedTermin {
-    background-color: white;
+    background-color: #acbcc9;
+    /*
+    #acbcc9 
+    #34495e
+    */
+}
+
+.selectedTermin a {
+    /*color: white !important;*/
 }
 
 #top_menu {

@@ -23,7 +23,7 @@ $(function() {
      */
 
     $('input[name="search-field"]').on({
-        keyup: function(e) {
+        keydown: function(e) {
             if (e.keyCode === 13) {
                 //enter
 
@@ -32,6 +32,11 @@ $(function() {
                 } 
 
                 $('a[name="search-go"]').trigger('click');
+
+            } else if (e.keyCode === 27) {
+                //esc
+
+                $('#autocomplete').hide();
 
             } else if (e.keyCode === 38) {
                 //up
