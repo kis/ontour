@@ -4,10 +4,6 @@ use yii\helpers\Html;
 
 require '../vendor/autoload.php';
 
-/*
- *  LastFM API Request. Get artist events information. No need to authorize
- */
-
 ?>
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
@@ -49,6 +45,14 @@ require '../vendor/autoload.php';
 <div id='artist-info' class="row normal asphalt">
 	
 	<button id="animateTest" class="large asphalt animated flash">I do awesome things.</button>
+
+	<div id="gotop_area"> 
+		<div id="gotop" class="box normal warning event align-center">
+			<h2 class="responsive source-sans-pro" data-compression="8.5">
+				Go to top <i class='icon-arrow-up'></i>
+			</h2>
+		</div>
+	</div>
 
 </div>
 

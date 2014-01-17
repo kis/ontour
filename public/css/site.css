@@ -57,6 +57,24 @@
     padding-left: 20px;
 }
 
+/*
+ *  Go Top Button
+ */
+
+#gotop_area {
+    position: fixed;
+    bottom: 0px;
+    background: white;
+    display: none;
+    z-index: 19;
+}
+
+#gotop {
+    margin-top: 10px;
+    bottom: 5px;
+    cursor: pointer;
+}
+
 #search-area {
     position: fixed;
     width: 400px;

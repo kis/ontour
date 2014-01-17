@@ -121,6 +121,9 @@ $(function() {
     });
 
     
+
+
+
     /**
      * Hide autocomplete on window area click
      */
@@ -203,12 +206,21 @@ $(function() {
 
         map.initialize();
 
-        $('#artist-info').children().detach();
+        $('#artist-info').children(':not(#gotop_area)').detach();
+
+        $('#gotop_area').show();
 
         return search_val;
 
     }
 
+    //Go Top
+
+    $('#gotop').on('click', function() {
+        $('html, body').animate({
+            'scrollTop': 0
+            }, 500, 'swing');
+    });
 
     /**
      *  Get venues
@@ -238,6 +250,7 @@ $(function() {
                         if (typeof results == 'undefined') {
                             $('#artist-info').append('<div class="box normal error event"><h4 class="museo-slab">Not found </h4></div>');
                             clearInterval(timerId);
+                            return;
                         }
 
                         if (typeof results.length == 'undefined') {
@@ -354,6 +367,7 @@ $(function() {
                         if (typeof events == 'undefined') {
                             $('#artist-info').append('<div class="box normal error event"><h4 class="museo-slab">Not found </h4></div>');
                             clearInterval(timerId);
+                            return;
                         }
 
                         if (typeof events.length == 'undefined') {
@@ -487,6 +501,7 @@ $(function() {
                         if (typeof events == 'undefined') {
                             $('#artist-info').append('<div class="box normal error event"><h4 class="museo-slab">Not found </h4></div>');
                             clearInterval(timerId);
+                            return;
                         }
 
                         //1 event found - length is undefined, using secondary array
