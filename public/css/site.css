@@ -26,6 +26,36 @@
 
 /******************************/
 
+#top_menu {
+    z-index: 3;
+}
+
+#main_area {
+    padding-left: 20px;
+}
+
+/*
+ * Go Top Button
+ */
+
+#gotop_area {
+    position: fixed;
+    bottom: 0px;
+    background: white;
+    display: none;
+    z-index: 19;
+}
+
+#gotop {
+    margin-top: 10px;
+    bottom: 5px;
+    cursor: pointer;
+}
+
+/**
+ * Autocomplete
+ */
+
 #autocomplete {
     display: none;
     position: absolute;
@@ -49,31 +79,9 @@
     background-color: #acbcc9 !important;
 }
 
-#top_menu {
-    z-index: 3;
-}
-
-#main_area {
-    padding-left: 20px;
-}
-
-/*
- *  Go Top Button
+/**
+ * Search
  */
-
-#gotop_area {
-    position: fixed;
-    bottom: 0px;
-    background: white;
-    display: none;
-    z-index: 19;
-}
-
-#gotop {
-    margin-top: 10px;
-    bottom: 5px;
-    cursor: pointer;
-}
 
 #search-area {
     position: fixed;
@@ -87,7 +95,7 @@
     top: 50px;
 }
 
-#performers-list {
+#artist-info {
     position: relative;
     top: 200px;
     z-index: 1;

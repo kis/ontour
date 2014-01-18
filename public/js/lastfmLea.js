@@ -9,6 +9,12 @@ $(function() {
     map.initialize();
 
     /**
+     * Fix search line fix clearing for FF
+     */
+    
+    $("input[name='search-field']").val('');
+
+    /**
      * Initialize LastFM lib
      */
 

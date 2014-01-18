@@ -6,7 +6,7 @@ require '../vendor/autoload.php';
 
 ?>
 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> -->
 
 <div id="search-area" class="row">
 	<div id="search-box" class="box normal asphalt">
