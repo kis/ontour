@@ -46,7 +46,7 @@
 } 
 
 .selectedTermin {
-    background-color: #acbcc9;
+    background-color: #acbcc9 !important;
 }
 
 #top_menu {

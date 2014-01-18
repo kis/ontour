@@ -49,17 +49,33 @@ $(function() {
                         $('.selectedTermin').removeClass('selectedTermin')
                                             .prev().addClass('selectedTermin');
                     } else {
+                    	$('#autocomplete div').each(function() {
+                    		if ($(this).css('backgroundColor') == 'rgb(172, 188, 201)') {
+                    			$(this).css('backgroundColor', 'rgb(252, 248, 227)');
+                    			$(this).prev().addClass('selectedTermin');
+                    			exit();
+                    		}
+                    	});
+
                         $('#autocomplete div:last').addClass('selectedTermin');
                     }
 
                     break;
                 case 40:
                     //down
-                    
+
                     if ($('#autocomplete').has('.selectedTermin').toArray().length) {
                         $('.selectedTermin').removeClass('selectedTermin')
                                             .next().addClass('selectedTermin');
                     } else {
+                        $('#autocomplete div').each(function() {
+	                    	if ($(this).css('backgroundColor') == 'rgb(172, 188, 201)') {
+	                    		$(this).css('backgroundColor', 'rgb(252, 248, 227)');
+	                    		$(this).next().addClass('selectedTermin');
+	                    		exit();
+	                    	}
+                    	});
+
                         $('#autocomplete div:first').addClass('selectedTermin');
                     }
 
