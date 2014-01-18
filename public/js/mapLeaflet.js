@@ -1,0 +1,51 @@
+/**
+ * [Map description]
+ */
+function Map() {
+    var map;
+}
+
+Map.prototype.getMap = function() {
+    return map;
+}
+
+Map.prototype.initialize = function() {
+    map = L.map('map-canvas').setView([0, 0], 2);
+
+    L.tileLayer('http://{s}.tiles.mapbox.com/v3/kirillstyopkin.h1kla158/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+        maxZoom: 18
+    }).addTo(map);
+}
+
+Map.prototype.addInfoWindow = function(title, date, name, street, city, country, map, marker) {
+
+    var latlng = marker.getLatLng();
+
+    var popup = L.popup()
+        .setLatLng(latlng)
+        .setContent('<div class="box normal asphalt museo-slab">' +
+                 '<p>' + title + '</p>' +
+                 date + '<br/>' +
+                 name + '<br/>' +
+                 street + '<br/>' +
+                 city + '<br/>' +
+                 country + '<br/>' +
+                 '</div>');
+
+    marker.on({
+        mouseover: function() {
+            map.openPopup(popup);
+        },
+        mouseout: function() {
+            map.closePopup(popup);
+        }
+    });
+}
+
+Map.prototype.addPath = function(lat, lon, latNext, lonNext, map) {
+    var latlng1 = L.latLng(lat, lon);
+    var latlng2 = L.latLng(latNext, lonNext);
+
+    var polyline = L.polyline([latlng1, latlng2], {color: 'red'}).addTo(map);
+}
