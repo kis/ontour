@@ -121,9 +121,6 @@ $(function() {
     });
 
     
-
-
-
     /**
      * Hide autocomplete on window area click
      */
@@ -143,7 +140,9 @@ $(function() {
     });
 
 
-    //if we have selected area - remove it
+    /**
+     * If we have selected area - remove it
+     */
 
     $('#autocomplete').on('mouseenter', 'div', function() {
         if ($('#autocomplete').has('.selectedTermin').toArray().length) {
@@ -204,23 +203,35 @@ $(function() {
         
         field.removeClass("invalid");
 
+        map.getMap().remove();
         map.initialize();
 
         $('#artist-info').children(':not(#gotop_area)').detach();
 
-        $('#gotop_area').show();
-
         return search_val;
-
     }
 
-    //Go Top
+    /**
+     * Scrolling event to show Go Top area when we're at the bottom
+     */
+
+    $(window).on('scroll', function() {
+        if ($('html, body').scrollTop() > ($('#artist-info').height() - $('html, body').height())) {
+            $('#gotop_area').slideDown(500);
+        } else {
+            $('#gotop_area').slideUp(500);
+        }
+    });
+
+    /**
+     * Go Top
+     */
 
     $('#gotop').on('click', function() {
         $('html, body').animate({
             'scrollTop': 0
             }, 500, 'swing');
-    });
+    });  
 
     /**
      *  Get venues
@@ -288,11 +299,7 @@ $(function() {
 
                                 //add markers
 
-                                marker = map.addMarker(lat, 
-                                                       lon, 
-                                                       map.getMap(), 
-                                                       value.startDate, 
-                                                       value.location.city);
+                                marker = L.marker([lat, lon]).addTo(map.getMap());
 
                                 //add information windows
 
@@ -412,12 +419,7 @@ $(function() {
 
                                 //add markers
 
-                                marker = map.addMarker(lat, 
-                                                       lon, 
-                                                       map.getMap(), 
-                                                       value.startDate, 
-                                                       value.venue.location.city,
-                                                       image);
+                                marker = L.marker([lat, lon]).addTo(map.getMap());
 
                                 //add information windows
 
@@ -437,8 +439,8 @@ $(function() {
                         }
 
                         if (page == 2 && lat && lon) {
-                            map.getMap().setCenter(new google.maps.LatLng(lat, lon));
-                            map.getMap().setZoom(12);
+                            // map.getMap().setCenter(new google.maps.LatLng(lat, lon));
+                            // map.getMap().setZoom(12);
                         }
 
                     }, 
@@ -542,12 +544,7 @@ $(function() {
                             if (lat && lon) {
 
                                 //add markers
-
-                                marker = map.addMarker(lat, 
-                                                       lon, 
-                                                       map.getMap(), 
-                                                       value.startDate, 
-                                                       value.venue.location.city);
+                                marker = L.marker([lat, lon]).addTo(map.getMap());
 
                                 //add information windows
 
