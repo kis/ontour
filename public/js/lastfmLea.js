@@ -270,7 +270,8 @@ $(function() {
         var totalPages, 
             total, 
             page = 1,
-            isFoundBox = false;
+            isFoundBox = false,
+            isLast = false;
 
         var timerId = setInterval( 
 
@@ -341,6 +342,10 @@ $(function() {
                             clearInterval(timerId);
                         }
 
+                        if (isLast) {
+                        	$('#artist-info').append('<br/><br/><br/><br/><br/>');
+                        }
+
                         if (lat && lon) {
                             // map.getMap().setCenter(new google.maps.LatLng(lat, lon));
                             // map.getMap().setZoom(12);
@@ -360,6 +365,7 @@ $(function() {
                     page++;                    
                 } else {
                     clearInterval(timerId);
+                    isLast = true;
                 }
             
             },
@@ -383,7 +389,8 @@ $(function() {
         var totalPages, 
             total, 
             page = 1,
-            isFoundBox = false;
+            isFoundBox = false,
+            isLast = false;
 
         var timerId = setInterval( 
 
@@ -462,9 +469,12 @@ $(function() {
                             clearInterval(timerId);
                         }
 
+                        if (isLast) {
+							$('#artist-info').append('<br/><br/><br/><br/><br/>');
+						}
+
                         if (page == 2 && lat && lon) {
-                            // map.getMap().setCenter(new google.maps.LatLng(lat, lon));
-                            // map.getMap().setZoom(12);
+                            map.getMap().setView([lat, lon], 10);
                         }
 
                     }, 
@@ -481,6 +491,7 @@ $(function() {
                     page++;                    
                 } else {
                     clearInterval(timerId);
+                    isLast = true;
                 }
             
             },
@@ -506,7 +517,8 @@ $(function() {
             page = 1,
             isFoundBox = false,
             latLast, 
-            lonLast;
+            lonLast,
+            isLast = false;
 
         /**
          * Use interval as solution to set right param and get events in right order as result of few async requests 
@@ -599,6 +611,10 @@ $(function() {
                             
                         });
 
+						if (isLast) {
+							$('#artist-info').append('<br/><br/><br/><br/><br/>');
+						}
+
                         if (page == 2 && totalPages == 1) {
                             clearInterval(timerId);
                         }
@@ -619,6 +635,7 @@ $(function() {
                     page++;                    
                 } else {
                     clearInterval(timerId);
+                    isLast = true;
                 }
             
             },
