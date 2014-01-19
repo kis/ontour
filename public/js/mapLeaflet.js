@@ -1,6 +1,7 @@
 /**
- * [Map description]
+ * Working with map using Leaflet
  */
+
 function Map() {
     var map;
 }
@@ -18,7 +19,7 @@ Map.prototype.initialize = function() {
     }).addTo(map);
 }
 
-Map.prototype.addInfoWindow = function(title, date, name, street, city, country, map, marker) {
+Map.prototype.addInfoWindow = function(title, date, name, street, city, country, map, marker, event_id) {
 
     var latlng = marker.getLatLng();
 
@@ -37,6 +38,15 @@ Map.prototype.addInfoWindow = function(title, date, name, street, city, country,
                  '</div>');
 
     marker.on({
+        mouseover: function() {
+            map.openPopup(popup);
+        },
+        mouseout: function() {
+            map.closePopup(popup);
+        }
+    });
+
+    $('#'+event_id+'').on({
         mouseover: function() {
             map.openPopup(popup);
         },

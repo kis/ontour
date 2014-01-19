@@ -305,7 +305,7 @@ $(function() {
 
                         results.forEach(function(value, index) {
                             $('#artist-info').append(
-                                '<div class="box normal asphalt event museo-slab">' +
+                                '<div id="'+value.id+'" class="box normal asphalt event museo-slab">' +
                                 //value.id + '<br/>' +
                                 value.name + '<br/><br/>' +
                                 value.location.street + '<br/>' + 
@@ -332,7 +332,8 @@ $(function() {
                                                   value.location.city, 
                                                   value.location.country, 
                                                   map.getMap(), 
-                                                  marker);
+                                                  marker,
+                                                  value.id);
                             }
                         });
 
@@ -418,7 +419,7 @@ $(function() {
 
                         events.forEach(function(value, index) {
                             $('#artist-info').append(
-                                '<div class="box normal asphalt event museo-slab">' +
+                                '<div id="'+value.id+'" class="box normal asphalt event museo-slab">' +
                                 //value.id + '<br/>' +
                                 value.title + '<br/><br/>' +
                                 value.startDate + '<br/>' + //value.startTime +
@@ -432,10 +433,10 @@ $(function() {
                             lat = value.venue.location['geo:point']['geo:lat'];
                             lon = value.venue.location['geo:point']['geo:long'];
 
-                            image = new google.maps.MarkerImage(value.image[2]['#text'],
+                            /*image = new google.maps.MarkerImage(value.image[2]['#text'],
                                     new google.maps.Size(50, 50),
                                     new google.maps.Point(0,0),
-                                    new google.maps.Point(0, 50));
+                                    new google.maps.Point(0, 50));*/
 
                             if (lat && lon) {
 
@@ -452,7 +453,8 @@ $(function() {
                                                   value.venue.location.city, 
                                                   value.venue.location.country, 
                                                   map.getMap(), 
-                                                  marker);
+                                                  marker,
+                                                  value.id);
                             }
                         });
 
@@ -551,7 +553,7 @@ $(function() {
                         events.forEach(function(value, index) {
 
                             $('#artist-info').append(
-                                '<div class="box normal asphalt event museo-slab">' +
+                                '<div id="'+value.id+'" class="box normal asphalt event museo-slab">' +
                                 //value.id + '<br/>' +
                                 value.startDate + '<br/>' +
                                 value.venue.name + '<br/>' +
@@ -577,7 +579,8 @@ $(function() {
                                                   value.venue.location.city, 
                                                   value.venue.location.country, 
                                                   map.getMap(), 
-                                                  marker);
+                                                  marker,
+                                                  value.id);
 
                                 //add paths between markers
 

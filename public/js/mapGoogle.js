@@ -1,6 +1,7 @@
 /**
- * [Map description]
+ * Working with map using Google Maps API
  */
+
 function Map() {
 
     var map;
