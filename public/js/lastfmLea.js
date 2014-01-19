@@ -9,10 +9,10 @@ $(function() {
     map.initialize();
 
     /**
-     * Fix search line fix clearing for FF
+     * Fix search line fix clearing for FF. Focus
      */
     
-    $("input[name='search-field']").val('');
+    $("input[name='search-field']").val('').focus();
 
     /**
      * Initialize LastFM lib

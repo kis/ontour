@@ -95,6 +95,10 @@
     top: 50px;
 }
 
+#search-box button, a, input {
+    outline: none;
+}
+
 #artist-info {
     position: relative;
     top: 200px;
@@ -112,6 +116,10 @@
     box-shadow: 0 0 5px white;
 }
 
+/**
+ * Map area
+ */
+
 #map-area {
     position: fixed;
     left: 25%;
@@ -124,10 +132,6 @@
     height: 800px;
     margin: 0px;
     padding: 0px;
-}
-
-#search-box button, a, input {
-    outline: none;
 }
 
 #animateTest {

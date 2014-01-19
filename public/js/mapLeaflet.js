@@ -22,7 +22,10 @@ Map.prototype.addInfoWindow = function(title, date, name, street, city, country,
 
     var latlng = marker.getLatLng();
 
-    var popup = L.popup()
+    var popup = L.popup({
+            closeButton: false,
+            offset: L.point(0, -30)
+        })
         .setLatLng(latlng)
         .setContent('<div class="box normal asphalt museo-slab">' +
                  '<p>' + title + '</p>' +
