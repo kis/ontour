@@ -37,23 +37,17 @@ Map.prototype.addInfoWindow = function(title, date, name, street, city, country,
                  country + '<br/>' +
                  '</div>');
 
-    marker.on({
+    var actions = {
         mouseover: function() {
             map.openPopup(popup);
         },
         mouseout: function() {
             map.closePopup(popup);
         }
-    });
+    };
 
-    $('#'+event_id+'').on({
-        mouseover: function() {
-            map.openPopup(popup);
-        },
-        mouseout: function() {
-            map.closePopup(popup);
-        }
-    });
+    marker.on(actions);
+    $('#'+event_id+'').on(actions);
 }
 
 Map.prototype.addPath = function(lat, lon, latNext, lonNext, map) {

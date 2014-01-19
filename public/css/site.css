@@ -122,7 +122,7 @@
 
 #map-area {
     position: fixed;
-    left: 25%;
+    left: 450px;
     top: 50px;
     z-index: 2;
 }
