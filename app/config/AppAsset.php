@@ -45,9 +45,10 @@ class AppAsset extends AssetBundle
                 'js/lib/lastfm.api.cache.js',
                 'js/lib/md5-min.js',
 
+                'js/menu.js',
                 'js/vk.js',
-                'js/lastfmLea.js', //lastfmGoogle
-                'js/mapLeaflet.js', //mapGoogle
+                'js/lastfmLea.js',
+                'js/mapLeaflet.js',
                 'js/lastfm_auth.js'
 	);
         
