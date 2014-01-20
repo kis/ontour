@@ -13,7 +13,7 @@ Map.prototype.getMap = function() {
 Map.prototype.initialize = function() {
     map = L.map('map-canvas').setView([0, 0], 2);
 
-    L.tileLayer('http://{s}.tiles.mapbox.com/v3/kirillstyopkin.h1kla158/{z}/{x}/{y}.png', {
+    L.tileLayer('http://{s}.tiles.mapbox.com/v3/kirillstyopkin.h29f88g0/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
         maxZoom: 18
     }).addTo(map);
