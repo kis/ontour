@@ -44,11 +44,9 @@ require '../vendor/autoload.php';
 
 <div id='artist-info' class="row normal asphalt">
 	
-	<button id="animateTest" class="large asphalt animated flash">I do awesome things.</button>
-
 	<div id="gotop_area"> 
 		<div id="gotop" class="box normal info event align-center">
-			<h3 class="responsive source-sans-pro" data-compression="8.5">
+			<h3 class="responsive" data-compression="8.5">
 				Go to top <i class='icon-arrow-up'></i>
 			</h3>
 		</div>

@@ -299,6 +299,8 @@ $(function() {
 
     });
 
+
+
     /*
      *  Get events by artist
      */
@@ -346,13 +348,16 @@ $(function() {
                         total = data.events["@attr"].total;
 
                         if ((page == 1 || page == 2) && isFoundBox == false) {
+                            NProgress.start();
+
                             $('#artist-info').append('<div class="success box normal event"><h4 class="museo-slab">' +total+ 
-                                ' upcoming events found </h4><h2 class="museo-slab">Loading <span class="loaded">' +((page-1)*10)+ 
+                                ' upcoming events found </h4><h2 class="museo-slab"><span class="loaded">Loading ' +((page-1)*10)+ 
                                 '</span> of ' +total+ '</h2></div>');
                             isFoundBox = true;
                         }
 
-                        $('span.loaded').text((page-1)*10);
+                        $('span.loaded').text('Loading ' + (page-1)*10);
+                        NProgress.set(((page-1)*10)/total);
 
                         events.forEach(function(value, index) {
 
@@ -406,8 +411,9 @@ $(function() {
                         });
 
 						if (isLast || totalPages == 1) {
-                            $('span.loaded').text((page-1)*10 + events.length);
+                            $('span.loaded').text('Finished ' + ((page-1)*10 + events.length));
 							$('#artist-info').append('<br/><br/><br/><br/><br/>');
+                            NProgress.done();
 						}
 
                         if (page == 2 && totalPages == 1) {
@@ -433,7 +439,7 @@ $(function() {
                     clearInterval(timerId);
                     isLast = true;
                 }
-            
+
             },
 
             2000); 

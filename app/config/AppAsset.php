@@ -28,7 +28,8 @@ class AppAsset extends AssetBundle
                 'leaflet/leaflet.css',
 
                 'css/site.css',
-                'css/lib/animate.css'
+                'css/lib/animate.css',
+                'css/lib/nprogress.css'
 	);
 
 	public $js = array(
@@ -45,6 +46,7 @@ class AppAsset extends AssetBundle
                 'js/lib/lastfm.api.cache.js',
                 'js/lib/md5-min.js',
 
+                'js/nprogress.js',
                 'js/menu.js',
                 'js/vk.js',
                 'js/lastfmLea.js',
