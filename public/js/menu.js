@@ -21,6 +21,8 @@ $(function() {
 	 * Autocomplete on input characters
 	 */
 
+	var label;
+
 	$('input[name="search-field"]').on({
 	    keydown: function(e) {
 
@@ -48,15 +50,21 @@ $(function() {
 	                    $('.selectedTermin').removeClass('selectedTermin')
 	                                        .prev().addClass('selectedTermin');
 	                } else {
+
+	                	label = false;
+
 	                	$('#autocomplete div').each(function() {
 	                		if ($(this).css('backgroundColor') == 'rgb(172, 188, 201)') {
 	                			$(this).css('backgroundColor', 'rgb(252, 248, 227)');
 	                			$(this).prev().addClass('selectedTermin');
-	                			exit();
+	                			label = true;
+	                			return false;
 	                		}
 	                	});
 
-	                    $('#autocomplete div:last').addClass('selectedTermin');
+	                	if (!label) {
+	                		$('#autocomplete div:last').addClass('selectedTermin');
+	                	}
 	                }
 
 	                break;
@@ -67,15 +75,21 @@ $(function() {
 	                    $('.selectedTermin').removeClass('selectedTermin')
 	                                        .next().addClass('selectedTermin');
 	                } else {
+
+	                	label = false;
+
 	                    $('#autocomplete div').each(function() {
-                    	if ($(this).css('backgroundColor') == 'rgb(172, 188, 201)') {
-                    		$(this).css('backgroundColor', 'rgb(252, 248, 227)');
-                    		$(this).next().addClass('selectedTermin');
-                    		exit();
-                    	}
+	                    	if ($(this).css('backgroundColor') == 'rgb(172, 188, 201)') {
+	                    		$(this).css('backgroundColor', 'rgb(252, 248, 227)');
+	                    		$(this).next().addClass('selectedTermin');
+	                    		label = true;
+	                    		return false;
+	                    	}
 	                	});
 
-	                    $('#autocomplete div:first').addClass('selectedTermin');
+	                    if (!label) {
+	                    	$('#autocomplete div:first').addClass('selectedTermin');
+	                	}
 	                }
 
 	                break;
@@ -148,8 +162,8 @@ $(function() {
 	 * Paste search word to input field and hide autocomplete
 	 */
 
-	$('#autocomplete').on('click', 'a', function() {
-	    $("input[name='search-field']").val($(this).text());
+	$('#autocomplete').on('click', 'div', function() {
+	    $("input[name='search-field']").val($(this).children().text());
 	    $('#autocomplete').hide();
 	    $('a[name="search-go"]').trigger('click');
 	});
@@ -205,7 +219,9 @@ $(function() {
 	 */
 
 	$(window).on('scroll', function() {
-	    if ($('html, body').scrollTop() > ($('#artist-info').height() - $('html, body').height())) {
+	    if ($(window).scrollTop() > ($('#artist-info').height() - $(window).height()) && 
+	    	$(window).scrollTop() > ($(window).height() / 2) - 100) {
+
 	        $('#gotop_area').slideDown(500);
 	    } else {
 	        $('#gotop_area').slideUp(500);

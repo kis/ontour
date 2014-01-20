@@ -24,11 +24,11 @@ $(function() {
 
     var totalPages, 
         total, 
-        page = 1,
-        isFoundBox = false,
+        page,
+        isFoundBox,
         latLast, 
         lonLast,
-        isLast = false,
+        isLast,
         lat,
         lon,
         marker;
@@ -40,6 +40,17 @@ $(function() {
     function isValidSearch() {
 
         var field = $('input[name="search-field"]');
+
+        /*
+         * Init globals on every search
+         */
+
+        isFoundBox = false;
+        isLast = false;
+        page = 1;
+        totalPages = 0;
+        latLast = 0; 
+        lonLast = 0;
 
         var search_val = field.val();
 
@@ -313,6 +324,8 @@ $(function() {
 
                     success: function(data) {
 
+                        console.log(page + ' of ' + totalPages);
+
                         var events = data.events.event;
 
                         // 0 events found
@@ -332,13 +345,15 @@ $(function() {
                         totalPages = data.events["@attr"].totalPages;
                         total = data.events["@attr"].total;
 
-                        if (page == 2 && isFoundBox == false) {
+                        if ((page == 1 || page == 2) && isFoundBox == false) {
                             $('#artist-info').append('<div class="success box normal event"><h4 class="museo-slab">' +total+ 
                                 ' upcoming events found </h4></div>');
                             isFoundBox = true;
                         }
 
                         events.forEach(function(value, index) {
+
+                            console.log(index);
 
                             $('#artist-info').append(
                                 '<div id="'+value.id+'" class="box normal asphalt event museo-slab">' +
@@ -387,7 +402,7 @@ $(function() {
                             
                         });
 
-						if (isLast) {
+						if (isLast || totalPages == 1) {
 							$('#artist-info').append('<br/><br/><br/><br/><br/>');
 						}
 
@@ -408,6 +423,7 @@ $(function() {
                 });
 
                 if (page != totalPages && totalPages != 1) {
+                    console.log('before');
                     page++;                    
                 } else {
                     clearInterval(timerId);

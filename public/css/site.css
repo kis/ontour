@@ -66,13 +66,16 @@
 
 #autocomplete a {
     color: #34495e;
-    cursor: pointer;
     text-decoration: none;
+}
+
+#autocomplete div {
+    cursor: pointer;
 }
 
 #autocomplete div:hover {
     text-decoration: none;
-    background-color: #acbcc9;
+    background-color: #acbcc9 !important;
 } 
 
 .selectedTermin {
