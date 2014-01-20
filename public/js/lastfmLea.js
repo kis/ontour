@@ -347,9 +347,12 @@ $(function() {
 
                         if ((page == 1 || page == 2) && isFoundBox == false) {
                             $('#artist-info').append('<div class="success box normal event"><h4 class="museo-slab">' +total+ 
-                                ' upcoming events found </h4></div>');
+                                ' upcoming events found </h4><h2 class="museo-slab">Loading <span class="loaded">' +((page-1)*10)+ 
+                                '</span> of ' +total+ '</h2></div>');
                             isFoundBox = true;
                         }
+
+                        $('span.loaded').text((page-1)*10);
 
                         events.forEach(function(value, index) {
 
@@ -403,6 +406,7 @@ $(function() {
                         });
 
 						if (isLast || totalPages == 1) {
+                            $('span.loaded').text((page-1)*10 + events.length);
 							$('#artist-info').append('<br/><br/><br/><br/><br/>');
 						}
 
