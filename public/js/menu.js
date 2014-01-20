@@ -110,6 +110,22 @@ $(function() {
 	                term = lastfm.artist;
 	                term_in = {artist: name, limit: 10};
 	                break;
+	            case 'cityField':
+
+	            	jQuery.getJSON("http://gd.geobytes.com/AutoCompleteCity?callback=?&q="+name, function (data) {
+	            		$('#autocomplete')
+	            		    .show()
+	            		    .children().detach();
+
+	            		data.forEach(function(value, index) {
+	            			if (value && typeof value != 'undefined') {
+	            				var res = value.split(', ');
+	            				$('#autocomplete').append('<div><a>' + res[0] + '</a> ' + res[2] + '</div>');
+	            			}
+	        	        });
+	            	});
+
+	                break;
 	            case 'venueField':
 	                term = lastfm.venue;
 	                term_in = {venue: name, limit: 10};
@@ -119,32 +135,35 @@ $(function() {
 	                break;
 	        }
 
-	        term.search(term_in, {
-	            success: function(data) {
+	        if (field.attr('id') != 'cityField') {
+	        	term.search(term_in, {
+	        	    success: function(data) {
 
-	                if (typeof data != 'undefined') {
+	        	        if (typeof data != 'undefined') {
 
-	                    $('#autocomplete')
-	                        .show()
-	                        .children().detach();
+	        	            $('#autocomplete')
+	        	                .show()
+	        	                .children().detach();
 
-	                    if (field.attr('id') == 'artistField') {
-	                        res = data.results.artistmatches.artist;
-	                    } else {
-	                        res = data.results.venuematches.venue;
-	                    }
+	        	            if (field.attr('id') == 'artistField') {
+	        	                res = data.results.artistmatches.artist;
+	        	            } else {
+	        	                res = data.results.venuematches.venue;
+	        	            }
 
-	                    res.forEach(function(value, index) {
-	                        $('#autocomplete').append('<div><a>' + value.name + '</a></div>');
-	                    });
+	        	            res.forEach(function(value, index) {
+	        	                $('#autocomplete').append('<div><a>' + value.name + '</a></div>');
+	        	            });
 
-	                }
-	 
-	            }, error: function(code, message) {
-	                if (code == 4)
-	                    alert('error!');
-	            } 
-	        });
+	        	        }
+	        	
+	        	    }, error: function(code, message) {
+	        	        if (code == 4)
+	        	            alert('error!');
+	        	    } 
+	        	});
+	        }
+
 
 	    }
 	});
