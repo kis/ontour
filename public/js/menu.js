@@ -151,9 +151,11 @@ $(function() {
 	        	                res = data.results.venuematches.venue;
 	        	            }
 
-	        	            res.forEach(function(value, index) {
-	        	                $('#autocomplete').append('<div><a>' + value.name + '</a></div>');
-	        	            });
+	        	            if (typeof res != 'undefined' && res.length) {
+	        	            	res.forEach(function(value, index) {
+	        	            	    $('#autocomplete').append('<div><a>' + value.name + '</a></div>');
+	        	            	});
+	        	            }
 
 	        	        }
 	        	
