@@ -31,7 +31,8 @@ $(function() {
         isLast,
         lat,
         lon,
-        marker;
+        marker,
+        eventIcon;
 
     /**
      * Search field validation
@@ -268,7 +269,18 @@ $(function() {
 
                                 //add markers
 
-                                marker = L.marker([lat, lon]).addTo(map.getMap());
+                                eventIcon = L.icon({
+                                    iconUrl: value.image[2]['#text'],
+                                    iconSize: [50, 50],
+                                    // iconAnchor: [22, 94],
+                                    // popupAnchor: [-3, -76],
+                                    // shadowUrl: 'my-icon-shadow.png',
+                                    // shadowRetinaUrl: 'my-icon-shadow@2x.png',
+                                    // shadowSize: [68, 95],
+                                    // shadowAnchor: [22, 94]
+                                });
+
+                                marker = L.marker([lat, lon], {icon: eventIcon, riseOnHover: true, riseOffset: 25}).addTo(map.getMap());
 
                                 //add information windows
 

@@ -35,6 +35,8 @@ $(function() {
 	                } 
 
 	                $('a[name="search-go"]').trigger('click');
+	                
+	                $('#autocomplete').hide();
 
 	                break;
 	            case 27:

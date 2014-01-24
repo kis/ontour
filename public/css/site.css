@@ -91,11 +91,11 @@
     width: 400px;
     height: 200px;
     z-index: 4;
-    background: white;
+    background: transparent;
 }
 
 #search-box {
-    top: 50px;
+    top: 25px;
 }
 
 #search-box button, a, input {
@@ -104,8 +104,8 @@
 
 #artist-info {
     position: relative;
-    top: 200px;
-    z-index: 1;
+    top: 175px;
+    z-index: 6;
 }
 
 .event {
@@ -125,14 +125,14 @@
 
 #map-area {
     position: fixed;
-    left: 450px;
-    top: 50px;
+    left: 0px;  /*left: 450px;*/
+    top: 0px;
     z-index: 2;
 }
 
 #map-canvas {   
-    width: 1200px;
-    height: 800px;
+    width: 125%;
+    height: 950px;
     margin: 0px;
     padding: 0px;
 }
