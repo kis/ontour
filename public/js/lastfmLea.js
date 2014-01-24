@@ -271,7 +271,7 @@ $(function() {
 
                                 eventIcon = L.icon({
                                     iconUrl: value.image[2]['#text'],
-                                    iconSize: [50, 50],
+                                    iconSize: [75, 75],
                                     // iconAnchor: [22, 94],
                                     // popupAnchor: [-3, -76],
                                     // shadowUrl: 'my-icon-shadow.png',
