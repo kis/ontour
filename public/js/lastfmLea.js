@@ -157,14 +157,14 @@ $(function() {
                             }
                         });
 
-                        if (page == 2 && totalPages == 1) {
-                            clearInterval(timerId);
-                        }
-
-                        if (isLast) {
-                        	$('span.loaded').text('Finished ' + ((page-1)*10 + events.length));
+                        if (isLast || totalPages == 1) {
+                            $('span.loaded').text('Finished ' + ((totalPages == 1) ? results.length : ((page-1)*10 + results.length)));
                             $('#artist-info').append('<br/><br/><br/><br/><br/>');
                             NProgress.done();
+                        }
+
+                        if (page == 2 && totalPages == 1) {
+                            clearInterval(timerId);
                         }
 
                         if (lat && lon) {
@@ -182,7 +182,7 @@ $(function() {
                     }
                 });
 
-                if (page != totalPages) {
+                if (page != totalPages && totalPages != 1) {
                     page++;                    
                 } else {
                     clearInterval(timerId);
@@ -284,15 +284,15 @@ $(function() {
                             }
                         });
 
-                        if (page == 2 && totalPages == 1) {
-                            clearInterval(timerId);
-                        }
-
-                        if (isLast) {
-                            $('span.loaded').text('Finished ' + ((page-1)*10 + events.length));
+                        if (isLast || totalPages == 1) {
+                            $('span.loaded').text('Finished ' + ((totalPages == 1) ? events.length : ((page-1)*10 + events.length)));
 							$('#artist-info').append('<br/><br/><br/><br/><br/>');
                             NProgress.done();
 						}
+
+                        if (page == 2 && totalPages == 1) {
+                            clearInterval(timerId);
+                        }
 
                         if (page == 2 && lat && lon) {
                             map.getMap().setView([lat, lon], 10);
@@ -308,7 +308,7 @@ $(function() {
                     }
                 });
 
-                if (page != totalPages) {
+                if (page != totalPages && totalPages != 1) {
                     page++;                    
                 } else {
                     clearInterval(timerId);
@@ -433,7 +433,7 @@ $(function() {
                         });
 
 						if (isLast || totalPages == 1) {
-                            $('span.loaded').text('Finished ' + ((page-1)*10 + events.length));
+                            $('span.loaded').text('Finished ' + ((totalPages == 1) ? events.length : ((page-1)*10 + events.length)));
 							$('#artist-info').append('<br/><br/><br/><br/><br/>');
                             NProgress.done();
 						}
