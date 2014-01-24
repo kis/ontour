@@ -59,7 +59,7 @@
 #autocomplete {
     display: none;
     position: absolute;
-    z-index: 5;
+    z-index: 10;
     width: 350px;
     border: 2px solid #34495e;
 }
@@ -90,7 +90,7 @@
     position: fixed;
     width: 400px;
     height: 200px;
-    z-index: 4;
+    z-index: 15;
     background: transparent;
 }
 
