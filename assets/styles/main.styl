@@ -1,0 +1,151 @@
+
+$bg = #10315a
+$font = normal small-caps 18px fantasy
+$sidebar_width = 323px
+
+/**
+ * Search
+ */
+
+#search-box
+    position fixed
+    top 0px
+    left 0px
+    width 363px
+    height 200px
+    font-size 14pt
+    padding 15px
+    z-index 15
+    background transparent
+
+.tab
+    cursor pointer
+    padding 22px
+    width 135px
+    line-height 25pt
+    text-align center
+    font $font
+    display inline-block
+    color white
+    background $bg
+    &:hover
+        background #787b7e !important
+
+.active
+    background #787b7e !important
+
+.search-field
+    width $sidebar_width
+    line-height 25pt
+    font $font
+    display block
+    padding 20px
+    outline none
+    border 0px
+
+.invalid
+    background #dfdfdf
+
+.search-button
+    cursor pointer
+    padding 20px
+    width 150px
+    line-height 25pt
+    text-align center
+    font $font
+    display block
+    color white
+    background $bg
+    &:hover
+        background #787b7e !important
+
+#artist-info
+    position absolute
+    top 220px
+    left 0px
+    font $font
+    color white
+    padding 15px
+    z-index 6
+
+#event-item
+    position relative
+    margin-bottom 5px
+    width $sidebar_width
+    height 120px
+    padding 20px
+    background $bg
+    &:hover
+        background #787b7e
+        cursor pointer
+
+.selected
+    background #787b7e !important
+
+.artist-pic
+    width 50px
+    height 50px
+    float left
+    margin 30px 15px 5px 0
+
+.artist-data
+    margin 5px 5px 5px 80px
+
+.info-block
+    width $sidebar_width
+    padding 20px
+    margin-bottom 5px
+    background $bg
+
+#go-top
+    cursor pointer
+    position fixed
+    bottom 15px
+    width $sidebar_width
+    padding 20px
+    text-align center
+    background $bg
+    display none
+    z-index 19
+    &:hover
+        background #787b7e !important
+
+/**
+ * Autocomplete
+ */
+
+#autocomplete
+    display none
+    position absolute
+    z-index 10
+    font $font
+    line-height 30pt
+    width 363px
+    background white
+
+#autocomplete a
+    text-decoration none
+
+#autocomplete div
+    cursor pointer
+    padding 10px
+    &:hover
+        text-decoration none
+        background #dfdfdf !important
+
+.selected-termin
+    background #dfdfdf !important
+
+/**
+ * Map area
+ */
+
+#map-canvas
+    position fixed
+    top 0px
+    left 0px
+    width 100%
+    height 100%
+    margin 0px
+    padding 0px
+    z-index 2
