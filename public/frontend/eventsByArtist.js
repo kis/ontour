@@ -2,20 +2,20 @@
 require(['backbone',   
 		 'frontend/models/Event',
 		 'frontend/models/Map',
+		 'frontend/models/SearchStatus',
 		 'frontend/views/EventView',
 		 'frontend/views/EventsList',
 		 'frontend/views/MapView',
+		 'frontend/views/SearchStatusView',
 		 'frontend/collections/Events'], 
-		 function(backbone, Event, Map, EventView, EventsList, MapView, Events) {
+		 function(backbone, Event, Map, SearchStatus, EventView, EventsList, MapView, SearchStatusView, Events) {
 
 	var map = new Map(),
 		mapView = new MapView({model: map}),
 		page,
 		totalPages,
-		total,
-		eventCollection,
-		eventsListView;
-	
+		total;
+
 	function getSearchValue() {
 
 		page = 1;
@@ -54,8 +54,11 @@ require(['backbone',
 			eventsListView.reset();
 		}
 
-		eventCollection = new Events();
-		eventsListView = new EventsList({collection: eventCollection});
+		var search = new SearchStatus({page: 1, total: 1, totalPages: 1, status: 1}),
+			searchView = new SearchStatusView({model: search});
+
+		var eventCollection = new Events();
+			eventsListView = new EventsList({collection: eventCollection});
 
 		function go() {
 			Backbone.ajax({

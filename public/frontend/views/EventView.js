@@ -1,5 +1,5 @@
 
-define(['text', 'underscore', 'backbone', 'text!frontend/templates/event.html'], function(text, _, Backbone, eventTemplate) {
+define(['text', 'underscore', 'backbone', 'text!frontend/templates/Event.html'], function(text, _, Backbone, eventTemplate) {
 
 	var EventView = Backbone.View.extend({
 
