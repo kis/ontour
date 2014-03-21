@@ -122,10 +122,16 @@ require(['backbone',
 
 		events.forEach(function(value, index) {
 			createEventModel(events, value, index);
+
+			if(page == 1 && index == 0) {
+				mapView.getMap().setView(
+					L.latLng(value.venue.location['geo:point']['geo:lat'], 
+							 value.venue.location['geo:point']['geo:long']), 
+					param == "artist" ? 4 : 12);
+			}
 		});
 
 		function createEventModel(events, value, index) {
-
 			eventCollection.add(new Event({
 				id: value.id,
 				title: value.title,
