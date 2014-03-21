@@ -48,11 +48,11 @@ require(['backbone',
 			eventsListView.reset();
 		}
 
-		var search = new SearchStatus({page: 1, total: 1, totalPages: 1, status: 1}),
-			searchView = new SearchStatusView({model: search});
-
-		var eventCollection = new Events();
-			eventsListView = new EventsList({collection: eventCollection});
+		var search = new SearchStatus({page: 1, total: 1, totalPages: 1}),
+			searchView = new SearchStatusView({model: search}),
+			eventCollection = new Events();
+		
+		eventsListView = new EventsList({collection: eventCollection});
 
 		function go() {
 			Backbone.ajax({
@@ -76,7 +76,6 @@ require(['backbone',
 					if (search.get('page') <= search.get('totalPages')) {
 						go();
 					} else {
-						$('span.loaded').text('Finished ' + search.get('total'));
 						$('#artist-info').append('<br/><br/><br/><br/><br/><br/>');
 						eventsListView.addPaths();
 					}
@@ -94,7 +93,8 @@ require(['backbone',
 		var events = data.events.event;
 		
 		if (data.events.total == 0) {
-			$('#artist-info').append('<div class="info-block"><h4>Not found</h4></div>');
+			search.set({totalPages: 0});
+			searchView.render();
 			return false;
 		}
 
@@ -103,21 +103,10 @@ require(['backbone',
 
 		searchView.render();
 
-		/*if (page == totalPages && /1$/.test(data.events["@attr"].total)) {
-			if (page == 1) {
-				$('#artist-info').append('<div class="info-block"><h4>' +total+ ' upcoming events found</h4>');
-			}             
+		if (search.get('page') == search.get('totalPages') && /1$/.test(search.get('total'))) {
 			createEventModel(events, events, null);
 			return false;
 		}
-
-		if (page == 1) {
-			$('#artist-info').append('<div class="info-block"><h4>' +total+ 
-					' upcoming events found </h4><h2><span class="loaded">Loading ' +(page*10)+ 
-					'</span> of ' +total+ '</h2></div>');
-		} else {
-			$('span.loaded').text('Loading ' + (page*10));
-		}*/
 
 		events.forEach(function(value, index) {
 			createEventModel(events, value, index);

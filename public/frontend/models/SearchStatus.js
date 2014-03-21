@@ -5,8 +5,7 @@ define(['underscore', 'backbone'], function(_, Backbone) {
 		defaults: {
 			page: 1,
 			total: 1,
-			totalPages: 1,
-			status: 1
+			totalPages: 1
 		}
 
 	});
