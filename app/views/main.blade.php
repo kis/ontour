@@ -26,6 +26,9 @@
         </div>
 
         <div id="artist-info">
+
+            <div class="info-block"></div>
+
             <div id="go-top"><h3>Go to top</h3></div>
         </div>
 

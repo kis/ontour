@@ -11,15 +11,9 @@ require(['backbone',
 		 function(backbone, Event, Map, SearchStatus, EventView, EventsList, MapView, SearchStatusView, Events) {
 
 	var map = new Map(),
-		mapView = new MapView({model: map}),
-		page,
-		totalPages,
-		total;
+		mapView = new MapView({model: map});
 
 	function getSearchValue() {
-
-		page = 1;
-		totalPages = 1;
 
 		var field = $(".search-field");
 		var search_val = field.val();
@@ -31,7 +25,7 @@ require(['backbone',
 		}
 
 		field.removeClass("invalid");
-		$('#artist-info').children(':not(#go-top)').detach();
+		$('#artist-info').children(':not(#go-top, .info-block)').detach();
 
 		return search_val;
 	}
@@ -69,20 +63,20 @@ require(['backbone',
 					location: search_val,
 					artist: search_val,
 					autocorrect: 1,
-					page: page,
+					page: search.get('page'),
 					limit: 10,
 					api_key: 'dd349d2176d3b97b8162bb0c0e583b1c',
 					format: 'json'
 				},
 				success: function(data) {
-					getEventsData(data, page, eventCollection, param);
+					getEventsData(data, eventCollection, param, search, searchView);
 
-					page++;
+					search.set('page', search.get('page') + 1);
 
-					if (page <= totalPages) {
+					if (search.get('page') <= search.get('totalPages')) {
 						go();
 					} else {
-						$('span.loaded').text('Finished ' + total);
+						$('span.loaded').text('Finished ' + search.get('total'));
 						$('#artist-info').append('<br/><br/><br/><br/><br/><br/>');
 						eventsListView.addPaths();
 					}
@@ -95,7 +89,7 @@ require(['backbone',
 
 	}
 
-	function getEventsData(data, page, eventCollection, param) {
+	function getEventsData(data, eventCollection, param, search, searchView) {
 
 		var events = data.events.event;
 		
@@ -104,10 +98,12 @@ require(['backbone',
 			return false;
 		}
 
-		totalPages = data.events["@attr"].totalPages;
-		total = data.events["@attr"].total;
+		search.set({totalPages: data.events["@attr"].totalPages,
+					total: data.events["@attr"].total});
 
-		if (page == totalPages && /1$/.test(data.events["@attr"].total)) {
+		searchView.render();
+
+		/*if (page == totalPages && /1$/.test(data.events["@attr"].total)) {
 			if (page == 1) {
 				$('#artist-info').append('<div class="info-block"><h4>' +total+ ' upcoming events found</h4>');
 			}             
@@ -121,12 +117,12 @@ require(['backbone',
 					'</span> of ' +total+ '</h2></div>');
 		} else {
 			$('span.loaded').text('Loading ' + (page*10));
-		}
+		}*/
 
 		events.forEach(function(value, index) {
 			createEventModel(events, value, index);
 
-			if(page == 1 && index == 0) {
+			if(search.get('page') == 1 && index == 0) {
 				mapView.getMap().setView(
 					L.latLng(value.venue.location['geo:point']['geo:lat'], 
 							 value.venue.location['geo:point']['geo:long']), 
