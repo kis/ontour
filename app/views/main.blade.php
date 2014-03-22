@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         <meta charset="utf-8"/>
-        <title>Triptour</title>
+        <title>Ontour.im</title>
 
         {{ HTML::style('leaflet/leaflet.css'); }}
         {{ HTML::style('css/style.css'); }}
