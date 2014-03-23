@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('/home', function()
+{
+	return View::make('home');
+});
+
 Route::get('/', function()
 {
 	return View::make('main');
