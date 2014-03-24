@@ -135,6 +135,8 @@ $(function() {
 	        		    .show()
 	        		    .children().detach();
 
+	        		data.length = 10;
+
 	        		data.forEach(function(value, index) {
 	        			if (value && typeof value != 'undefined') {
 	        				var res = value.split(', ');
