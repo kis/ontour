@@ -29,11 +29,11 @@ require.config({
 		backbone: 'lib/backbone',
 
 		menu: 'frontend/menu',
-		eventsByArtist: 'frontend/eventsByArtist'
+		getEvents: 'frontend/getEvents'
 	}
 });
 
-require(['jquery', 'menu', 'eventsByArtist'], function() {
+require(['jquery', 'menu', 'getEvents'], function() {
 
 
 });
