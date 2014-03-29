@@ -1,5 +1,5 @@
 
-$bg = #10315a
+$bg = rgba(16,49,90,1)
 $font = normal small-caps 18px fantasy
 $sidebar_width = 303px
 $padding = 14px
@@ -71,22 +71,18 @@ $padding = 14px
     margin 15px
     z-index 6
 
-.info-block
-    display none
-
 #event-item
     position relative
-    margin-bottom 5px
     width $sidebar_width
     height 120px
     padding $padding
     background transparent
     &:hover
-        background rgba(16,49,90,1)
+        background rgba(16,49,90,0.6)
         cursor pointer
 
 .selected
-    background #787b7e !important
+    background rgba(16,49,90,0.6) !important
 
 .artist-pic
     width 50px
@@ -98,24 +94,23 @@ $padding = 14px
     margin 5px 5px 5px 80px
 
 .info-block
+    display none
     width $sidebar_width
     padding $padding
     text-align center
-    margin-bottom 5px
     background $bg
 
 #go-top
     cursor pointer
-    position fixed
     bottom 15px
     width $sidebar_width
     padding $padding
     text-align center
-    background $bg
+    background transparent
     display none
     z-index 19
     &:hover
-        background #787b7e !important
+        background rgba(16,49,90,0.6) !important
 
 /**
  * Autocomplete

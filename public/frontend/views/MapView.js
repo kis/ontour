@@ -8,6 +8,25 @@ define(['underscore', 'backbone', 'leaflet'], function(_, Backbone) {
 		},
 
 		initialize: function() {
+			L.Map = L.Map.extend({
+			    openPopup: function(popup) {
+			        //        this.closePopup();  // just comment this
+			        this._popup = popup;
+
+			        return this.addLayer(popup).fire('popupopen', {
+			            popup: this._popup
+			        });
+			    },
+			    closePopup: function(popup) {
+			        //        this.closePopup();  // just comment this
+			        this._popup = popup;
+
+			        return this.removeLayer(popup).fire('popupclose', {
+			            popup: this._popup
+			        });
+			    }
+			});
+
 			this.model.set('map', L.map('map-canvas').setView([0, 0], 2))
 					  .get('map').zoomControl.setPosition('bottomright');
 

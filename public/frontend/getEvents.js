@@ -112,7 +112,7 @@ require(['backbone',
 		});
 
 		if (search.get('page') == search.get('totalPages')) {
-			$('#artist-info').append('<br/><br/><br/><br/><br/><br/>');
+			$('#artist-info').append('<div id="go-top"><h3>Go to top</h3></div>');
 			eventsListView.addPaths();
 		}
 

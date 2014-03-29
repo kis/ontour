@@ -19,8 +19,9 @@ define(['text', 'underscore', 'backbone', 'text!frontend/templates/Event.html'],
 		},
 
 		events: {
+			'click'     : 'selectEvent',
 			'mouseover' : 'showPopup',
-			'mouseout' : 'hidePopup'
+			'mouseout'  : 'hidePopup'
 		},
 
 		addIcon: function() {
@@ -29,7 +30,7 @@ define(['text', 'underscore', 'backbone', 'text!frontend/templates/Event.html'],
 					iconUrl: this.model.get('image'),
 					iconSize: [75, 75]
 					// iconAnchor: [22, 94],
-                    // popupAnchor: [-3, -76]
+					// popupAnchor: [-3, -76]
 				});
 
 				this.model.set('icon', icon);
@@ -57,43 +58,77 @@ define(['text', 'underscore', 'backbone', 'text!frontend/templates/Event.html'],
 				return false;
 			}
 
-		    var latlng = this.model.get('marker').getLatLng();
+			var latlng = this.model.get('marker').getLatLng();
 
-		    var popup = L.popup({
-		                    closeButton: false,
-		                    offset: L.point(0, -30)
-		                })
-		                .setLatLng(latlng)
-		                .setContent(this.template(this.model.toJSON()));
+			var popup = L.popup({
+							closeButton: false,
+							offset: L.point(0, -30),
+							closeOnClick: false
+						})
+						.setLatLng(latlng)
+						.setContent(this.template(this.model.toJSON()));
 
-		    this.model.set("popup", popup);
+			this.model.set("popup", popup);
 
-		    var actions = {
-		        mouseover: function() {
-		    		this.model.get('map').openPopup(popup);
-		    		$(this.el).addClass('selected');
-		    		
-		    		// $('html').animate({ scrollTop: $(this.el).offset().top - 200}, 500);
-		    		return false;
-		    	},
-		        mouseout: function() {
-		            this.model.get('map').closePopup(popup);
-		            $(this.el).removeClass('selected');
-		            return false;
-		        }
-		    };
+			var actions = {
+				mouseover: function() {
+					if (this.model.get('selected') == false) {
+						this.model.get('map').openPopup(popup);
+						$(this.el).addClass('selected');
+						
+						// $('html').animate({ scrollTop: $(this.el).offset().top - 200}, 500);
+						return false;
+					}
+				},
+				mouseout: function() {
+					if (this.model.get('selected') == false) {
+						this.model.get('map').closePopup(popup);
+						$(this.el).removeClass('selected');
+						return false;
+					}
+				},
+				click: function() {
+					if (this.model.get('popup') != null) {
+						if(this.model.get('selected')) {
+							this.model.get('map').closePopup(this.model.get('popup'));
+							this.model.set('selected', false);
+							$(this.el).removeClass('selected');
+						} else {
+							this.model.get('map').openPopup(this.model.get('popup'));
+							this.model.set('selected', true);
+							$(this.el).addClass('selected');
+						}
+					}
+					return false;
+				}
+			};
 
-		    this.model.get('marker').on(actions, this);
+			this.model.get('marker').on(actions, this);
+		},
+
+		selectEvent: function() {
+			if (this.model.get('popup') != null) {
+				if(this.model.get('selected')) {
+					this.model.get('map').closePopup(this.model.get('popup'));
+					this.model.set('selected', false);
+					$(this.el).removeClass('selected');
+				} else {
+					this.model.get('map').openPopup(this.model.get('popup'));
+					this.model.set('selected', true);
+					$(this.el).addClass('selected');
+				}
+			}
+			return false;
 		},
 
 		showPopup: function() {
-			if (this.model.get('popup') != null) {
+			if (this.model.get('popup') != null && this.model.get('selected') == false) {
 				this.model.get('map').openPopup(this.model.get('popup'));
 			}
 		},
 
 		hidePopup: function() {
-			if (this.model.get('popup') != null) {
+			if (this.model.get('popup') != null && this.model.get('selected') == false) {
 				this.model.get('map').closePopup(this.model.get('popup'));
 			}
 		}

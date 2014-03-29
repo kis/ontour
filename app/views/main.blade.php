@@ -29,7 +29,6 @@
 
             <div class="info-block"></div>
 
-            <div id="go-top"><h3>Go to top</h3></div>
         </div>
 
         <div id="map-canvas"></div>

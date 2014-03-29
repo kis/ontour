@@ -227,7 +227,7 @@ $(function() {
 	 * Go Top
 	 */
 
-	$('#go-top').on('click', function() {
+	$('body').on('click', '#go-top', function() {
 	    $('html, body').animate({
 	        'scrollTop': 0
 	        }, 500, 'swing');

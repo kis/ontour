@@ -15,7 +15,8 @@ define(['underscore', 'backbone'], function(_, Backbone) {
 			popup: null,
 			path: null,
 			map: {},
-			param: null
+			param: null,
+			selected: false
 		}
 
 	});
