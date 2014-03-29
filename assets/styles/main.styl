@@ -1,7 +1,8 @@
 
 $bg = #10315a
 $font = normal small-caps 18px fantasy
-$sidebar_width = 323px
+$sidebar_width = 303px
+$padding = 14px
 
 /**
  * Search
@@ -11,44 +12,45 @@ $sidebar_width = 323px
     position fixed
     top 0px
     left 0px
-    width 363px
-    height 200px
-    font-size 14pt
-    padding 15px
+    width 335px
+    height 147px
+    font-size 0
+    margin 15px
+    padding 0px
     z-index 15
     background transparent
 
 .tab
     cursor pointer
-    padding 22px
-    width 135px
+    padding $padding
+    width 137px
     line-height 25pt
     text-align center
     font $font
     display inline-block
     color white
-    background $bg
+    background rgba(16,49,90,0.5)
     &:hover
-        background #787b7e !important
+        background rgba(16,49,90,1) !important
 
 .active
-    background #787b7e !important
+    background rgba(16,49,90,1) !important
 
 .search-field
-    width $sidebar_width
+    width 307px
     line-height 25pt
     font $font
     display block
-    padding 20px
+    padding 12px
     outline none
     border 0px
 
 .invalid
-    background #dfdfdf
+    background rgba(255,11,0,0.3)
 
 .search-button
     cursor pointer
-    padding 20px
+    padding $padding
     width 150px
     line-height 25pt
     text-align center
@@ -61,11 +63,12 @@ $sidebar_width = 323px
 
 #artist-info
     position absolute
-    top 220px
+    top 170px
     left 0px
     font $font
     color white
-    padding 15px
+    background-color rgba(16,49,90,0.5)
+    margin 15px
     z-index 6
 
 .info-block
@@ -76,10 +79,10 @@ $sidebar_width = 323px
     margin-bottom 5px
     width $sidebar_width
     height 120px
-    padding 20px
-    background $bg
+    padding $padding
+    background transparent
     &:hover
-        background #787b7e
+        background rgba(16,49,90,1)
         cursor pointer
 
 .selected
@@ -96,7 +99,8 @@ $sidebar_width = 323px
 
 .info-block
     width $sidebar_width
-    padding 20px
+    padding $padding
+    text-align center
     margin-bottom 5px
     background $bg
 
@@ -105,7 +109,7 @@ $sidebar_width = 323px
     position fixed
     bottom 15px
     width $sidebar_width
-    padding 20px
+    padding $padding
     text-align center
     background $bg
     display none
@@ -122,8 +126,8 @@ $sidebar_width = 323px
     position absolute
     z-index 10
     font $font
-    line-height 30pt
-    width 363px
+    line-height 18pt
+    width 331px
     background white
 
 #autocomplete a

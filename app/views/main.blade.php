@@ -14,11 +14,11 @@
 
         <div id="search-box">
             <div id="tabs">
-                <div class="tab active" id="artist-tab">By artist</div>
-                <div class="tab" id="city-tab">By country/city</div>
+                <a class="tab active" id="artist-tab">By artist</a>
+                <a class="tab" id="city-tab">By country/city</a>
             </div>
 
-            <input id="artist-field" class="search-field" placeholder="Enter artist name..">                    
+            <input id="artist-field" class="search-field" placeholder="Enter artist name..">                 
 
             <div id="autocomplete"></div>
 
