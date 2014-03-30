@@ -12,13 +12,11 @@
     <body>
         <div id="home-area">
             <div id="main-idea">
-                ontour.im
+                Organize your music trip
             </div>
 
             <div id="secondary-idea">
-                Follow the bands you love<br/>
-                Travel around the world and see the biggest music shows<br/>
-                Organize music trip of your dream<br/>               
+                Follow the shows of your favourite bands               
             </div>
 
             <div id="search-for-bands">
