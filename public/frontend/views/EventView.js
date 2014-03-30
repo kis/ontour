@@ -40,8 +40,16 @@ define(['text', 'underscore', 'backbone', 'text!frontend/templates/Event.html', 
 		addMarker: function() {
 			if (this.model.get('venue').location['geo:point']['geo:lat'] && 
 				this.model.get('venue').location['geo:point']['geo:long']) {
+
 				var marker = L.marker([this.model.get('venue').location['geo:point']['geo:lat'], 
-									   this.model.get('venue').location['geo:point']['geo:long']]).addTo(this.model.get('map'));
+									   this.model.get('venue').location['geo:point']['geo:long']], {
+									   	icon: L.mapbox.marker.icon({
+							                "marker-color": "#10315a",
+							                "marker-symbol": "music",
+							                "marker-size": "medium"
+							            })
+									   }).addTo(this.model.get('map'));
+
 				this.model.set('marker', marker);
 
 				if (this.model.get('icon')) {
