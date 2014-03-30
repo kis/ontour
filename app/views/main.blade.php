@@ -5,8 +5,8 @@
         <meta charset="utf-8"/>
         <title>Ontour.im</title>
 
-        {{ HTML::style('leaflet/leaflet.css'); }}
         {{ HTML::style('css/style.css'); }}
+        {{ HTML::style('https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css'); }}
 
     </head>
 

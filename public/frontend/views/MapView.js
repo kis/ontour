@@ -1,5 +1,5 @@
 
-define(['underscore', 'backbone', 'leaflet'], function(_, Backbone) {
+define(['underscore', 'backbone', 'mapbox'], function(_, Backbone) {
 
 	var MapView = Backbone.View.extend({
 

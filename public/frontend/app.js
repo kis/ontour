@@ -22,9 +22,9 @@ require.config({
 	paths: {
 		jquery: 'http://code.jquery.com/jquery-latest.min',
 
-		leaflet: 'leaflet/leaflet',
+		mapbox: 'https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox',
 
-		text: 'lib/text',		
+		text: 'lib/text',
 		underscore: 'lib/underscore',
 		backbone: 'lib/backbone',
 
