@@ -208,6 +208,23 @@ $(function() {
 	    }
 	});
 
+	/**
+	 * Tab control
+	 */
+
+	$('.tab-control').on('click', function() {
+		$('#sidebar').animate({
+			left: parseInt($('#sidebar').css('left'),10) == 0 ? -$('#sidebar').outerWidth() : 0
+		});
+
+		$('#search-box').animate({
+			left: parseInt($('#sidebar').css('left'),10) == 0 ? -$('#sidebar').outerWidth() : 0
+		});
+
+		$('#controls').animate({
+			left: parseInt($('#sidebar').css('left'),10) == 0 ? 0 : 360
+		}).find('b').text(parseInt($('#sidebar').css('left'),10) == 0 ? '>' : '<');
+	});
 
 	/**
 	 * Scrolling event to show Go Top area when we're at the bottom
@@ -232,7 +249,5 @@ $(function() {
 	        'scrollTop': 0
 	        }, 500, 'swing');
 	});
-
-
 
 });

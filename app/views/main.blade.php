@@ -35,6 +35,10 @@
 
         </div>
 
+        <div id="controls">
+            <a class="tab-control"><b><</b></a>
+        </div>
+
         <div id="map-canvas"></div>
 
         <script data-main="frontend/app.js" src="lib/require.js"></script>
