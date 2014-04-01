@@ -65,6 +65,9 @@ $padding = 14px
     position absolute
     top 170px
     left 0px
+    height (100% / 1.25)
+    overflow-y auto
+    overflow-x hidden
     font $font
     color white
     background-color rgba(16,49,90,0.5)
@@ -151,3 +154,9 @@ $padding = 14px
     margin 0px
     padding 0px
     z-index 2
+
+::-webkit-scrollbar
+    width 9px
+
+::-webkit-scrollbar-thumb
+    background-color rgba(16,49,90,1)
