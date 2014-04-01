@@ -8,6 +8,15 @@ $padding = 14px
  * Search
  */
 
+#sidebar
+    position fixed
+    top 0px
+    left 0px
+    width 360px
+    height 100%
+    background rgba(16,49,90,0.2)
+    z-index 3
+
 #search-box
     position fixed
     top 0px
@@ -57,9 +66,9 @@ $padding = 14px
     font $font
     display block
     color white
-    background $bg
+    background rgba(16,49,90,0.5)
     &:hover
-        background #787b7e !important
+        background $bg !important
 
 #artist-info
     position absolute
