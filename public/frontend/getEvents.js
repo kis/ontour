@@ -111,11 +111,6 @@ require(['backbone',
 			}
 		});
 
-		if (search.get('page') == search.get('totalPages')) {
-			$('#artist-info').append('<div id="go-top"><h3>Go to top</h3></div>');
-			eventsListView.addPaths();
-		}
-
 		search.set('page', search.get('page') + 1);
 
 		function createEventModel(events, value, index) {

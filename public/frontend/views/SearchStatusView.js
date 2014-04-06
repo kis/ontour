@@ -1,19 +1,16 @@
-define(['underscore', 'backbone'], function(_, Backbone) {
+define(['underscore', 'backbone'], function(_, Backbone, EventList) {
 
 	var SearchStatusView = Backbone.View.extend({
 		
 		el: '.info-block',
 
-		tplNotFound: _.template('<h4>Not found</h4>'),
+		tplNotFound: _.template('<h3>Not found</h3>'),
 
-		tplFound: _.template('<h4><%= total %> upcoming events found</h4>'),
+		tplLoaded: _.template('<h3>Loading <%= page * 10 %> of <%= total %></h3>'),
 
-		tplLoaded: _.template('<h2>Loading <%= page * 10 %> of <%= total %></h2>'),
-
-		tplFinished: _.template('<h2>Finished <%= total %> of <%= total %></h2>'),
+		tplFinished: _.template('<h3>Finished <%= total %> of <%= total %></h3>'),
 
 		initialize: function() {
-
 		},
 
 		render: function() {
@@ -21,16 +18,18 @@ define(['underscore', 'backbone'], function(_, Backbone) {
 			this.$el.show();
 
 			if (this.model.get('page') != this.model.get('totalPages')) {
-				this.$el.html(this.tplFound(this.model.toJSON()) + this.tplLoaded(this.model.toJSON()));
+				this.$el.html(this.tplLoaded(this.model.toJSON()));
 			} else {
-				this.$el.html(this.tplFound(this.model.toJSON()) + this.tplFinished(this.model.toJSON()));
+				this.$el.html(this.tplFinished(this.model.toJSON()));
+				
+				//EventList.addPaths();
 			}
 
 			if (!this.model.get('totalPages')) {
 				this.$el.html(this.tplNotFound());
 			}
 
-		}
+		},
 
 	});
 

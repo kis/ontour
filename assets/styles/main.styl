@@ -92,9 +92,9 @@ $padding = 14px
 
 #artist-info
     position absolute
-    top 170px
+    top 260px
     left 0px
-    height (100% / 1.25)
+    height (100% / 1.7)
     overflow-y auto
     overflow-x hidden
     font $font
@@ -126,23 +126,31 @@ $padding = 14px
     margin 5px 5px 5px 80px
 
 .info-block
+    position absolute
+    top 160px
+    left 0px
     display none
     width $sidebar_width
+    margin 15px
     padding $padding
+    color white
     text-align center
     background $bg
 
 #go-top
+    position absolute
     cursor pointer
-    bottom 15px
+    bottom 5px
     width $sidebar_width
+    margin 15px
     padding $padding
     text-align center
-    background transparent
-    display none
+    color white
+    background rgba(16,49,90,0.6)
     z-index 19
+    display none
     &:hover
-        background rgba(16,49,90,0.6) !important
+        background rgba(16,49,90,1) !important
 
 /**
  * Autocomplete

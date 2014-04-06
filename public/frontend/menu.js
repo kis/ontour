@@ -230,13 +230,11 @@ $(function() {
 	 * Scrolling event to show Go Top area when we're at the bottom
 	 */
 
-	$(window).on('scroll', function() {
-	    if ($(window).scrollTop() > ($('#artist-info').height() - $(window).height()) && 
-	    	$(window).scrollTop() > ($(window).height() / 2) - 100) {
-
-	        $('#go-top').show();//slideDown(500);
+	$('#artist-info').on('scroll', function() {
+	    if ($('#artist-info').scrollTop() > $('#artist-info').height()) {
+	        $('#go-top').slideDown(500);
 	    } else {
-	        $('#go-top').hide();//slideUp(500);
+	        $('#go-top').slideUp(500);
 	    }
 	});
 
@@ -244,8 +242,8 @@ $(function() {
 	 * Go Top
 	 */
 
-	$('body').on('click', '#go-top', function() {
-	    $('html, body').animate({
+	$('#go-top').on('click', function() {
+	    $('#artist-info').animate({
 	        'scrollTop': 0
 	        }, 500, 'swing');
 	});

@@ -10,7 +10,7 @@
 Laravel
 
 *client side*  
-Javascript, JQuery, Backbone.JS, Require.JS
+Javascript, JQuery, Backbone.js, Require.js
 
 *other*  
 Leaflet.js, LastFM API, Geobytes API  
