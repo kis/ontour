@@ -72,6 +72,8 @@ require(['backbone',
 				success: function(data) {
 					getEventsData(data, eventCollection, param, search, searchView);
 
+					search.set('page', search.get('page') + 1);
+
 					if (search.get('page') <= search.get('totalPages')) {
 						go();
 					}
@@ -110,8 +112,6 @@ require(['backbone',
 					param == "artist" ? 4 : 12);
 			}
 		});
-
-		search.set('page', search.get('page') + 1);
 
 		function createEventModel(events, value, index) {
 			eventCollection.add(new Event({

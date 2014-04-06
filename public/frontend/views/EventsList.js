@@ -1,5 +1,5 @@
 
-define(['underscore', 'backbone', 'frontend/views/EventView'], function(_, Backbone, EventView) {
+define(['underscore', 'backbone', 'frontend/views/EventView', 'channel'], function(_, Backbone, EventView, channel) {
 
 	var EventsList = Backbone.View.extend({
 
@@ -7,6 +7,8 @@ define(['underscore', 'backbone', 'frontend/views/EventView'], function(_, Backb
 
 		initialize: function() {
 			this.collection.on('add', this.addOne, this);
+
+			channel.on('addPaths', this.addPaths, this);
 		},
 
 		render: function() {

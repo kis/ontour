@@ -1,4 +1,4 @@
-define(['underscore', 'backbone'], function(_, Backbone, EventList) {
+define(['underscore', 'backbone', 'channel'], function(_, Backbone, channel) {
 
 	var SearchStatusView = Backbone.View.extend({
 		
@@ -22,7 +22,7 @@ define(['underscore', 'backbone'], function(_, Backbone, EventList) {
 			} else {
 				this.$el.html(this.tplFinished(this.model.toJSON()));
 				
-				//EventList.addPaths();
+				channel.trigger('addPaths');
 			}
 
 			if (!this.model.get('totalPages')) {

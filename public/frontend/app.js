@@ -28,6 +28,8 @@ require.config({
 		underscore: 'lib/underscore',
 		backbone: 'lib/backbone',
 
+		channel: 'frontend/channel',
+
 		menu: 'frontend/menu',
 		getEvents: 'frontend/getEvents'
 	}
