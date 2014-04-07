@@ -9,6 +9,8 @@ define(['underscore', 'backbone', 'frontend/views/EventView', 'channel'], functi
 			this.collection.on('add', this.addOne, this);
 
 			channel.on('addPaths', this.addPaths, this);
+
+			channel.on('reset', this.reset, this);
 		},
 
 		render: function() {
@@ -21,7 +23,7 @@ define(['underscore', 'backbone', 'frontend/views/EventView', 'channel'], functi
 			this.$el.append(eventView.render().el);
 		},
 
-		addPaths: function() {
+		addPaths: function(event) {
 
 			this.collection.each(function(event, index, list) {
 				if (event.get('param') == 'geo' || index == list.length - 1) {
@@ -38,13 +40,14 @@ define(['underscore', 'backbone', 'frontend/views/EventView', 'channel'], functi
 				var latlng2 = L.latLng(list[index+1].get('venue').location['geo:point']['geo:lat'], 
 									   list[index+1].get('venue').location['geo:point']['geo:long']);
 
-				var polyline = L.polyline([latlng1, latlng2], {color: '#10315a', weight: 2, opacity: 0.9}).addTo(event.get('map'));
+				var polyline = L.polyline([latlng1, latlng2], {color: '#10315a', weight: 2, opacity: 1}).
+								addTo(event.get('map'));
 				event.set('path', polyline);
 			});
 
 		},
 
-		reset: function() {
+		reset: function(event) {
 
 			this.collection.each(function(event) {
 				if(event.get('marker')) {

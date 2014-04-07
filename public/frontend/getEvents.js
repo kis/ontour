@@ -45,10 +45,6 @@ require(['backbone',
 			return false;
 		}
 
-		if (typeof eventsListView !== 'undefined') {
-			eventsListView.reset();
-		}
-
 		var search = new SearchStatus({page: 1, total: 1, totalPages: 1}),
 			searchView = new SearchStatusView({model: search}),
 			eventCollection = new Events();

@@ -11,6 +11,7 @@ define(['underscore', 'backbone', 'channel'], function(_, Backbone, channel) {
 		tplFinished: _.template('<h3>Finished <%= total %> of <%= total %></h3>'),
 
 		initialize: function() {
+			channel.trigger('reset');
 		},
 
 		render: function() {
