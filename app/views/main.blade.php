@@ -31,12 +31,14 @@
 
             <div id="artist-info"></div>
 
-            <div id="go-top"><h3>Go to top</h3></div>
-
         </div>
 
         <div id="controls">
             <a class="tab-control"><b><</b></a>
+        </div>
+
+        <div id="controls-top">
+            <a id="go-top"><b>^</b></a>
         </div>
 
         <div id="map-canvas"></div>

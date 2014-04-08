@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		javascripts: ['public/frontend/**/*.js', 'public/frontend/*.js'],
+		javascripts: ['public/frontend/**/**.js'],
 		styles: ['assets/styles/*.styl'],
 		php: ['app/**/**.php'],
 		jshint: {
