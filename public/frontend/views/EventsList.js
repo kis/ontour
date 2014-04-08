@@ -40,8 +40,7 @@ define(['underscore', 'backbone', 'frontend/views/EventView', 'channel'], functi
 				var latlng2 = L.latLng(list[index+1].get('venue').location['geo:point']['geo:lat'], 
 									   list[index+1].get('venue').location['geo:point']['geo:long']);
 
-				var polyline = L.polyline([latlng1, latlng2], {color: '#10315a', weight: 2, opacity: 1}).
-								addTo(event.get('map'));
+				var polyline = L.polyline([latlng1, latlng2], {color: '#10315a', weight: 2, opacity: 1}).addTo(event.get('map'));
 				event.set('path', polyline);
 			});
 
@@ -58,6 +57,8 @@ define(['underscore', 'backbone', 'frontend/views/EventView', 'channel'], functi
 					event.get('map').removeLayer(event.get('path'));
 				}
 			});
+
+			this.collection.reset();
 
 		}
 
