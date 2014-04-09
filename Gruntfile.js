@@ -51,6 +51,74 @@ module.exports = function (grunt) {
 				useStrict: true,
 				removeCombined: false
 			}
+		},
+		phantomas: {
+			perf : {
+				options : {
+					indexPath : './phantomas/',
+					options   : {},
+					url: 'http://localhost:9999/',
+				}
+			}
+		},
+		concat: {
+			js: {
+				src: ['<%= javascripts %>'],
+				dest: 'public/frontend/app.concat.js',
+			},
+
+			styles: {
+				//here you should concatenate styles
+			}
+		},
+		uglify: {
+			js: {
+				files: {
+					'public/frontend.min.js': ['<%= javascripts %>']
+				}
+			}
+		},
+		cssmin: {
+			minify: {
+				src: ['public/css/style.css'],
+				dest: 'public/css/style.min.css'
+			}
+		},
+		htmlmin: {
+			dist: {
+				options: {
+					removeComments: true,
+					collapseWhitespace: true
+				},
+				files: {
+					// 'public/index.min.html': []
+				}
+			}
+		},
+		requirejs: {
+			compile: {
+				options: {
+					baseUrl: "public/frontend/dev",
+					mainConfigFile: "public/frontend/dev/app.js",
+					name: [
+						"models/Event", 
+						"models/Map", 
+						"models/SearchStatus", 
+						"collections/Events",
+						"views/EventView",
+						"views/EventsList",
+						"views/MapView",
+						"views/SearchStatusView"
+					], // assumes a production build using almond
+					out: "public/frontend/live/optimized.js"
+				}
+			}
+		},
+		rjs: {
+		 	// no minification, is done by the min task
+		 	optimize: 'none',
+		 	baseUrl: 'public/frontend/dev/',
+		 	wrap: true
 		}
 	});
 
@@ -58,6 +126,13 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-stylus');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-htmlmin');
+	grunt.loadNpmTasks('grunt-contrib-requirejs');
+	grunt.loadNpmTasks('rjs');
+	grunt.loadNpmTasks('grunt-phantomas');
 
 	grunt.registerTask('default', ['jshint', 'stylus']);
 	// grunt.registerTask('javascripts', ['jshint']);
