@@ -224,6 +224,12 @@ $(function() {
 		$('#controls').animate({
 			left: parseInt($('#sidebar').css('left'),10) == 0 ? 0 : 360
 		}).find('b').text(parseInt($('#sidebar').css('left'),10) == 0 ? '>' : '<');
+
+		if ($('#go-top').css('display') == 'block') {
+			$('#go-top').css({
+				display: 'none'
+			});
+		}
 	});
 
 	/**
