@@ -1,7 +1,10 @@
+define(['underscore', 
+		'backbone', 
+		'mapbox'
+], function(_, Backbone) {
+	'use strict';
 
-define(['underscore', 'backbone', 'mapbox'], function(_, Backbone) {
-
-	var MapView = Backbone.View.extend({
+	return Backbone.View.extend({
 
 		getMap: function() {
 			return this.model.get('map');
@@ -41,7 +44,5 @@ define(['underscore', 'backbone', 'mapbox'], function(_, Backbone) {
 		}
 
 	});
-
-	return MapView;
 
 });

@@ -1,6 +1,10 @@
-define(['underscore', 'backbone', 'channel'], function(_, Backbone, channel) {
+define(['underscore', 
+		'backbone', 
+		'channel'
+], function(_, Backbone, channel) {
+	'use strict';
 
-	var SearchStatusView = Backbone.View.extend({
+	return Backbone.View.extend({
 		
 		el: '.info-block',
 
@@ -33,7 +37,5 @@ define(['underscore', 'backbone', 'channel'], function(_, Backbone, channel) {
 		},
 
 	});
-
-	return SearchStatusView;
 
 });

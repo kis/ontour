@@ -1,7 +1,13 @@
+define(['text', 
+		'underscore', 
+		'backbone', 
+		'text!frontend/templates/Event.html', 
+		'mapbox', 
+		'marionette'
+], function(text, _, Backbone, eventTemplate, mapbox) {
+	'use strict';
 
-define(['text', 'underscore', 'backbone', 'text!frontend/templates/Event.html', 'mapbox'], function(text, _, Backbone, eventTemplate, mapbox) {
-
-	var EventView = Backbone.View.extend({
+	return Marionette.ItemView.extend({ //Backbone.View.extend({
 
 		tagName: 'div id="event-item"',
 
@@ -43,18 +49,19 @@ define(['text', 'underscore', 'backbone', 'text!frontend/templates/Event.html', 
 
 				var marker = L.marker([this.model.get('venue').location['geo:point']['geo:lat'], 
 									   this.model.get('venue').location['geo:point']['geo:long']], {
-									   	icon: L.mapbox.marker.icon({
-							                "marker-color": "#10315a",
-							                "marker-symbol": "music",
-							                "marker-size": "medium"
-							            })
-									   }).addTo(this.model.get('map'));
+							 	icon: L.mapbox.marker.icon({
+							      "marker-color": "#10315a",
+							      // "marker-symbol": "music",
+							      "marker-size": "medium"
+							    })
+							 }).addTo(this.model.get('map'));
 
 				this.model.set('marker', marker);
 
 				if (this.model.get('icon')) {
 					this.model.get('marker').setIcon(this.model.get('icon'));
 					this.model.get('marker').riseOnHover = true;
+					this.model.get('marker').size = 25;
 					this.model.get('marker').riseOffset = 25;
 				}
 			}
@@ -142,7 +149,5 @@ define(['text', 'underscore', 'backbone', 'text!frontend/templates/Event.html', 
 		}
 
 	});
-
-	return EventView;
 
 });

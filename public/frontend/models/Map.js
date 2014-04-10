@@ -1,14 +1,14 @@
+define(['underscore', 
+		'backbone'
+], function(_, Backbone) {
+	'use strict';
 
-define(['underscore', 'backbone'], function(_, Backbone) {
-
-	var Map = Backbone.Model.extend({
+	return Backbone.Model.extend({
 		
 		defaults: {
 			map: {}
 		}
 
 	});
-
-	return Map;
 
 });

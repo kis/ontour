@@ -1,7 +1,9 @@
+define(['underscore', 
+		'backbone'
+], function(_, Backbone) {
+	'use strict';
 
-define(['underscore', 'backbone'], function(_, Backbone) {
-
-	var Event = Backbone.Model.extend({
+	return Backbone.Model.extend({
 
 		defaults: {
 			id: 'id',
@@ -20,7 +22,5 @@ define(['underscore', 'backbone'], function(_, Backbone) {
 		}
 
 	});
-
-	return Event;
 
 });

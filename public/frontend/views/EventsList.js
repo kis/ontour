@@ -1,7 +1,11 @@
+define(['underscore', 
+		'backbone', 
+		'frontend/views/EventView', 
+		'channel'
+], function(_, Backbone, EventView, channel) {
+	'use strict';
 
-define(['underscore', 'backbone', 'frontend/views/EventView', 'channel'], function(_, Backbone, EventView, channel) {
-
-	var EventsList = Backbone.View.extend({
+	return Backbone.View.extend({
 
 		el: '#artist-info',
 
@@ -63,7 +67,5 @@ define(['underscore', 'backbone', 'frontend/views/EventView', 'channel'], functi
 		}
 
 	});
-
-	return EventsList;
 
 });

@@ -14,6 +14,11 @@ require.config({
 			],
 			exports: 'Backbone'
 		},
+		marionette: {
+			deps: [
+				'backbone'
+			],
+		},
 		menu: {
 			deps: ['jquery']
 		}
@@ -27,6 +32,7 @@ require.config({
 		text: 'lib/text',
 		underscore: 'lib/underscore',
 		backbone: 'lib/backbone',
+		marionette: 'lib/backbone.marionette',
 
 		channel: 'frontend/channel',
 
