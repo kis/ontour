@@ -86,36 +86,9 @@ define(['text',
 			this.model.set("popup", popup);
 
 			var actions = {
-				mouseover: function() {
-					if (this.model.get('selected') == false) {
-						this.model.get('map').openPopup(popup);
-						$(this.el).addClass('selected');
-						
-						// $('html').animate({ scrollTop: $(this.el).offset().top - 200}, 500);
-						return false;
-					}
-				},
-				mouseout: function() {
-					if (this.model.get('selected') == false) {
-						this.model.get('map').closePopup(popup);
-						$(this.el).removeClass('selected');
-						return false;
-					}
-				},
-				click: function() {
-					if (this.model.get('popup') != null) {
-						if(this.model.get('selected')) {
-							this.model.get('map').closePopup(this.model.get('popup'));
-							this.model.set('selected', false);
-							$(this.el).removeClass('selected');
-						} else {
-							this.model.get('map').openPopup(this.model.get('popup'));
-							this.model.set('selected', true);
-							$(this.el).addClass('selected');
-						}
-					}
-					return false;
-				}
+				mouseover: this.showPopup,
+				mouseout: this.hidePopup,
+				click: this.selectEvent
 			};
 
 			this.model.get('marker').on(actions, this);
@@ -139,12 +112,16 @@ define(['text',
 		showPopup: function() {
 			if (this.model.get('popup') != null && this.model.get('selected') == false) {
 				this.model.get('map').openPopup(this.model.get('popup'));
+				$(this.el).addClass('selected');
+				return false;
 			}
 		},
 
 		hidePopup: function() {
 			if (this.model.get('popup') != null && this.model.get('selected') == false) {
 				this.model.get('map').closePopup(this.model.get('popup'));
+				$(this.el).removeClass('selected');
+				return false;
 			}
 		}
 
