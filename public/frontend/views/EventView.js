@@ -34,9 +34,8 @@ define(['text',
 			if (this.model.get('image') && this.model.get('param') == 'geo') {
 				var icon = L.icon({
 					iconUrl: this.model.get('image'),
-					iconSize: [75, 75]
-					// iconAnchor: [22, 94],
-					// popupAnchor: [-3, -76]
+					iconSize: [75, 75],
+					className: "dot"
 				});
 
 				this.model.set('icon', icon);
@@ -60,9 +59,6 @@ define(['text',
 
 				if (this.model.get('icon')) {
 					this.model.get('marker').setIcon(this.model.get('icon'));
-					this.model.get('marker').riseOnHover = true;
-					this.model.get('marker').size = 25;
-					this.model.get('marker').riseOffset = 25;
 				}
 			}
 		},
@@ -97,13 +93,11 @@ define(['text',
 		selectEvent: function() {
 			if (this.model.get('popup') != null) {
 				if(this.model.get('selected')) {
-					this.model.get('map').closePopup(this.model.get('popup'));
+					this.hidePopup();
 					this.model.set('selected', false);
-					$(this.el).removeClass('selected');
 				} else {
-					this.model.get('map').openPopup(this.model.get('popup'));
+					this.showPopup();
 					this.model.set('selected', true);
-					$(this.el).addClass('selected');
 				}
 			}
 			return false;
