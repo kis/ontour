@@ -31,10 +31,10 @@ define(['text',
 		},
 
 		addIcon: function() {
-			if (this.model.get('image') && this.model.get('param') == 'geo') {
+			if (this.model.get('image')) {
 				var icon = L.icon({
 					iconUrl: this.model.get('image'),
-					iconSize: [75, 75],
+					iconSize: this.model.get('param') == 'geo' ? [75, 75] : [25, 25],
 					className: "dot"
 				});
 
@@ -47,13 +47,7 @@ define(['text',
 				this.model.get('venue').location['geo:point']['geo:long']) {
 
 				var marker = L.marker([this.model.get('venue').location['geo:point']['geo:lat'], 
-									   this.model.get('venue').location['geo:point']['geo:long']], {
-							 	icon: L.mapbox.marker.icon({
-							      "marker-color": "#10315a",
-							      // "marker-symbol": "music",
-							      "marker-size": "medium"
-							    })
-							 }).addTo(this.model.get('map'));
+									   this.model.get('venue').location['geo:point']['geo:long']]).addTo(this.model.get('map'));
 
 				this.model.set('marker', marker);
 
