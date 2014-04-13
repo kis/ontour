@@ -66,6 +66,7 @@ define(['text',
 			var latlng = this.model.get('marker').getLatLng();
 
 			var popup = L.popup({
+							autoPan: false,
 							closeButton: false,
 							offset: L.point(0, -30),
 							closeOnClick: false
