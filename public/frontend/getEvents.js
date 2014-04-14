@@ -82,14 +82,11 @@ require(['backbone',
 
 		if (data.error == 8 || data.events.total == 0) {
 			search.set({totalPages: 0});
-			searchView.render();
 			return false;
 		}
 
 		search.set({totalPages: data.events["@attr"].totalPages,
 					total: data.events["@attr"].total});
-
-		searchView.render();
 
 		var events = data.events.event;
 

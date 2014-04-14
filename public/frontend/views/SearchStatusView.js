@@ -16,13 +16,15 @@ define(['underscore',
 
 		initialize: function() {
 			channel.trigger('reset');
+
+			this.model.on('change', this.render, this);
 		},
 
 		render: function() {
 
 			this.$el.show();
 
-			if (this.model.get('page') != this.model.get('totalPages')) {
+			if (this.model.get('page') < this.model.get('totalPages')) {
 				this.$el.html(this.tplLoaded(this.model.toJSON()));
 			} else {
 				this.$el.html(this.tplFinished(this.model.toJSON()));
