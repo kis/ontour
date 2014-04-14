@@ -17,7 +17,7 @@ define(['underscore',
 		initialize: function() {
 			channel.trigger('reset');
 
-			this.model.on('change', this.render, this);
+			// this.model.on('change', this.render, this);
 		},
 
 		render: function() {

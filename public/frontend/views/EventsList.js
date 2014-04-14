@@ -63,7 +63,6 @@ define(['underscore',
 			});
 
 			this.collection.reset();
-
 		}
 
 	});

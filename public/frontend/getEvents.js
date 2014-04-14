@@ -88,6 +88,8 @@ require(['backbone',
 		search.set({totalPages: data.events["@attr"].totalPages,
 					total: data.events["@attr"].total});
 
+		searchView.render();
+
 		var events = data.events.event;
 
 		if (search.get('page') == search.get('totalPages') && /1$/.test(search.get('total'))) {
