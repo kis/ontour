@@ -12,8 +12,6 @@ define(['underscore',
 		itemView: EventView,
 
 		initialize: function() {
-			this.collection.on('add', this.addOne, this);
-
 			channel.on('addPaths', this.addPaths, this);
 
 			channel.on('reset', this.reset, this);
@@ -22,11 +20,6 @@ define(['underscore',
 		render: function() {
 			this.collection.each(this.addOne, this);
 			return this;
-		},
-
-		addOne: function(event) {
-			var eventView = new EventView({model: event});
-			this.$el.append(eventView.render().el);
 		},
 
 		addPaths: function(event) {
