@@ -18,8 +18,6 @@ define(['underscore',
 		},
 
 		render: function() {
-			this.collection.each(this.addOne, this);
-			return this;
 		},
 
 		addPaths: function(event) {
