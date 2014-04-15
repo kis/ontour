@@ -5,7 +5,7 @@ define(['underscore',
 ], function(_, Backbone, EventView, channel) {
 	'use strict';
 
-	return Marionette.CollectionView.extend({ //Backbone.View.extend({
+	return Backbone.Marionette.CollectionView.extend({
 
 		el: '#artist-info',
 

@@ -1,10 +1,11 @@
 define(['underscore', 
 		'backbone', 
+		'marionette',
 		'channel'
-], function(_, Backbone, channel) {
+], function(_, Backbone, MArionette, channel) {
 	'use strict';
 
-	return Backbone.View.extend({
+	return Backbone.Marionette.ItemView.extend({
 		
 		el: '.info-block',
 

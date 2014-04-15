@@ -7,7 +7,7 @@ define(['text',
 ], function(text, _, Backbone, eventTemplate, mapbox) {
 	'use strict';
 
-	return Marionette.ItemView.extend({ //Backbone.View.extend({
+	return Backbone.Marionette.ItemView.extend({
 
 		tagName: 'div id="event-item"',
 
@@ -101,7 +101,7 @@ define(['text',
 
 		showPopup: function() {
 			if (this.model.get('popup') != null && this.model.get('selected') == false) {
-				this.model.get('map').openPopup(this.model.get('popup'));
+				this.model.get('map').addLayer(this.model.get('popup'));
 				$(this.el).addClass('selected');
 				return false;
 			}
@@ -109,7 +109,7 @@ define(['text',
 
 		hidePopup: function() {
 			if (this.model.get('popup') != null && this.model.get('selected') == false) {
-				this.model.get('map').closePopup(this.model.get('popup'));
+				this.model.get('map').removeLayer(this.model.get('popup'));
 				$(this.el).removeClass('selected');
 				return false;
 			}

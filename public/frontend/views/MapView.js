@@ -1,35 +1,17 @@
 define(['underscore', 
-		'backbone', 
+		'backbone',
+		'marionette', 
 		'mapbox'
-], function(_, Backbone) {
+], function(_, Backbone, Marionette) {
 	'use strict';
 
-	return Backbone.View.extend({
+	return Backbone.Marionette.ItemView.extend({
 
 		getMap: function() {
 			return this.model.get('map');
 		},
 
 		initialize: function() {
-			L.Map = L.Map.extend({
-			    openPopup: function(popup) {
-			        //        this.closePopup();  // just comment this
-			        this._popup = popup;
-
-			        return this.addLayer(popup).fire('popupopen', {
-			            popup: this._popup
-			        });
-			    },
-			    closePopup: function(popup) {
-			        //        this.closePopup();  // just comment this
-			        this._popup = popup;
-
-			        return this.removeLayer(popup).fire('popupclose', {
-			            popup: this._popup
-			        });
-			    }
-			});
-
 			/*kirillstyopkin.h29f88g0
 			zr0njcqy
 			4l7djmvo*/
