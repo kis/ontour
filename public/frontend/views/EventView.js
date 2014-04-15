@@ -93,8 +93,7 @@ define(['text',
 				} else {
 					this.showPopup();
 					this.model.set('selected', true);
-					this.model.get('map').setView(L.latLng(this.model.get('venue').location['geo:point']['geo:lat'], 
-									   				this.model.get('venue').location['geo:point']['geo:long']), 5);
+					this.model.get('map').panTo(this.model.get('marker').getLatLng());
 				}
 			}
 			return false;

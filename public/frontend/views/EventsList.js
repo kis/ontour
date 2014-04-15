@@ -5,9 +5,11 @@ define(['underscore',
 ], function(_, Backbone, EventView, channel) {
 	'use strict';
 
-	return Backbone.View.extend({
+	return Marionette.CollectionView.extend({ //Backbone.View.extend({
 
 		el: '#artist-info',
+
+		itemView: EventView,
 
 		initialize: function() {
 			this.collection.on('add', this.addOne, this);
@@ -38,11 +40,8 @@ define(['underscore',
 					return false;
 				}
 
-				var latlng1 = L.latLng(event.get('venue').location['geo:point']['geo:lat'], 
-									   event.get('venue').location['geo:point']['geo:long']);
-
-				var latlng2 = L.latLng(list[index+1].get('venue').location['geo:point']['geo:lat'], 
-									   list[index+1].get('venue').location['geo:point']['geo:long']);
+				var latlng1 = event.get('marker').getLatLng();
+				var latlng2 = list[index+1].get('marker').getLatLng();
 
 				var polyline = L.polyline([latlng1, latlng2], {color: '#10315a', weight: 2, opacity: 1}).addTo(event.get('map'));
 				event.set('path', polyline);

@@ -30,17 +30,12 @@ define(['underscore',
 			    }
 			});
 
-			this.model.set('map', L.map('map-canvas').setView([0, 0], 2))
+			/*kirillstyopkin.h29f88g0
+			zr0njcqy
+			4l7djmvo*/
+
+			this.model.set('map', L.mapbox.map('map', 'examples.map-vyofok3q').setView([0, 0], 2))
 					  .get('map').zoomControl.setPosition('bottomright');
-
-    	    //'http://{s}.tiles.mapbox.com/v3/kirillstyopkin.h29f88g0/{z}/{x}/{y}.png'
-
-			//zr0njcqy
-
-			L.tileLayer('http://api.tiles.mapbox.com/v3/examples.map-vyofok3q/{z}/{x}/{y}.png', {
-			    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-			    maxZoom: 18
-			}).addTo(this.model.get('map'));
 		}
 
 	});

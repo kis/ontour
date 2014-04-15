@@ -41,7 +41,7 @@
             <a id="go-top"><b>^</b></a>
         </div>
 
-        <div id="map-canvas"></div>
+        <div id="map"></div>
 
         <script data-main="frontend/app.js" src="lib/require.js"></script>
 
