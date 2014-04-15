@@ -2,7 +2,7 @@ define(['underscore',
 		'backbone', 
 		'marionette',
 		'channel'
-], function(_, Backbone, MArionette, channel) {
+], function(_, Backbone, Marionette, channel) {
 	'use strict';
 
 	return Backbone.Marionette.ItemView.extend({
