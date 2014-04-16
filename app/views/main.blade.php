@@ -27,7 +27,7 @@
                 <a id="artist-button" class="search-button">Search</a>
             </div>
 
-            <div class="info-block"></div>
+            <div id="info-block"></div>
 
             <div id="artist-info"></div>
 

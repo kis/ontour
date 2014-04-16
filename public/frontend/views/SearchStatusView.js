@@ -7,7 +7,7 @@ define(['underscore',
 
 	return Backbone.Marionette.ItemView.extend({
 		
-		el: '.info-block',
+		el: '#info-block',
 
 		tplNotFound: _.template('<h3>Not found</h3>'),
 
