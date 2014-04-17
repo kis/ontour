@@ -183,7 +183,7 @@ $(function() {
 	 * Switch search field/button options for different tabs
 	 */
 
-	$('.tab').on('click', function() {
+	/*$('.tab').on('click', function() {
 
 		var $field = $(".search-field");
 		var $link = $(".search-button");
@@ -206,7 +206,7 @@ $(function() {
 			default:
 				break;
 		}
-	});
+	});*/
 
 	/**
 	 * Tab control

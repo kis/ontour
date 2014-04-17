@@ -1,18 +1,22 @@
 
 require(['backbone',   
+		 'frontend/models/Menu',
 		 'frontend/models/Event',
 		 'frontend/models/Map',
 		 'frontend/models/SearchStatus',
+		 'frontend/views/MenuView',
 		 'frontend/views/EventView',
 		 'frontend/views/EventsList',
 		 'frontend/views/MapView',
 		 'frontend/views/SearchStatusView',
 		 'frontend/collections/Events'], 
-		 function(backbone, Event, Map, SearchStatus, EventView, EventsList, MapView, SearchStatusView, Events) {
+		 function(backbone, Menu, Event, Map, SearchStatus, MenuView, EventView, EventsList, MapView, SearchStatusView, Events) {
 
 	var map = new Map(),
 		mapView = new MapView({model: map}),
-		eventsListView;
+		eventsListView,
+		menu = new Menu(),
+		menuView = new MenuView({model: menu});
 
 	function getSearchValue() {
 

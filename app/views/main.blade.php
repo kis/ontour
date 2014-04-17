@@ -16,15 +16,15 @@
 
             <div id="search">
                 <div id="tabs">
-                    <a class="tab active" id="artist-tab">By artist</a>
-                    <a class="tab" id="city-tab">By country/city</a>
+                    <a class="tab active" id="artist">By artist</a>
+                    <a class="tab" id="city">By country/city</a>
                 </div>
 
-                <input id="artist-field" class="search-field" placeholder="Enter artist name..">                 
+                <input class="search-field" placeholder="Enter artist name..">              
 
                 <div id="autocomplete"></div>
 
-                <a id="artist-button" class="search-button">Search</a>
+                <a class="search-button">Search</a>
             </div>
 
             <div id="status"></div>

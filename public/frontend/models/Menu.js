@@ -7,8 +7,7 @@ define(['underscore',
 	return Backbone.Model.extend({
 
 		defaults: {
-			activeTab: 'artist',
-			fieldId: 'artist'
+			activeTab: 'artist'
 		}
 
 	});
