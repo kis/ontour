@@ -2,6 +2,7 @@ define(['underscore',
 		'backbone',
 		'marionette'
 ], function(_, Backbone) {
+	'use strict';
 
 	return Backbone.Marionette.Layout.extend({
 		template: "body",
