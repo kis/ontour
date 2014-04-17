@@ -14,7 +14,7 @@
 
         <div id="sidebar">
 
-            <div id="search-box">
+            <div id="search">
                 <div id="tabs">
                     <a class="tab active" id="artist-tab">By artist</a>
                     <a class="tab" id="city-tab">By country/city</a>
@@ -27,17 +27,17 @@
                 <a id="artist-button" class="search-button">Search</a>
             </div>
 
-            <div id="info-block"></div>
+            <div id="status"></div>
 
-            <div id="artist-info"></div>
+            <div id="events"></div>
 
-        </div>
-
-        <div id="controls">
-            <a class="tab-control"><b><</b></a>
         </div>
 
         <div id="controls-top">
+            <a id="slide"><b><</b></a>
+        </div>
+
+        <div id="controls-bottom">
             <a id="go-top"><b>^</b></a>
         </div>
 

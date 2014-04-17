@@ -7,7 +7,7 @@ define(['underscore',
 
 	return Backbone.Marionette.CollectionView.extend({
 
-		el: '#artist-info',
+		el: '#events',
 
 		itemView: EventView,
 

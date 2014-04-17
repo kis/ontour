@@ -212,16 +212,16 @@ $(function() {
 	 * Tab control
 	 */
 
-	$('.tab-control').on('click', function() {
+	$('#slide').on('click', function() {
 		$('#sidebar').animate({
 			left: parseInt($('#sidebar').css('left'),10) == 0 ? -$('#sidebar').outerWidth() : 0
 		});
 
-		$('#search-box').animate({
+		$('#search').animate({
 			left: parseInt($('#sidebar').css('left'),10) == 0 ? -$('#sidebar').outerWidth() : 0
 		});
 
-		$('#controls').animate({
+		$('#controls-top').animate({
 			left: parseInt($('#sidebar').css('left'),10) == 0 ? 0 : 360
 		}).find('b').text(parseInt($('#sidebar').css('left'),10) == 0 ? '>' : '<');
 
@@ -236,8 +236,8 @@ $(function() {
 	 * Scrolling event to show Go Top area when we're at the bottom
 	 */
 
-	$('#artist-info').on('scroll', function() {
-		if ($('#artist-info').scrollTop() > $('#artist-info').height()) {
+	$('#events').on('scroll', function() {
+		if ($('#events').scrollTop() > $('#events').height()) {
 			$('#go-top').css({
 				display: 'block'
 			});
@@ -253,7 +253,7 @@ $(function() {
 	 */
 
 	$('#go-top').on('click', function() {
-		$('#artist-info').animate({
+		$('#events').animate({
 			'scrollTop': 0
 			}, 500, 'swing');
 	});
