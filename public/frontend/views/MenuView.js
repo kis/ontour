@@ -8,16 +8,26 @@ define(['underscore',
 
 		el: '#search',
 
+		ui: {
+			'tabs'		      : '.tab',
+			'tabArtist'       : '#artist',
+			'tabCity'         : '#city',
+			'searchField'     : '.search-field',
+			'searchButton'    : '.search-button'
+		},
+
 		events: {
-			'click #tabs' : 'setActiveTab'
+			'click @ui.tabArtist, @ui.tabCity' : 'setActiveTab',
+			'input @ui.searchField'			   : 'getAutocompleteData',
+			'keydown @ui.searchField'		   : 'execAutocompleteProperty'
 		},
 
 		initialize: function() {
 			this.model.on('change', this.updateMenu, this);
-		},
+			
+			this.bindUIElements();
 
-		render: function() {
-
+			this.ui.searchField.val('').focus();
 		},
 
 		setActiveTab: function(e) {
@@ -25,14 +35,17 @@ define(['underscore',
 		},
 
 		updateMenu: function() {
-			this.$el.find('a').removeClass('active');
+			this.ui.searchField.val('')
+				   .removeClass('invalid')
+				   .attr('placeholder', 'Enter ' + this.model.get('activeTab') + '..')
+				   .focus();
+
+			this.ui.tabs.removeClass('active');
 
 			if (this.model.get('activeTab') == 'artist') {
-				this.$el.find('.search-field').attr('placeholder', 'Enter artist name..').end()
-						.find('#artist').addClass('active');
+				this.ui.tabArtist.addClass('active');
 			} else if (this.model.get('activeTab') == 'city') {
-				this.$el.find('.search-field').attr('placeholder', 'Enter country or city..').end()
-						.find('#city').addClass('active');
+				this.ui.tabCity.addClass('active');
 			}
 		}
 

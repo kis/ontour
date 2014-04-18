@@ -36,7 +36,7 @@ require(['backbone',
 	}
 
 
-	$(document).on('click', "#artist-button", getEventsByParam.bind(this, 'artist'));
+	$(document).on('click', ".search-button", getEventsByParam.bind(this, 'artist'));
 
 	$(document).on('click', "#city-button", getEventsByParam.bind(this, 'geo'));
 

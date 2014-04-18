@@ -168,20 +168,14 @@ $padding = 14px
     font $font
     line-height 18pt
     width 331px
+    cursor pointer
     background white
 
-#autocomplete a
-    text-decoration none
-
 #autocomplete div
-    cursor pointer
     padding 10px
-    &:hover
-        text-decoration none
-        background #dfdfdf !important
 
-.selected-termin
-    background #dfdfdf !important
+.hover
+    background #dfdfdf
 
 /**
  * Map area
@@ -197,11 +191,19 @@ $padding = 14px
     padding 0px
     z-index 2
 
+/**
+  * Scrollbar
+  */
+
 ::-webkit-scrollbar
     width 9px
 
 ::-webkit-scrollbar-thumb
     background-color rgba(16,49,90,1)
+
+/**
+  * Map elements
+  */
 
 .dot
     border-radius 50%

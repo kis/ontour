@@ -47,13 +47,11 @@ define(['text',
 				this.model.get('venue').location['geo:point']['geo:long']) {
 
 				var marker = L.marker([this.model.get('venue').location['geo:point']['geo:lat'], 
-									   this.model.get('venue').location['geo:point']['geo:long']]).addTo(this.model.get('map'));
+									   this.model.get('venue').location['geo:point']['geo:long']],
+									   {icon: this.model.get('icon') ? this.model.get('icon') : null})
+							.addTo(this.model.get('map'));
 
 				this.model.set('marker', marker);
-
-				if (this.model.get('icon')) {
-					this.model.get('marker').setIcon(this.model.get('icon'));
-				}
 			}
 		},
 
