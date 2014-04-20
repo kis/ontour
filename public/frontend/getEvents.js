@@ -9,8 +9,8 @@ require(['backbone',
 		 'frontend/views/EventsList',
 		 'frontend/views/MapView',
 		 'frontend/views/SearchStatusView',
-		 'frontend/collections/Events'], 
-		 function(backbone, Menu, Event, Map, SearchStatus, MenuView, EventView, EventsList, MapView, SearchStatusView, Events) {
+		 'frontend/collections/Events'
+], function(backbone, Menu, Event, Map, SearchStatus, MenuView, EventView, EventsList, MapView, SearchStatusView, Events) {
 
 	var map = new Map(),
 		mapView = new MapView({model: map}),

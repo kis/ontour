@@ -1,7 +1,8 @@
 define(['underscore', 
 		'backbone', 
 		'frontend/views/EventView', 
-		'channel'
+		'channel',
+		'marionette'
 ], function(_, Backbone, EventView, channel) {
 	'use strict';
 
@@ -13,11 +14,7 @@ define(['underscore',
 
 		initialize: function() {
 			channel.on('addPaths', this.addPaths, this);
-
 			channel.on('reset', this.reset, this);
-		},
-
-		render: function() {
 		},
 
 		addPaths: function(event) {

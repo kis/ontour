@@ -5,9 +5,6 @@ define(['underscore',
 	'use strict';
 
 	return Backbone.Collection.extend({
-
 		model: Event
-
 	});
-
 });

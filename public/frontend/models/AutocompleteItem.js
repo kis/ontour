@@ -6,7 +6,9 @@ define(['underscore',
 	return Backbone.Model.extend({
 
 		defaults: {
-			title: 'title'
+			title: 'title',
+			meta: '',
+			selected: false
 		}
 
 	});

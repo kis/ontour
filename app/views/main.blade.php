@@ -17,7 +17,7 @@
             <div id="search">
                 <div id="tabs">
                     <a class="tab active" id="artist">By artist</a>
-                    <a class="tab" id="city">By country/city</a>
+                    <a class="tab" id="city">By city</a>
                 </div>
 
                 <input class="search-field" placeholder="Enter artist name..">              

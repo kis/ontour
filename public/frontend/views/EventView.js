@@ -1,13 +1,11 @@
 define(['text', 
-		'underscore', 
-		'backbone', 
 		'text!frontend/templates/Event.html', 
 		'mapbox', 
 		'marionette'
-], function(text, _, Backbone, eventTemplate, mapbox) {
+], function(text, eventTemplate, mapbox) {
 	'use strict';
 
-	return Backbone.Marionette.ItemView.extend({
+	return Marionette.ItemView.extend({
 
 		tagName: 'div id="event-item"',
 

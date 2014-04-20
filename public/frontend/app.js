@@ -4,6 +4,9 @@ require.config({
 	baseUrl: '../',
 
 	shim: {
+		jquery: {
+			exports: '$',
+		},
 		underscore: {
 			exports: '_'
 		},
@@ -16,8 +19,11 @@ require.config({
 		},
 		marionette: {
 			deps: [
+				'jquery',
+				'underscore',
 				'backbone'
 			],
+			exports: 'Marionette'
 		},
 		menu: {
 			deps: ['jquery']
