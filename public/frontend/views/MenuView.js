@@ -17,7 +17,9 @@ define(['frontend/collections/AutocompleteCollection',
 			'tabArtist'       : '#artist',
 			'tabCity'         : '#city',
 			'searchField'     : '.search-field',
-			'searchButton'    : '.search-button'
+			'searchButton'    : '.search-button',
+			'autocomplete'    : '#autocomplete',
+			'hover'    		  : '.hover a'
 		},
 
 		events: {
@@ -80,8 +82,8 @@ define(['frontend/collections/AutocompleteCollection',
 									autocompleteCollection.add(new AutocompleteItem({
 										title: value.name, 
 										meta: '', 
-										selected: false})
-									);
+										selected: false
+									}));
 								});
 							}
 						}
@@ -99,8 +101,8 @@ define(['frontend/collections/AutocompleteCollection',
 							autocompleteCollection.add(new AutocompleteItem({
 								title: res[0], 
 								meta: res[2], 
-								selected: false})
-							);
+								selected: false
+							}));
 						}
 					});
 				});
@@ -109,17 +111,14 @@ define(['frontend/collections/AutocompleteCollection',
 		},
 
 		execAutocompleteProperty: function(e) {
+			this.bindUIElements();
+
 			switch (e.keyCode) {
 				case 13:
 					//enter - get termin to input and search
-
-					if (this.ui.hover.size()) {
-						this.ui.searchField.val($('.hover a').text()); 
-						this.ui.searchButton.trigger('click');
-					} 
-
+					this.ui.searchField.val(this.ui.hover.text());
+					this.ui.searchButton.trigger('click');
 					this.ui.autocomplete.hide();
-
 					break;
 				case 27:
 					//esc - hide autocomplete
@@ -127,32 +126,11 @@ define(['frontend/collections/AutocompleteCollection',
 					break;
 				case 38:
 					//up
-
-					console.log(this.ui.hover.size());
-
-					if (this.ui.hover.size()) {
-						if (this.ui.hover.index() > 0) {
-							this.ui.hover.removeClass('hover')
-								   .prev().addClass('hover');
-						} else {
-							this.ui.hover.removeClass('hover');
-							$('#autocomplete div:last').addClass('hover');
-						}	
-					} else {
-						$('#autocomplete div:last').addClass('hover');
-					}
-
+					autocompleteCollection.prev();
 					break;
 				case 40:
 					//down
-
-					if (this.ui.hover.size()) {
-						$('.hover').removeClass('hover')
-								   .next().addClass('hover');
-					} else {
-
-					}
-
+					autocompleteCollection.next();
 					break;
 				default:
 					break;

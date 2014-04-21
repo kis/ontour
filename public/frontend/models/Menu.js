@@ -1,7 +1,4 @@
-define(['underscore',
-		'backbone',
-		'marionette'
-], function(_, Backbone) {
+define(['backbone'], function(Backbone) {
 	'use strict';
 
 	return Backbone.Model.extend({

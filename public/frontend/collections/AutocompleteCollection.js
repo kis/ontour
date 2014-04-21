@@ -1,10 +1,58 @@
-define(['underscore', 
-		'backbone',
+define(['backbone',
 		'frontend/models/AutocompleteItem'
-], function(_, Backbone, AutocompleteItem) {
+], function(Backbone, AutocompleteItem) {
 	'use strict';
 
 	return Backbone.Collection.extend({
-		model: AutocompleteItem
+		model: AutocompleteItem,
+
+		initialize: function() {
+		    this.setElement(this.at(0));
+		},
+
+		comparator: function(model) {
+		    return model.get("id");
+		},
+
+		getElement: function() {
+			return this.currentElement;
+		},
+
+		setElement: function(model) {
+			this.currentElement = model;
+		},
+
+		setSelected: function() {
+			var selected = this.findWhere({selected: true});
+
+			if (selected) {
+				selected.set({selected: false});
+			}
+
+			this.setElement(selected);
+			return selected;
+		},
+
+		next: function (){
+			if (this.setSelected() && this.indexOf(this.getElement()) + 1 != this.length) {
+				this.setElement(this.at(this.indexOf(this.getElement()) + 1));
+			} else {
+				this.setElement(this.at(0));
+			}
+
+			this.getElement().set({selected: true});
+		},
+		
+		prev: function() {
+			if (this.setSelected() && this.indexOf(this.getElement()) != 0) {
+				this.setElement(this.at(this.indexOf(this.getElement()) - 1));
+			} else {
+				this.setElement(this.at(this.length - 1));
+			}
+
+		    this.getElement().set({selected: true});
+		}
+
 	});
+
 });

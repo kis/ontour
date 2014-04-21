@@ -1,11 +1,9 @@
-define(['underscore', 
-		'backbone', 
-		'marionette',
+define(['marionette',
 		'channel'
-], function(_, Backbone, Marionette, channel) {
+], function(Marionette, channel) {
 	'use strict';
 
-	return Backbone.Marionette.ItemView.extend({
+	return Marionette.ItemView.extend({
 		
 		el: '#status',
 

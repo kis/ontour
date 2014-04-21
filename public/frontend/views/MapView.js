@@ -1,11 +1,9 @@
-define(['underscore', 
-		'backbone',
-		'marionette', 
+define(['marionette', 
 		'mapbox'
-], function(_, Backbone, Marionette) {
+], function() {
 	'use strict';
 
-	return Backbone.Marionette.ItemView.extend({
+	return Marionette.ItemView.extend({
 
 		getMap: function() {
 			return this.model.get('map');

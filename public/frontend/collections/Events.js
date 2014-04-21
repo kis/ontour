@@ -1,7 +1,6 @@
-define(['underscore', 
-		'backbone', 
+define(['backbone', 
 		'frontend/models/Event'
-], function(_, Backbone, Event) {
+], function(Backbone, Event) {
 	'use strict';
 
 	return Backbone.Collection.extend({

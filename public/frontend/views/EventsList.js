@@ -1,12 +1,10 @@
-define(['underscore', 
-		'backbone', 
-		'frontend/views/EventView', 
+define(['frontend/views/EventView', 
 		'channel',
 		'marionette'
-], function(_, Backbone, EventView, channel) {
+], function(EventView, channel) {
 	'use strict';
 
-	return Backbone.Marionette.CollectionView.extend({
+	return Marionette.CollectionView.extend({
 
 		el: '#events',
 

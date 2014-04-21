@@ -1,10 +1,7 @@
-define(['underscore',
-		'backbone',
-		'marionette'
-], function(_, Backbone) {
+define(['marionette'], function() {
 	'use strict';
 
-	return Backbone.Marionette.Layout.extend({
+	return Marionette.Layout.extend({
 		template: "body",
 
 		regions: {
