@@ -2,35 +2,6 @@
 $(function() {
 	
 	/**
-	 * Hide autocomplete on window area click
-	 */
-	
-	$(window).on('click', function() {
-		$('#autocomplete').hide();
-	});
-
-	/**
-	 * Paste search word to input field and hide autocomplete
-	 */
-
-	$('#autocomplete').on('click', 'div', function() {
-		$(".search-field").val($(this).children().text());
-		$('#autocomplete').hide();
-		$('.search-button').trigger('click');
-	});
-
-
-	/**
-	 * If we have selected area - remove it
-	 */
-
-	$('#autocomplete').on('mouseenter', 'div', function() {
-		if ($('#autocomplete').has('.selected-termin').toArray().length) {
-			$('.selected-termin').removeClass('selected-termin');
-		}
-	});
-
-	/**
 	 * Tab control
 	 */
 

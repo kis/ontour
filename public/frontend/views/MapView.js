@@ -1,13 +1,12 @@
-define(['marionette', 
+define(['channel',
+		'marionette', 
 		'mapbox'
-], function() {
+], function(channel) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
 
-		getMap: function() {
-			return this.model.get('map');
-		},
+		el: '#map',
 
 		initialize: function() {
 			/*kirillstyopkin.h29f88g0
@@ -16,7 +15,11 @@ define(['marionette',
 
 			this.model.set('map', L.mapbox.map('map', 'examples.map-vyofok3q').setView([0, 0], 2))
 					  .get('map').zoomControl.setPosition('bottomright');
-		}
+		},
+
+		getMap: function() {
+			return this.model.get('map');
+		},
 
 	});
 

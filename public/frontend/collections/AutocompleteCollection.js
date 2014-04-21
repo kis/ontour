@@ -6,14 +6,6 @@ define(['backbone',
 	return Backbone.Collection.extend({
 		model: AutocompleteItem,
 
-		initialize: function() {
-		    this.setElement(this.at(0));
-		},
-
-		comparator: function(model) {
-		    return model.get("id");
-		},
-
 		getElement: function() {
 			return this.currentElement;
 		},

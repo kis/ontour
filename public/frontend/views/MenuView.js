@@ -19,13 +19,15 @@ define(['frontend/collections/AutocompleteCollection',
 			'searchField'     : '.search-field',
 			'searchButton'    : '.search-button',
 			'autocomplete'    : '#autocomplete',
-			'hover'    		  : '.hover a'
+			'hoverlink'		  : '.hover a',
+			'hover'			  : '.hover'
 		},
 
 		events: {
 			'click @ui.tabArtist, @ui.tabCity' : 'setActiveTab',
 			'input @ui.searchField'			   : 'getAutocompleteData',
-			'keydown @ui.searchField'		   : 'execAutocompleteProperty'
+			'keydown @ui.searchField'		   : 'execAutocompleteProperty',
+			'click @ui.hover'				   : 'search'
 		},
 
 		initialize: function() {
@@ -33,6 +35,11 @@ define(['frontend/collections/AutocompleteCollection',
 			autocompleteList = new AutocompleteList({collection: autocompleteCollection});
 
 			this.listenTo(this.model, 'change', this.updateMenu);
+
+			$('body, html').on({
+				'click'   : this.outsideHandler,
+				'keydown' : this.outsideHandler
+			});
 
 			this.bindUIElements();
 
@@ -59,7 +66,7 @@ define(['frontend/collections/AutocompleteCollection',
 		},
 
 		getAutocompleteData: function() {
-			autocompleteCollection.reset();
+			autocompleteList.repaint();
 
 			if (this.model.get('activeTab') == 'artist') {
 
@@ -111,18 +118,14 @@ define(['frontend/collections/AutocompleteCollection',
 		},
 
 		execAutocompleteProperty: function(e) {
-			this.bindUIElements();
-
 			switch (e.keyCode) {
 				case 13:
 					//enter - get termin to input and search
-					this.ui.searchField.val(this.ui.hover.text());
-					this.ui.searchButton.trigger('click');
-					this.ui.autocomplete.hide();
+					this.search();
 					break;
 				case 27:
 					//esc - hide autocomplete
-					this.ui.autocomplete.hide();
+					autocompleteList.close();
 					break;
 				case 38:
 					//up
@@ -134,6 +137,23 @@ define(['frontend/collections/AutocompleteCollection',
 					break;
 				default:
 					break;
+			}
+		},
+
+		search: function() {
+			this.bindUIElements();
+			this.ui.searchField.val(this.ui.hoverlink.text());
+			this.ui.searchButton.trigger('click');
+			autocompleteList.close();
+		},
+
+		outsideHandler: function(e) {
+			if (e.type == 'keydown') {
+				if (e.keyCode == 27) {
+					autocompleteList.close();
+				}
+			} else {
+				autocompleteList.close();
 			}
 		}
 

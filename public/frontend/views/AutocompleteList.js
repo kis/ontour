@@ -11,11 +11,19 @@ define(['frontend/views/AutocompleteItemView',
 		itemView: AutocompleteItemView,
 
 		initialize: function() {
-			this.listenTo(this.collection, 'reset', this.reset);
+			this.listenTo(channel, 'autocompleteClose', this.close);
+			this.listenTo(this.collection, 'close', this.close);
+			this.listenTo(this.collection, 'repaint', this.repaint);
 		},
 
-		reset: function() {
+		repaint: function() {
+			this.collection.reset();
 			this.$el.show();
+		},
+
+		close: function() {
+			this.collection.reset();
+			this.$el.hide();
 		}
 
 	});
