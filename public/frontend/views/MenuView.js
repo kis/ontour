@@ -1,8 +1,9 @@
 define(['frontend/collections/AutocompleteCollection',
 		'frontend/views/AutocompleteList',
 		'frontend/models/AutocompleteItem',
+		'channel',
 		'marionette'
-], function(AutocompleteCollection, AutocompleteList, AutocompleteItem) {
+], function(AutocompleteCollection, AutocompleteList, AutocompleteItem, channel) {
 	'use strict';
 
 	var autocompleteCollection,
@@ -26,8 +27,7 @@ define(['frontend/collections/AutocompleteCollection',
 			'search'		  : '#search',
 			'slide'			  : '#slide',
 			'controlsTop'	  : '#controls-top',
-			'goTop'	  		  : '#go-top',
-			'events'		  : '#events'
+			'goTop'	  		  : '#go-top'
 		},
 
 		events: {
@@ -172,25 +172,17 @@ define(['frontend/collections/AutocompleteCollection',
 				left: parseInt(this.ui.sidebar.css('left'),10) == 0 ? -this.ui.sidebar.outerWidth() : 0
 			});
 
-			this.ui.search.animate({
-				left: parseInt(this.ui.sidebar.css('left'),10) == 0 ? -this.ui.sidebar.outerWidth() : 0
-			});
-
 			this.ui.controlsTop.animate({
 				left: parseInt(this.ui.sidebar.css('left'),10) == 0 ? 0 : 360
 			}).find('b').text(parseInt(this.ui.sidebar.css('left'),10) == 0 ? '>' : '<');
 
 			if (this.ui.goTop.css('display') == 'block') {
-				this.ui.goTop.css({
-					display: 'none'
-				});
+				this.ui.goTop.css({display: 'none'});
 			}
 		},
 
 		gotop: function() {
-			this.ui.events.animate({
-				'scrollTop': 0
-				}, 500, 'swing');
+			channel.trigger('gotop');
 		}
 
 	});

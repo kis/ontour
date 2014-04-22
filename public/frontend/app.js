@@ -42,12 +42,11 @@ require.config({
 
 		channel: 'frontend/channel',
 
-		menu: 'frontend/menu',
 		getEvents: 'frontend/getEvents'
 	}
 });
 
-require(['jquery', 'menu', 'getEvents'], function() {
+require(['jquery', 'getEvents'], function() {
 
 
 });

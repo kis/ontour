@@ -17,6 +17,7 @@ define(['frontend/views/EventView',
 		initialize: function() {
 			channel.on('addPaths', this.addPaths, this);
 			channel.on('reset', this.reset, this);
+			channel.on('gotop', this.gotop, this);
 		},
 
 		addPaths: function(event) {
@@ -64,6 +65,12 @@ define(['frontend/views/EventView',
 					display: 'none'
 				});
 			}
+		},
+
+		gotop: function() {
+			this.$el.animate({
+				'scrollTop': 0
+				}, 500, 'swing');
 		}
 
 	});
