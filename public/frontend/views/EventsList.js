@@ -10,6 +10,10 @@ define(['frontend/views/EventView',
 
 		itemView: EventView,
 
+		events: {
+			'scroll' : 'scroll'
+		},
+
 		initialize: function() {
 			channel.on('addPaths', this.addPaths, this);
 			channel.on('reset', this.reset, this);
@@ -48,6 +52,18 @@ define(['frontend/views/EventView',
 			});
 
 			this.collection.reset();
+		},
+
+		scroll: function() {
+			if (this.$el.scrollTop() > this.$el.height()) {
+				$('#go-top').css({
+					display: 'block'
+				});
+			} else {
+				$('#go-top').css({
+					display: 'none'
+				});
+			}
 		}
 
 	});

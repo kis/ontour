@@ -10,7 +10,7 @@ define(['frontend/collections/AutocompleteCollection',
 
 	return Marionette.ItemView.extend({
 
-		el: '#search',
+		el: 'body', //#search
 
 		ui: {
 			'tabs'		      : '.tab',
@@ -20,14 +20,24 @@ define(['frontend/collections/AutocompleteCollection',
 			'searchButton'    : '.search-button',
 			'autocomplete'    : '#autocomplete',
 			'hoverlink'		  : '.hover a',
-			'hover'			  : '.hover'
+			'hover'			  : '.hover',
+			
+			'sidebar'		  : '#sidebar',
+			'search'		  : '#search',
+			'slide'			  : '#slide',
+			'controlsTop'	  : '#controls-top',
+			'goTop'	  		  : '#go-top',
+			'events'		  : '#events'
 		},
 
 		events: {
 			'click @ui.tabArtist, @ui.tabCity' : 'setActiveTab',
 			'input @ui.searchField'			   : 'getAutocompleteData',
 			'keydown @ui.searchField'		   : 'execAutocompleteProperty',
-			'click @ui.hover'				   : 'search'
+			'click @ui.hover'				   : 'search',
+			
+			'click @ui.slide'				   : 'slide',
+			'click @ui.goTop'				   : 'gotop'
 		},
 
 		initialize: function() {
@@ -155,6 +165,32 @@ define(['frontend/collections/AutocompleteCollection',
 			} else {
 				autocompleteList.close();
 			}
+		},
+
+		slide: function() {
+			this.ui.sidebar.animate({
+				left: parseInt(this.ui.sidebar.css('left'),10) == 0 ? -this.ui.sidebar.outerWidth() : 0
+			});
+
+			this.ui.search.animate({
+				left: parseInt(this.ui.sidebar.css('left'),10) == 0 ? -this.ui.sidebar.outerWidth() : 0
+			});
+
+			this.ui.controlsTop.animate({
+				left: parseInt(this.ui.sidebar.css('left'),10) == 0 ? 0 : 360
+			}).find('b').text(parseInt(this.ui.sidebar.css('left'),10) == 0 ? '>' : '<');
+
+			if (this.ui.goTop.css('display') == 'block') {
+				this.ui.goTop.css({
+					display: 'none'
+				});
+			}
+		},
+
+		gotop: function() {
+			this.ui.events.animate({
+				'scrollTop': 0
+				}, 500, 'swing');
 		}
 
 	});
