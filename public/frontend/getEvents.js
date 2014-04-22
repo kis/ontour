@@ -18,7 +18,7 @@ require(['backbone',
 		menu = new Menu(),
 		menuView = new MenuView({model: menu});
 
-	function getSearchValue() {
+	/*function getSearchValue() {
 
 		var field = $(".search-field");
 		var search_val = field.val();
@@ -33,21 +33,21 @@ require(['backbone',
 		$('#artist-info').children(':not(#go-top, .info-block)').detach();
 
 		return search_val;
-	}
+	}*/
 
 
-	$(document).on('click', ".search-button", getEventsByParam.bind(this, 'artist'));
-
-	$(document).on('click', "#city-button", getEventsByParam.bind(this, 'geo'));
+	// $(document).on('click', ".search-button", getEventsByParam.bind(this, 'artist'));
 
 
-	function getEventsByParam(param) {
+	/*function getEventsByParam(param) {
 
 		var search_val = getSearchValue();
 
 		if (!search_val) {
 			return false;
 		}
+
+		if ()
 
 		var search = new SearchStatus({page: 1, total: 1, totalPages: 1}),
 			searchView = new SearchStatusView({model: search}),
@@ -125,6 +125,6 @@ require(['backbone',
 			}));
 		}
 
-	}
+	}*/
 
 });
