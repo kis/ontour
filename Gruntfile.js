@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		javascripts: ['public/frontend/**/**.js'],
+		javascripts: ['public/js/**/**.js'],
 		styles: ['assets/styles/*.styl'],
 		php: ['app/**/**.php'],
 		jshint: {
@@ -64,7 +64,7 @@ module.exports = function (grunt) {
 		concat: {
 			js: {
 				src: ['<%= javascripts %>'],
-				dest: 'public/frontend/app.concat.js',
+				dest: 'public/js/app.concat.js',
 			},
 
 			styles: {
@@ -98,8 +98,8 @@ module.exports = function (grunt) {
 		requirejs: {
 			compile: {
 				options: {
-					baseUrl: "public/frontend/dev",
-					mainConfigFile: "public/frontend/dev/app.js",
+					baseUrl: "public/js/dev",
+					mainConfigFile: "public/js/dev/app.js",
 					name: [
 						"models/Event", 
 						"models/Map", 
@@ -110,14 +110,14 @@ module.exports = function (grunt) {
 						"views/MapView",
 						"views/SearchStatusView"
 					], // assumes a production build using almond
-					out: "public/frontend/live/optimized.js"
+					out: "public/js/live/optimized.js"
 				}
 			}
 		},
 		rjs: {
 		 	// no minification, is done by the min task
 		 	optimize: 'none',
-		 	baseUrl: 'public/frontend/dev/',
+		 	baseUrl: 'public/js/dev/',
 		 	wrap: true
 		}
 	});

@@ -1,5 +1,5 @@
 define(['backbone',
-		'frontend/models/AutocompleteItem'
+		'models/AutocompleteItem'
 ], function(Backbone, AutocompleteItem) {
 	'use strict';
 

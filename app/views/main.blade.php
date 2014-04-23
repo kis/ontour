@@ -43,7 +43,7 @@
 
         <div id="map"></div>
 
-        <script data-main="frontend/app.js" src="lib/require.js"></script>
+        <script data-main="js/main.js" src="js/lib/require.js"></script>
 
     </body>
 </html>

@@ -1,4 +1,4 @@
-define(['frontend/views/AutocompleteItemView',
+define(['views/AutocompleteItemView',
 		'channel',
 		'marionette'
 ], function(AutocompleteItemView, channel) {

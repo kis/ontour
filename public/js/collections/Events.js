@@ -1,5 +1,5 @@
 define(['backbone', 
-		'frontend/models/Event'
+		'models/Event'
 ], function(Backbone, Event) {
 	'use strict';
 

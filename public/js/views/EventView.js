@@ -1,5 +1,5 @@
 define(['text', 
-		'text!frontend/templates/Event.html', 
+		'text!templates/Event.tmpl', 
 		'mapbox', 
 		'marionette'
 ], function(text, eventTemplate, mapbox) {

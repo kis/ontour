@@ -1,15 +1,15 @@
 
 require(['backbone',   
-		 'frontend/models/Menu',
-		 'frontend/models/Event',
-		 'frontend/models/Map',
-		 'frontend/models/SearchStatus',
-		 'frontend/views/MenuView',
-		 'frontend/views/EventView',
-		 'frontend/views/EventsList',
-		 'frontend/views/MapView',
-		 'frontend/views/SearchStatusView',
-		 'frontend/collections/Events'
+		 'models/Menu',
+		 'models/Event',
+		 'models/Map',
+		 'models/SearchStatus',
+		 'views/MenuView',
+		 'views/EventView',
+		 'views/EventsList',
+		 'views/MapView',
+		 'views/SearchStatusView',
+		 'collections/Events'
 ], function(backbone, Menu, Event, Map, SearchStatus, MenuView, EventView, EventsList, MapView, SearchStatusView, Events) {
 
 	var map = new Map(),

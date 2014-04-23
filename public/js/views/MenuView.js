@@ -1,6 +1,6 @@
-define(['frontend/collections/AutocompleteCollection',
-		'frontend/views/AutocompleteList',
-		'frontend/models/AutocompleteItem',
+define(['collections/AutocompleteCollection',
+		'views/AutocompleteList',
+		'models/AutocompleteItem',
 		'channel',
 		'marionette'
 ], function(AutocompleteCollection, AutocompleteList, AutocompleteItem, channel) {

@@ -1,4 +1,4 @@
-define(['frontend/views/EventView', 
+define(['views/EventView', 
 		'channel',
 		'marionette'
 ], function(EventView, channel) {

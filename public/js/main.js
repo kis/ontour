@@ -1,7 +1,7 @@
 
 require.config({
 
-	baseUrl: '../',
+	// baseUrl: '',
 
 	shim: {
 		jquery: {
@@ -40,13 +40,13 @@ require.config({
 		backbone: 'lib/backbone',
 		marionette: 'lib/backbone.marionette',
 
-		channel: 'frontend/channel',
+		channel: 'channel',
 
-		getEvents: 'frontend/getEvents'
+		getEvents: 'getEvents'
 	}
 });
 
 require(['jquery', 'getEvents'], function() {
-
+	
 
 });
