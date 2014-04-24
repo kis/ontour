@@ -1,5 +1,5 @@
 
-require(['backbone',   
+/*require(['backbone',   
 		 'models/Menu',
 		 'models/Event',
 		 'models/Map',
@@ -10,13 +10,13 @@ require(['backbone',
 		 'views/MapView',
 		 'views/SearchStatusView',
 		 'collections/Events'
-], function(backbone, Menu, Event, Map, SearchStatus, MenuView, EventView, EventsList, MapView, SearchStatusView, Events) {
+], function(backbone, Menu, Event, Map, SearchStatus, MenuView, EventView, EventsList, MapView, SearchStatusView, Events) {*/
 
-	var map = new Map(),
+	/*var map = new Map(),
 		mapView = new MapView({model: map}),
 		eventsListView,
 		menu = new Menu(),
-		menuView = new MenuView({model: menu});
+		menuView = new MenuView({model: menu});*/
 
 	/*function getSearchValue() {
 
@@ -127,4 +127,4 @@ require(['backbone',
 
 	}*/
 
-});
+// });

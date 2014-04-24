@@ -2,8 +2,10 @@ define(['collections/AutocompleteCollection',
 		'views/AutocompleteList',
 		'models/AutocompleteItem',
 		'channel',
+		'text', 
+		'text!templates/Menu.tmpl',
 		'marionette'
-], function(AutocompleteCollection, AutocompleteList, AutocompleteItem, channel) {
+], function(AutocompleteCollection, AutocompleteList, AutocompleteItem, channel, text, menuTemplate) {
 	'use strict';
 
 	var autocompleteCollection,
@@ -11,7 +13,9 @@ define(['collections/AutocompleteCollection',
 
 	return Marionette.ItemView.extend({
 
-		el: 'body', //#search
+		// el: '#search', //body
+
+		template: _.template(menuTemplate),
 
 		ui: {
 			'tabs'		      : '.tab',
@@ -180,7 +184,7 @@ define(['collections/AutocompleteCollection',
 
 		getEvents: function() {
 
-			var search_val = getSearchValue();
+			var search_val = this.getSearchValue;
 
 			if (!search_val) {
 				return false;
@@ -194,11 +198,11 @@ define(['collections/AutocompleteCollection',
 				param = 'geo';
 			}
 
-			var search = new SearchStatus({page: 1, total: 1, totalPages: 1}),
+			/*var search = new SearchStatus({page: 1, total: 1, totalPages: 1}),
 				searchView = new SearchStatusView({model: search}),
-				eventCollection = new Events();
+				eventCollection = new Events();*/
 			
-			eventsListView = new EventsList({collection: eventCollection});
+			// eventsListView = new EventsList({collection: eventCollection});
 
 			(function go() {
 				Backbone.ajax({

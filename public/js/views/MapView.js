@@ -6,7 +6,7 @@ define(['channel',
 
 	return Marionette.ItemView.extend({
 
-		el: '#map',
+		// el: '#map',
 
 		initialize: function() {
 			/*kirillstyopkin.h29f88g0

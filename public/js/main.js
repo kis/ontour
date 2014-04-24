@@ -31,6 +31,8 @@ require.config({
 	},
 
 	paths: {
+		app: 'app',
+
 		jquery: 'http://code.jquery.com/jquery-latest.min',
 
 		mapbox: 'https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox',
@@ -46,7 +48,9 @@ require.config({
 	}
 });
 
-require(['jquery', 'getEvents'], function() {
+require(['app', 'jquery', 'getEvents'], function(app) {
+	'use strict';
 	
+	app.start();
 
 });
