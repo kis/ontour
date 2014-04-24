@@ -12,11 +12,11 @@
 
     <body>
 
-        <div id="sidebar">
-            <div id="search"></div>
-            <div id="status"></div>
-            <div id="events"></div>
-        </div>
+        <section id="sidebar">
+            <section id="search"></section>
+            <section id="status"></section>
+            <section id="events"></section>
+        </section>
 
         <div id="controls-top">
             <a id="slide"><b><</b></a>

@@ -17,21 +17,32 @@ define(['collections/AutocompleteCollection',
 
 		template: _.template(menuTemplate),
 
+		onRender: function() {
+			// Get rid of that pesky wrapping-div.
+			// Assumes 1 child element present in template.
+			// this.$el = this.$el.html();
+			// Unwrap the element to prevent infinitely 
+			// nesting elements during re-render.
+			// this.$el.unwrap();
+			// this.$el.unwrap();
+			// this.setElement(this.$el);
+		},
+
 		ui: {
-			'tabs'		      : '.tab',
-			'tabArtist'       : '#artist',
-			'tabCity'         : '#city',
-			'searchField'     : '.search-field',
-			'searchButton'    : '.search-button',
-			'autocomplete'    : '#autocomplete',
-			'hoverlink'		  : '.hover a',
-			'hover'			  : '.hover',
+			tabs		  : '.tab',
+			tabArtist     : '#artist',
+			tabCity       : '#city',
+			searchField   : '.search-field',
+			searchButton  : '.search-button',
+			autocomplete  : '#autocomplete',
+			hoverlink	  : '.hover a',
+			hover		  : '.hover',
 			
-			'sidebar'		  : '#sidebar',
-			'search'		  : '#search',
-			'slide'			  : '#slide',
-			'controlsTop'	  : '#controls-top',
-			'goTop'	  		  : '#go-top'
+			sidebar		  : '#sidebar',
+			search		  : '#search',
+			slide		  : '#slide',
+			controlsTop	  : '#controls-top',
+			goTop	  	  : '#go-top'
 		},
 
 		events: {
