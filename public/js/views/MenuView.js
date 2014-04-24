@@ -1,32 +1,16 @@
-define(['collections/AutocompleteCollection',
-		'views/AutocompleteList',
-		'models/AutocompleteItem',
-		'channel',
+define(['channel',
 		'text', 
 		'text!templates/Menu.tmpl',
 		'marionette'
-], function(AutocompleteCollection, AutocompleteList, AutocompleteItem, channel, text, menuTemplate) {
+], function(channel, text, menuTemplate) {
 	'use strict';
 
-	var autocompleteCollection,
-		autocompleteList;
+	// var autocompleteCollection,
+		// autocompleteList;
 
 	return Marionette.ItemView.extend({
 
-		// el: '#search', //body
-
 		template: _.template(menuTemplate),
-
-		onRender: function() {
-			// Get rid of that pesky wrapping-div.
-			// Assumes 1 child element present in template.
-			// this.$el = this.$el.html();
-			// Unwrap the element to prevent infinitely 
-			// nesting elements during re-render.
-			// this.$el.unwrap();
-			// this.$el.unwrap();
-			// this.setElement(this.$el);
-		},
 
 		ui: {
 			tabs		  : '.tab',
@@ -58,8 +42,8 @@ define(['collections/AutocompleteCollection',
 		},
 
 		initialize: function() {
-			autocompleteCollection = new AutocompleteCollection(),
-			autocompleteList = new AutocompleteList({collection: autocompleteCollection});
+			// autocompleteCollection = new AutocompleteCollection(),
+			// autocompleteList = new AutocompleteList({collection: autocompleteCollection});
 
 			this.listenTo(this.model, 'change', this.updateMenu);
 

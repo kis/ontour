@@ -8,8 +8,23 @@ define(['models/Menu',
 		'views/MapView',
 		'views/SearchStatusView',
 		'collections/Events',
+		'models/AutocompleteItem',
+		'collections/AutocompleteCollection',
+		'views/AutocompleteList',
 		'marionette'
-], function(Menu, Event, Map, SearchStatus, MenuView, EventView, EventsList, MapView, SearchStatusView, Events) {
+], function(Menu, 
+			Event, 
+			Map, 
+			SearchStatus, 
+			MenuView, 
+			EventView, 
+			EventsList, 
+			MapView, 
+			SearchStatusView, 
+			Events,
+			AutocompleteItem,
+			AutocompleteCollection,
+			AutocompleteList) {
 	'use strict';
 
 	var app = new Marionette.Application();
@@ -23,7 +38,8 @@ define(['models/Menu',
 				totalPages: 1
 			})
 		}),
-		eventsListView = new EventsList({collection: new Events()});
+		eventsListView = new EventsList({collection: new Events()}),
+		autocompleteList = new AutocompleteList({collection: new AutocompleteCollection()});
 
 	app.addRegions({
 		// map: '#map',
