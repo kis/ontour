@@ -1,8 +1,4 @@
-
 require.config({
-
-	// baseUrl: '',
-
 	shim: {
 		jquery: {
 			exports: '$',
@@ -24,31 +20,20 @@ require.config({
 				'backbone'
 			],
 			exports: 'Marionette'
-		},
-		menu: {
-			deps: ['jquery']
 		}
 	},
 
 	paths: {
-		app: 'app',
-
 		jquery: 'http://code.jquery.com/jquery-latest.min',
-
 		mapbox: 'https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox',
-
 		text: 'lib/text',
 		underscore: 'lib/underscore',
 		backbone: 'lib/backbone',
-		marionette: 'lib/backbone.marionette',
-
-		channel: 'channel',
-
-		getEvents: 'getEvents'
+		marionette: 'lib/backbone.marionette'
 	}
 });
 
-require(['app', 'jquery', 'getEvents'], function(app) {
+require(['app'], function(app) {
 	'use strict';
 	
 	app.start();

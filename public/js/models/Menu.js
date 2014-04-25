@@ -4,7 +4,14 @@ define(['backbone'], function(Backbone) {
 	return Backbone.Model.extend({
 
 		defaults: {
-			activeTab: 'artist'
+			activeTab: 'artist',
+			value: ''
+		},
+
+		validate: function() {
+			if (value == '') {
+				console.log('invalid value!');
+			}
 		}
 
 	});

@@ -74,33 +74,37 @@ define(['channel',
 		search: function(item) {
 			this.bindUIElements();
 			this.ui.searchField.val(item);
-			// this.ui.searchButton.trigger('click');
+			this.getEvents();
 		},
 
-		getSearchValue: function() {
+		/*getSearchValue: function() {
 
-			var field = $(".search-field");
-			var search_val = field.val();
+			var field = this.ui.searchField;
+			var search_val = this.ui.searchField.val();
 
-			if(!search_val) {
+			if (!search_val) {
 				field.addClass("invalid").focus();
-				$('#artist-info').children().detach();
+				// $('#artist-info').children().detach();
 				return;
 			}
 
 			field.removeClass("invalid");
-			$('#artist-info').children().detach();
+			// $('#artist-info').children().detach();
 
 			return search_val;
-		},
+		},*/
 
 		getEvents: function() {
 
-			var search_val = this.getSearchValue;
+			var search_val = this.ui.searchField.val();
 
-			if (!search_val) {
+			console.log(search_val);
+
+			return;
+
+			/*if (!search_val) {
 				return false;
-			}
+			}*/
 
 			var param;
 

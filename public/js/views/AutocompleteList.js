@@ -97,7 +97,10 @@ define(['views/AutocompleteItemView',
 			switch (key) {
 				case 13:
 					//enter - get termin to input and search
-					channel.trigger('search', this.collection.getElement().get('title'));
+					if (this.collection.getElement() != 'undefined') {
+						channel.trigger('search', this.collection.getElement().get('title'));
+					}
+
 					this.close();
 					break;
 				case 27:
