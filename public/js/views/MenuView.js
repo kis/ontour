@@ -16,12 +16,7 @@ define(['channel',
 			searchField   : '.search-field',
 			searchButton  : '.search-button',
 			
-			autocomplete  : '#autocomplete',
-			hoverlink	  : '.hover a',
-			hover		  : '.hover',
-			
 			sidebar		  : '#sidebar',
-			search		  : '#search',
 			slide		  : '#slide',
 			controlsTop	  : '#controls-top',
 			goTop	  	  : '#go-top'
@@ -33,13 +28,13 @@ define(['channel',
 			'keydown @ui.searchField'		   : 'execAutocompleteProperty',
 			'click @ui.searchButton'		   : 'getEvents',
 
-			'click @ui.hover'				   : 'search',
-
 			'click @ui.slide'				   : 'slide',
 			'click @ui.goTop'				   : 'gotop'
 		},
 
 		initialize: function() {
+			this.listenTo(channel, 'search', this.search);
+
 			this.listenTo(this.model, 'change', this.updateMenu);
 
 			$('body, html').on({
@@ -80,33 +75,14 @@ define(['channel',
 		},
 
 		execAutocompleteProperty: function(e) {
-			switch (e.keyCode) {
-				case 13:
-					//enter - get termin to input and search
-					this.search();
-					break;
-				case 27:
-					//esc - hide autocomplete
-					autocompleteList.close();
-					break;
-				case 38:
-					//up
-					autocompleteCollection.prev();
-					break;
-				case 40:
-					//down
-					autocompleteCollection.next();
-					break;
-				default:
-					break;
-			}
+			channel.trigger('execProperty', e.keyCode);
 		},
 
-		search: function() {
+		search: function(item) {
 			this.bindUIElements();
-			this.ui.searchField.val(this.ui.hoverlink.text());
-			this.ui.searchButton.trigger('click');
-			autocompleteList.close();
+			this.ui.searchField.val(item);
+			// this.ui.searchButton.trigger('click');
+			// autocompleteList.close();
 		},
 
 		getSearchValue: function() {
@@ -223,10 +199,10 @@ define(['channel',
 		outsideHandler: function(e) {
 			if (e.type == 'keydown') {
 				if (e.keyCode == 27) {
-					// autocompleteList.close();
+					channel.trigger('autocompleteClose');
 				}
 			} else {
-				// autocompleteList.close();
+				channel.trigger('autocompleteClose');
 			}
 		},
 

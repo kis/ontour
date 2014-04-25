@@ -9,9 +9,14 @@ define(['channel',
 
 		template: _.template('<a><%= title %></a> <%= meta %>'),
 
+		ui: {
+			item : 'a'
+		},
+
 		events: {
 			'mouseenter' : 'select',
-			'mouseleave' : 'deselect'
+			'mouseleave' : 'deselect',
+			'click'		 : 'search'
 		},
 
 		render: function() {
@@ -37,6 +42,11 @@ define(['channel',
 			} else {
 				this.$el.removeClass('hover');
 			}
+		},
+
+		search: function() {
+			this.bindUIElements();
+			channel.trigger('search', this.ui.item.text());
 		}
 
 	});

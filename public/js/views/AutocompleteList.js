@@ -15,6 +15,7 @@ define(['views/AutocompleteItemView',
 			this.listenTo(channel, 'autocompleteClose', this.close);
 			this.listenTo(channel, 'addArtistsData', this.addArtistsData);
 			this.listenTo(channel, 'addCitiesData', this.addCitiesData);
+			this.listenTo(channel, 'execProperty', this.execProperty);
 
 			this.listenTo(this.collection, 'close', this.close);
 			this.listenTo(this.collection, 'repaint', this.repaint);
@@ -84,6 +85,31 @@ define(['views/AutocompleteItemView',
 					}
 				});
 			});
+		},
+
+		execProperty: function(key) {
+
+			switch (key) {
+				case 13:
+					//enter - get termin to input and search
+					this.search();
+					break;
+				case 27:
+					//esc - hide
+					this.close();
+					break;
+				case 38:
+					//up
+					this.collection.prev();
+					break;
+				case 40:
+					//down
+					this.collection.next();
+					break;
+				default:
+					break;
+			}
+
 		}
 
 	});
