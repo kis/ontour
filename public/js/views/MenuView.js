@@ -14,22 +14,20 @@ define(['channel',
 			tabArtist     : '#artist',
 			tabCity       : '#city',
 			searchField   : '.search-field',
-			searchButton  : '.search-button',
+			searchButton  : '.search-button'
 			
-			sidebar		  : '#sidebar',
+			/*sidebar		  : '#sidebar',
 			slide		  : '#slide',
-			controlsTop	  : '#controls-top',
-			goTop	  	  : '#go-top'
+			controlsTop	  : '#controls-top'*/
 		},
 
 		events: {
 			'click @ui.tabArtist, @ui.tabCity' : 'setActiveTab',
 			'input @ui.searchField'			   : 'getAutocompleteData',
 			'keydown @ui.searchField'		   : 'execAutocompleteProperty',
-			'click @ui.searchButton'		   : 'getEvents',
+			'click @ui.searchButton'		   : 'getEvents'
 
-			'click @ui.slide'				   : 'slide',
-			'click @ui.goTop'				   : 'gotop'
+			// 'click @ui.slide'				   : 'slide',
 		},
 
 		initialize: function() {
@@ -77,7 +75,6 @@ define(['channel',
 			this.bindUIElements();
 			this.ui.searchField.val(item);
 			// this.ui.searchButton.trigger('click');
-			// autocompleteList.close();
 		},
 
 		getSearchValue: function() {
@@ -134,7 +131,7 @@ define(['channel',
 						format: 'json'
 					},
 					success: function(data) {
-						getEventsData(data, eventCollection, param, search, searchView);
+						getEventsData(data, param, search, searchView);
 
 						search.set('page', search.get('page') + 1);
 
@@ -146,7 +143,7 @@ define(['channel',
 			}());
 		},
 
-		getEventsData: function(data, eventCollection, param, search, searchView) {
+		getEventsData: function(data, param, search, searchView) {
 
 			if (data.error == 8 || data.events.total == 0) {
 				search.set({totalPages: 0});
@@ -161,12 +158,12 @@ define(['channel',
 			var events = data.events.event;
 
 			if (search.get('page') == search.get('totalPages') && /1$/.test(search.get('total'))) {
-				createEventModel(events, events, null);
+				channel.trigger('addEvents', events, param);	
 				return false;
 			}
 
 			events.forEach(function(value, index) {
-				createEventModel(events, value, index);
+				channel.trigger('addEvents', value, param);				
 
 				if (search.get('page') == 1 && index == 0) {
 					mapView.getMap().setView(
@@ -176,22 +173,9 @@ define(['channel',
 				}
 			});
 
-			function createEventModel(events, value, index) {
-				eventCollection.add(new Event({
-					id: value.id,
-					title: value.title,
-					artists: value.artists,
-					date: value.startDate,
-					venue: value.venue,
-					image: value.image[2]['#text'],
-					map: mapView.getMap(),
-					param: param
-				}));
-			}
+		}
 
-		},
-
-		slide: function() {
+		/*slide: function() {
 			this.ui.sidebar.animate({
 				left: parseInt(this.ui.sidebar.css('left'),10) == 0 ? -this.ui.sidebar.outerWidth() : 0
 			});
@@ -203,11 +187,7 @@ define(['channel',
 			if (this.ui.goTop.css('display') == 'block') {
 				this.ui.goTop.css({display: 'none'});
 			}
-		},
-
-		gotop: function() {
-			channel.trigger('gotop');
-		}
+		}*/
 
 	});
 

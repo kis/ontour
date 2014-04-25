@@ -98,6 +98,7 @@ define(['views/AutocompleteItemView',
 				case 13:
 					//enter - get termin to input and search
 					channel.trigger('search', this.collection.getElement().get('title'));
+					this.close();
 					break;
 				case 27:
 					//esc - hide

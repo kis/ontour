@@ -1,4 +1,5 @@
-define(['views/EventView', 
+define(['views/EventView',
+		'models/Event', 
 		'channel',
 		'marionette'
 ], function(EventView, channel) {
@@ -15,9 +16,25 @@ define(['views/EventView',
 		},
 
 		initialize: function() {
+			$('#go-top').on('click', this.gotop.bind(this));
+
 			channel.on('addPaths', this.addPaths, this);
 			channel.on('reset', this.reset, this);
-			channel.on('gotop', this.gotop, this);
+		},
+
+		addEvents: function(value) {
+
+			this.collection.add(new Event({
+				id: value.id,
+				title: value.title,
+				artists: value.artists,
+				date: value.startDate,
+				venue: value.venue,
+				image: value.image[2]['#text'],
+				map: mapView.getMap(),
+				param: param
+			}));
+
 		},
 
 		addPaths: function(event) {
