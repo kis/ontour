@@ -12,6 +12,11 @@ define(['views/AutocompleteItemView',
 		itemView: AutocompleteItemView,
 
 		initialize: function() {
+			$('body, html').on({
+				'click'   : this.close.bind(this),
+				'keydown' : this.outsideHandler.bind(this)
+			});
+
 			this.listenTo(channel, 'autocompleteClose', this.close);
 			this.listenTo(channel, 'addArtistsData', this.addArtistsData);
 			this.listenTo(channel, 'addCitiesData', this.addCitiesData);
@@ -92,7 +97,7 @@ define(['views/AutocompleteItemView',
 			switch (key) {
 				case 13:
 					//enter - get termin to input and search
-					this.search();
+					channel.trigger('search', this.collection.getElement().get('title'));
 					break;
 				case 27:
 					//esc - hide
@@ -110,7 +115,13 @@ define(['views/AutocompleteItemView',
 					break;
 			}
 
-		}
+		},
+
+		outsideHandler: function(e) {
+			if (e.type == 'keydown' && e.keyCode == 27) {
+				this.close();
+			}
+		},
 
 	});
 

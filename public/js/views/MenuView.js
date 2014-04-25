@@ -37,11 +37,6 @@ define(['channel',
 
 			this.listenTo(this.model, 'change', this.updateMenu);
 
-			$('body, html').on({
-				'click'   : this.outsideHandler,
-				'keydown' : this.outsideHandler
-			});
-
 			this.bindUIElements();
 
 			this.ui.searchField.val('').focus();
@@ -97,7 +92,7 @@ define(['channel',
 			}
 
 			field.removeClass("invalid");
-			$('#artist-info').children(':not(#go-top, .info-block)').detach();
+			$('#artist-info').children().detach();
 
 			return search_val;
 		},
@@ -113,9 +108,9 @@ define(['channel',
 			var param;
 
 			if (this.model.get('activeTab') == 'artist') {
-				param = 'artist';
+				param = 'artist.getevents';
 			} else if (this.model.get('activeTab') == 'city') {
-				param = 'geo';
+				param = 'geo.getevents';
 			}
 
 			/*var search = new SearchStatus({page: 1, total: 1, totalPages: 1}),
@@ -129,7 +124,7 @@ define(['channel',
 					url: 'http://ws.audioscrobbler.com/2.0/',
 					type: 'GET',
 					data: {
-						method: param + '.getevents',
+						method: param,
 						location: search_val,
 						artist: search_val,
 						autocorrect: 1,
@@ -194,16 +189,6 @@ define(['channel',
 				}));
 			}
 
-		},
-
-		outsideHandler: function(e) {
-			if (e.type == 'keydown') {
-				if (e.keyCode == 27) {
-					channel.trigger('autocompleteClose');
-				}
-			} else {
-				channel.trigger('autocompleteClose');
-			}
 		},
 
 		slide: function() {

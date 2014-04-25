@@ -6,6 +6,10 @@ define(['backbone',
 	return Backbone.Collection.extend({
 		model: AutocompleteItem,
 
+		initialize: function() {
+			this.setElement(this.at(0));
+		},
+
 		getElement: function() {
 			return this.currentElement;
 		},
@@ -25,14 +29,16 @@ define(['backbone',
 			return selected;
 		},
 
-		next: function (){
+		next: function () {
 			if (this.setSelected() && this.indexOf(this.getElement()) + 1 != this.length) {
 				this.setElement(this.at(this.indexOf(this.getElement()) + 1));
 			} else {
 				this.setElement(this.at(0));
 			}
 
-			this.getElement().set({selected: true});
+			if (typeof this.getElement() != 'undefined') {
+				this.getElement().set({selected: true});
+			}
 		},
 		
 		prev: function() {
@@ -42,7 +48,9 @@ define(['backbone',
 				this.setElement(this.at(this.length - 1));
 			}
 
-		    this.getElement().set({selected: true});
+			if(typeof this.getElement() != 'undefined') {
+				this.getElement().set({selected: true});
+			}
 		}
 
 	});
