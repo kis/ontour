@@ -10,8 +10,8 @@ define(['channel',
 		template: _.template('<a><%= title %></a> <%= meta %>'),
 
 		events: {
-			'mouseenter' : 'selectItem',
-			'mouseleave' : 'deselectItem'
+			'mouseenter' : 'select',
+			'mouseleave' : 'deselect'
 		},
 
 		render: function() {
@@ -23,11 +23,11 @@ define(['channel',
 			this.listenTo(this.model, 'change', this.hover);
 		},
 
-		selectItem: function() {
+		select: function() {
 			this.model.set('selected', true);
 		},
 
-		deselectItem: function() {
+		deselect: function() {
 			this.model.set('selected', false);
 		},
 

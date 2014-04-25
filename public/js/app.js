@@ -29,6 +29,13 @@ define(['models/Menu',
 
 	var app = new Marionette.Application();
 
+	app.addRegions({
+		menu: '#search',
+		autocomplete: '#autocomplete'
+		// status: '#status',
+		// events: '#events'
+	});
+
 	var mapView = new MapView({model: new Map()}),
 		menuView = new MenuView({model: new Menu()}),
 		searchView = new SearchStatusView({model: 
@@ -41,16 +48,9 @@ define(['models/Menu',
 		eventsListView = new EventsList({collection: new Events()}),
 		autocompleteList = new AutocompleteList({collection: new AutocompleteCollection()});
 
-	app.addRegions({
-		// map: '#map',
-		menu: '#search'
-		// status: '#status',
-		// events: '#events'
-	});
-
 	app.addInitializer(function () {
-		// app.map.show(mapView);
 		app.menu.show(menuView);
+		app.autocomplete.show(autocompleteList);
 		// app.status.show(SearchStatusView);
 		// app.events.show(eventsListView);
 	});

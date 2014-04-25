@@ -5,9 +5,6 @@ define(['channel',
 ], function(channel, text, menuTemplate) {
 	'use strict';
 
-	// var autocompleteCollection,
-		// autocompleteList;
-
 	return Marionette.ItemView.extend({
 
 		template: _.template(menuTemplate),
@@ -18,6 +15,7 @@ define(['channel',
 			tabCity       : '#city',
 			searchField   : '.search-field',
 			searchButton  : '.search-button',
+			
 			autocomplete  : '#autocomplete',
 			hoverlink	  : '.hover a',
 			hover		  : '.hover',
@@ -42,9 +40,6 @@ define(['channel',
 		},
 
 		initialize: function() {
-			// autocompleteCollection = new AutocompleteCollection(),
-			// autocompleteList = new AutocompleteList({collection: autocompleteCollection});
-
 			this.listenTo(this.model, 'change', this.updateMenu);
 
 			$('body, html').on({
@@ -77,56 +72,10 @@ define(['channel',
 		},
 
 		getAutocompleteData: function() {
-			autocompleteList.repaint();
-
 			if (this.model.get('activeTab') == 'artist') {
-
-				$.ajax({
-					url: 'http://ws.audioscrobbler.com/2.0/',
-					type: 'GET',
-					data: {
-						method: 'artist.search',
-						artist: this.ui.searchField.val(),
-						limit: 5,
-						api_key: 'dd349d2176d3b97b8162bb0c0e583b1c',
-						format: 'json'
-					},
-					success: function(data) {
-						if (typeof data.results != 'undefined') {
-							var res = data.results.artistmatches.artist;
-
-							if (typeof res != 'undefined' && res.length) {
-								res.forEach(function(value, index) {
-									autocompleteCollection.add(new AutocompleteItem({
-										title: value.name, 
-										meta: '', 
-										selected: false
-									}));
-								});
-							}
-						}
-					}
-				});
-
+				channel.trigger('addArtistsData', this.ui.searchField.val());
 			} else if (this.model.get('activeTab') == 'city') {
-
-				var promise = $.getJSON("http://gd.geobytes.com/AutoCompleteCity?callback=?&q="+this.ui.searchField.val());
-
-				promise.done(function (data) {
-					data.length = 5;
-
-					data.forEach(function(value, index) {
-						if (value && typeof value != 'undefined') {
-							var res = value.split(', ');
-							autocompleteCollection.add(new AutocompleteItem({
-								title: res[0], 
-								meta: res[2], 
-								selected: false
-							}));
-						}
-					});
-				});
-
+				channel.trigger('addCitiesData', this.ui.searchField.val());
 			}
 		},
 
@@ -274,10 +223,10 @@ define(['channel',
 		outsideHandler: function(e) {
 			if (e.type == 'keydown') {
 				if (e.keyCode == 27) {
-					autocompleteList.close();
+					// autocompleteList.close();
 				}
 			} else {
-				autocompleteList.close();
+				// autocompleteList.close();
 			}
 		},
 
