@@ -84,12 +84,10 @@ define(['channel',
 
 			if (!search_val) {
 				field.addClass("invalid").focus();
-				// $('#artist-info').children().detach();
 				return;
 			}
 
 			field.removeClass("invalid");
-			// $('#artist-info').children().detach();
 
 			return search_val;
 		},*/

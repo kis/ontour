@@ -33,6 +33,7 @@ define(['views/AutocompleteItemView',
 
 		close: function() {
 			this.collection.reset();
+			this.collection.currentElement = undefined;
 			this.$el.hide();
 		},
 
@@ -97,7 +98,7 @@ define(['views/AutocompleteItemView',
 			switch (key) {
 				case 13:
 					//enter - get termin to input and search
-					if (this.collection.getElement() != 'undefined') {
+					if (typeof this.collection.getElement() != 'undefined') {
 						channel.trigger('search', this.collection.getElement().get('title'));
 					}
 
