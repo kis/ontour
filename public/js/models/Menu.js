@@ -10,7 +10,7 @@ define(['backbone'], function(Backbone) {
 
 		validate: function() {
 			if (value == '') {
-				console.log('invalid value!');
+				return -1;
 			}
 		}
 

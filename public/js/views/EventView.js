@@ -1,8 +1,9 @@
 define(['text', 
 		'text!templates/Event.tmpl', 
 		'mapbox', 
+		'map',
 		'marionette'
-], function(text, eventTemplate, mapbox) {
+], function(text, eventTemplate, mapbox, map) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -47,7 +48,7 @@ define(['text',
 				var marker = L.marker([this.model.get('venue').location['geo:point']['geo:lat'], 
 									   this.model.get('venue').location['geo:point']['geo:long']],
 									   {icon: this.model.get('icon') ? this.model.get('icon') : null})
-							.addTo(this.model.get('map'));
+							.addTo(map);
 
 				this.model.set('marker', marker);
 			}
@@ -89,7 +90,7 @@ define(['text',
 				} else {
 					this.showPopup();
 					this.model.set('selected', true);
-					this.model.get('map').panTo(this.model.get('marker').getLatLng());
+					map.panTo(this.model.get('marker').getLatLng());
 				}
 			}
 			return false;
@@ -97,7 +98,7 @@ define(['text',
 
 		showPopup: function() {
 			if (this.model.get('popup') != null && this.model.get('selected') == false) {
-				this.model.get('map').addLayer(this.model.get('popup'));
+				map.addLayer(this.model.get('popup'));
 				$(this.el).addClass('selected');
 				return false;
 			}
@@ -105,7 +106,7 @@ define(['text',
 
 		hidePopup: function() {
 			if (this.model.get('popup') != null && this.model.get('selected') == false) {
-				this.model.get('map').removeLayer(this.model.get('popup'));
+				map.removeLayer(this.model.get('popup'));
 				$(this.el).removeClass('selected');
 				return false;
 			}

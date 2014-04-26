@@ -1,15 +1,16 @@
 define(['views/EventView',
-		'models/Event', 
+		'models/Event',
 		'channel',
+		'map',
 		'marionette'
-], function(EventView, Event, channel) {
+], function(EventView, Event, channel, map) {
 	'use strict';
 
 	return Marionette.CollectionView.extend({
 
-		el: '#events',
-
 		itemView: EventView,
+		
+		itemViewContainer: '#events',
 
 		events: {
 			'scroll' : 'scroll'
@@ -18,11 +19,13 @@ define(['views/EventView',
 		initialize: function() {
 			$('#go-top').on('click', this.gotop.bind(this));
 
-			channel.on('addPaths', this.addPaths, this);
-			channel.on('reset', this.reset, this);
+			this.listenTo(channel, 'getEvents', this.reset);
+			this.listenTo(channel, 'addEvents', this.addEvents);
+			this.listenTo(channel, 'addPaths', this.addPaths);
+			this.listenTo(channel, 'reset', this.reset);
 		},
 
-		addEvents: function(value) {
+		addEvents: function(value, param) {
 
 			this.collection.add(new Event({
 				id: value.id,
@@ -31,8 +34,7 @@ define(['views/EventView',
 				date: value.startDate,
 				venue: value.venue,
 				image: value.image[2]['#text'],
-				map: mapView.getMap(),
-				param: param
+				// param: param
 			}));
 
 		},
@@ -51,7 +53,7 @@ define(['views/EventView',
 				var latlng1 = event.get('marker').getLatLng();
 				var latlng2 = list[index+1].get('marker').getLatLng();
 
-				var polyline = L.polyline([latlng1, latlng2], {color: '#10315a', weight: 2, opacity: 1}).addTo(event.get('map'));
+				var polyline = L.polyline([latlng1, latlng2], {color: '#10315a', weight: 2, opacity: 1}).addTo(map);
 				event.set('path', polyline);
 			});
 
@@ -61,11 +63,11 @@ define(['views/EventView',
 
 			this.collection.each(function(event) {
 				if(event.get('marker')) {
-					event.get('map').removeLayer(event.get('marker'));
+					map.removeLayer(event.get('marker'));
 				}
 
 				if(event.get('path')) {
-					event.get('map').removeLayer(event.get('path'));
+					map.removeLayer(event.get('path'));
 				}
 			});
 

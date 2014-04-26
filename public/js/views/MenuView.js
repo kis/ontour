@@ -98,7 +98,7 @@ define(['channel',
 
 			console.log(search_val);
 
-			return;
+			// return;
 
 			/*if (!search_val) {
 				return false;
@@ -112,70 +112,8 @@ define(['channel',
 				param = 'geo.getevents';
 			}
 
-			/*var search = new SearchStatus({page: 1, total: 1, totalPages: 1}),
-				searchView = new SearchStatusView({model: search}),
-				eventCollection = new Events();*/
-			
-			// eventsListView = new EventsList({collection: eventCollection});
-
-			(function go() {
-				Backbone.ajax({
-					url: 'http://ws.audioscrobbler.com/2.0/',
-					type: 'GET',
-					data: {
-						method: param,
-						location: search_val,
-						artist: search_val,
-						autocorrect: 1,
-						page: search.get('page'),
-						limit: 10,
-						api_key: 'dd349d2176d3b97b8162bb0c0e583b1c',
-						format: 'json'
-					},
-					success: function(data) {
-						getEventsData(data, param, search, searchView);
-
-						search.set('page', search.get('page') + 1);
-
-						if (search.get('page') <= search.get('totalPages')) {
-							go();
-						}
-					}
-				});
-			}());
+			channel.trigger('getEvents', search_val, param);
 		},
-
-		getEventsData: function(data, param, search, searchView) {
-
-			if (data.error == 8 || data.events.total == 0) {
-				search.set({totalPages: 0});
-				return false;
-			}
-
-			search.set({totalPages: data.events["@attr"].totalPages,
-						total: data.events["@attr"].total});
-
-			searchView.render();
-
-			var events = data.events.event;
-
-			if (search.get('page') == search.get('totalPages') && /1$/.test(search.get('total'))) {
-				channel.trigger('addEvents', events, param);	
-				return false;
-			}
-
-			events.forEach(function(value, index) {
-				channel.trigger('addEvents', value, param);				
-
-				if (search.get('page') == 1 && index == 0) {
-					mapView.getMap().setView(
-						L.latLng(value.venue.location['geo:point']['geo:lat'], 
-								 value.venue.location['geo:point']['geo:long']), 
-						param == "artist" ? 4 : 12);
-				}
-			});
-
-		}
 
 		/*slide: function() {
 			this.ui.sidebar.animate({

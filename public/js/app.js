@@ -31,20 +31,13 @@ define(['models/Menu',
 
 	app.addRegions({
 		menu: '#search',
-		autocomplete: '#autocomplete'
+		autocomplete: '#autocomplete',
 		// status: '#status',
-		// events: '#events'
+		events: '#events'
 	});
 
-	var mapView = new MapView({model: new Map()}),
-		menuView = new MenuView({model: new Menu()}),
-		searchView = new SearchStatusView({model: 
-			new SearchStatus({
-				page: 1, 
-				total: 1, 
-				totalPages: 1
-			})
-		}),
+	var menuView = new MenuView({model: new Menu()}),
+		searchView = new SearchStatusView({model: new SearchStatus()}),
 		eventsListView = new EventsList({collection: new Events()}),
 		autocompleteList = new AutocompleteList({collection: new AutocompleteCollection()});
 
@@ -52,7 +45,7 @@ define(['models/Menu',
 		app.menu.show(menuView);
 		app.autocomplete.show(autocompleteList);
 		// app.status.show(SearchStatusView);
-		// app.events.show(eventsListView);
+		app.events.show(eventsListView);
 	});
 
 	return app;
