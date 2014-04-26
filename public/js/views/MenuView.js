@@ -71,10 +71,8 @@ define(['channel',
 			channel.trigger('execProperty', e.keyCode);
 		},
 
-		search: function(item) {
-			this.bindUIElements();
-			this.ui.searchField.val(item);
-			this.getEvents();
+		fieldInvalid: function() {
+			this.ui.searchField.addClass("invalid").focus();	
 		},
 
 		/*getSearchValue: function() {
@@ -92,17 +90,18 @@ define(['channel',
 			return search_val;
 		},*/
 
-		getEvents: function() {
+		search: function(item) {
+			this.bindUIElements();
+			this.ui.searchField.val(item);
 
 			var search_val = this.ui.searchField.val();
 
-			console.log(search_val);
+			// console.log(search_val);
 
-			// return;
-
-			/*if (!search_val) {
-				return false;
-			}*/
+			if (!search_val) {
+				this.fieldInvalid();
+				return;
+			}
 
 			var param;
 
