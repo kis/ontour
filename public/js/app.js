@@ -44,7 +44,7 @@ define(['models/Menu',
 	app.addInitializer(function () {
 		app.menu.show(menuView);
 		app.autocomplete.show(autocompleteList);
-		// app.status.show(SearchStatusView);
+		// app.status.show(SearchView);
 		app.events.show(eventsListView);
 	});
 

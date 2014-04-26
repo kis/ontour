@@ -7,6 +7,8 @@ define(['channel',
 
 	return Marionette.ItemView.extend({
 
+		itemViewContainer: '#search',
+
 		template: _.template(menuTemplate),
 
 		ui: {
@@ -32,11 +34,8 @@ define(['channel',
 
 		initialize: function() {
 			this.listenTo(channel, 'search', this.search);
-
 			this.listenTo(this.model, 'change', this.updateMenu);
-
 			this.bindUIElements();
-
 			this.ui.searchField.val('').focus();
 		},
 
@@ -71,36 +70,27 @@ define(['channel',
 			channel.trigger('execProperty', e.keyCode);
 		},
 
-		fieldInvalid: function() {
-			this.ui.searchField.addClass("invalid").focus();	
-		},
-
-		/*getSearchValue: function() {
-
-			var field = this.ui.searchField;
-			var search_val = this.ui.searchField.val();
-
-			if (!search_val) {
-				field.addClass("invalid").focus();
-				return;
-			}
-
-			field.removeClass("invalid");
-
-			return search_val;
-		},*/
-
 		search: function(item) {
 			this.bindUIElements();
+
+			/*if (item == '') {
+				this.ui.searchField.addClass("invalid").focus();
+				return false;
+			}*/
+
 			this.ui.searchField.val(item);
+			this.getEvents();
+		},
+
+		getEvents: function() {
 
 			var search_val = this.ui.searchField.val();
 
-			// console.log(search_val);
-
 			if (!search_val) {
-				this.fieldInvalid();
-				return;
+				this.ui.searchField.addClass("invalid").focus();
+				return false;
+			} else {
+				this.ui.searchField.removeClass("invalid").focus();
 			}
 
 			var param;
@@ -112,7 +102,7 @@ define(['channel',
 			}
 
 			channel.trigger('getEvents', search_val, param);
-		},
+		}
 
 		/*slide: function() {
 			this.ui.sidebar.animate({
