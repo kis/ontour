@@ -91,9 +91,9 @@ define(['channel',
 			var param;
 
 			if (this.model.get('activeTab') == 'artist') {
-				param = 'artist.getevents';
+				param = 'artist';
 			} else if (this.model.get('activeTab') == 'city') {
-				param = 'geo.getevents';
+				param = 'geo';
 			}
 
 			channel.trigger('getEvents', search_val, param);

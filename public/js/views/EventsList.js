@@ -36,7 +36,7 @@ define(['views/EventView',
 				date: value.startDate,
 				venue: value.venue,
 				image: value.image[2]['#text'],
-				// param: param
+				param: param
 			}));
 
 		},

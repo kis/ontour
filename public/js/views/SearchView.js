@@ -1,6 +1,7 @@
 define(['marionette',
-		'channel'
-], function(Marionette, channel) {
+		'channel',
+		'map'
+], function(Marionette, channel, map) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -48,7 +49,7 @@ define(['marionette',
 					url: 'http://ws.audioscrobbler.com/2.0/',
 					type: 'GET',
 					data: {
-						method: param,
+						method: param + '.getevents',
 						location: search_val,
 						artist: search_val,
 						autocorrect: 1,
@@ -95,12 +96,11 @@ define(['marionette',
 			events.forEach(function(value, index) {
 				channel.trigger('addEvents', value, param);				
 
-				/*if (self.model.get('page') == 1 && index == 0) {
-					mapView.getMap().setView(
-						L.latLng(value.venue.location['geo:point']['geo:lat'], 
-								 value.venue.location['geo:point']['geo:long']), 
-						param == "artist" ? 4 : 12);
-				}*/
+				if (self.model.get('page') == 1 && index == 0) {
+					map.setView(L.latLng(value.venue.location['geo:point']['geo:lat'], 
+								value.venue.location['geo:point']['geo:long']), 
+								param == "artist" ? 4 : 12);
+				}
 			});
 
 		}
