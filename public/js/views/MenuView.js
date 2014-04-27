@@ -17,10 +17,6 @@ define(['channel',
 			tabCity       : '#city',
 			searchField   : '.search-field',
 			searchButton  : '.search-button'
-			
-			/*sidebar		  : '#sidebar',
-			slide		  : '#slide',
-			controlsTop	  : '#controls-top'*/
 		},
 
 		events: {
@@ -28,11 +24,11 @@ define(['channel',
 			'input @ui.searchField'			   : 'getAutocompleteData',
 			'keydown @ui.searchField'		   : 'execAutocompleteProperty',
 			'click @ui.searchButton'		   : 'getEvents'
-
-			// 'click @ui.slide'				   : 'slide',
 		},
 
 		initialize: function() {
+			$('#slide').on('click', this.slide);
+
 			this.listenTo(channel, 'fieldInvalid', this.fieldInvalid);
 			this.listenTo(channel, 'search', this.search);
 			this.listenTo(this.model, 'change', this.updateMenu);
@@ -101,21 +97,19 @@ define(['channel',
 			}
 
 			channel.trigger('getEvents', search_val, param);
-		}
+		},
 
-		/*slide: function() {
-			this.ui.sidebar.animate({
-				left: parseInt(this.ui.sidebar.css('left'),10) == 0 ? -this.ui.sidebar.outerWidth() : 0
+		slide: function() {
+			$('#sidebar').animate({
+				left: parseInt($('#sidebar').css('left'),10) == 0 ? -$('#sidebar').outerWidth() : 0
 			});
 
-			this.ui.controlsTop.animate({
-				left: parseInt(this.ui.sidebar.css('left'),10) == 0 ? 0 : 360
-			}).find('b').text(parseInt(this.ui.sidebar.css('left'),10) == 0 ? '>' : '<');
+			$('#slide b').text(parseInt($('#sidebar').css('left'),10) == 0 ? '>' : '<');
 
-			if (this.ui.goTop.css('display') == 'block') {
-				this.ui.goTop.css({display: 'none'});
+			if ($('#go-top').css('display') == 'block') {
+				$('#go-top').css({display: 'none'});
 			}
-		}*/
+		}
 
 	});
 

@@ -16,15 +16,15 @@
             <section id="search"></section>
             <section id="status"></section>
             <section id="events"></section>
+
+            <div id="controls-top">
+                <a id="slide"><b><</b></a>
+            </div>
+
+            <div id="controls-bottom">
+                <a id="go-top"><b>^</b></a>
+            </div>
         </section>
-
-        <div id="controls-top">
-            <a id="slide"><b><</b></a>
-        </div>
-
-        <div id="controls-bottom">
-            <a id="go-top"><b>^</b></a>
-        </div>
 
         <div id="map"></div>
 

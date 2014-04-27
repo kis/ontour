@@ -8,6 +8,8 @@ define(['views/EventView',
 
 	return Marionette.CollectionView.extend({
 
+		el: '#events',
+
 		itemView: EventView,
 		
 		itemViewContainer: '#events',
