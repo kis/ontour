@@ -43,11 +43,12 @@ define(['text',
 
 		addMarker: function() {
 			if (this.model.get('venue').location['geo:point']['geo:lat'] && 
-				this.model.get('venue').location['geo:point']['geo:long']) {
+				this.model.get('venue').location['geo:point']['geo:long'] &&
+				this.model.get('icon')) {
 
 				var marker = L.marker([this.model.get('venue').location['geo:point']['geo:lat'], 
 									   this.model.get('venue').location['geo:point']['geo:long']],
-									   {icon: this.model.get('icon') ? this.model.get('icon') : null})
+									   {icon: this.model.get('icon')})
 							.addTo(map);
 
 				this.model.set('marker', marker);

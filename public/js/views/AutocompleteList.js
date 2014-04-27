@@ -28,7 +28,7 @@ define(['views/AutocompleteItemView',
 
 		repaint: function() {
 			this.collection.reset();
-			this.$el.show();
+			this.$el.hide().show();
 		},
 
 		close: function() {
