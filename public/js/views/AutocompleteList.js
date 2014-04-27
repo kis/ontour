@@ -100,6 +100,8 @@ define(['views/AutocompleteItemView',
 					//enter - get termin to input and search
 					if (typeof this.collection.getElement() != 'undefined') {
 						channel.trigger('search', this.collection.getElement().get('title'));
+					} else {
+						channel.trigger('fieldInvalid');
 					}
 
 					this.close();

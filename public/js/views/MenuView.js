@@ -33,6 +33,7 @@ define(['channel',
 		},
 
 		initialize: function() {
+			this.listenTo(channel, 'fieldInvalid', this.fieldInvalid);
 			this.listenTo(channel, 'search', this.search);
 			this.listenTo(this.model, 'change', this.updateMenu);
 			this.bindUIElements();
@@ -72,14 +73,12 @@ define(['channel',
 
 		search: function(item) {
 			this.bindUIElements();
-
-			/*if (item == '') {
-				this.ui.searchField.addClass("invalid").focus();
-				return false;
-			}*/
-
 			this.ui.searchField.val(item);
 			this.getEvents();
+		},
+
+		fieldInvalid: function() {
+			this.ui.searchField.addClass("invalid").focus();
 		},
 
 		getEvents: function() {
@@ -87,7 +86,7 @@ define(['channel',
 			var search_val = this.ui.searchField.val();
 
 			if (!search_val) {
-				this.ui.searchField.addClass("invalid").focus();
+				this.fieldInvalid();
 				return false;
 			} else {
 				this.ui.searchField.removeClass("invalid").focus();

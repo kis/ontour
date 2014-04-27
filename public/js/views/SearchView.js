@@ -7,9 +7,9 @@ define(['marionette',
 		
 		el: '#status',
 
-		tplNotFound: _.template('<h3>Not found</h3>'),
-		tplLoaded: _.template('<h3>Loading <%= page * 10 %> of <%= total %></h3>'),
-		tplFinished: _.template('<h3>Finished <%= total %> of <%= total %></h3>'),
+		tplNotFound: _.template('Not found'),
+		tplLoad: _.template('<%= page * 10 %> / <%= total %>'),
+		tplFinish: _.template('<%= total %> / <%= total %>'),
 
 		initialize: function() {
 			channel.trigger('reset');
@@ -21,12 +21,12 @@ define(['marionette',
 
 		render: function() {
 
-			// this.$el.show();
+			this.$el.show();
 
 			if (this.model.get('page') < this.model.get('totalPages')) {
-				this.$el.html(this.tplLoaded(this.model.toJSON()));
+				this.$el.html(this.tplLoad(this.model.toJSON()));
 			} else {
-				this.$el.html(this.tplFinished(this.model.toJSON()));
+				this.$el.html(this.tplFinish(this.model.toJSON()));
 				
 				channel.trigger('addPaths');
 			}

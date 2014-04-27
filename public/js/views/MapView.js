@@ -12,12 +12,12 @@ define(['channel',
 			4l7djmvo*/
 
 			this.model.set('map', L.mapbox.map('map', 'examples.map-vyofok3q').setView([0, 0], 2))
-					  .get('map').zoomControl.setPosition('bottomright');
+				.get('map').zoomControl.setPosition('bottomright');
 		},
 
 		getMap: function() {
 			return this.model.get('map');
-		},
+		}
 
 	});
 
