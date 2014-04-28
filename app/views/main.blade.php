@@ -28,7 +28,7 @@
 
         <div id="map"></div>
 
-        <script data-main="build/main.js" src="js/lib/require.js"></script>
+        <script data-main="dist/main.js" src="js/lib/require.js"></script>
 
     </body>
 </html>

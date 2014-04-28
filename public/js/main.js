@@ -1,4 +1,4 @@
-require.config({
+requirejs.config({
 	shim: {
 		jquery: {
 			exports: '$',
@@ -24,8 +24,8 @@ require.config({
 	},
 
 	paths: {
-		jquery: 'http://code.jquery.com/jquery-latest.min',
-		mapbox: 'https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox',
+		jquery: 'lib/jquery.min', //'http://code.jquery.com/jquery-latest.min',
+		mapbox: 'lib/mapbox', //'https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox',
 		text: 'lib/text',
 		underscore: 'lib/underscore',
 		backbone: 'lib/backbone',
@@ -33,7 +33,7 @@ require.config({
 	}
 });
 
-require(['app'], function(app) {
+requirejs(['app'], function(app) {
 	'use strict';
 	
 	app.start();

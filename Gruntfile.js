@@ -39,7 +39,26 @@ module.exports = function (grunt) {
 					'public/css/style.css': ['<%= styles %>']
 				}
 			}
-		}
+		},
+		requirejs: {
+			compile: {
+				options: {
+					// appDir: "./",
+					baseUrl: "public/js",
+					mainConfigFile : "public/js/main.js",
+					// dir: "public/js/dist",
+					// modules: [
+						// {
+							include: 'main',
+						// }
+					// ],
+					out: "public/dist/main.js",
+					// fileExclusionRegExp: /^(r|build)\.js$/,
+					removeCombined: false,
+					findNestedDependencies: false
+				}
+			}
+		}		
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');

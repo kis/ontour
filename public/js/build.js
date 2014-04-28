@@ -1,13 +1,18 @@
 ({
-    appDir: ".",
-    baseUrl: ".",
-    dir: "../build",
+    // appDir: "./",
+    baseUrl: "./",
+    mainConfigFile : "./main.js",
+    dir: "./dist",
     modules: [
         {
-            name: "main"
+            name: 'main'
         }
     ],
-    
+    // out: "dist/main.js",
+    // fileExclusionRegExp: /^(r|build)\.js$/,
+    removeCombined: true,
+    findNestedDependencies: true,
+
     shim: {
 		jquery: {
 			exports: '$',
@@ -36,8 +41,8 @@
 		jquery: 'http://code.jquery.com/jquery-latest.min',
 		mapbox: 'https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox',
 		text: 'lib/text',
-		underscore: 'lib/underscore-min',
-		backbone: 'lib/backbone-min',
-		marionette: 'lib/backbone.marionette.min'
+		underscore: 'lib/underscore',
+		backbone: 'lib/backbone',
+		marionette: 'lib/backbone.marionette'
 	}
 })
