@@ -33,7 +33,7 @@ define(['text',
 			if (this.model.get('image')) {
 				var icon = L.icon({
 					iconUrl: this.model.get('image'),
-					iconSize: this.model.get('param') == 'geo' ? [75, 75] : [25, 25],
+					iconSize: this.model.collection.param == 'geo' ? [75, 75] : [25, 25],
 					className: "dot"
 				});
 

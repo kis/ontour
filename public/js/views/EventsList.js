@@ -37,20 +37,20 @@ define(['views/EventView',
 				artists: value.artists,
 				date: value.startDate,
 				venue: value.venue,
-				image: value.image[2]['#text'],
-				param: param
+				image: value.image[2]['#text']
 			}));
+
+			this.collection.param = param;
 
 		},
 
 		addPaths: function(event) {
+			if (this.collection.param == 'geo') {
+				return false;
+			}
 
 			this.collection.each(function(event, index, list) {
-				if (event.get('param') == 'geo' || index == list.length - 1) {
-					return false;
-				}
-
-				if (!event.get('marker') || !list[index+1].get('marker')) {
+				if (!event.get('marker') || !list[index+1].get('marker') || index == list.length - 1) {
 					return false;
 				}
 

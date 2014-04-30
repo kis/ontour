@@ -8,6 +8,8 @@ define(['backbone',
 
 		showMarkers: true,
 
-		showPaths: true
+		showPaths: true,
+
+		param: ''
 	});
 });
