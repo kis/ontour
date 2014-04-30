@@ -16,11 +16,7 @@
             <section id="status"></section>
             <section id="events"></section>
 
-            <div id="controls-top">
-                <a id="slide"><b><</b></a>
-                <a id="markers" class="layers"><b>markers</b></a>
-                <a id="paths" class="layers"><b>paths</b></a>
-            </div>
+            <div id="controls-top"></div>
 
             <div id="controls-bottom">
                 <a id="go-top"><b>^</b></a>

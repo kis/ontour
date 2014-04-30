@@ -27,10 +27,6 @@ define(['channel',
 		},
 
 		initialize: function() {
-			$('#slide').on('click', this.slide);
-			$('#paths').on('click', this.switchPaths);
-			$('#markers').on('click', this.switchMarkers);
-
 			this.listenTo(channel, 'fieldInvalid', this.fieldInvalid);
 			this.listenTo(channel, 'search', this.search);
 			this.listenTo(this.model, 'change', this.updateMenu);
@@ -99,26 +95,6 @@ define(['channel',
 			}
 
 			channel.trigger('getEvents', search_val, param);
-		},
-
-		slide: function() {
-			$('#sidebar').animate({
-				left: parseInt($('#sidebar').css('left'),10) == 0 ? -$('#sidebar').outerWidth() : 0
-			});
-
-			$('#slide b').text(parseInt($('#sidebar').css('left'),10) == 0 ? '>' : '<');
-
-			if ($('#go-top').css('display') == 'block') {
-				$('#go-top').css({display: 'none'});
-			}
-		},
-
-		switchMarkers: function() {
-			channel.trigger('switchMarkers');
-		},
-
-		switchPaths: function() {
-			channel.trigger('switchPaths');
 		}
 
 	});
