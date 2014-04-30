@@ -25,6 +25,8 @@ define(['views/EventView',
 			this.listenTo(channel, 'addEvents', this.addEvents);
 			this.listenTo(channel, 'addPaths', this.addPaths);
 			this.listenTo(channel, 'reset', this.reset);
+			this.listenTo(channel, 'switchMarkers', this.switchMarkers);
+			this.listenTo(channel, 'switchPaths', this.switchPaths);
 		},
 
 		addEvents: function(value, param) {
@@ -59,6 +61,46 @@ define(['views/EventView',
 				event.set('path', polyline);
 			});
 
+		},
+
+		switchMarkers: function() {
+			if (this.collection.showMarkers) {
+				this.collection.showMarkers = false;
+
+				this.collection.each(function(event) {
+					if(event.get('marker')) {
+						map.removeLayer(event.get('marker'));
+					}
+				});
+			} else {
+				this.collection.showMarkers = true;
+
+				this.collection.each(function(event) {
+					if(event.get('marker')) {
+						map.addLayer(event.get('marker'));
+					}
+				});
+			}
+		},
+
+		switchPaths: function() {
+			if (this.collection.showPaths) {
+				this.collection.showPaths = false;
+
+				this.collection.each(function(event) {
+					if(event.get('path')) {
+						map.removeLayer(event.get('path'));
+					}
+				});
+			} else {
+				this.collection.showPaths = true;
+
+				this.collection.each(function(event) {
+					if(event.get('path')) {
+						map.addLayer(event.get('path'));
+					}
+				});
+			}
 		},
 
 		reset: function(event) {

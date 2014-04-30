@@ -4,6 +4,10 @@ define(['backbone',
 	'use strict';
 
 	return Backbone.Collection.extend({
-		model: Event
+		model: Event,
+
+		showMarkers: true,
+
+		showPaths: true
 	});
 });

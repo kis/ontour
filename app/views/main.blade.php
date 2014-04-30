@@ -11,7 +11,6 @@
     </head>
 
     <body>
-
         <section id="sidebar">
             <section id="search"></section>
             <section id="status"></section>
@@ -19,6 +18,8 @@
 
             <div id="controls-top">
                 <a id="slide"><b><</b></a>
+                <a id="markers" class="layers"><b>markers</b></a>
+                <a id="paths" class="layers"><b>paths</b></a>
             </div>
 
             <div id="controls-bottom">
@@ -29,6 +30,5 @@
         <div id="map"></div>
 
         <script data-main="js/main.js" src="js/lib/require.js"></script>
-
     </body>
 </html>
