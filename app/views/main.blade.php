@@ -23,6 +23,8 @@
             </div>
         </section>
 
+        <div id="settings"></div>
+
         <div id="map"></div>
 
         <script data-main="js/main.js" src="js/lib/require.js"></script>

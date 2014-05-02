@@ -196,8 +196,32 @@ $padding = 14px
 .hover
     background #dfdfdf
 
+/**
+  * User settings
+  */
+
+#settings
+    position absolute
+    top 0px
+    right 20px
+    z-index 3
+    margin-top 15px
+
+#settings a
+    cursor pointer
+    padding $padding
+    width 50px
+    line-height 25pt
+    text-align center
+    font $font
+    display inline-block
+    color white
+    background rgba(16,49,90,0.5)
+    &:hover
+        background rgba(16,49,90,1) !important
+
 @-moz-document url-prefix()
-    .tab, .search-field, .search-button, #events, .artist-data, #status, #autocomplete, .layers
+    .tab, .search-field, .search-button, #events, .artist-data, #status, #autocomplete, .layers, #settings a
         font bold small-caps 12px serif
         line-height 20px
     .search-field
