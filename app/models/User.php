@@ -1,16 +1,16 @@
 <?php
 
+use Jenssegers\Mongodb\Model as Eloquent;
 use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class UserModel extends Eloquent implements UserInterface {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'users';
+	protected $collection = 'users';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
