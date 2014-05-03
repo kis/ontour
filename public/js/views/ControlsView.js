@@ -36,10 +36,12 @@ define(['channel',
 		},
 
 		switchMarkers: function() {
+			this.ui.markers.toggleClass('active');
 			channel.trigger('switchMarkers');
 		},
 
 		switchPaths: function() {
+			this.ui.paths.toggleClass('active');
 			channel.trigger('switchPaths');
 		}
 

@@ -12,13 +12,13 @@ define(['channel',
 		template: _.template(settingsTmpl),
 
 		ui: {
-			login   : '#login',
-			signin   : '#sign-in'
+			signin   : '#sign-in',
+			signup   : '#sign-up'
 		},
 
 		events: {
-			'click @ui.login'   : 'slide',
-			'click @ui.signin' : 'switchMarkers'
+			'click @ui.signup' : 'signup',
+			'click @ui.signin' : 'signin'
 		}
 
 	});
