@@ -16,6 +16,11 @@ Route::get('/home', function()
 	return View::make('home');
 });
 
+Route::get('/registration', function()
+{
+	return View::make('registration');
+});
+
 Route::get('/', function()
 {
 	return View::make('main');

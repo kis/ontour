@@ -1,6 +1,6 @@
 <?php
 
-use Jenssegers\Mongodb\Model as Eloquent;
+//use Jenssegers\Mongodb\Model as Eloquent;
 use Illuminate\Auth\UserInterface;
 
 class UserModel extends Eloquent implements UserInterface {
@@ -10,7 +10,7 @@ class UserModel extends Eloquent implements UserInterface {
 	 *
 	 * @var string
 	 */
-	protected $collection = 'users';
+	protected $table = 'users';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -48,5 +48,22 @@ class UserModel extends Eloquent implements UserInterface {
 	{
 		return $this->email;
 	}
+
+    /**
+     * Register user
+     */
+    public function registration() {
+        Users::create(array(
+            'login'      => Input::get('login'),
+            'password'   => Input::get('password'),
+            'email'      => Input::get('email'),
+            'first_name' => Input::get('first_name'),
+            'last_name'  => Input::get('last_name'),
+            'sex'        => Input::get('sex'),
+            'location'   => Input::get('location'),
+            'phone'      => Input::get('phone'),
+            'photo'      => Input::get('photo')
+        ));
+    }
 
 }
