@@ -7,20 +7,33 @@ define(['channel',
 
 	return Marionette.ItemView.extend({
 
-		itemViewContainer: '#controls-top',
+		itemViewContainer: '#controls',
 
 		template: _.template(controlsTmpl),
+
+		initialize: function() {
+			this.listenTo(channel, 'gotop-show', this.gotopShow);
+			this.listenTo(channel, 'gotop-hide', this.gotopHide);
+		},
+
+		onShow: function() {
+			this.ui.gotop.css({
+				display: 'none'
+			});
+		},
 
 		ui: {
 			slide   : '#slide',
 			paths   : '#paths',
-			markers : '#markers'
+			markers : '#markers',
+			gotop   : '#go-top'
 		},
 
 		events: {
 			'click @ui.slide'   : 'slide',
-			'click @ui.markers' : 'switchMarkers', 
-			'click @ui.paths'   : 'switchPaths'
+			'click @ui.markers' : 'switchMarkers',
+			'click @ui.paths'   : 'switchPaths',
+			'click @ui.gotop'   : 'gotop'
 		},
 
 		slide: function() {
@@ -30,8 +43,8 @@ define(['channel',
 
 			$('#slide b').text(parseInt($('#sidebar').css('left'),10) == 0 ? '>' : '<');
 
-			if ($('#go-top').css('display') == 'block') {
-				$('#go-top').css({display: 'none'});
+			if (this.ui.gotop.css('display') == 'block') {
+				this.ui.gotop.css({display: 'none'});
 			}
 		},
 
@@ -43,6 +56,22 @@ define(['channel',
 		switchPaths: function() {
 			this.ui.paths.toggleClass('active');
 			channel.trigger('switchPaths');
+		},
+
+		gotop: function() {
+			channel.trigger('gotop');
+		},
+
+		gotopShow: function() {
+			this.ui.gotop.css({
+				display: 'inline-block'
+			});
+		},
+
+		gotopHide: function() {
+			this.ui.gotop.css({
+				display: 'none'
+			});
 		}
 
 	});

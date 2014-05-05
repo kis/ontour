@@ -37,7 +37,7 @@ define(['models/Menu',
 
 	app.addRegions({
 		menu: '#search',
-		controls: '#controls-top',
+		controls: '#controls',
 		settings: '#settings',
 		autocomplete: '#autocomplete',
 		// status: '#status',

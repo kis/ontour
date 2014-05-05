@@ -16,11 +16,7 @@
             <section id="status"></section>
             <section id="events"></section>
 
-            <div id="controls-top"></div>
-
-            <div id="controls-bottom">
-                <a id="go-top"><b>^</b></a>
-            </div>
+            <div id="controls"></div>
         </section>
 
         <div id="settings"></div>

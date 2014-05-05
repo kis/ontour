@@ -19,14 +19,13 @@ define(['views/EventView',
 		},
 
 		initialize: function() {
-			$('#go-top').on('click', this.gotop.bind(this));
-
-			this.listenTo(channel, 'getEvents', this.reset);
 			this.listenTo(channel, 'addEvents', this.addEvents);
 			this.listenTo(channel, 'addPaths', this.addPaths);
+			this.listenTo(channel, 'getEvents', this.reset);
 			this.listenTo(channel, 'reset', this.reset);
 			this.listenTo(channel, 'switchMarkers', this.switchMarkers);
 			this.listenTo(channel, 'switchPaths', this.switchPaths);
+			this.listenTo(channel, 'gotop', this.gotop);
 		},
 
 		addEvents: function(value, param) {
@@ -120,13 +119,9 @@ define(['views/EventView',
 
 		scroll: function() {
 			if (this.$el.scrollTop() > this.$el.height()) {
-				$('#go-top').css({
-					display: 'block'
-				});
+				channel.trigger('gotop-show');
 			} else {
-				$('#go-top').css({
-					display: 'none'
-				});
+				channel.trigger('gotop-hide');
 			}
 		},
 

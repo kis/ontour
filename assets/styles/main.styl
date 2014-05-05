@@ -5,7 +5,7 @@ $sidebar_width = 303px
 $padding = 14px
 
 /**
- * Search
+ * Sidebar and Controls
  */
 
 #sidebar
@@ -17,7 +17,7 @@ $padding = 14px
     background rgba(16,49,90,0.2)
     z-index 3
 
-#controls-top
+#controls
     position absolute
     top 0px
     left 360px
@@ -25,7 +25,7 @@ $padding = 14px
     z-index 3
     margin-top 15px
 
-#controls-top a
+#controls a
     cursor pointer
     padding $padding
     width 60px
@@ -41,25 +41,16 @@ $padding = 14px
 #slide
     width 10px !important
 
-#controls-bottom
+#go-top
     position fixed
     bottom 15px
     left 360px
-    z-index 3
     margin-top 15px
+    width 10px !important
 
-#go-top
-    cursor pointer
-    padding $padding
-    width 10px
-    line-height 25pt
-    text-align center
-    font $font
-    display none
-    color white
-    background rgba(16,49,90,0.5)
-    &:hover
-        background rgba(16,49,90,1) !important
+/**
+ * Search
+ */
 
 #search
     position absolute
@@ -114,6 +105,10 @@ $padding = 14px
     &:hover
         background $bg !important
 
+/**
+ * Events
+ */
+
 #events
     position absolute
     top 160px
@@ -151,6 +146,10 @@ $padding = 14px
 .artist-data
     font $font
     margin 5px 5px 5px 80px
+
+/**
+ * Status
+ */
 
 #status
     position absolute

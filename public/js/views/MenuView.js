@@ -30,7 +30,9 @@ define(['channel',
 			this.listenTo(channel, 'fieldInvalid', this.fieldInvalid);
 			this.listenTo(channel, 'search', this.search);
 			this.listenTo(this.model, 'change', this.updateMenu);
-			this.bindUIElements();
+		},
+
+		onShow: function() {
 			this.ui.searchField.val('').focus();
 		},
 
