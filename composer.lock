@@ -181,12 +181,12 @@
             "version": "v1.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jenssegers/Laravel-MongoDB.git",
+                "url": "https://github.com/jenssegers/laravel-mongodb.git",
                 "reference": "25a8bacf9e6f57f01ffcf066275f7a7d1470b823"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jenssegers/Laravel-MongoDB/zipball/25a8bacf9e6f57f01ffcf066275f7a7d1470b823",
+                "url": "https://api.github.com/repos/jenssegers/laravel-mongodb/zipball/25a8bacf9e6f57f01ffcf066275f7a7d1470b823",
                 "reference": "25a8bacf9e6f57f01ffcf066275f7a7d1470b823",
                 "shasum": ""
             },
