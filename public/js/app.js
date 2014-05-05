@@ -40,7 +40,7 @@ define(['models/Menu',
 		controls: '#controls',
 		settings: '#settings',
 		autocomplete: '#autocomplete',
-		// status: '#status',
+		// search: '#status',
 		events: '#events'
 	});
 
@@ -56,7 +56,7 @@ define(['models/Menu',
 		app.controls.show(controlsView);
 		app.settings.show(settingsView);
 		app.autocomplete.show(autocompleteList);
-		// app.status.show(SearchView);
+		// app.search.show(searchView);
 		app.events.show(eventsListView);
 	});
 

@@ -1,12 +1,13 @@
-define(['marionette',
-		'channel',
+define(['channel',
 		'map'
-], function(Marionette, channel, map) {
+], function(channel, map) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
 		
 		el: '#status',
+
+		// itemViewContainer: '#status',
 
 		tplNotFound: _.template('Not found'),
 		tplLoad: _.template('<%= page * 10 %> / <%= total %>'),
