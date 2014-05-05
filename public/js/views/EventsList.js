@@ -49,7 +49,7 @@ define(['views/EventView',
 			}
 
 			this.collection.each(function(event, index, list) {
-				if (!event.get('marker') || !list[index+1].get('marker') || index == list.length - 1) {
+				if (!event.get('marker') || index == list.length - 1 || !list[index+1].get('marker')) {
 					return false;
 				}
 
@@ -59,7 +59,6 @@ define(['views/EventView',
 				var polyline = L.polyline([latlng1, latlng2], {color: '#10315a', weight: 2, opacity: 1}).addTo(map);
 				event.set('path', polyline);
 			});
-
 		},
 
 		switchMarkers: function() {

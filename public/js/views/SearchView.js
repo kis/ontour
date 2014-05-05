@@ -14,33 +14,28 @@ define(['marionette',
 
 		initialize: function() {
 			channel.trigger('reset');
-
 			this.listenTo(channel, 'getEvents', this.getEvents);
-
-			// this.model.on('change', this.render, this);
+			this.listenTo(this.model, 'change', this.render);
 		},
 
 		render: function() {
-
 			this.$el.show();
 
 			if (this.model.get('page') < this.model.get('totalPages')) {
 				this.$el.html(this.tplLoad(this.model.toJSON()));
 			} else {
 				this.$el.html(this.tplFinish(this.model.toJSON()));
-				
-				channel.trigger('addPaths');
 			}
 
 			if (!this.model.get('totalPages')) {
 				this.$el.html(this.tplNotFound());
 			}
-
 		},
 
 		getEvents: function(search_val, param) {
 
-			this.model.clear().set(this.model.defaults);
+			channel.trigger('reset');
+			this.model.set(this.model.defaults);
 
 			var self = this;
 
@@ -65,11 +60,12 @@ define(['marionette',
 
 						if (self.model.get('page') <= self.model.get('totalPages')) {
 							go();
+						} else {
+							channel.trigger('addPaths');
 						}
 					}
 				});
 			}());
-
 		},
 
 		getEventsData: function(data, param) {
@@ -82,9 +78,7 @@ define(['marionette',
 			}
 
 			this.model.set({totalPages: data.events["@attr"].totalPages,
-						total: data.events["@attr"].total});
-
-			this.render();
+						    total: data.events["@attr"].total});
 
 			var events = data.events.event;
 
@@ -98,7 +92,7 @@ define(['marionette',
 
 				if (self.model.get('page') == 1 && index == 0) {
 					map.setView(L.latLng(value.venue.location['geo:point']['geo:lat'], 
-								value.venue.location['geo:point']['geo:long']), 
+										 value.venue.location['geo:point']['geo:long']), 
 								param == "artist" ? 4 : 12);
 				}
 			});
