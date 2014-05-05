@@ -13,10 +13,16 @@ define(['channel',
 
 			this.model.set('map', L.mapbox.map('map', 'examples.map-vyofok3q').setView([0, 0], 2))
 				.get('map').zoomControl.setPosition('bottomright');
+
+			this.listenTo(channel, 'setView', this.setView);
 		},
 
 		getMap: function() {
 			return this.model.get('map');
+		},
+
+		setView: function(latlon, zoom) {
+			this.getMap().setView(latlon, zoom);
 		}
 
 	});

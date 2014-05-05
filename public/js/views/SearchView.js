@@ -91,9 +91,11 @@ define(['marionette',
 				channel.trigger('addEvents', value, param);				
 
 				if (self.model.get('page') == 1 && index == 0) {
-					map.setView(L.latLng(value.venue.location['geo:point']['geo:lat'], 
-										 value.venue.location['geo:point']['geo:long']), 
-								param == "artist" ? 4 : 12);
+					var latlon = L.latLng(value.venue.location['geo:point']['geo:lat'], 
+										 value.venue.location['geo:point']['geo:long']);
+					var zoom = (param == "artist") ? 4 : 12;
+
+					channel.trigger('setView', latlon, zoom);
 				}
 			});
 
