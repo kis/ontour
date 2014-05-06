@@ -52,8 +52,8 @@ class UserModel extends Eloquent implements UserInterface {
     /**
      * Register user
      */
-    public function registration() {
-        Users::create(array(
+    public function register() {
+        UserModel::create(array(
             'login'      => Input::get('login'),
             'password'   => Input::get('password'),
             'email'      => Input::get('email'),
