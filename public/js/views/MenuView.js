@@ -20,24 +20,35 @@ define(['channel',
 		},
 
 		events: {
-			'click @ui.tabArtist, @ui.tabCity' : 'setActiveTab',
-			'input @ui.searchField'			   : 'getAutocompleteData',
-			'keydown @ui.searchField'		   : 'execAutocompleteProperty',
-			'click @ui.searchButton'		   : 'getEvents'
+			'click @ui.tabArtist'     : 'setActiveTabArtist',
+			'click @ui.tabCity'		  : 'setActiveTabCity',
+			'input @ui.searchField'	  : 'getAutocompleteData',
+			'keydown @ui.searchField' : 'execAutocompleteProperty',
+			'click @ui.searchButton'  : 'getEvents'
 		},
 
 		initialize: function() {
 			this.listenTo(channel, 'fieldInvalid', this.fieldInvalid);
 			this.listenTo(channel, 'search', this.search);
-			this.listenTo(this.model, 'change', this.updateMenu);
+			this.listenTo(this.model, 'change:activeTab', this.updateMenu);
 		},
 
 		onShow: function() {
 			this.ui.searchField.val('').focus();
 		},
 
-		setActiveTab: function(e) {
-			this.model.set('activeTab', $(e.target).attr('id'));
+		setActiveTabArtist: function() {
+			this.model.set({
+				'activeTab' : 'artist',
+				'param'     : 'artist'
+			});
+		},
+
+		setActiveTabCity: function() {
+			this.model.set({
+				'activeTab' : 'city',
+				'param'     : 'geo'
+			});
 		},
 
 		updateMenu: function() {
@@ -78,25 +89,16 @@ define(['channel',
 		},
 
 		getEvents: function() {
+			this.model.set('value', this.ui.searchField.val());
 
-			var search_val = this.ui.searchField.val();
-
-			if (!search_val) {
+			if (!this.model.get('value')) {
 				this.fieldInvalid();
 				return false;
 			} else {
 				this.ui.searchField.removeClass("invalid").focus();
 			}
 
-			var param;
-
-			if (this.model.get('activeTab') == 'artist') {
-				param = 'artist';
-			} else if (this.model.get('activeTab') == 'city') {
-				param = 'geo';
-			}
-
-			channel.trigger('getEvents', search_val, param);
+			channel.trigger('getEvents', this.model.get('value'), this.model.get('param'));
 		}
 
 	});

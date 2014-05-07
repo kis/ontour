@@ -5,14 +5,15 @@ define(['backbone'], function(Backbone) {
 
 		defaults: {
 			activeTab: 'artist',
-			value: ''
-		},
+			value: '',
+			param: 'artist'
+		}
 
-		validate: function() {
+		/*validate: function() {
 			if (value == '') {
 				return -1;
 			}
-		}
+		}*/
 
 	});
 

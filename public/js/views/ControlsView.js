@@ -11,17 +11,6 @@ define(['channel',
 
 		template: _.template(controlsTmpl),
 
-		initialize: function() {
-			this.listenTo(channel, 'gotop-show', this.gotopShow);
-			this.listenTo(channel, 'gotop-hide', this.gotopHide);
-		},
-
-		onShow: function() {
-			this.ui.gotop.css({
-				display: 'none'
-			});
-		},
-
 		ui: {
 			slide   : '#slide',
 			paths   : '#paths',
@@ -34,6 +23,17 @@ define(['channel',
 			'click @ui.markers' : 'switchMarkers',
 			'click @ui.paths'   : 'switchPaths',
 			'click @ui.gotop'   : 'gotop'
+		},
+
+		initialize: function() {
+			this.listenTo(channel, 'gotop-show', this.gotopShow);
+			this.listenTo(channel, 'gotop-hide', this.gotopHide);
+		},
+
+		onShow: function() {
+			this.ui.gotop.css({
+				display: 'none'
+			});
 		},
 
 		slide: function() {
