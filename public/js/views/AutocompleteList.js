@@ -75,9 +75,7 @@ define(['views/AutocompleteItemView',
 
 			var self = this;
 
-			var promise = $.getJSON("http://gd.geobytes.com/AutoCompleteCity?callback=?&q="+city);
-
-			promise.done(function (data) {
+			$.getJSON("http://gd.geobytes.com/AutoCompleteCity?callback=?&q="+city).done(function (data) {
 				data.length = 5;
 
 				data.forEach(function(value, index) {

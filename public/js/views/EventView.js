@@ -47,12 +47,11 @@ define(['text',
 				this.model.get('venue').location['geo:point']['geo:long'] &&
 				this.model.get('icon')) {
 
-				var marker = L.marker([this.model.get('venue').location['geo:point']['geo:lat'], 
-									   this.model.get('venue').location['geo:point']['geo:long']],
-									   {icon: this.model.get('icon')})
-							.addTo(map);
-
-				this.model.set('marker', marker);
+				this.model.set('marker', 
+					L.marker([this.model.get('venue').location['geo:point']['geo:lat'], 
+							  this.model.get('venue').location['geo:point']['geo:long']],
+							{icon: this.model.get('icon')})
+					.addTo(map));
 			}
 		},
 
@@ -62,18 +61,15 @@ define(['text',
 				return false;
 			}
 
-			var latlng = this.model.get('marker').getLatLng();
-
-			var popup = L.popup({
-							autoPan: false,
-							closeButton: false,
-							offset: L.point(0, -30),
-							closeOnClick: false
-						})
-						.setLatLng(latlng)
-						.setContent(this.template(this.model.toJSON()));
-
-			this.model.set("popup", popup);
+			this.model.set("popup", 
+				L.popup({
+					autoPan: false,
+					closeButton: false,
+					offset: L.point(0, -30),
+					closeOnClick: false
+				})
+				.setLatLng(this.model.get('marker').getLatLng())
+				.setContent(this.template(this.model.toJSON())));
 
 			var actions = {
 				mouseover: this.showPopup,
@@ -101,7 +97,7 @@ define(['text',
 		showPopup: function() {
 			if (this.model.get('popup') != null && this.model.get('selected') == false) {
 				map.addLayer(this.model.get('popup'));
-				$(this.el).addClass('selected');
+				this.$el.addClass('selected');
 				return false;
 			}
 		},
@@ -109,7 +105,7 @@ define(['text',
 		hidePopup: function() {
 			if (this.model.get('popup') != null && this.model.get('selected') == false) {
 				map.removeLayer(this.model.get('popup'));
-				$(this.el).removeClass('selected');
+				this.$el.removeClass('selected');
 				return false;
 			}
 		}

@@ -8,13 +8,7 @@ define(['backbone'], function(Backbone) {
 			value: '',
 			param: 'artist'
 		}
-
-		/*validate: function() {
-			if (value == '') {
-				return -1;
-			}
-		}*/
-
+		
 	});
 
 });

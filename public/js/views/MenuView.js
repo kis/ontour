@@ -93,12 +93,10 @@ define(['channel',
 
 			if (!this.model.get('value')) {
 				this.fieldInvalid();
-				return false;
 			} else {
 				this.ui.searchField.removeClass("invalid").focus();
+				channel.trigger('getEvents', this.model.get('value'), this.model.get('param'));
 			}
-
-			channel.trigger('getEvents', this.model.get('value'), this.model.get('param'));
 		}
 
 	});
