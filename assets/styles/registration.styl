@@ -1,11 +1,13 @@
 
+$font = bold small-caps 16px serif
+
 body
 	background #c1c6c9
 
 #registration
 	position relative
 	width 500px
-	height 600px
+	height 300px
 	margin 10% 35%
 	background #0c1f38
 
@@ -13,7 +15,7 @@ body
 	position relative
 	top 50px
 	left 50px
-	width 80%
+	width 75%
 	line-height 25pt
 	font $font
 	display block
@@ -23,9 +25,10 @@ body
 
 #register
 	position relative
-	top 20px
+	top 50px
 	left 50px
-	width 30%
+	width 200px
+	height 50px
 	cursor pointer
 	padding $padding
 	width 150px
@@ -34,4 +37,6 @@ body
 	font $font
 	display block
 	color white
-	background green
+	background rgba(16,49,90,0.5)
+	&:hover
+		background rgba(16,49,90,1) !important

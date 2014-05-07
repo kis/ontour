@@ -27,9 +27,9 @@ requirejs.config({
 		jquery: 'lib/jquery.min', //'http://code.jquery.com/jquery-latest.min',
 		mapbox: 'lib/mapbox', //'https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox',
 		text: 'lib/text',
-		underscore: 'lib/underscore',
-		backbone: 'lib/backbone',
-		marionette: 'lib/backbone.marionette'
+		underscore: 'lib/underscore-min',
+		backbone: 'lib/backbone-min',
+		marionette: 'lib/backbone.marionette.min'
 	}
 });
 

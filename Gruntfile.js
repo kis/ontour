@@ -47,20 +47,96 @@ module.exports = function (grunt) {
 					baseUrl: "public/js",
 					mainConfigFile : "public/js/main.js",
 					// dir: "public/js/dist",
-					// modules: [
-						// {
-							include: 'main',
-						// }
-					// ],
-					out: "public/dist/main.js",
+					modules: [
+						{
+							name: 'app',
+
+							include: [
+								"collections/AutocompleteCollection.js",
+								"collections/Events.js",
+
+								"models/AutocompleteItem.js",
+								"models/Controls.js",
+								"models/Event.js",
+								"models/Map.js",
+								"models/Menu.js",
+								"models/Search.js",
+
+								"views/AutocompleteItemView.js",
+								"views/AutocompleteList.js",
+								"views/ControlsView.js",
+								"views/EventView.js",
+								"views/MapView.js",
+								"views/MenuView.js",
+								"views/SearchView.js",
+								"views/SettingsView.js"
+							]
+						},
+						{
+							name: 'map'
+						},
+						{
+							name: 'channel'
+						}
+					],
+					dir: "public/js/build",
 					// fileExclusionRegExp: /^(r|build)\.js$/,
 					removeCombined: false,
 					findNestedDependencies: false
 				}
 			}
-		}		
+		}
+		/*concat: {
+			dist: {
+				src: [
+					"public/js/lib/jquery.min.js",
+					"public/js/lib/mapbox.js",
+					"public/js/lib/text.js",
+					"public/js/lib/underscore-min.js",
+					"public/js/lib/backbone-min.js",
+					"public/js/lib/backbone.marionette.min.js",
+					"public/js/lib/require-min.js",
+
+					"public/js/*.js",
+
+					"public/js/collections/AutocompleteCollection.js",
+					"public/js/collections/Events.js",
+
+					"public/js/models/AutocompleteItem.js",
+					"public/js/models/Controls.js",
+					"public/js/models/Event.js",
+					"public/js/models/Map.js",
+					"public/js/models/Menu.js",
+					"public/js/models/Search.js",
+
+					"public/js/templates/Controls.tmpl",
+					"public/js/templates/Event.tmpl",
+					"public/js/templates/Menu.tmpl",
+					"public/js/templates/Settings.tmpl",
+
+					"public/js/views/AutocompleteView.js",
+					"public/js/views/AutocompleteList.js",
+					"public/js/views/ControlsView.js",
+					"public/js/views/EventView.js",
+					"public/js/views/MapView.js",
+					"public/js/views/MenuView.js",
+					"public/js/views/SearchView.js",
+					"public/js/views/SettingsView.js",
+
+				],
+				dest: 'public/js/build/build.js'
+			}
+		},
+
+		min: {
+			dist: {
+				src: ['public/js/build/build.js'],
+				dest: 'public/js/build/build.min.js'
+			}
+		},	*/	
 	});
 
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-stylus');
