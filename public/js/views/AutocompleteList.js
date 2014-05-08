@@ -126,7 +126,7 @@ define(['views/AutocompleteItemView',
 			if (e.type == 'keydown' && e.keyCode == 27) {
 				this.close();
 			}
-		},
+		}
 
 	});
 

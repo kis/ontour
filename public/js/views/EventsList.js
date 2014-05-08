@@ -19,7 +19,8 @@ define(['views/EventView',
 		},
 
 		initialize: function() {
-			this.listenTo(channel, 'addEvents', this.addEvents);
+			this.listenTo(channel, 'setParam', this.setParam);
+			this.listenTo(channel, 'addEvent', this.addEvent);
 			this.listenTo(channel, 'addPaths', this.addPaths);
 			this.listenTo(channel, 'getEvents', this.reset);
 			this.listenTo(channel, 'reset', this.reset);
@@ -28,8 +29,11 @@ define(['views/EventView',
 			this.listenTo(channel, 'gotop', this.gotop);
 		},
 
-		addEvents: function(value, param) {
+		setParam: function(param) {
+			this.collection.param = param;
+		},
 
+		addEvent: function(value) {
 			this.collection.add(new Event({
 				id: value.id,
 				title: value.title,
@@ -38,8 +42,6 @@ define(['views/EventView',
 				venue: value.venue,
 				image: value.image[2]['#text']
 			}));
-
-			this.collection.param = param;
 
 			this.$el.perfectScrollbar();
 		},
@@ -103,7 +105,6 @@ define(['views/EventView',
 		},
 
 		reset: function(event) {
-
 			this.collection.each(function(event) {
 				if(event.get('marker')) {
 					map.removeLayer(event.get('marker'));

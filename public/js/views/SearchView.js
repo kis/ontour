@@ -9,9 +9,9 @@ define(['channel',
 
 		// itemViewContainer: '#status',
 
-		tplNotFound: _.template('Not found'),
-		tplLoad: _.template('<%= page * 10 %> / <%= total %>'),
-		tplFinish: _.template('<%= total %> / <%= total %>'),
+		tplNotFound	: _.template('Not found'),
+		tplLoad     : _.template('<%= page * 10 %> / <%= total %>'),
+		tplFinish   : _.template('<%= total %> / <%= total %>'),
 
 		initialize: function() {
 			channel.trigger('reset');
@@ -34,9 +34,9 @@ define(['channel',
 		},
 
 		getEvents: function(search_val, param) {
-
 			channel.trigger('reset');
 			this.model.set(this.model.defaults);
+			channel.trigger('setParam', param);
 
 			var self = this;
 
@@ -70,7 +70,6 @@ define(['channel',
 		},
 
 		getEventsData: function(data, param) {
-
 			var self = this;
 
 			if (data.error == 8 || data.events.total == 0) {
@@ -78,27 +77,25 @@ define(['channel',
 				return false;
 			}
 
-			this.model.set({totalPages: data.events["@attr"].totalPages,
-						    total: data.events["@attr"].total});
-
-			var events = data.events.event;
-
-			if (this.model.get('page') == this.model.get('totalPages') && /1$/.test(this.model.get('total'))) {
-				channel.trigger('addEvents', events, param);	
-				return false;
-			}
-
-			events.forEach(function(value, index) {
-				channel.trigger('addEvents', value, param);
-				
-				if (self.model.get('page') == 1 && index == 0) {
-					channel.trigger('setView', 
-						L.latLng(value.venue.location['geo:point']['geo:lat'], 
-								 value.venue.location['geo:point']['geo:long']), 
-						(param == "artist") ? 4 : 12);
-				}
+			this.model.set({
+				totalPages : data.events["@attr"].totalPages,
+				total      : data.events["@attr"].total
 			});
 
+			if (this.model.get('page') == this.model.get('totalPages') && /1$/.test(this.model.get('total'))) {
+				channel.trigger('addEvent', data.events.event);
+			} else {
+				data.events.event.forEach(function(value, index) {
+					channel.trigger('addEvent', value);
+					
+					if (self.model.get('page') == 1 && index == 0) {
+						channel.trigger('setView', 
+							L.latLng(value.venue.location['geo:point']['geo:lat'], 
+									 value.venue.location['geo:point']['geo:long']), 
+							(param == "artist") ? 4 : 12);
+					}
+				});
+			}
 		}
 
 	});
