@@ -14,7 +14,9 @@ define(['models/Menu',
 		'models/AutocompleteItem',
 		'collections/AutocompleteCollection',
 		'views/AutocompleteList',
-		'marionette'
+		'marionette',
+		'scrollbar',
+		'mousewheel'
 ], function(Menu, 
 			Controls,
 			Event, 
@@ -30,7 +32,9 @@ define(['models/Menu',
 			Events,
 			AutocompleteItem,
 			AutocompleteCollection,
-			AutocompleteList) {
+			AutocompleteList,
+			scrollbar,
+			mousewheel) {
 	'use strict';
 
 	var app = new Marionette.Application();

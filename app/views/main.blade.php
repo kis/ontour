@@ -6,6 +6,7 @@
         <title>Ontour.im</title>
 
         {{ HTML::style('css/style.css'); }}
+        {{ HTML::style('css/scrollbar.min.css'); }}
         {{ HTML::style('https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css'); }}
 
     </head>
@@ -13,10 +14,10 @@
     <body>
         <section id="sidebar">
             <section id="search"></section>
-            <section id="status"></section>
             <section id="events"></section>
 
             <div id="controls"></div>
+            <div id="status"></div>
         </section>
 
         <div id="settings"></div>

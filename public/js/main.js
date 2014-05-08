@@ -29,7 +29,9 @@ requirejs.config({
 		text: 'lib/text',
 		underscore: 'lib/underscore-min',
 		backbone: 'lib/backbone-min',
-		marionette: 'lib/backbone.marionette.min'
+		marionette: 'lib/backbone.marionette.min',
+		scrollbar: 'lib/scrollbar.min',
+		mousewheel: 'lib/jquery.mousewheel'
 	}
 });
 

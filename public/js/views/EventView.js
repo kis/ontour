@@ -3,7 +3,7 @@ define(['text',
 		'mapbox', 
 		'map',
 		'channel',
-		'marionette'
+		'marionette',
 ], function(text, eventTemplate, mapbox, map, channel) {
 	'use strict';
 
