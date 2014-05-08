@@ -1,10 +1,8 @@
 define(['text', 
 		'text!templates/Event.tmpl', 
-		'mapbox', 
 		'map',
-		'channel',
-		'marionette',
-], function(text, eventTemplate, mapbox, map, channel) {
+		'channel'
+], function(text, eventTemplate, map, channel) {
 	'use strict';
 
 	return Marionette.ItemView.extend({

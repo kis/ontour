@@ -40,11 +40,11 @@ define(['views/EventView',
 			}));
 
 			this.collection.param = param;
+
+			this.$el.perfectScrollbar();
 		},
 
 		addPaths: function(event) {
-			this.$el.perfectScrollbar();
-
 			if (this.collection.param == 'geo') {
 				return false;
 			}
