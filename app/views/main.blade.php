@@ -5,7 +5,7 @@
         <meta charset="utf-8"/>
         <title>Ontour.im</title>
 
-        {{ HTML::style('css/style.css'); }}
+        {{ HTML::style('css/styles.css'); }}
         {{ HTML::style('css/scrollbar.min.css'); }}
         {{ HTML::style('https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css'); }}
 

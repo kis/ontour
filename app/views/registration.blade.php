@@ -5,15 +5,17 @@
         <meta charset="utf-8"/>
         <title>Ontour.im</title>
 
-        {{ HTML::style('css/style.css'); }}
+        {{ HTML::style('css/styles.css'); }}
 
     </head>
 
     <body>
-        <div id="registration">
-            <input id="email" type="email" placeholder="Enter email..">
-            <input id="password" type="password" placeholder="Enter password..">
-            <div id="register">Register</div>
+        <div id="area">
+            <div id="registration">
+                <input id="email" type="email" placeholder="Enter email..">
+                <input id="password" type="password" placeholder="Enter password..">
+                <div id="register">Register</div>
+            </div>
         </div>
 
         <!--<script data-main="js/main.js" src="js/lib/require.js"></script>-->
