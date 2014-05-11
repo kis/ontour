@@ -2,14 +2,11 @@
 
 class UserController extends BaseController {
 
-    protected $user;
+    public function register() {
+        $userModel = new UserModel;
+        $userModel->register();
 
-    public function __construct(UserModel $user) {
-        $this->user = $user;
-    }
-
-    public function registration() {
-        $this->user->register();
+        return Redirect::to('/');
     }
 
 } 

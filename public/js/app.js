@@ -48,11 +48,11 @@ define(['models/Menu',
 		events: '#events'
 	});
 
-	var menuView = new MenuView({model: new Menu()}),
-		controlsView = new ControlsView({model: new Controls()}),
-		settingsView = new SettingsView(),
-		searchView = new SearchView({model: new Search()}),
-		eventsListView = new EventsList({collection: new Events()}),
+	var menuView 	 	 = new MenuView({model: new Menu()}),
+		controlsView 	 = new ControlsView({model: new Controls()}),
+		settingsView 	 = new SettingsView(),
+		searchView 		 = new SearchView({model: new Search()}),
+		eventsListView   = new EventsList({collection: new Events()}),
 		autocompleteList = new AutocompleteList({collection: new AutocompleteCollection()});
 
 	app.addInitializer(function () {

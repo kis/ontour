@@ -11,6 +11,13 @@
 |
 */
 
+Route::post('register', array(
+	'uses' => 'UserController@register',
+	'as' => 'users.register'
+));
+
+// Route::controller('users', 'UserController');
+
 Route::get('/registration', function()
 {
 	return View::make('registration');

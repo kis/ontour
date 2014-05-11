@@ -12,12 +12,12 @@
     <body>
         <div id="area">
             <div id="registration">
-                <input id="email" type="email" placeholder="Enter email..">
-                <input id="password" type="password" placeholder="Enter password..">
-                <div id="register">Register</div>
+                <form action="register" method="POST">
+                    <input id="email" name="email" type="email" placeholder="Enter email..">
+                    <input id="password" name="password" type="password" placeholder="Enter password..">
+                    <button id="register" type="submit">Register</div>                    
+                </form>
             </div>
         </div>
-
-        <!--<script data-main="js/main.js" src="js/lib/require.js"></script>-->
     </body>
 </html>
