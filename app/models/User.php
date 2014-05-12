@@ -18,10 +18,8 @@ class User extends Eloquent implements UserInterface {
 	public $timestamps = false;
 
     public static $rules = array(
-        'firstname' => 'required | alpha | min:2',
-        'lastname'  => 'required | alpha | min:2',
         'email'     => 'required | email | unique:users',
-        'password'  => 'required | alpha_num | between:6,12'
+        'password'  => 'required | alpha_num | between:3,12'
     );
 
     /**
@@ -73,29 +71,6 @@ class User extends Eloquent implements UserInterface {
     public function getRememberTokenName()
     {
         // TODO: Implement getRememberTokenName() method.
-    }
-
-    /**
-     * Register user
-     */
-    public function register() {
-        $validator = Validator::make(Input::all(), User::$rules);
-
-        if ($validator->passes()) {
-            User::create(array(
-                'password'   => Hash::make(Input::get('password')),
-                'email'      => Input::get('email')
-            ));
-        }
-
-        if (Auth::attempt(array(
-                'email'    => Input::get('email'),
-                'password' => Input::get('password'))
-        )) {
-            return Redirect::intended('/');
-        } else {
-            return Redirect::intended('/');
-        }
     }
 
     /**
