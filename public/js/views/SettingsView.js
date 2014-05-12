@@ -12,13 +12,21 @@ define(['channel',
 		template: _.template(settingsTmpl),
 
 		ui: {
-			signin   : '#sign-in',
-			signup   : '#sign-up'
+			logout : '#logout'
 		},
 
 		events: {
-			'click @ui.signup' : 'signup',
-			'click @ui.signin' : 'signin'
+			'click @ui.logout' : 'logout'
+		},
+
+		logout: function() {
+			Backbone.ajax({
+				url: 'users/logout',
+				type: 'POST',
+				success: function() {
+					document.location.replace("registration");
+				}
+			});			
 		}
 
 	});

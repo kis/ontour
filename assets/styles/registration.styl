@@ -11,14 +11,14 @@ $font = bold small-caps 20px serif
 	position absolute
 	overflow hidden
 
-#registration
+#registration-area, #login-area
 	position relative
 	width 500px
 	height 290px
 	margin 15% 35%
 	background #0c1f38
 
-#email, #password
+input
 	position relative
 	top 50px
 	left 50px
@@ -31,7 +31,7 @@ $font = bold small-caps 20px serif
 	outline none
 	border 0px
 
-#register
+button
 	position relative
 	top 50px
 	left 50px
@@ -42,9 +42,32 @@ $font = bold small-caps 20px serif
 	line-height 30pt
 	text-align center
 	font $font
+	outline none
 	display block
 	color #0c1f38
 	border 0px
 	background #cadaee
 	&:hover
 		background #597077 !important
+
+#homepage
+	position absolute
+	top 0px
+	right 30px
+	z-index 3
+	margin-top 30px
+
+#homepage a
+	cursor pointer
+	padding 14px
+	line-height 25pt
+	text-align center
+	font $font
+	display inline-block
+	color white
+	background rgba(16,49,90,0.5)
+	&:hover
+		background rgba(16,49,90,1) !important
+
+.active
+	background rgba(16,49,90,1) !important
