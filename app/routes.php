@@ -23,7 +23,9 @@ Route::get('/login', function()
     return View::make('login');
 });
 
-Route::get('/', function()
-{
-	return View::make('main');
+Route::group(array('before' => 'auth'), function(){
+    Route::get('/', function()
+    {
+        return View::make('main');
+    });
 });

@@ -9,8 +9,8 @@ class UserController extends BaseController {
 
         if ($validator->passes()) {
             User::create([
-                'password' => Hash::make(Input::get('password')),
-                'email'    => Input::get('email')
+                'email'    => Input::get('email'),
+                'password' => Hash::make(Input::get('password'))
             ]);
 
             return Redirect::intended('/');

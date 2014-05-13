@@ -13,13 +13,15 @@ class User extends Eloquent implements UserInterface {
 	 */
 	protected $table = 'users';
 
+    protected $primaryKey = 'id';
+
 	protected $fillable = array('password', 'email', 'login');
 
 	public $timestamps = false;
 
     public static $rules = [
-//        'email'     => 'required | email | unique:users',
-//        'password'  => 'required | alpha_num | between:3,12'
+        'email'     => 'required | email',// | unique:users',
+        'password'  => 'required'// | alpha_num | between:3,12'
     ];
 
     /**
@@ -29,7 +31,7 @@ class User extends Eloquent implements UserInterface {
      */
     public function getAuthIdentifier()
     {
-        // TODO: Implement getAuthIdentifier() method.
+        return $this->getKey();
     }
 
     /**
@@ -49,7 +51,7 @@ class User extends Eloquent implements UserInterface {
      */
     public function getRememberToken()
     {
-        // TODO: Implement getRememberToken() method.
+        return $this->remember_token;
     }
 
     /**
@@ -60,7 +62,7 @@ class User extends Eloquent implements UserInterface {
      */
     public function setRememberToken($value)
     {
-        // TODO: Implement setRememberToken() method.
+        $this->remember_token = $value;
     }
 
     /**
@@ -70,7 +72,7 @@ class User extends Eloquent implements UserInterface {
      */
     public function getRememberTokenName()
     {
-        // TODO: Implement getRememberTokenName() method.
+        return 'remember_token';
     }
 
     /**
