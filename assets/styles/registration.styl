@@ -1,5 +1,6 @@
 
 $font = bold small-caps 20px serif
+$fontTitle = bold small-caps 25px serif
 
 #area
 	background url('../registration.jpg')
@@ -14,9 +15,16 @@ $font = bold small-caps 20px serif
 #registration-area, #login-area
 	position relative
 	width 500px
-	height 290px
-	margin 15% 35%
+	height 350px
+	margin 12% 35%
 	background #0c1f38
+
+label
+	position relative
+	top 50px
+	left 50px
+	font $fontTitle
+	color white
 
 #email, #password, #login
 	position relative
@@ -63,6 +71,7 @@ $font = bold small-caps 20px serif
 	line-height 25pt
 	text-align center
 	font $font
+	text-decoration none
 	display inline-block
 	color white
 	background rgba(16,49,90,0.5)

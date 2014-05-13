@@ -10,22 +10,22 @@
     <body>
         <div id="area">
             <div id="homepage">
-                <a href="registration" id="signup" class="active">Sign up</a>
-                <a href="login" id="signin">Sign in</a>
+                <a href="registration" id="signup">Sign up</a>
+                <a href="login" id="signin" class="active">Sign in</a>
             </div>
 
-            <div id="registration-area">
-                <label>Sign Up</label>
-                <form action="users/register" method="POST">
-                    <input id="email" name="email" type="email" placeholder="Enter email..">
+            <div id="login-area">
+                <label>Sign In</label>
+                <form action="users/login" method="POST">
+                    <input id="login" name="login" type="text" placeholder="Enter login..">
                     <input id="password" name="password" type="password" placeholder="Enter password..">
-                    <button type="submit">Sign up</button>
+                    <button type="submit">Sign in</button>
                 </form>
             </div>
         </div>
 
         <script src="js/lib/jquery.min.js"></script>
-        <script src="js/lib/underscore-min.js"></script>        
+        <script src="js/lib/underscore-min.js"></script>
         <script src="js/lib/backbone.js"></script>
         <script src="js/lib/backbone.marionette.min.js"></script>
         <script src="js/home.js"></script>

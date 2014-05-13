@@ -30,7 +30,7 @@
 
 		initialize: function() {
 			this.bindUIElements();
-			this.ui.loginArea.hide();
+//			this.ui.loginArea.hide();
 			this.listenTo(this.model, 'change', this.updateView);
 		},
 

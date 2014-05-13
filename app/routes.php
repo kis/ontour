@@ -18,6 +18,11 @@ Route::get('/registration', function()
 	return View::make('registration');
 });
 
+Route::get('/login', function()
+{
+    return View::make('login');
+});
+
 Route::get('/', function()
 {
 	return View::make('main');
