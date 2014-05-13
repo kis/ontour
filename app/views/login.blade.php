@@ -19,7 +19,8 @@
                 <form action="users/login" method="POST">
                     <input id="email" name="email" type="text" placeholder="Enter email.." />
                     <input id="password" name="password" type="password" placeholder="Enter password.." />
-                    <button type="submit">Sign in</button>
+                    <button id="submit" type="submit">Sign in</button>
+                    <button id="forgot" type="submit" formaction="forgot">Forgot password?</button>
                 </form>
             </div>
         </div>

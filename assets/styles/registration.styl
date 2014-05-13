@@ -1,4 +1,5 @@
 
+$fontSmall = bold small-caps 16px serif
 $font = bold small-caps 20px serif
 $fontTitle = bold small-caps 25px serif
 
@@ -46,7 +47,7 @@ label
 	outline none
 	border 0px
 
-#login-area button, #registration-area button
+#submit
 	position relative
 	top 50px
 	left 50px
@@ -58,12 +59,29 @@ label
 	text-align center
 	font $font
 	outline none
-	display block
+	display inline-block
 	color #0c1f38
 	border 0px
 	background #cadaee
 	&:hover
 		background #597077 !important
+
+#forgot
+	position relative
+	top 50px
+	left 50px
+	width 200px
+	cursor pointer
+	padding 5px
+	margin-top 15px
+	line-height 30pt
+	text-align center
+	font $fontSmall
+	outline none
+	display inline-block
+	color white
+	border 0px
+	background #0c1f38
 
 #homepage
 	position absolute
@@ -87,3 +105,11 @@ label
 
 .active
 	background rgba(16,49,90,1) !important
+
+@-moz-document url-prefix()
+	label
+		font bold small-caps 22px serif
+	#email, #password, #password-repeat, #login, #submit, #homepage a
+		font bold small-caps 17px serif
+	#forgot
+		font bold small-caps 13px serif
