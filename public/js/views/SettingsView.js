@@ -24,7 +24,7 @@ define(['channel',
 				url: 'users/logout',
 				type: 'POST',
 				success: function() {
-					document.location.replace("registration");
+					document.location.replace("login");
 				}
 			});			
 		}

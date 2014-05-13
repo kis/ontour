@@ -16,18 +16,13 @@
 
             <div id="registration-area">
                 <label>Sign Up</label>
-                <form action="users/register" method="POST">
-                    <input id="email" name="email" type="email" placeholder="Enter email..">
-                    <input id="password" name="password" type="password" placeholder="Enter password..">
+                <form autocomplete="off" action="users/register" method="POST">
+                    <input id="email" name="email" type="email" placeholder="Enter email.." autocomplete="off" value="" />
+                    <input id="password" name="password" type="password" placeholder="Enter password.." autocomplete="off" />
+                    <input id="password-repeat" name="password-repeat" type="password" placeholder="Repeat password.." autocomplete="off" />
                     <button type="submit">Sign up</button>
                 </form>
             </div>
         </div>
-
-        <script src="js/lib/jquery.min.js"></script>
-        <script src="js/lib/underscore-min.js"></script>        
-        <script src="js/lib/backbone.js"></script>
-        <script src="js/lib/backbone.marionette.min.js"></script>
-        <script src="js/home.js"></script>
     </body>
 </html>

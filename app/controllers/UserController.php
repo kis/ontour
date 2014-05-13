@@ -8,25 +8,27 @@ class UserController extends BaseController {
         $validator = Validator::make(Input::all(), User::$rules);
 
         if ($validator->passes()) {
-            User::create(array(
+            User::create([
                 'password' => Hash::make(Input::get('password')),
                 'email'    => Input::get('email')
-            ));
+            ]);
 
             return Redirect::intended('/');
         } else {
-            return Redirect::to('/registration')->withErrors($validator);
+            return Redirect::to('registration')->withErrors($validator);
         }
     }
 
     public function postLogin() {
-        if (Auth::attempt(array(
-                'email'    => Input::get('email'),
-                'password' => Input::get('password')
-            ))) {
+        $userData = [
+            'email'    => Input::get('email'),
+            'password' => Input::get('password')
+        ];
+
+        if (Auth::attempt($userData)) {
             return Redirect::intended('/');
         } else {
-            return Redirect::to('/registration');
+            return Redirect::to('login');
         }
     }
 

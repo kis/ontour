@@ -17,17 +17,11 @@
             <div id="login-area">
                 <label>Sign In</label>
                 <form action="users/login" method="POST">
-                    <input id="login" name="login" type="text" placeholder="Enter login..">
-                    <input id="password" name="password" type="password" placeholder="Enter password..">
+                    <input id="email" name="email" type="text" placeholder="Enter email.." />
+                    <input id="password" name="password" type="password" placeholder="Enter password.." />
                     <button type="submit">Sign in</button>
                 </form>
             </div>
         </div>
-
-        <script src="js/lib/jquery.min.js"></script>
-        <script src="js/lib/underscore-min.js"></script>
-        <script src="js/lib/backbone.js"></script>
-        <script src="js/lib/backbone.marionette.min.js"></script>
-        <script src="js/home.js"></script>
     </body>
 </html>

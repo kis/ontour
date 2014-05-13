@@ -13,14 +13,14 @@ class User extends Eloquent implements UserInterface {
 	 */
 	protected $table = 'users';
 
-	protected $fillable = array('password', 'email');
+	protected $fillable = array('password', 'email', 'login');
 
 	public $timestamps = false;
 
-    public static $rules = array(
-        'email'     => 'required | email | unique:users',
-        'password'  => 'required | alpha_num | between:3,12'
-    );
+    public static $rules = [
+//        'email'     => 'required | email | unique:users',
+//        'password'  => 'required | alpha_num | between:3,12'
+    ];
 
     /**
      * Get the unique identifier for the user.
@@ -39,7 +39,7 @@ class User extends Eloquent implements UserInterface {
      */
     public function getAuthPassword()
     {
-        // TODO: Implement getAuthPassword() method.
+        return $this->password;
     }
 
     /**
@@ -80,7 +80,7 @@ class User extends Eloquent implements UserInterface {
         $validator = Validator::make(Input::all(), User::$rules);
 
         if ($validator->passes()) {
-            User::create(array(
+            User::create([
                 'login'      => Input::get('login'),
                 'password'   => Hash::make(Input::get('password')),
                 'email'      => Input::get('email'),
@@ -90,7 +90,7 @@ class User extends Eloquent implements UserInterface {
                 'location'   => Input::get('location'),
                 'phone'      => Input::get('phone'),
                 'photo'      => Input::get('photo')
-            ));
+            ]);
         }
     }
 }
