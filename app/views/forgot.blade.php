@@ -10,13 +10,13 @@
     <body>
         <section id="area">
             <header id="homepage">
-                <a href="registration" id="signup">Sign up</a>
-                <a href="login" id="signin">Sign in</a>
+                <a href="registration-page" id="signup">Sign up</a>
+                <a href="login-page" id="signin">Sign in</a>
             </header>
 
             <main id="success-area">
                 <label>Enter your email</label>
-                <form autocomplete="off" action="users/sendpwd" method="POST">
+                <form autocomplete="off" action="sendpwd" method="POST">
                     <input id="email" name="email" type="email" placeholder="Enter email.." autocomplete="off" value="" />
                     <button id="submit" type="submit">Send password</button>
                 </form>

@@ -4,6 +4,18 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends BaseController {
 
+    public function getRegistrationPage() {
+        return View::make('registration');
+    }
+
+    public function getRegSuccess() {
+        return View::make('regsuccess');
+    }
+
+    public function getLoginPage() {
+        return View::make('login');
+    }
+
     public function postRegister() {
         $validator = Validator::make(Input::all(), User::$rules);
 
@@ -13,9 +25,9 @@ class UserController extends BaseController {
                 'password' => Hash::make(Input::get('password'))
             ]);
 
-            return Redirect::to('/success');
+            return Redirect::to('users/reg-success');
         } else {
-            return Redirect::to('registration')->withErrors($validator);
+            return Redirect::to('users/registration-page')->withErrors($validator);
         }
     }
 
@@ -28,7 +40,7 @@ class UserController extends BaseController {
         if (Auth::attempt($userData)) {
             return Redirect::intended('/');
         } else {
-            return Redirect::to('login');
+            return Redirect::to('users/login-page');
         }
     }
 

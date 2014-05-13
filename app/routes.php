@@ -13,21 +13,6 @@
 
 Route::controller('users', 'UserController');
 
-Route::get('/registration', function()
-{
-	return View::make('registration');
-});
-
-Route::get('/login', function()
-{
-    return View::make('login');
-});
-
-Route::get('/success', function()
-{
-    return View::make('regsuccess');
-});
-
 Route::group(array('before' => 'auth'), function(){
     Route::get('/', function()
     {
