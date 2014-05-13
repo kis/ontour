@@ -8,13 +8,13 @@
     </head>
 
     <body>
-        <div id="area">
-            <div id="homepage">
+        <section id="area">
+            <header id="homepage">
                 <a href="registration" id="signup">Sign up</a>
                 <a href="login" id="signin" class="active">Sign in</a>
-            </div>
+            </header>
 
-            <div id="login-area">
+            <main id="login-area">
                 <label>Sign In</label>
                 <form action="users/login" method="POST">
                     <input id="email" name="email" type="text" placeholder="Enter email.." />
@@ -22,7 +22,11 @@
                     <button id="submit" type="submit">Sign in</button>
                     <button id="forgot" type="submit" formaction="forgot">Forgot password?</button>
                 </form>
-            </div>
-        </div>
+            </main>
+
+            <footer>
+
+            </footer>
+        </section>
     </body>
 </html>

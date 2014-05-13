@@ -1,7 +1,11 @@
 
 $fontSmall = bold small-caps 16px serif
-$font = bold small-caps 20px serif
+$font 	   = bold small-caps 20px serif
 $fontTitle = bold small-caps 25px serif
+
+/**
+  * Area
+  */
 
 #area
 	background url('../registration.jpg')
@@ -13,34 +17,58 @@ $fontTitle = bold small-caps 25px serif
 	position absolute
 	overflow hidden
 
-#registration-area
+/**
+  * Header
+  */
+
+#homepage
+	position absolute
+	top 0px
+	right 30px
+	z-index 3
+	margin-top 30px
+
+#homepage a
+	cursor pointer
+	padding 14px
+	line-height 25pt
+	text-align center
+	font $font
+	text-decoration none
+	display inline-block
+	color white
+	background rgba(16,49,90,0.5)
+	&:hover
+		background rgba(16,49,90,1) !important
+
+/**
+  * Main
+  */
+
+main
 	position relative
 	width 500px
+	background #0c1f38
+
+#registration-area
 	height 420px
 	margin 12% 35%
-	background #0c1f38
 
 #login-area
-	position relative
-	width 500px
 	height 350px
 	margin 12% 35%
-	background #0c1f38
 
 #success-area
-	position relative
-	width 500px
 	height 150px
 	margin 17% 35%
-	background #0c1f38
 
-#success-area header
+dialog
 	position absolute
 	margin 13% 22%
 	font $fontTitle
 	color white
 
-#success-area header a
+dialog a
 	text-decoration none
 	color #0c1f38
 	padding 12px
@@ -55,7 +83,7 @@ label
 	font $fontTitle
 	color white
 
-#email, #password, #password-repeat, #login
+main input
 	position relative
 	top 50px
 	left 50px
@@ -104,33 +132,13 @@ label
 	border 0px
 	background #0c1f38
 
-#homepage
-	position absolute
-	top 0px
-	right 30px
-	z-index 3
-	margin-top 30px
-
-#homepage a
-	cursor pointer
-	padding 14px
-	line-height 25pt
-	text-align center
-	font $font
-	text-decoration none
-	display inline-block
-	color white
-	background rgba(16,49,90,0.5)
-	&:hover
-		background rgba(16,49,90,1) !important
-
 .active
 	background rgba(16,49,90,1) !important
 
 @-moz-document url-prefix()
-	label, #success-area header
+	label, dialog
 		font bold small-caps 22px serif
-	#email, #password, #password-repeat, #login, #submit, #homepage a
+	main input, #submit, #homepage a
 		font bold small-caps 17px serif
 	#forgot
 		font bold small-caps 13px serif

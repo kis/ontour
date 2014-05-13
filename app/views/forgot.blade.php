@@ -10,17 +10,15 @@
     <body>
         <section id="area">
             <header id="homepage">
-                <a href="registration" id="signup" class="active">Sign up</a>
+                <a href="registration" id="signup">Sign up</a>
                 <a href="login" id="signin">Sign in</a>
             </header>
 
-            <main id="registration-area">
-                <label>Sign Up</label>
-                <form autocomplete="off" action="users/register" method="POST">
+            <main id="success-area">
+                <label>Enter your email</label>
+                <form autocomplete="off" action="users/sendpwd" method="POST">
                     <input id="email" name="email" type="email" placeholder="Enter email.." autocomplete="off" value="" />
-                    <input id="password" name="password" type="password" placeholder="Enter password.." autocomplete="off" />
-                    <input id="password-repeat" name="password-repeat" type="password" placeholder="Repeat password.." autocomplete="off" />
-                    <button id="submit" type="submit">Sign up</button>
+                    <button id="submit" type="submit">Send password</button>
                 </form>
             </main>
 

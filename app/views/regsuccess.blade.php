@@ -8,15 +8,19 @@
     </head>
 
     <body>
-        <div id="area">
-            <div id="homepage">
+        <section id="area">
+            <header id="homepage">
                 <a href="registration" id="signup">Sign up</a>
                 <a href="login" id="signin">Sign in</a>
-            </div>
+            </header>
 
-            <div id="success-area">
-                <header>You're ontour! <a href="login">Sign In!</a></header>
-            </div>
-        </div>
+            <main id="success-area">
+                <dialog>You're ontour! <a href="login">Sign In!</a></dialog>
+            </main>
+
+            <footer>
+
+            </footer>
+        </section>
     </body>
 </html>
