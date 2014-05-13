@@ -23,6 +23,11 @@ Route::get('/login', function()
     return View::make('login');
 });
 
+Route::get('/success', function()
+{
+    return View::make('regsuccess');
+});
+
 Route::group(array('before' => 'auth'), function(){
     Route::get('/', function()
     {

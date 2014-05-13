@@ -13,7 +13,7 @@ class UserController extends BaseController {
                 'password' => Hash::make(Input::get('password'))
             ]);
 
-            return Redirect::intended('/');
+            return Redirect::to('/success');
         } else {
             return Redirect::to('registration')->withErrors($validator);
         }
