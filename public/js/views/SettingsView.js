@@ -12,22 +12,34 @@ define(['channel',
 		template: _.template(settingsTmpl),
 
 		ui: {
-			logout : '#logout'
+			logout  : '#logout',
+			profile : '#profile'
 		},
 
 		events: {
-			'click @ui.logout' : 'logout'
+			'click @ui.logout'  : 'logout',
+			'click @ui.profile' : 'profile'
 		},
 
 		logout: function() {
 			Backbone.ajax({
 				url: 'users/logout',
-				type: 'POST',
+				type: 'GET',
 				success: function() {
 					document.location.replace("users/login-page");
 				}
 			});			
-		}
+		},
+
+		profile: function() {
+			Backbone.ajax({
+				url: 'users/profile',
+				type: 'GET',
+				success: function() {
+					document.location.replace("users/profile");
+				}
+			});			
+		},
 
 	});
 
