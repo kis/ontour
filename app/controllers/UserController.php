@@ -16,6 +16,10 @@ class UserController extends BaseController {
         return View::make('login');
     }
 
+    public function postForgot() {
+        return View::make('forgot');
+    }
+
     public function postRegister() {
         $validator = Validator::make(Input::all(), User::$rules);
 

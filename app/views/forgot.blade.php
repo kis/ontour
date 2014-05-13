@@ -14,9 +14,9 @@
                 <a href="login-page" id="signin">Sign in</a>
             </header>
 
-            <main id="success-area">
+            <main id="forgot-area">
                 <label>Enter your email</label>
-                <form autocomplete="off" action="sendpwd" method="POST">
+                <form action="sendpwd" method="POST" autocomplete="off">
                     <input id="email" name="email" type="email" placeholder="Enter email.." autocomplete="off" value="" />
                     <button id="submit" type="submit">Send password</button>
                 </form>
