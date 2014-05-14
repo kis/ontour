@@ -20,6 +20,10 @@ class UserController extends BaseController {
         return View::make('forgot');
     }
 
+    public function getProfile() {
+        return View::make('profile');
+    }
+
     public function postRegister() {
         $validator = Validator::make(Input::all(), User::$rules);
 
@@ -50,6 +54,7 @@ class UserController extends BaseController {
 
     public function getLogout() {
         Auth::logout();
+        return Redirect::to('users/login-page');
     }
 
 } 
