@@ -75,24 +75,4 @@ class User extends Eloquent implements UserInterface {
         return 'remember_token';
     }
 
-    /**
-     * Edit user's profile
-     */
-    public function editProfile() {
-        $validator = Validator::make(Input::all(), User::$rules);
-
-        if ($validator->passes()) {
-            User::create([
-                'login'      => Input::get('login'),
-                'password'   => Hash::make(Input::get('password')),
-                'email'      => Input::get('email'),
-                'first_name' => Input::get('first_name'),
-                'last_name'  => Input::get('last_name'),
-                'sex'        => Input::get('sex'),
-                'location'   => Input::get('location'),
-                'phone'      => Input::get('phone'),
-                'photo'      => Input::get('photo')
-            ]);
-        }
-    }
 }

@@ -15,7 +15,7 @@
 
     <main id="profile-area">
         <label>Profile</label>
-        <form action="login" method="POST">
+        <form action="edit" method="POST">
             <!--foto-->
             <input id="login" name="login" type="text" value="" placeholder="Enter login.." />
             <input id="email" name="email" type="text" value="" placeholder="Enter email.." />
