@@ -13,13 +13,20 @@
         <a href="logout" id="signup">Logout</a>
     </header>
 
-    <main id="login-area">
+    <main id="profile-area">
         <label>Profile</label>
         <form action="login" method="POST">
-            <input id="email" name="email" type="text" placeholder="Enter email.." />
-            <input id="password" name="password" type="password" placeholder="Enter password.." />
-            <button id="submit" type="submit">Sign in</button>
-            <button id="forgot" type="submit" formaction="forgot">Forgot password?</button>
+            <!--foto-->
+            <input id="login" name="login" type="text" value="" placeholder="Enter login.." />
+            <input id="email" name="email" type="text" value="" placeholder="Enter email.." />
+            <input id="password" name="password" type="password" value="" placeholder="Enter password.." />
+            <input id="first_name" name="first_name" type="text" value="" placeholder="Enter first name.." />
+            <input id="last_name" name="last_name" type="text" value="" placeholder="Enter last name.." />
+            <input id="sex" name="sex" type="radio" value="" />Male
+            <input id="sex" name="sex" type="radio" value="" />Female
+            <input id="location" name="location" type="text" value="" placeholder="Enter location.." />
+            <input id="phone" name="phone" type="text" value="" placeholder="Enter phone.." />
+            <button id="submit" type="submit">Edit profile</button>
         </form>
     </main>
 
