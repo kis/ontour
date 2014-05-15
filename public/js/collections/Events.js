@@ -12,7 +12,9 @@ define(['backbone',
 
 		param: '',
 
-		url: '/events'
+		url: '/events',
+
+		urlRoot: '/events'
 
 	});
 });

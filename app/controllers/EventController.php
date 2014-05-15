@@ -2,7 +2,7 @@
 
 class EventController extends BaseController {
 
-    public function getSaveEvent() {
+    public function create() {//getSaveEvent() {
         return Input::get('id');
 
         Event::create([

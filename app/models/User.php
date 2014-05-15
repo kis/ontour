@@ -76,7 +76,7 @@ class User extends Eloquent implements UserInterface {
     }
 
     public function events() {
-
+        return $this->hasManyThrough('Event', 'UserEvent');
     }
 
 }

@@ -11,7 +11,7 @@
 |
 */
 
-Route::controller('events', 'EventController');
+Route::resource('events', 'EventController');
 
 Route::controller('users', 'UserController');
 
