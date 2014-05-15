@@ -66,7 +66,18 @@ define(['views/EventView',
 
 		filterByMonth: function() {
 			
-			// this.collection.where({date: })
+			/*this.collection.each(function(value, index) {
+				new Date(this.collection.models[0].attributes.date).getMonth()
+			});*/
+			
+		},
+
+		filterByDay: function() {
+			
+			/*this.collection.each(function(value, index) {
+				new Date(this.collection.models[0].attributes.date).getMonth()
+			});*/
+			
 		},
 
 		switchMarkers: function() {

@@ -89,18 +89,7 @@ define(['channel',
 					channel.trigger('addEvent', value);
 					
 					if (self.model.get('page') == 1 && index == 0) {
-						if (value.venue.location['geo:point']['geo:lat'] &&
-							value.venue.location['geo:point']['geo:long']) {
-							channel.trigger('setView', 
-								L.latLng(value.venue.location['geo:point']['geo:lat'], 
-										 value.venue.location['geo:point']['geo:long']), 
-								(param == "artist") ? 4 : 12);
-						} else {
-							channel.trigger('setView', 
-								L.latLng(list[index+1].venue.location['geo:point']['geo:lat'], 
-										 list[index+1].venue.location['geo:point']['geo:long']), 
-								(param == "artist") ? 4 : 12);
-						}
+						channel.trigger('setView', list, param);
 					}
 				});
 			}

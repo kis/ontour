@@ -21,8 +21,20 @@ define(['channel',
 			return this.model.get('map');
 		},
 
-		setView: function(latlon, zoom) {
-			this.getMap().setView(latlon, zoom);
+		setView: function(list, param) {
+			var self = this;
+
+			for(var i = 0; i < list.length; i++) {
+				if (list[i].venue.location['geo:point']['geo:lat'] &&
+					list[i].venue.location['geo:point']['geo:long']) {
+					self.getMap().setView(
+						L.latLng(list[i].venue.location['geo:point']['geo:lat'], 
+								 list[i].venue.location['geo:point']['geo:long']), 
+						(param == "artist") ? 4 : 12
+					);
+					break;
+				}
+			}
 		}
 
 	});
