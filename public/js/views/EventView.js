@@ -11,10 +11,18 @@ define(['text',
 
 		template: _.template(eventTemplate),
 
+		events: {
+			'click'     : 'selectEvent',
+			'mouseover' : 'showPopup',
+			'mouseout'  : 'hidePopup'
+		},
+
 		initialize: function() {
 			this.addIcon();
 			this.addMarker();
 			this.addPopup();
+
+			this.listenTo(this.model, 'change:filtered', this.filterEvent);
 		},
 
 		render: function() {
@@ -22,10 +30,12 @@ define(['text',
 			return this;
 		},
 
-		events: {
-			'click'     : 'selectEvent',
-			'mouseover' : 'showPopup',
-			'mouseout'  : 'hidePopup'
+		filterEvent: function() {
+			if (!this.model.get('filtered')) {
+				this.$el.hide();
+			} else {
+				this.$el.show();
+			}			
 		},
 
 		addIcon: function() {
