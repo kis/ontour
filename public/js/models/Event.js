@@ -15,7 +15,7 @@ define(['backbone'], function(Backbone) {
 			popup: null,
 			path: null,
 			selected: false,
-			hidden: false
+			filtered: true
 		}
 
 	});
