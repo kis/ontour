@@ -10,7 +10,9 @@ define(['backbone',
 
 		showPaths: true,
 
-		param: ''
+		param: '',
+
+		url: '/events'
 
 	});
 });

@@ -11,6 +11,8 @@
 |
 */
 
+Route::controller('events', 'EventController');
+
 Route::controller('users', 'UserController');
 
 Route::group(array('before' => 'auth'), function(){

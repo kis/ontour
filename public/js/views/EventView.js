@@ -11,10 +11,15 @@ define(['text',
 
 		template: _.template(eventTemplate),
 
+		ui: {
+			saveEvent : '.save-event'
+		},
+
 		events: {
-			'click'     : 'selectEvent',
-			'mouseover' : 'showPopup',
-			'mouseout'  : 'hidePopup'
+			'click'     		  : 'selectEvent',
+			'mouseover' 		  : 'showPopup',
+			'mouseout'  		  : 'hidePopup',
+			'click @ui.saveEvent' : 'save'
 		},
 
 		initialize: function() {
@@ -36,6 +41,10 @@ define(['text',
 			} else {
 				this.$el.show();
 			}			
+		},
+
+		save: function() {
+			this.model.save();
 		},
 
 		addIcon: function() {

@@ -75,4 +75,8 @@ class User extends Eloquent implements UserInterface {
         return 'remember_token';
     }
 
+    public function events() {
+
+    }
+
 }
