@@ -11,7 +11,7 @@ define(['channel',
 			zr0njcqy
 			4l7djmvo*/
 
-			this.model.set('map', L.mapbox.map('map', 'examples.map-vyofok3q').setView([0, 0], 2))
+			this.model.set('map', L.mapbox.map('map', 'examples.map-i87786ca').setView([0, 0], 2))
 				.get('map').zoomControl.setPosition('bottomright');
 
 			this.listenTo(channel, 'setView', this.setView);

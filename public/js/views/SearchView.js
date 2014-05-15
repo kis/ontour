@@ -85,14 +85,22 @@ define(['channel',
 			if (this.model.get('page') == this.model.get('totalPages') && /1$/.test(this.model.get('total'))) {
 				channel.trigger('addEvent', data.events.event);
 			} else {
-				data.events.event.forEach(function(value, index) {
+				data.events.event.forEach(function(value, index, list) {
 					channel.trigger('addEvent', value);
 					
 					if (self.model.get('page') == 1 && index == 0) {
-						channel.trigger('setView', 
-							L.latLng(value.venue.location['geo:point']['geo:lat'], 
-									 value.venue.location['geo:point']['geo:long']), 
-							(param == "artist") ? 4 : 12);
+						if (value.venue.location['geo:point']['geo:lat'] &&
+							value.venue.location['geo:point']['geo:long']) {
+							channel.trigger('setView', 
+								L.latLng(value.venue.location['geo:point']['geo:lat'], 
+										 value.venue.location['geo:point']['geo:long']), 
+								(param == "artist") ? 4 : 12);
+						} else {
+							channel.trigger('setView', 
+								L.latLng(list[index+1].venue.location['geo:point']['geo:lat'], 
+										 list[index+1].venue.location['geo:point']['geo:long']), 
+								(param == "artist") ? 4 : 12);
+						}
 					}
 				});
 			}

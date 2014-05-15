@@ -64,6 +64,11 @@ define(['views/EventView',
 			});
 		},
 
+		filterByMonth: function() {
+			
+			// this.collection.where({date: })
+		},
+
 		switchMarkers: function() {
 			if (this.collection.showMarkers) {
 				this.collection.showMarkers = false;
