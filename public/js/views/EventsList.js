@@ -21,12 +21,13 @@ define(['views/EventView',
 		initialize: function() {
 			this.listenTo(channel, 'setParam', this.setParam);
 			this.listenTo(channel, 'addEvent', this.addEvent);
-			this.listenTo(channel, 'addPaths', this.addPaths);
+			this.listenTo(channel, 'addPaths', this.setPaths);
 			this.listenTo(channel, 'getEvents', this.reset);
 			this.listenTo(channel, 'reset', this.reset);
 			this.listenTo(channel, 'switchMarkers', this.switchMarkers);
 			this.listenTo(channel, 'switchPaths', this.switchPaths);
 			this.listenTo(channel, 'gotop', this.gotop);
+			this.listenTo(channel, 'filter', this.filter);
 		},
 
 		setParam: function(param) {
@@ -46,7 +47,7 @@ define(['views/EventView',
 			this.$el.perfectScrollbar();
 		},
 
-		addPaths: function(event) {
+		setPaths: function(event) {
 			if (this.collection.param == 'geo') {
 				return false;
 			}
@@ -64,60 +65,71 @@ define(['views/EventView',
 			});
 		},
 
-		filterByMonth: function() {
-			
-			/*this.collection.each(function(value, index) {
-				new Date(this.collection.models[0].attributes.date).getMonth()
-			});*/
-			
-		},
+		filter: function(date) {
+			this.hideMarkers();
 
-		filterByDay: function() {
-			
-			/*this.collection.each(function(value, index) {
-				new Date(this.collection.models[0].attributes.date).getMonth()
-			});*/
-			
+			this.collection.each(function(event) {
+				var eventDate = new Date(event.get('date'));
+
+				if ((eventDate.getFullYear() == date.year || date.year == 'Год') &&
+					(eventDate.getMonth() + 1 == date.month || date.month == 'Месяц') &&
+					(eventDate.getDate() == date.day || date.day == 'День') &&
+					event.get('marker')) {
+						map.addLayer(event.get('marker'));
+				}
+			});
 		},
 
 		switchMarkers: function() {
 			if (this.collection.showMarkers) {
 				this.collection.showMarkers = false;
-
-				this.collection.each(function(event) {
-					if(event.get('marker')) {
-						map.removeLayer(event.get('marker'));
-					}
-				});
+				this.hideMarkers();
 			} else {
 				this.collection.showMarkers = true;
-
-				this.collection.each(function(event) {
-					if(event.get('marker')) {
-						map.addLayer(event.get('marker'));
-					}
-				});
+				this.showMarkers();
 			}
+		},
+
+		showMarkers: function() {
+			this.collection.each(function(event) {
+				if(event.get('marker')) {
+					map.addLayer(event.get('marker'));
+				}
+			});
+		},	
+
+		hideMarkers: function() {
+			this.collection.each(function(event) {
+				if(event.get('marker')) {
+					map.removeLayer(event.get('marker'));
+				}
+			});
 		},
 
 		switchPaths: function() {
 			if (this.collection.showPaths) {
 				this.collection.showPaths = false;
-
-				this.collection.each(function(event) {
-					if(event.get('path')) {
-						map.removeLayer(event.get('path'));
-					}
-				});
+				this.hidePaths();
 			} else {
 				this.collection.showPaths = true;
-
-				this.collection.each(function(event) {
-					if(event.get('path')) {
-						map.addLayer(event.get('path'));
-					}
-				});
+				this.showPaths();
 			}
+		},
+
+		showPaths: function() {
+			this.collection.each(function(event) {
+				if(event.get('path')) {
+					map.addLayer(event.get('path'));
+				}
+			});
+		},
+
+		hidePaths: function() {
+			this.collection.each(function(event) {
+				if(event.get('path')) {
+					map.removeLayer(event.get('path'));
+				}
+			});
 		},
 
 		reset: function(event) {

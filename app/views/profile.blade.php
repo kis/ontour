@@ -10,6 +10,7 @@
 <body>
 <section id="area">
     <header id="homepage">
+        <a href="/" id="main">Main</a>
         <a href="logout" id="signup">Logout</a>
     </header>
 
