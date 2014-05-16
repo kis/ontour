@@ -6,6 +6,16 @@ define(['channel',
 
 	return Marionette.ItemView.extend({
 
+		el: '#map',
+
+		ui: {
+			saveEvent : '.save-event'
+		},
+
+		events: {
+			'click @ui.saveEvent' : 'save'
+		},
+
 		initialize: function() {
 			/*kirillstyopkin.h29f88g0
 			zr0njcqy
@@ -15,6 +25,10 @@ define(['channel',
 				.get('map').zoomControl.setPosition('bottomright');
 
 			this.listenTo(channel, 'setView', this.setView);
+		},
+
+		save: function() {
+			// channel.trigger('saveEvent');
 		},
 
 		getMap: function() {

@@ -88,6 +88,8 @@ define(['views/EventView',
 					event.set('filtered', false);
 				}
 			});
+
+			this.gotop();
 		},
 
 		switchMarkers: function() {

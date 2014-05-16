@@ -28,6 +28,13 @@ define(['text',
 			this.addPopup();
 
 			this.listenTo(this.model, 'change:filtered', this.filterEvent);
+			this.listenTo(channel, 'saveEvent', this.save);
+
+			var self = this;
+
+			$('#map').on('click', '.save-event', function() {
+				self.save();
+			});
 		},
 
 		render: function() {
@@ -40,7 +47,7 @@ define(['text',
 				this.$el.hide();
 			} else {
 				this.$el.show();
-			}			
+			}		
 		},
 
 		save: function() {
@@ -82,8 +89,9 @@ define(['text',
 				L.popup({
 					autoPan: false,
 					closeButton: false,
-					offset: L.point(0, -30),
-					closeOnClick: false
+					offset: L.point(0, this.model.collection.param == 'geo' ? -30 : -5),
+					closeOnClick: false,
+					className: this.model.get('id')
 				})
 				.setLatLng(this.model.get('marker').getLatLng())
 				.setContent(this.template(this.model.toJSON())));
@@ -95,6 +103,10 @@ define(['text',
 			};
 
 			this.model.get('marker').on(actions, this);
+
+			$('#'+this.model.get('id')).on('click', function() {
+				alert(this.model.get('id'));
+			});
 		},
 
 		selectEvent: function() {
