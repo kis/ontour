@@ -8,14 +8,15 @@ class Event extends Eloquent {
 
     protected $table = 'events';
 
-    protected $primaryKey = 'event_id';
+    protected $primaryKey = 'id';
 
     public $timestamps = false;
 
-    protected $fillable = array('event_id');
+    protected $fillable = array('event_id', 'user_id');
 
-    public function users() {
-        return $this->hasManyThrough('User', 'UserEvent');
+    public function users()
+    {
+        return $this->hasMany('User');
     }
 
 } 

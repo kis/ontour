@@ -14,7 +14,8 @@ class EventController extends BaseController {
 
     public function update() {
         Event::create([
-            'event_id' => Input::get('id')
+            'event_id' => Input::get('id'),
+            'user_id'  => Auth::user()->id
         ]);
     }
 

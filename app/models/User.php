@@ -75,8 +75,9 @@ class User extends Eloquent implements UserInterface {
         return 'remember_token';
     }
 
-    public function events() {
-        return $this->hasManyThrough('Event', 'UserEvent');
+    public function events()
+    {
+        return $this->hasMany('Event');
     }
 
 }
