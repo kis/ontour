@@ -1,8 +1,10 @@
 <?php
 
+use App\Event;
+
 class EventController extends BaseController {
 
-    public function create() {//getSaveEvent() {
+    public function store() {
         return Input::get('id');
 
         Event::create([
@@ -10,7 +12,13 @@ class EventController extends BaseController {
         ]);
     }
 
-    public function postRemoveEvent() {
+    public function update() {
+        Event::create([
+            'event_id' => Input::get('id')
+        ]);
+    }
+
+    public function destroy() {
         $event = Event::find(Input::get('id'));
         $event->delete();
     }

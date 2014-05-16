@@ -44,7 +44,7 @@ define(['text',
 		},
 
 		save: function() {
-			this.model.save();
+			this.model.save({id: this.model.get('id')}, {patch: true});
 		},
 
 		addIcon: function() {
