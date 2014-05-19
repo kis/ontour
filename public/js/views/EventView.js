@@ -16,10 +16,10 @@ define(['text',
 		},
 
 		events: {
-			'click'     		  : 'selectEvent',
-			'mouseover' 		  : 'showPopup',
-			'mouseout'  		  : 'hidePopup',
-			'click @ui.saveEvent' : 'save'
+			'click'     		       : 'selectEvent',
+			'mouseenter' 		       : 'showPopup',
+			'mouseleave'  		       : 'hidePopup',
+			'click @ui.saveEvent'      : 'saveEvent'
 		},
 
 		initialize: function() {
@@ -28,7 +28,6 @@ define(['text',
 			this.addPopup();
 
 			this.listenTo(this.model, 'change:filtered', this.filterEvent);
-			this.listenTo(channel, 'saveEvent', this.save);
 		},
 
 		render: function() {
@@ -42,6 +41,11 @@ define(['text',
 			} else {
 				this.$el.show();
 			}		
+		},
+
+		saveEvent: function(e) {
+			e.stopPropagation();
+			this.save();
 		},
 
 		save: function() {
