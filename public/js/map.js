@@ -3,6 +3,6 @@ define(['models/Map',
 ], function(Map, MapView) {
 
 	var mapView = new MapView({model: new Map()});
-	return mapView.getMap();
+	return mapView;
 
 });

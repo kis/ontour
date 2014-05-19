@@ -1,6 +1,6 @@
 define(['channel',
-		'map'
-], function(channel, map) {
+	    'marionette'
+], function(channel) {
 	'use strict';
 
 	return Marionette.ItemView.extend({

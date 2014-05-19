@@ -29,12 +29,6 @@ define(['text',
 
 			this.listenTo(this.model, 'change:filtered', this.filterEvent);
 			this.listenTo(channel, 'saveEvent', this.save);
-
-			var self = this;
-
-			$('#map').on('click', '.save-event', function() {
-				self.save();
-			});
 		},
 
 		render: function() {
@@ -75,7 +69,7 @@ define(['text',
 					L.marker([this.model.get('venue').location['geo:point']['geo:lat'], 
 							  this.model.get('venue').location['geo:point']['geo:long']],
 							{icon: this.model.get('icon')})
-					.addTo(map));
+					.addTo(map.getMap()));
 			}
 		},
 
@@ -91,7 +85,7 @@ define(['text',
 					closeButton: false,
 					offset: L.point(0, this.model.collection.param == 'geo' ? -30 : -5),
 					closeOnClick: false,
-					className: this.model.get('id')
+					className: 'p'+this.model.get('id')
 				})
 				.setLatLng(this.model.get('marker').getLatLng())
 				.setContent(this.template(this.model.toJSON())));
@@ -104,9 +98,12 @@ define(['text',
 
 			this.model.get('marker').on(actions, this);
 
-			$('#'+this.model.get('id')).on('click', function() {
-				alert(this.model.get('id'));
+			var self = this;
+
+			map.$el.on('click', '.p'+this.model.get('id')+' .save-event', function() {
+				self.save();
 			});
+
 		},
 
 		selectEvent: function() {
@@ -117,7 +114,7 @@ define(['text',
 				} else {
 					this.showPopup();
 					this.model.set('selected', true);
-					map.panTo(this.model.get('marker').getLatLng());
+					map.getMap().panTo(this.model.get('marker').getLatLng());
 				}
 			}
 			return false;
@@ -125,7 +122,7 @@ define(['text',
 
 		showPopup: function() {
 			if (this.model.get('popup') != null && this.model.get('selected') == false) {
-				map.addLayer(this.model.get('popup'));
+				map.getMap().addLayer(this.model.get('popup'));
 				this.$el.addClass('selected');
 				return false;
 			}
@@ -133,7 +130,7 @@ define(['text',
 
 		hidePopup: function() {
 			if (this.model.get('popup') != null && this.model.get('selected') == false) {
-				map.removeLayer(this.model.get('popup'));
+				map.getMap().removeLayer(this.model.get('popup'));
 				this.$el.removeClass('selected');
 				return false;
 			}

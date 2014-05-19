@@ -60,7 +60,7 @@ define(['views/EventView',
 				var latlng1 = event.get('marker').getLatLng();
 				var latlng2 = list[index+1].get('marker').getLatLng();
 
-				var polyline = L.polyline([latlng1, latlng2], {color: '#10315a', weight: 2, opacity: 1}).addTo(map);
+				var polyline = L.polyline([latlng1, latlng2], {color: '#10315a', weight: 2, opacity: 1}).addTo(map.getMap());
 				event.set('path', polyline);
 			});
 		},
@@ -76,11 +76,11 @@ define(['views/EventView',
 					(eventDate.getMonth() + 1 == date.month || date.month == 'Месяц') &&
 					(eventDate.getDate() == date.day || date.day == 'День')) {
 						if (event.get('marker')) {
-							map.addLayer(event.get('marker'));
+							map.getMap().addLayer(event.get('marker'));
 						}
 
 						if (event.get('path')) {
-							map.addLayer(event.get('path'));
+							map.getMap().addLayer(event.get('path'));
 						}
 
 						event.set('filtered', true);
@@ -105,7 +105,7 @@ define(['views/EventView',
 		showMarkers: function() {
 			this.collection.each(function(event) {
 				if(event.get('marker') && event.get('filtered')) {
-					map.addLayer(event.get('marker'));
+					map.getMap().addLayer(event.get('marker'));
 				}
 			});
 		},	
@@ -113,7 +113,7 @@ define(['views/EventView',
 		hideMarkers: function() {
 			this.collection.each(function(event) {
 				if(event.get('marker') && event.get('filtered')) {
-					map.removeLayer(event.get('marker'));
+					map.getMap().removeLayer(event.get('marker'));
 				}
 			});
 		},
@@ -131,7 +131,7 @@ define(['views/EventView',
 		showPaths: function() {
 			this.collection.each(function(event) {
 				if(event.get('path') && event.get('filtered')) {
-					map.addLayer(event.get('path'));
+					map.getMap().addLayer(event.get('path'));
 				}
 			});
 		},
@@ -139,7 +139,7 @@ define(['views/EventView',
 		hidePaths: function() {
 			this.collection.each(function(event) {
 				if(event.get('path') && event.get('filtered')) {
-					map.removeLayer(event.get('path'));
+					map.getMap().removeLayer(event.get('path'));
 				}
 			});
 		},
@@ -147,11 +147,11 @@ define(['views/EventView',
 		reset: function(event) {
 			this.collection.each(function(event) {
 				if(event.get('marker')) {
-					map.removeLayer(event.get('marker'));
+					map.getMap().removeLayer(event.get('marker'));
 				}
 
 				if(event.get('path')) {
-					map.removeLayer(event.get('path'));
+					map.getMap().removeLayer(event.get('path'));
 				}
 			});
 
