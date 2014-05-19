@@ -20,6 +20,8 @@
             <div id="status"></div>
         </section>
 
+        <div id="notification"></div>
+
         <div id="settings"></div>
 
         <div id="map"></div>

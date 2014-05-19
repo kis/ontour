@@ -14,6 +14,8 @@ define(['models/Menu',
 		'models/AutocompleteItem',
 		'collections/AutocompleteCollection',
 		'views/AutocompleteList',
+		'models/Notification',
+		'views/NotificationView',
 		'marionette',
 		'scrollbar',
 		'mousewheel'
@@ -33,6 +35,8 @@ define(['models/Menu',
 			AutocompleteItem,
 			AutocompleteCollection,
 			AutocompleteList,
+			Notification,
+			NotificationView,
 			scrollbar,
 			mousewheel) {
 	'use strict';
@@ -44,6 +48,7 @@ define(['models/Menu',
 		controls: '#controls',
 		settings: '#settings',
 		autocomplete: '#autocomplete',
+		notification: '#notification',
 		// search: '#status',
 		events: '#events'
 	});
@@ -53,6 +58,7 @@ define(['models/Menu',
 		settingsView 	 = new SettingsView(),
 		searchView 		 = new SearchView({model: new Search()}),
 		eventsListView   = new EventsList({collection: new Events()}),
+		notificationView = new NotificationView({model: new Notification()}),
 		autocompleteList = new AutocompleteList({collection: new AutocompleteCollection()});
 
 	app.addInitializer(function () {
@@ -60,6 +66,7 @@ define(['models/Menu',
 		app.controls.show(controlsView);
 		app.settings.show(settingsView);
 		app.autocomplete.show(autocompleteList);
+		app.notification.show(notificationView);
 		// app.search.show(searchView);
 		app.events.show(eventsListView);
 	});

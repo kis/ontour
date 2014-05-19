@@ -222,7 +222,7 @@ $padding = 14px
     top 0px
     right 15px
     z-index 3
-    margin-top 13px
+    margin-top 15px
 
 #settings a
     cursor pointer
@@ -283,3 +283,39 @@ $padding = 14px
 
 .leaflet-popup-tip
     border-top 10px solid rgba(16,49,90,1) !important
+
+/**
+  * Notification
+  */
+
+#notification
+    position absolute
+    margin 13% 35%
+    font $font
+    color white
+    z-index 30
+
+#notification > div
+    display block
+    width 450px
+    height 200px
+    background #0c1f38
+
+.notification-ok
+    position relative
+    top 50px
+    left 50px
+    width 200px
+    cursor pointer
+    padding 15px
+    margin-top 15px
+    line-height 30pt
+    text-align center
+    font $font
+    outline none
+    display inline-block
+    color #0c1f38
+    border 0px
+    background #cadaee
+    &:hover
+        background #597077 !important

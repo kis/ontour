@@ -16,10 +16,10 @@ define(['text',
 		},
 
 		events: {
-			'click'     		       : 'selectEvent',
-			'mouseenter' 		       : 'showPopup',
-			'mouseleave'  		       : 'hidePopup',
-			'click @ui.saveEvent'      : 'saveEvent'
+			'click'     		  : 'selectEvent',
+			'mouseenter' 		  : 'showPopup',
+			'mouseleave'  		  : 'hidePopup',
+			'click @ui.saveEvent' : 'saveEvent'
 		},
 
 		initialize: function() {
@@ -50,6 +50,10 @@ define(['text',
 
 		save: function() {
 			this.model.save({id: this.model.get('id')}, {patch: true});
+			channel.trigger('showNotification', {
+				header : 'Notification',
+				body   : 'The event is saved!' 
+			});
 		},
 
 		addIcon: function() {
