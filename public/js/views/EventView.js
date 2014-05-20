@@ -49,8 +49,20 @@ define(['text',
 		},
 
 		save: function() {
-			this.model.save({id: this.model.get('id')}, {patch: true});
-			channel.trigger('showNotification', 'The event is saved!');
+			this.model.save({event_id: this.model.get('id')},
+			{
+				patch: true,
+				error: function() {
+					channel.trigger('showNotification', 'Error!');
+				},
+				success: function(model, response) {
+					if (response.result == 'success') {
+						channel.trigger('showNotification', 'The event is saved!');
+					} else {
+						channel.trigger('showNotification', 'This event is already saved!');
+					}
+				}	
+			});
 		},
 
 		addIcon: function() {

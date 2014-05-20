@@ -14,6 +14,10 @@ class Event extends Eloquent {
 
     protected $fillable = array('event_id', 'user_id');
 
+    public static $rules = [
+        'event_id' => 'unique:events'
+    ];
+
     public function users()
     {
         return $this->hasMany('User');
