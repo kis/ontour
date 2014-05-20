@@ -32,6 +32,8 @@ define(['views/EventView',
 
 		setParam: function(param) {
 			this.collection.param = param;
+
+			this.$el.show();
 		},
 
 		addEvent: function(value) {
