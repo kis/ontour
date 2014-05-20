@@ -4,6 +4,7 @@ $font = bold small-caps 16px serif
 $sidebar_width = 303px
 $padding = 14px
 
+$fontSmall = bold small-caps 12px serif
 $fontHeader = bold small-caps 18px serif
 
 body
@@ -34,6 +35,7 @@ body
 	cursor pointer
 	padding $padding
 	width 60px
+	margin-top 2px
 	line-height 25pt
 	text-align center
 	font $font
@@ -43,18 +45,10 @@ body
 	&:hover
 		background rgba(16,49,90,1) !important
 
-#controls select
-	cursor pointer
-	padding 13px
-	width 170px
+#controls input
+	line-height 33pt
 	outline none
 	border none
-	line-height 25pt
-	text-align center
-	font $font
-	display inline-block
-	color white
-	background rgba(16,49,90,0.5)
 
 #slide
 	width 10px !important
@@ -252,7 +246,7 @@ body
 
 @-moz-document url-prefix()
 	.tab, .search-field, .search-button, #events, .artist-data, #status, #autocomplete, #settings a, #controls a
-		font bold small-caps 12px serif
+		font $fontSmall
 		line-height 20px
 	.search-field
 		padding 14px 12px 14px 12px

@@ -71,10 +71,11 @@ define(['views/EventView',
 
 			this.collection.each(function(event) {
 				var eventDate = new Date(event.get('date'));
+				var chosenMonth = new Date(date.month);
+				var chosenDate = new Date(date.day);
 
-				if ((eventDate.getFullYear() == date.year || date.year == 'Год') &&
-					(eventDate.getMonth() + 1 == date.month || date.month == 'Месяц') &&
-					(eventDate.getDate() == date.day || date.day == 'День')) {
+				if ((eventDate.getMonth() == chosenMonth.getMonth() || !date.month) &&
+					(eventDate.getDate() == chosenDate.getDate() || !date.day)) {
 						if (event.get('marker')) {
 							map.getMap().addLayer(event.get('marker'));
 						}

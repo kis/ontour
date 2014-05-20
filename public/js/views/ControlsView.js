@@ -16,18 +16,16 @@ define(['channel',
 			paths   	: '#paths',
 			markers 	: '#markers',
 			gotop   	: '#go-top',
-			selectYear  : '#select-year',
 			selectMonth : '#select-month',
 			selectDay   : '#select-day'
 		},
 
 		events: {
-			'click @ui.slide'   	  			   				      : 'slide',
-			'click @ui.markers' 	  			   				      : 'switchMarkers',
-			'click @ui.paths'   	  			   				      : 'switchPaths',
-			'click @ui.gotop'   	  			   				      : 'gotop',
-			'click @ui.selectYear, @ui.selectMonth, @ui.selectDay'    : 'filter',
-			'keydown @ui.selectYear, @ui.selectMonth, @ui.selectDay'  : 'filter'
+			'click @ui.slide'   	  			    : 'slide',
+			'click @ui.markers' 	  			    : 'switchMarkers',
+			'click @ui.paths'   	  			    : 'switchPaths',
+			'click @ui.gotop'   	  			    : 'gotop',
+			'change @ui.selectMonth, @ui.selectDay' : 'filter'
 		},
 
 		initialize: function() {
@@ -55,7 +53,6 @@ define(['channel',
 
 		filter: function() {
 			channel.trigger('filter', {
-				year  : this.ui.selectYear.val(), 
 				month : this.ui.selectMonth.val(), 
 				day   : this.ui.selectDay.val()
 			});

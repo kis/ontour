@@ -14,10 +14,10 @@ define(['channel',
 		},
 
 		initialize: function() {
-			this.listenTo(channel, 'showNotification', this.setNotification);
+			this.listenTo(channel, 'showNotification', this.show);
 		},
 
-		setNotification: function(notification) {
+		show: function(notification) {
 			this.model.set({message: notification});
 
 			this.$el.show(100);
