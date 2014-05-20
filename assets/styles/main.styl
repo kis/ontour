@@ -3,6 +3,7 @@ $bg = rgba(16,49,90,1)
 $font = bold small-caps 16px serif
 $sidebar_width = 303px
 $padding = 14px
+$paddingLess = 8px
 
 $fontSmall = bold small-caps 12px serif
 $fontHeader = bold small-caps 18px serif
@@ -309,3 +310,26 @@ body
 /**
   * Tags
   */
+
+#tags
+	position relative
+	width 335px
+	height 110px
+	font $font
+	padding 0px
+	z-index 5
+	background transparent
+	display none
+
+.tag
+	cursor pointer
+	padding $paddingLess
+	width 94px
+	line-height 25pt
+	text-align center
+	font $font
+	display inline-block
+	color white
+	background rgba(16,49,90,0.5)
+	&:hover
+		background rgba(16,49,90,1) !important

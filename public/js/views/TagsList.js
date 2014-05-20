@@ -9,11 +9,7 @@ define(['views/TagView',
 
 		itemViewContainer: '#tags',
 
-		itemView: TagView,
-
-		initialize: function() {
-			
-		}		
+		itemView: TagView
 
 	});
 

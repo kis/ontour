@@ -13,18 +13,18 @@
 
     <body>
         <section id="sidebar">
-            <section id="search"></section>
+            <menu id="search"></menu>
             <section id="events"></section>
 
-            <div id="controls"></div>
-            <div id="status"></div>
+            <section id="controls"></section>
+            <section id="status"></section>
         </section>
 
-        <div id="notification"></div>
+        <dialog id="notification"></dialog>
 
-        <div id="settings"></div>
+        <section id="settings"></section>
 
-        <div id="map"></div>
+        <section id="map"></section>
 
         <script data-main="js/main.js" src="js/lib/require.js"></script>
     </body>

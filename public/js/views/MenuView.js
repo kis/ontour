@@ -16,6 +16,7 @@ define(['channel',
 			tabArtist     : '#artist',
 			tabCity       : '#city',
 			searchField   : '.search-field',
+			tags		  : '#tags',
 			searchButton  : '.search-button'
 		},
 
@@ -61,8 +62,10 @@ define(['channel',
 
 			if (this.model.get('activeTab') == 'artist') {
 				this.ui.tabArtist.addClass('active');
+				this.ui.tags.slideUp(200);
 			} else if (this.model.get('activeTab') == 'city') {
 				this.ui.tabCity.addClass('active');
+				this.ui.tags.slideDown(200);
 			}
 		},
 

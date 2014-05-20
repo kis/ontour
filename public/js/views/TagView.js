@@ -9,12 +9,30 @@ define(['map',
 
 		template: _.template('<%= name %>'),
 
-		ui: {
-			saveEvent : '.save-event'
+		events: {
+			'click' : 'select'
 		},
 
-		events: {
-			'click' : 'selectEvent'
+		initialize: function() {
+			this.listenTo(this.model, 'change:active', this.activate);
+		},
+
+		select: function() {
+			this.model.collection.models.forEach(function(model) {
+				if (model == this.model) {
+					this.model.set('active', this.model.get('active') ? false : true);
+				} else {
+					model.set('active', false);
+				}
+			}, this);
+		},
+
+		activate: function() {
+			if (this.model.get('active')) {
+				this.$el.addClass('active');
+			} else {
+				this.$el.removeClass('active');
+			}
 		},
 
 		render: function() {
