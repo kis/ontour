@@ -12,10 +12,12 @@ define(['channel',
 		template: _.template(controlsTmpl),
 
 		ui: {
+			gotop   	: '#go-top',
 			slide   	: '#slide',
+			layers		: '.layers',
 			paths   	: '#paths',
 			markers 	: '#markers',
-			gotop   	: '#go-top',
+			selects		: 'input',
 			selectMonth : '#select-month',
 			selectDay   : '#select-day'
 		},
@@ -31,6 +33,12 @@ define(['channel',
 		initialize: function() {
 			this.listenTo(channel, 'gotop-show', this.gotopShow);
 			this.listenTo(channel, 'gotop-hide', this.gotopHide);
+			this.listenTo(channel, 'showControls', this.showControls);
+		},
+
+		showControls: function() {
+			this.ui.layers.show();
+			this.ui.selects.show();
 		},
 
 		onShow: function() {

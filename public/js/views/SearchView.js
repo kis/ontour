@@ -18,10 +18,6 @@ define(['channel',
 		},
 
 		render: function() {
-			if (this.model.get('totalPages') > 1) {
-				this.$el.show();
-			}
-
 			if (this.model.get('page') < this.model.get('totalPages')) {
 				this.$el.html(this.tplLoad(this.model.toJSON()));
 			} else {
@@ -37,6 +33,9 @@ define(['channel',
 			channel.trigger('reset');
 			this.model.set(this.model.defaults);
 			channel.trigger('setParam', param);
+
+			this.$el.show();
+			channel.trigger('showControls');
 
 			var self = this;
 
