@@ -1,22 +1,16 @@
-define(['text', 
-		'text!templates/Notification.tmpl', 
-		'map',
-		'channel'
-], function(text, notificationTpl, map, channel) {
+define(['channel',
+		'marionette'
+], function(channel) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
 
 		itemViewContainer: '#notification',
 
-		template: _.template(notificationTpl),
-
-		ui: {
-			ok : '.notification-ok'
-		},
+		template: _.template('<%= message %>'),
 
 		events: {
-			'click @ui.ok' : 'close'
+			'click' : 'close'
 		},
 
 		initialize: function() {
@@ -24,10 +18,7 @@ define(['text',
 		},
 
 		setNotification: function(notification) {
-			this.model.set({
-				header : notification.header,
-				body   : notification.body
-			});
+			this.model.set({message: notification});
 
 			this.$el.show(100);
 			this.render();
@@ -35,7 +26,7 @@ define(['text',
 			var self = this;
 
 			setTimeout(function() {
-				self.$el.hide(100);
+				self.close();
 			}, 1500);			
 		},
 

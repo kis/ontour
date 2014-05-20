@@ -4,318 +4,305 @@ $font = bold small-caps 16px serif
 $sidebar_width = 303px
 $padding = 14px
 
+$fontHeader = bold small-caps 18px serif
+
+body
+	overflow hidden
+
 /**
  * Sidebar and Controls
  */
 
 #sidebar
-    position fixed
-    top 0px
-    left 0px
-    width 360px
-    height 100%
-    background rgba(16,49,90,0.2)
-    z-index 3
+	position fixed
+	top 0px
+	left 0px
+	width 360px
+	height 100%
+	background rgba(16,49,90,0.2)
+	z-index 3
 
 #controls
-    position absolute
-    top 0px
-    left 360px
-    width 800px
-    z-index 3
-    margin-top 13px
+	position absolute
+	top 0px
+	left 360px
+	width 800px
+	z-index 3
+	margin-top 13px
 
 #controls a
-    cursor pointer
-    padding $padding
-    width 60px
-    line-height 25pt
-    text-align center
-    font $font
-    display inline-block
-    color white
-    background rgba(16,49,90,0.5)
-    &:hover
-        background rgba(16,49,90,1) !important
+	cursor pointer
+	padding $padding
+	width 60px
+	line-height 25pt
+	text-align center
+	font $font
+	display inline-block
+	color white
+	background rgba(16,49,90,0.5)
+	&:hover
+		background rgba(16,49,90,1) !important
 
 #controls select
-    cursor pointer
-    padding 13px
-    width 170px
-    outline none
-    border none
-    line-height 25pt
-    text-align center
-    font $font
-    display inline-block
-    color white
-    background rgba(16,49,90,0.5)
+	cursor pointer
+	padding 13px
+	width 170px
+	outline none
+	border none
+	line-height 25pt
+	text-align center
+	font $font
+	display inline-block
+	color white
+	background rgba(16,49,90,0.5)
 
 #slide
-    width 10px !important
+	width 10px !important
 
 #go-top
-    position fixed
-    bottom 15px
-    left 360px
-    margin-top 15px
-    width 10px !important
+	position fixed
+	bottom 15px
+	left 360px
+	margin-top 15px
+	width 10px !important
 
 /**
  * Search
  */
 
 #search
-    position absolute
-    top 0px
-    left 0px
-    width 335px
-    height 147px
-    font-size 0
-    margin 15px
-    padding 0px
-    z-index 15
-    background transparent
+	position absolute
+	top 0px
+	left 0px
+	width 335px
+	height 147px
+	font-size 0
+	margin 15px
+	padding 0px
+	z-index 15
+	background transparent
 
 .tab
-    cursor pointer
-    padding $padding
-    width 137px
-    line-height 25pt
-    text-align center
-    font $font
-    display inline-block
-    color white
-    background rgba(16,49,90,0.5)
-    &:hover
-        background rgba(16,49,90,1) !important
+	cursor pointer
+	padding $padding
+	width 137px
+	line-height 25pt
+	text-align center
+	font $font
+	display inline-block
+	color white
+	background rgba(16,49,90,0.5)
+	&:hover
+		background rgba(16,49,90,1) !important
 
 .active
-    background rgba(16,49,90,1) !important
+	background rgba(16,49,90,1) !important
 
 .search-field
-    width 307px
-    line-height 25pt
-    font $font
-    display block
-    padding 12px
-    outline none
-    border 0px
+	width 307px
+	line-height 25pt
+	font $font
+	display block
+	padding 12px
+	outline none
+	border 0px
 
 .invalid
-    background rgba(255,11,0,0.3)
+	background rgba(255,11,0,0.3)
 
 .search-button
-    cursor pointer
-    padding $padding
-    width 150px
-    line-height 25pt
-    text-align center
-    font $font
-    display block
-    color white
-    background rgba(16,49,90,0.5)
-    &:hover
-        background $bg !important
+	cursor pointer
+	padding $padding
+	width 150px
+	line-height 25pt
+	text-align center
+	font $font
+	display block
+	color white
+	background rgba(16,49,90,0.5)
+	&:hover
+		background $bg !important
 
 /**
  * Events
  */
 
 #events
-    position absolute
-    top 155px
-    left 0px
-    height (100% / 1.237)
-    overflow hidden
-    font $font
-    color white
-    background-color rgba(16,49,90,0.5)
-    margin 15px
-    z-index 6
+	position absolute
+	top 155px
+	left 0px
+	height (100% / 1.237)
+	overflow hidden
+	font $font
+	color white
+	background-color rgba(16,49,90,0.5)
+	margin 15px
+	z-index 6
 
 #event-item
-    position relative
-    width $sidebar_width
-    height 120px
-    border-bottom 1px solid #e8e0d8
-    padding $padding
-    background transparent
-    &:hover
-        background rgba(16,49,90,0.6)
-        color rgb(210,200,191)
-        cursor pointer
+	position relative
+	width $sidebar_width
+	height 120px
+	border-bottom 1px solid #e8e0d8
+	padding $padding
+	background transparent
+	&:hover
+		background rgba(16,49,90,0.6)
+		color rgb(210,200,191)
+		cursor pointer
 
 .selected
-    background rgba(16,49,90,0.6) !important
-    color rgb(210,200,191)
+	background rgba(16,49,90,0.6) !important
+	color rgb(210,200,191)
 
 .artist-pic
-    width 50px
-    height 50px
-    float left
-    margin 30px 15px 5px 0
+	width 50px
+	height 50px
+	float left
+	margin 30px 15px 5px 0
 
 .artist-data
-    width 210px
-    font $font
-    margin 5px 5px 5px 80px
+	width 210px
+	font $font
+	margin 5px 5px 5px 80px
 
 .save-event
-    position relative
-    float right
-    right 20px
-    width 35px
-    color white
-    padding 5px
-    background transparent
-    &:hover
-        background white
-        color rgba(16,49,90,1)
-        cursor pointer
+	position relative
+	float right
+	right 20px
+	width 35px
+	color white
+	padding 5px
+	background transparent
+	&:hover
+		background white
+		color rgba(16,49,90,1)
+		cursor pointer
 
 /**
  * Status
  */
 
 #status
-    position absolute
-    top 92px
-    left 345px
-    display none
-    width 100px
-    margin 15px
-    padding $padding
-    font $font
-    color white
-    text-align center
-    background $bg
+	position absolute
+	top 92px
+	left 345px
+	display none
+	width 100px
+	margin 15px
+	padding $padding
+	font $font
+	color white
+	text-align center
+	background $bg
 
 /**
  * Autocomplete
  */
 
 #autocomplete
-    position absolute
-    z-index 10
-    font $font
-    line-height 18pt
-    width 331px
-    cursor pointer
-    background white
+	position absolute
+	z-index 10
+	font $font
+	line-height 18pt
+	width 331px
+	cursor pointer
+	background white
 
 #autocomplete > div
-    display none
+	display none
 
 #autocomplete div div
-    padding 10px
+	padding 10px
 
 .hover
-    background #dfdfdf
+	background #dfdfdf
 
 /**
   * User settings
   */
 
 #settings
-    position absolute
-    top 0px
-    right 15px
-    z-index 3
-    margin-top 15px
+	position absolute
+	top 0px
+	right 15px
+	z-index 3
+	margin-top 15px
 
 #settings a
-    cursor pointer
-    padding $padding
-    line-height 25pt
-    text-align center
-    font $font
-    display inline-block
-    color white
-    background rgba(16,49,90,0.5)
-    &:hover
-        background rgba(16,49,90,1) !important
+	cursor pointer
+	padding $padding
+	line-height 25pt
+	text-align center
+	font $font
+	display inline-block
+	color white
+	background rgba(16,49,90,0.5)
+	&:hover
+		background rgba(16,49,90,1) !important
 
 #settings img
-    cursor pointer
-    margin-top -1px
-    width 47px
-    display inline-block
-    vertical-align middle
-    border 0px
-    color white
+	cursor pointer
+	margin-top -1px
+	width 47px
+	display inline-block
+	vertical-align middle
+	border 0px
+	color white
 
 @-moz-document url-prefix()
-    .tab, .search-field, .search-button, #events, .artist-data, #status, #autocomplete, #settings a, #controls a
-        font bold small-caps 12px serif
-        line-height 20px
-    .search-field
-        padding 14px 12px 14px 12px
-        margin 2px 0 2px 0
+	.tab, .search-field, .search-button, #events, .artist-data, #status, #autocomplete, #settings a, #controls a
+		font bold small-caps 12px serif
+		line-height 20px
+	.search-field
+		padding 14px 12px 14px 12px
+		margin 2px 0 2px 0
 
 /**
  * Map area
  */
 
 #map
-    position fixed
-    top 0px
-    left 0px
-    width 100%
-    height 100%
-    margin 0px
-    padding 0px
-    z-index 2
+	position fixed
+	top 0px
+	left 0px
+	width 100%
+	height 100%
+	margin 0px
+	padding 0px
+	z-index 2
 
 /**
   * Map elements
   */
 
 .dot
-    border-radius 50%
+	border-radius 50%
 
 .leaflet-container
-    color white !important
+	color white !important
 
 .leaflet-popup-content-wrapper
-    border-radius 0 !important
-    background rgba(16,49,90,1) !important
+	border-radius 0 !important
+	background rgba(16,49,90,1) !important
 
 .leaflet-popup-tip
-    border-top 10px solid rgba(16,49,90,1) !important
+	border-top 10px solid rgba(16,49,90,1) !important
 
 /**
   * Notification
   */
 
 #notification
-    position absolute
-    margin 13% 35%
-    font $font
-    color white
-    z-index 30
+	position absolute
+	margin 18% 36%
+	font $fontHeader
+	color white
+	z-index 30
 
 #notification > div
-    display block
-    width 450px
-    height 200px
-    background #0c1f38
-
-.notification-ok
-    position relative
-    top 50px
-    left 50px
-    width 200px
-    cursor pointer
-    padding 15px
-    margin-top 15px
-    line-height 30pt
-    text-align center
-    font $font
-    outline none
-    display inline-block
-    color #0c1f38
-    border 0px
-    background #cadaee
-    &:hover
-        background #597077 !important
+	display none
+	padding 40px
+	width 400px
+	background #0c1f38
+	text-align center

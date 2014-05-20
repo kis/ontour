@@ -50,10 +50,7 @@ define(['text',
 
 		save: function() {
 			this.model.save({id: this.model.get('id')}, {patch: true});
-			channel.trigger('showNotification', {
-				header : 'Notification',
-				body   : 'The event is saved!' 
-			});
+			channel.trigger('showNotification', 'The event is saved!');
 		},
 
 		addIcon: function() {

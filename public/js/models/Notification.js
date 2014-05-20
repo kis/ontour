@@ -4,8 +4,7 @@ define(['backbone'], function(Backbone) {
 	return Backbone.Model.extend({
 
 		defaults: {
-			header: 'Notification',
-			body: '',
+			message: 'Notification',
 		}
 		
 	});
