@@ -20,7 +20,13 @@ define(['map',
 		select: function() {
 			this.model.collection.models.forEach(function(model) {
 				if (model == this.model) {
-					this.model.set('active', this.model.get('active') ? false : true);
+					if (this.model.get('active')) {
+						this.model.set('active', false);
+						channel.trigger('setActiveTag', '');
+					} else {
+						this.model.set('active', true);
+						channel.trigger('setActiveTag', this.model.get('name'));
+					}
 				} else {
 					model.set('active', false);
 				}

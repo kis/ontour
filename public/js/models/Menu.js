@@ -6,7 +6,8 @@ define(['backbone'], function(Backbone) {
 		defaults: {
 			activeTab: 'artist',
 			value: '',
-			param: 'artist'
+			param: 'artist',
+			activeTag: ''
 		}
 		
 	});

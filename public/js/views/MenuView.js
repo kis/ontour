@@ -31,11 +31,16 @@ define(['channel',
 		initialize: function() {
 			this.listenTo(channel, 'fieldInvalid', this.fieldInvalid);
 			this.listenTo(channel, 'search', this.search);
+			this.listenTo(channel, 'setActiveTag', this.setActiveTag);
 			this.listenTo(this.model, 'change:activeTab', this.updateMenu);
 		},
 
 		onShow: function() {
 			this.ui.searchField.val('').focus();
+		},
+
+		setActiveTag: function(tag) {
+			this.model.set('activeTag', tag);
 		},
 
 		setActiveTabArtist: function() {
@@ -102,7 +107,11 @@ define(['channel',
 				this.fieldInvalid();
 			} else {
 				this.ui.searchField.removeClass("invalid").focus();
-				channel.trigger('getEvents', this.model.get('value'), this.model.get('param'));
+				channel.trigger('getEvents', {
+					value: this.model.get('value'), 
+					param: this.model.get('param'),
+					tag  : this.model.get('activeTag')
+				});
 			}
 		}
 

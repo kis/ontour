@@ -29,10 +29,10 @@ define(['channel',
 			}
 		},
 
-		getEvents: function(search_val, param) {
+		getEvents: function(search) {
 			channel.trigger('reset');
 			this.model.set(this.model.defaults);
-			channel.trigger('setParam', param);
+			channel.trigger('setParam', search.param);
 
 			this.$el.show();
 			channel.trigger('showControls');
@@ -44,17 +44,18 @@ define(['channel',
 					url: 'http://ws.audioscrobbler.com/2.0/',
 					type: 'GET',
 					data: {
-						method: param + '.getevents',
-						location: search_val,
-						artist: search_val,
+						method: search.param + '.getevents',
+						location: search.value,
+						artist: search.value,
 						autocorrect: 1,
+						tag: search.tag,
 						page: self.model.get('page'),
 						limit: 10,
 						api_key: 'dd349d2176d3b97b8162bb0c0e583b1c',
 						format: 'json'
 					},
 					success: function(data) {
-						self.getEventsData(data, param);
+						self.getEventsData(data, search.param);
 
 						self.model.set('page', self.model.get('page') + 1);
 
