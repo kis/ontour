@@ -43,6 +43,8 @@ define(['channel',
 				'activeTab' : 'artist',
 				'param'     : 'artist'
 			});
+
+			channel.trigger('setHeight', 0);
 		},
 
 		setActiveTabCity: function() {
@@ -50,6 +52,8 @@ define(['channel',
 				'activeTab' : 'city',
 				'param'     : 'geo'
 			});
+
+			channel.trigger('setHeight', 1);
 		},
 
 		updateMenu: function() {

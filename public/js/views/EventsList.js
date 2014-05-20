@@ -28,6 +28,7 @@ define(['views/EventView',
 			this.listenTo(channel, 'switchPaths', this.switchPaths);
 			this.listenTo(channel, 'gotop', this.gotop);
 			this.listenTo(channel, 'filter', this.filter);
+			this.listenTo(channel, 'setHeight', this.setHeight);
 		},
 
 		setParam: function(param) {
@@ -173,6 +174,10 @@ define(['views/EventView',
 			this.$el.animate({
 				'scrollTop': 0
 				}, 500, 'swing');
+		},
+
+		setHeight: function(attr) {
+			this.$el.css('height', attr ? '70%' : '81%');
 		}
 
 	});
