@@ -5,9 +5,7 @@ define(['channel',
 
 	return Marionette.ItemView.extend({
 		
-		el: '#status',
-
-		// itemViewContainer: '#status',
+		itemViewContainer: '#status',
 
 		tplNotFound	: _.template('Not found'),
 		tplLoad     : _.template('<%= page * 10 %> / <%= total %>'),
@@ -20,7 +18,9 @@ define(['channel',
 		},
 
 		render: function() {
-			this.$el.show();
+			if (this.model.get('totalPages') > 1) {
+				this.$el.show();
+			}
 
 			if (this.model.get('page') < this.model.get('totalPages')) {
 				this.$el.html(this.tplLoad(this.model.toJSON()));

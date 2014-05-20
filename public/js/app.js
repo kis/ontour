@@ -49,7 +49,7 @@ define(['models/Menu',
 		settings: '#settings',
 		autocomplete: '#autocomplete',
 		notification: '#notification',
-		// search: '#status',
+		search: '#status',
 		events: '#events'
 	});
 
@@ -57,18 +57,18 @@ define(['models/Menu',
 		controlsView 	 = new ControlsView({model: new Controls()}),
 		settingsView 	 = new SettingsView(),
 		searchView 		 = new SearchView({model: new Search()}),
-		eventsListView   = new EventsList({collection: new Events()}),
 		notificationView = new NotificationView({model: new Notification()}),
+		eventsList       = new EventsList({collection: new Events()}),
 		autocompleteList = new AutocompleteList({collection: new AutocompleteCollection()});
 
 	app.addInitializer(function () {
 		app.menu.show(menuView);
 		app.controls.show(controlsView);
 		app.settings.show(settingsView);
-		app.autocomplete.show(autocompleteList);
 		app.notification.show(notificationView);
-		// app.search.show(searchView);
-		app.events.show(eventsListView);
+		app.search.show(searchView);
+		app.events.show(eventsList);
+		app.autocomplete.show(autocompleteList);
 	});
 
 	return app;
