@@ -17,7 +17,8 @@ define(['channel',
 			tabCity       : '#city',
 			searchField   : '.search-field',
 			tags		  : '#tags',
-			searchButton  : '.search-button'
+			searchButton  : '.search-button',
+			festivals     : '.festivals'
 		},
 
 		events: {
@@ -25,7 +26,8 @@ define(['channel',
 			'click @ui.tabCity'		  : 'setActiveTabCity',
 			'input @ui.searchField'	  : 'getAutocompleteData',
 			'keydown @ui.searchField' : 'execAutocompleteProperty',
-			'click @ui.searchButton'  : 'getEvents'
+			'click @ui.searchButton'  : 'getEvents',
+			'click @ui.festivals'     : 'setFestivalsonly'
 		},
 
 		initialize: function() {
@@ -33,6 +35,7 @@ define(['channel',
 			this.listenTo(channel, 'search', this.search);
 			this.listenTo(channel, 'setActiveTag', this.setActiveTag);
 			this.listenTo(this.model, 'change:activeTab', this.updateMenu);
+			this.listenTo(this.model, 'change:festivalsonly', this.updateF);
 		},
 
 		onShow: function() {
@@ -41,6 +44,18 @@ define(['channel',
 
 		setActiveTag: function(tag) {
 			this.model.set('activeTag', tag);
+		},
+
+		setFestivalsonly: function() {
+			this.model.set('festivalsonly', this.model.get('festivalsonly') ? 0 : 1);
+		},
+
+		updateF: function() {
+			if (this.model.get('festivalsonly')) {
+				this.ui.festivals.addClass('active');
+			} else {
+				this.ui.festivals.removeClass('active');
+			}
 		},
 
 		setActiveTabArtist: function() {
@@ -108,9 +123,10 @@ define(['channel',
 			} else {
 				this.ui.searchField.removeClass("invalid").focus();
 				channel.trigger('getEvents', {
-					value: this.model.get('value'), 
-					param: this.model.get('param'),
-					tag  : this.model.get('activeTag')
+					value : this.model.get('value'), 
+					param : this.model.get('param'),
+					tag   : this.model.get('activeTag'),
+					fest  : this.model.get('festivalsonly')
 				});
 			}
 		}

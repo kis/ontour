@@ -7,7 +7,8 @@ define(['backbone'], function(Backbone) {
 			activeTab: 'artist',
 			value: '',
 			param: 'artist',
-			activeTag: ''
+			activeTag: '',
+			festivalsonly: 0
 		}
 		
 	});

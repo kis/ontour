@@ -113,7 +113,20 @@ body
 	line-height 25pt
 	text-align center
 	font $font
-	display block
+	display inline-block
+	color white
+	background rgba(16,49,90,0.5)
+	&:hover
+		background $bg !important
+
+.festivals
+	width 20px
+	cursor pointer
+	padding $padding 1px $padding 10px
+	margin-left 3px
+	font $font
+	display inline-block
+	vertical-align top
 	color white
 	background rgba(16,49,90,0.5)
 	&:hover

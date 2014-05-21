@@ -44,15 +44,16 @@ define(['channel',
 					url: 'http://ws.audioscrobbler.com/2.0/',
 					type: 'GET',
 					data: {
-						method: search.param + '.getevents',
-						location: search.value,
-						artist: search.value,
-						autocorrect: 1,
-						tag: search.tag,
-						page: self.model.get('page'),
-						limit: 10,
-						api_key: 'dd349d2176d3b97b8162bb0c0e583b1c',
-						format: 'json'
+						method        : search.param + '.getevents',
+						location      : search.value,
+						artist        : search.value,
+						autocorrect   : 1,
+						festivalsonly : search.fest,
+						tag           : search.tag,
+						page 		  : self.model.get('page'),
+						limit	      : 10,
+						api_key  	  : 'dd349d2176d3b97b8162bb0c0e583b1c',
+						format 		  : 'json'
 					},
 					success: function(data) {
 						self.getEventsData(data, search.param);
