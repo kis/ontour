@@ -15,9 +15,14 @@ Route::resource('events', 'EventController');
 
 Route::controller('users', 'UserController');
 
-Route::group(array('before' => 'auth'), function(){
+/*Route::group(array('before' => 'auth'), function(){
     Route::get('/', function()
     {
         return View::make('main');
     });
+});*/
+
+Route::get('/', function()
+{
+    return View::make('main');
 });

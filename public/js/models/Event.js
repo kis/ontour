@@ -16,7 +16,9 @@ define(['backbone'], function(Backbone) {
 			path: null,
 			selected: false,
 			filtered: true
-		}
+		},
+
+		url: '/events/:id'
 
 	});
 
