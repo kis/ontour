@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'ontour',
+			'database'  => 'ontour', //'u0005692_ontour'
 			'username'  => 'root',
 			'password'  => 'root',
 			'charset'   => 'utf8',

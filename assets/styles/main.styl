@@ -261,14 +261,6 @@ body
 	border 0px
 	color white
 
-@-moz-document url-prefix()
-	.tab, .search-field, .search-button, #events, .artist-data, #status, #autocomplete, #settings a, #controls a
-		font $fontSmall
-		line-height 20px
-	.search-field
-		padding 14px 12px 14px 12px
-		margin 2px 0 2px 0
-
 /**
  * Map area
  */
@@ -344,3 +336,13 @@ body
 	background rgba(16,49,90,0.5)
 	&:hover
 		background rgba(16,49,90,1) !important
+
+@-moz-document url-prefix()
+	.tab, .search-field, .search-button, #events, .artist-data, #status, #autocomplete, #settings a, #controls a, .tag, #status div, .festivals
+		font $fontSmall
+		line-height 20px
+	.search-field
+		padding 14px 12px 14px 12px
+		margin 2px 0 2px 0
+	#controls .layers
+		padding 16px 

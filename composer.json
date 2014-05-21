@@ -4,8 +4,8 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.1.*",
-        "jenssegers/mongodb": "*"
+        "symfony/translation": "2.4.*",
+		"laravel/framework": "4.1.*"
 	},
 	"autoload": {
 		"classmap": [

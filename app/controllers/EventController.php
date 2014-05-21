@@ -18,7 +18,7 @@ class EventController extends BaseController {
         if ($validator->passes()) {
             Event::create([
                 'event_id' => Input::get('event_id'),
-                'user_id'  => Auth::user()->id
+                'user_id'  => 1//Auth::user()->id
             ]);
 
             return ['result' => 'success'];
