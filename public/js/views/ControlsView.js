@@ -80,11 +80,7 @@ define(['channel',
 		},
 
 		toggleSidebar: function() {
-			$('#sidebar').animate({
-				left: parseInt($('#sidebar').css('left'),10) == 0 ? -$('#sidebar').outerWidth() : 0
-			});
-
-			this.ui.slide.find('b').text(parseInt($('#sidebar').css('left'),10) == 0 ? '>' : '<');
+			$('#sidebar').css('left', (parseInt($('#sidebar').css('left'),10) == 0 ? -$('#sidebar').outerWidth() : 0));
 
 			if (this.ui.gotop.css('display') == 'block') {
 				this.ui.gotop.css({display: 'none'});

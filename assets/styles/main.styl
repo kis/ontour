@@ -54,9 +54,6 @@ body
 	border none
 	display none
 
-#slide
-	width 10px !important
-
 #go-top
 	position fixed
 	bottom 15px
@@ -389,7 +386,10 @@ body
 	text-align center
 
 @-moz-document url-prefix()
-	.tab, .search-field, .search-button, #events, .artist-data, #status, #autocomplete, #settings a, #controls a, .tag, #status div, .festivals
+	.tab, .search-field, .search-button, #events, .artist-data, 
+	#status, #autocomplete, #settings a, #controls a, .tag, 
+	#status div, .festivals, #date-selector, #years div div, 
+	#months div div, #days div div
 		font $fontSmall
 		line-height 20px
 	.search-field
