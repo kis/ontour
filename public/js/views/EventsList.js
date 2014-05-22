@@ -72,12 +72,8 @@ define(['views/EventView',
 			this.hideMarkers();
 			this.hidePaths();
 
-			console.log(!date.year + '-' + !date.month + '-' + !date.day);
-
 			this.collection.each(function(event) {
 				var eventDate = new Date(event.get('date'));
-
-				console.log(eventDate.getFullYear() + ' - ' + eventDate.getMonth() + ' - ' + eventDate.getDate());
 
 				if ((eventDate.getFullYear() == date.year || !date.year) &&
 					(eventDate.getMonth() == date.month || !date.month) &&

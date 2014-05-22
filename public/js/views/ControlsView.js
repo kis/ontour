@@ -17,14 +17,16 @@ define(['channel',
 			layers	: '.layers',
 			paths   : '#paths',
 			markers : '#markers',
+			picker	: '#date-selector',
 			date	: '#date'
 		},
 
 		events: {
-			'click @ui.slide'   : 'slide',
+			'click @ui.slide'   : 'toggleSidebar',
 			'click @ui.markers' : 'switchMarkers',
 			'click @ui.paths'   : 'switchPaths',
-			'click @ui.gotop'   : 'gotop'
+			'click @ui.gotop'   : 'gotop',
+			'click @ui.picker'  : 'toggleDatepicker'
 		},
 
 		initialize: function() {
@@ -36,7 +38,22 @@ define(['channel',
 			this.listenTo(channel, 'setEventMonth', this.setEventMonth);
 			this.listenTo(channel, 'setEventDay', this.setEventDay);
 
-			this.listenTo(this.model, 'change', this.filter);
+			this.listenTo(this.model, 'change:year change:month change:day', this.filter);
+			this.listenTo(this.model, 'change:datepicker', this.showDatepicker);
+		},
+
+		toggleDatepicker: function() {
+			this.model.set('datepicker', this.model.get('datepicker') ? false : true);
+		},
+
+		showDatepicker: function() {
+			if (this.model.get('datepicker')) {
+				this.ui.picker.addClass('active');
+				this.ui.date.show();
+			} else {
+				this.ui.picker.removeClass('active');
+				this.ui.date.hide();
+			}
 		},
 
 		setEventYear: function(year) {
@@ -53,7 +70,7 @@ define(['channel',
 
 		showControls: function() {
 			this.ui.layers.show();
-			this.ui.date.show();
+			this.ui.picker.show();
 		},
 
 		onShow: function() {
@@ -62,7 +79,7 @@ define(['channel',
 			});
 		},
 
-		slide: function() {
+		toggleSidebar: function() {
 			$('#sidebar').animate({
 				left: parseInt($('#sidebar').css('left'),10) == 0 ? -$('#sidebar').outerWidth() : 0
 			});

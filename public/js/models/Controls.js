@@ -4,9 +4,10 @@ define(['backbone'], function(Backbone) {
 	return Backbone.Model.extend({
 
 		defaults: {
-			year  : '',
-			month : '',
-			day   : ''
+			year       : '',
+			month      : '',
+			day        : '',
+			datepicker : false
 		}
 
 	});
