@@ -72,13 +72,16 @@ define(['views/EventView',
 			this.hideMarkers();
 			this.hidePaths();
 
+			console.log(!date.year + '-' + !date.month + '-' + !date.day);
+
 			this.collection.each(function(event) {
 				var eventDate = new Date(event.get('date'));
-				var chosenMonth = new Date(date.month);
-				var chosenDate = new Date(date.day);
 
-				if ((eventDate.getMonth() == chosenMonth.getMonth() || !date.month) &&
-					(eventDate.getDate() == chosenDate.getDate() || !date.day)) {
+				console.log(eventDate.getFullYear() + ' - ' + eventDate.getMonth() + ' - ' + eventDate.getDate());
+
+				if ((eventDate.getFullYear() == date.year || !date.year) &&
+					(eventDate.getMonth() == date.month || !date.month) &&
+					(eventDate.getDate() == date.day || !date.day)) {
 						if (event.get('marker')) {
 							map.getMap().addLayer(event.get('marker'));
 						}
@@ -176,8 +179,8 @@ define(['views/EventView',
 				}, 500, 'swing');
 		},
 
-		setHeight: function(attr) {
-			this.$el.css('height', attr ? '70%' : '81%');
+		setHeight: function(menu_height) {
+			this.$el.css('height', $('#sidebar').height() - menu_height - 45);
 		}
 
 	});

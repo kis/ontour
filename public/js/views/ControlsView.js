@@ -12,33 +12,48 @@ define(['channel',
 		template: _.template(controlsTmpl),
 
 		ui: {
-			gotop   	: '#go-top',
-			slide   	: '#slide',
-			layers		: '.layers',
-			paths   	: '#paths',
-			markers 	: '#markers',
-			selects		: 'input',
-			selectMonth : '#select-month',
-			selectDay   : '#select-day'
+			gotop   : '#go-top',
+			slide   : '#slide',
+			layers	: '.layers',
+			paths   : '#paths',
+			markers : '#markers',
+			date	: '#date'
 		},
 
 		events: {
-			'click @ui.slide'   	  			    : 'slide',
-			'click @ui.markers' 	  			    : 'switchMarkers',
-			'click @ui.paths'   	  			    : 'switchPaths',
-			'click @ui.gotop'   	  			    : 'gotop',
-			'change @ui.selectMonth, @ui.selectDay' : 'filter'
+			'click @ui.slide'   : 'slide',
+			'click @ui.markers' : 'switchMarkers',
+			'click @ui.paths'   : 'switchPaths',
+			'click @ui.gotop'   : 'gotop'
 		},
 
 		initialize: function() {
 			this.listenTo(channel, 'gotop-show', this.gotopShow);
 			this.listenTo(channel, 'gotop-hide', this.gotopHide);
 			this.listenTo(channel, 'showControls', this.showControls);
+
+			this.listenTo(channel, 'setEventYear', this.setEventYear);
+			this.listenTo(channel, 'setEventMonth', this.setEventMonth);
+			this.listenTo(channel, 'setEventDay', this.setEventDay);
+
+			this.listenTo(this.model, 'change', this.filter);
+		},
+
+		setEventYear: function(year) {
+			this.model.set('year', year);
+		},
+
+		setEventMonth: function(month) {
+			this.model.set('month', month);
+		},
+
+		setEventDay: function(day) {
+			this.model.set('day', day);
 		},
 
 		showControls: function() {
 			this.ui.layers.show();
-			this.ui.selects.show();
+			this.ui.date.show();
 		},
 
 		onShow: function() {
@@ -61,8 +76,9 @@ define(['channel',
 
 		filter: function() {
 			channel.trigger('filter', {
-				month : this.ui.selectMonth.val(), 
-				day   : this.ui.selectDay.val()
+				year  : this.model.get('year'),
+				month : this.model.get('month'),
+				day   : this.model.get('day')
 			});
 		},
 

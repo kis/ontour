@@ -46,7 +46,7 @@ body
 	color white
 	background rgba(16,49,90,0.5)
 	&:hover
-		background rgba(16,49,90,1) !important
+		background $bg !important
 
 #controls input
 	line-height 33pt
@@ -89,10 +89,10 @@ body
 	color white
 	background rgba(16,49,90,0.5)
 	&:hover
-		background rgba(16,49,90,1) !important
+		background $bg !important
 
 .active
-	background rgba(16,49,90,1) !important
+	background $bg !important
 
 .search-field
 	width 307px
@@ -156,12 +156,12 @@ body
 	padding $padding
 	background transparent
 	&:hover
-		background rgba(16,49,90,0.6)
+		background $bg
 		color rgb(210,200,191)
 		cursor pointer
 
 .selected
-	background rgba(16,49,90,0.6) !important
+	background $bg !important
 	color rgb(210,200,191)
 
 .artist-pic
@@ -250,7 +250,7 @@ body
 	color white
 	background rgba(16,49,90,0.5)
 	&:hover
-		background rgba(16,49,90,1) !important
+		background $bg !important
 
 #settings img
 	cursor pointer
@@ -287,10 +287,10 @@ body
 
 .leaflet-popup-content-wrapper
 	border-radius 0 !important
-	background rgba(16,49,90,1) !important
+	background $bg !important
 
 .leaflet-popup-tip
-	border-top 10px solid rgba(16,49,90,1) !important
+	border-top 10px solid $bg !important
 
 /**
   * Notification
@@ -311,10 +311,10 @@ body
 	text-align center
 
 /**
-  * Tags
+  * Tags, Years, Months, Days
   */
 
-#tags
+#tags, #years, #months, #days
 	position relative
 	width 335px
 	height 110px
@@ -324,7 +324,7 @@ body
 	background transparent
 	display none
 
-.tag
+.tag, #years div div, #months div div, #days div div
 	cursor pointer
 	padding $paddingLess
 	width 94px
@@ -335,7 +335,41 @@ body
 	color white
 	background rgba(16,49,90,0.5)
 	&:hover
-		background rgba(16,49,90,1) !important
+		background $bg !important
+
+#date
+	position absolute
+	top 165px
+	left 0px
+	width 350px
+	height 320px
+	background rgba(16,49,90,0.2)
+	display none
+
+#years
+	margin 15px
+	display block
+	height 50px
+
+#years div div
+	padding 4px
+	width 70px
+
+#months
+	margin 15px
+	display block
+
+#months div div
+	padding 5px
+	width 95px
+
+#days
+	margin 15px
+	display block
+
+#days div div
+	padding 3px
+	width 25px
 
 @-moz-document url-prefix()
 	.tab, .search-field, .search-button, #events, .artist-data, #status, #autocomplete, #settings a, #controls a, .tag, #status div, .festivals

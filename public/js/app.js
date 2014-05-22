@@ -20,6 +20,10 @@ define(['models/Menu',
 		'collections/Tags',
 		'views/TagView',
 		'views/TagsList',
+		'models/Date',
+		'collections/DateCollection',
+		'views/DateView',
+		'views/DateList',
 		'scrollbar',
 		'mousewheel'
 ], function(Menu, 
@@ -44,6 +48,10 @@ define(['models/Menu',
 			Tags,
 			TagView,
 			TagsList,
+			Date,
+			DateCollection,
+			DateView,
+			DateList,
 			scrollbar,
 			mousewheel) {
 	'use strict';
@@ -51,14 +59,17 @@ define(['models/Menu',
 	var app = new Marionette.Application();
 
 	app.addRegions({
-		menu: '#search',
-		controls: '#controls',
-		settings: '#settings',
-		autocomplete: '#autocomplete',
-		notification: '#notification',
-		search: '#status',
-		events: '#events',
-		tags: '#tags'
+		menu         : '#search',
+		controls 	 : '#controls',
+		settings 	 : '#settings',
+		autocomplete : '#autocomplete',
+		notification : '#notification',
+		search 		 : '#status',
+		events 		 : '#events',
+		tags 		 : '#tags',
+		year 		 : '#years',
+		month 		 : '#months',
+		day 		 : '#days'
 	});
 
 	var menuView = new MenuView({
@@ -92,7 +103,45 @@ define(['models/Menu',
 				{name: "dance"},
 				{name: "jazz"}
 			])
+		}),
+		yearList = new DateList({
+			collection: new DateCollection([
+				{name: 2014},
+				{name: 2015},
+				{name: 2016},
+				{name: 2017},
+				{name: 2018},
+				{name: 2019}
+			])
+		}),
+		monthList = new DateList({
+			collection: new DateCollection([
+				{name: 'January'},
+				{name: 'February'},
+				{name: 'March'},
+				{name: 'April'},
+				{name: 'May'},
+				{name: 'June'},
+				{name: 'July'},
+				{name: 'August'},
+				{name: 'September'},
+				{name: 'October'},
+				{name: 'November'},
+				{name: 'December'}
+			])
+		}),
+		dayCollection = new DateCollection(),
+		dayList = new DateList({
+			collection: dayCollection
 		});
+
+		yearList.collection.type = 'Year';
+		monthList.collection.type = 'Month';
+		dayList.collection.type = 'Day';
+
+	for (var i = 1; i < 32; i++) {
+		dayCollection.push({name: i});
+	}
 
 	app.addInitializer(function () {
 		app.menu.show(menuView);
@@ -103,6 +152,9 @@ define(['models/Menu',
 		app.events.show(eventsList);
 		app.autocomplete.show(autocompleteList);
 		app.tags.show(tagsList);
+		app.year.show(yearList);
+		app.month.show(monthList);
+		app.day.show(dayList);
 	});
 
 	return app;
