@@ -4,6 +4,14 @@ use App\Event;
 
 class EventController extends BaseController {
 
+    public function index() {
+        return Event::all();
+    }
+
+    public function show($id) {
+        return Event::find($id);
+    }
+
     public function store() {
         return Input::get('event_id');
 
@@ -18,7 +26,7 @@ class EventController extends BaseController {
         if ($validator->passes()) {
             Event::create([
                 'event_id' => Input::get('event_id'),
-                'user_id'  => 1//Auth::user()->id
+                'user_id'  => Auth::user()->id
             ]);
 
             return ['result' => 'success'];

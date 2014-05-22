@@ -19,10 +19,8 @@ define(['channel',
 
 		events: {
 			'click @ui.register' : 'register'
-		},
-
-		urlRoot: '/users'
-
+		}
+		
 	});
 
 });

@@ -14,6 +14,7 @@ define(['channel',
 		initialize: function() {
 			channel.trigger('reset');
 			this.listenTo(channel, 'getEvents', this.getEvents);
+			this.listenTo(channel, 'resetSearch', this.resetSearch);
 			this.listenTo(this.model, 'change', this.render);
 		},
 
@@ -29,13 +30,17 @@ define(['channel',
 			}
 		},
 
-		getEvents: function(search) {
+		resetSearch: function(param) {
 			channel.trigger('reset');
-			this.model.set(this.model.defaults);
-			channel.trigger('setParam', search.param);
-
+			channel.trigger('setParam', param);
 			this.$el.show();
 			channel.trigger('showControls');
+		},
+
+		getEvents: function(search) {
+			this.model.set(this.model.defaults);
+
+			this.resetSearch(search.param);
 
 			var self = this;
 
