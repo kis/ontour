@@ -19,7 +19,7 @@
                 <form action="register" method="POST" autocomplete="off">
                     <input id="email" name="email" type="email" placeholder="Enter email.." autocomplete="off" value="" />
                     <input id="password" name="password" type="password" placeholder="Enter password.." autocomplete="off" />
-                    <input id="password-repeat" name="password-repeat" type="password" placeholder="Repeat password.." autocomplete="off" />
+                    <input id="password_confirmation" name="password_confirmation" type="password" placeholder="Repeat password.." autocomplete="off" />
                     <button id="submit" type="submit">Sign up</button>
                 </form>
             </main>

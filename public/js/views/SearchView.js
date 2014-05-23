@@ -31,6 +31,8 @@ define(['channel',
 		},
 
 		resetSearch: function(param) {
+			channel.trigger('resetCluster');
+			this.model.set(this.model.defaults);
 			channel.trigger('reset');
 			channel.trigger('setParam', param);
 			this.$el.show();
@@ -38,8 +40,6 @@ define(['channel',
 		},
 
 		getEvents: function(search) {
-			this.model.set(this.model.defaults);
-
 			this.resetSearch(search.param);
 
 			var self = this;

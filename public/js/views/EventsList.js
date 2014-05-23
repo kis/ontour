@@ -79,7 +79,7 @@ define(['views/EventView',
 					(eventDate.getMonth() == date.month || !date.month) &&
 					(eventDate.getDate() == date.day || !date.day)) {
 						if (event.get('marker')) {
-							map.getMap().addLayer(event.get('marker'));
+							map.getCluster().addLayer(event.get('marker'));
 						}
 
 						if (event.get('path')) {
@@ -108,7 +108,7 @@ define(['views/EventView',
 		showMarkers: function() {
 			this.collection.each(function(event) {
 				if(event.get('marker') && event.get('filtered')) {
-					map.getMap().addLayer(event.get('marker'));
+					map.getCluster().addLayer(event.get('marker'));
 				}
 			});
 		},	
@@ -116,7 +116,7 @@ define(['views/EventView',
 		hideMarkers: function() {
 			this.collection.each(function(event) {
 				if(event.get('marker') && event.get('filtered')) {
-					map.getMap().removeLayer(event.get('marker'));
+					map.getCluster().removeLayer(event.get('marker'));
 				}
 			});
 		},
@@ -151,6 +151,7 @@ define(['views/EventView',
 			this.collection.each(function(event) {
 				if(event.get('marker')) {
 					map.getMap().removeLayer(event.get('marker'));
+					map.getCluster().removeLayer(event.get('marker'));
 				}
 
 				if(event.get('path')) {

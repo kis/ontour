@@ -85,8 +85,10 @@ define(['text',
 				this.model.set('marker', 
 					L.marker([this.model.get('venue').location['geo:point']['geo:lat'], 
 							  this.model.get('venue').location['geo:point']['geo:long']],
-							{icon: this.model.get('icon')})
-					.addTo(map.getMap()));
+							{icon: this.model.get('icon')}));
+					// .addTo(map.getMap()));
+
+				channel.trigger('addToCluster', this.model.get('marker'));
 			}
 		},
 

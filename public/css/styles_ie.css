@@ -1,0 +1,16 @@
+.tab, .search-field, .search-button, #events, .artist-data, 
+#status, #autocomplete, #settings a, #controls a, .tag, 
+#status div, .festivals, #date-selector, #years div div, 
+#months div div, #days div div {
+	font: bold small-caps 12px serif;
+	line-height: 20px;
+}
+
+.search-field {
+	padding: 14px 12px 14px 12px;
+	margin: 2px 0 2px 0;
+}
+
+#controls .layers {
+	padding: 16px;
+}
