@@ -44,7 +44,7 @@ define(['channel',
 					self.getMap().setView(
 						L.latLng(list[i].venue.location['geo:point']['geo:lat'], 
 								 list[i].venue.location['geo:point']['geo:long']), 
-						(param == "artist") ? 4 : 12
+						(param == "artist") ? 4 : 10
 					);
 					break;
 				}

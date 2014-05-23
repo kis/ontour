@@ -149,10 +149,10 @@ define(['views/EventView',
 
 		reset: function(event) {
 			this.collection.each(function(event) {
-				if(event.get('marker')) {
+				/*if(event.get('marker')) {
 					map.getMap().removeLayer(event.get('marker'));
 					map.getCluster().removeLayer(event.get('marker'));
-				}
+				}*/
 
 				if(event.get('path')) {
 					map.getMap().removeLayer(event.get('path'));
