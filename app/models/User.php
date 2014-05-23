@@ -15,7 +15,11 @@ class User extends Eloquent implements UserInterface {
 
     protected $primaryKey = 'id';
 
-	protected $fillable = array('password', 'email', 'login');
+	protected $fillable = array(
+        'password', 'email', 'login',
+        'first_name', 'last_name', 'sex',
+        'location', 'phone', 'photo'
+    );
 
 	public $timestamps = false;
 
