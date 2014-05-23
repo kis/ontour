@@ -18,18 +18,13 @@ define(['channel',
 				.get('map').zoomControl.setPosition('bottomright');
 
 			this.listenTo(channel, 'setView', this.setView);
-			this.listenTo(channel, 'addToCluster', this.addToCluster);
 			this.listenTo(channel, 'resetCluster', this.resetCluster);
-		},
-
-		addToCluster: function(layer) {
-		    this.model.get('cluster').addLayer(layer);
-			this.getMap().addLayer(this.model.get('cluster'));
 		},
 
 		resetCluster: function() {
 			this.getMap().removeLayer(this.model.get('cluster'));
 			this.model.set('cluster', new L.MarkerClusterGroup());
+			this.getMap().addLayer(this.model.get('cluster'));
 		},
 
 		getCluster: function() {

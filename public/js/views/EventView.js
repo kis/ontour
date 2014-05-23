@@ -88,7 +88,7 @@ define(['text',
 							{icon: this.model.get('icon')}));
 					// .addTo(map.getMap()));
 
-				channel.trigger('addToCluster', this.model.get('marker'));
+				map.getCluster().addLayer(this.model.get('marker'));
 			}
 		},
 
