@@ -25,6 +25,12 @@ class User extends Eloquent implements UserInterface {
         'password_confirmation' => 'required | alpha_num | between:6,12'
     ];
 
+    public static $editRules = [
+        'email'     => 'email',
+        'password'  => 'alpha_num | between:6,12 | confirmed',
+        'password_confirmation' => 'alpha_num | between:6,12'
+    ];
+
     /**
      * Get the unique identifier for the user.
      *

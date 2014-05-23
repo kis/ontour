@@ -8,32 +8,68 @@
 </head>
 
 <body>
-<section id="area">
-    <header id="homepage">
-        <a href="/" id="main">Main</a>
-        <a href="logout" id="signup">Logout</a>
-    </header>
+    <section id="area">
+        <header id="homepage">
+            <a href="/" id="main">Main</a>
+            <a href="logout" id="signup">Logout</a>
+        </header>
 
-    <main id="profile-area">
-        <label>Profile</label>
-        <form action="edit" method="POST" autocomplete="off">
-            <!--foto-->
-            <input id="login" name="login" type="text" value="" placeholder="Enter login.." />
-            <input id="email" name="email" type="text" value="" placeholder="Enter email.." />
-            <input id="password" name="password" type="password" value="" placeholder="Enter password.." />
-            <input id="first_name" name="first_name" type="text" value="" placeholder="Enter first name.." />
-            <input id="last_name" name="last_name" type="text" value="" placeholder="Enter last name.." />
-            <input id="sex" name="sex" type="radio" value="" />Male
-            <input id="sex" name="sex" type="radio" value="" />Female
-            <input id="location" name="location" type="text" value="" placeholder="Enter location.." />
-            <input id="phone" name="phone" type="text" value="" placeholder="Enter phone.." />
-            <button id="submit" type="submit">Edit profile</button>
-        </form>
-    </main>
+        <main id="profile-area">
 
-    <footer>
+            <?php
+                echo Form::label('form', 'Profile');
+                echo Form::model($user, array('action' => 'UserController@postEdit'));
+            ?>
 
-    </footer>
-</section>
+            <section id="profile-stuff">
+
+                <?php
+                    echo Form::label('login', 'Login');
+                    echo Form::text('login');
+
+                    echo Form::label('email', 'Email');
+                    echo Form::email('email');
+
+                    echo Form::label('password', 'Password');
+                    echo Form::password('password');
+
+                    echo Form::label('password_confirmation', 'Confirm password');
+                    echo Form::password('password_confirmation');
+                ?>
+
+            </section>
+
+            <section id="profile-stuff">
+
+                <?php
+                    echo Form::label('first_name', 'First name');
+                    echo Form::text('first_name');
+
+                    echo Form::label('last_name', 'Last name');
+                    echo Form::text('last_name');
+
+                    echo Form::label('sex', 'Sex');
+                    echo Form::radio('sex');
+                    echo Form::radio('sex');
+
+                    echo Form::label('location', 'Location');
+                    echo Form::text('location');
+
+                    echo Form::label('phone', 'Phone');
+                    echo Form::text('phone');
+                ?>
+
+            </section>
+
+            <?php
+                echo Form::submit('Save', array('id' => 'submit'));
+            ?>
+
+        </main>
+
+        <footer>
+
+        </footer>
+    </section>
 </body>
 </html>

@@ -21,7 +21,7 @@ class UserController extends BaseController {
     }
 
     public function getProfile() {
-        return View::make('profile');
+        return View::make('profile', array('user' => User::find(Auth::user()->id)));
     }
 
     public function postRegister() {
@@ -58,10 +58,10 @@ class UserController extends BaseController {
     }
 
     public function postEdit() {
-        $validator = Validator::make(Input::all(), User::$rules);
+        $validator = Validator::make(Input::all(), User::$editRules);
 
         if ($validator->passes()) {
-            $userData = [
+            User::find(Auth::user()->id)->update([
                 'login'      => Input::get('login'),
                 'password'   => Hash::make(Input::get('password')),
                 'email'      => Input::get('email'),
@@ -71,10 +71,12 @@ class UserController extends BaseController {
                 'location'   => Input::get('location'),
                 'phone'      => Input::get('phone'),
                 'photo'      => Input::get('photo')
-            ];
+            ]);
+
+            return Redirect::to('users/profile')->with('result', 'success');
         }
 
-        return Redirect::to('users/profile');
+        return Redirect::to('users/profile')->with('result', 'fail');
     }
 
 } 

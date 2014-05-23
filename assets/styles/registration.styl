@@ -67,8 +67,12 @@ main
 	margin 15% 35%
 
 #profile-area
+	width 1200px 
 	height 780px
-	margin 6% 35%
+	margin 6% 15%
+
+#profile-stuff
+	display block
 
 dialog
 	position absolute
@@ -84,22 +88,26 @@ dialog a
 	&:hover
 		background #597077 !important
 
-label
+label:first-child, label
 	position relative
 	top 50px
 	left 50px
 	font $fontTitle
 	color white
+	display inline-block
+
+label 
+	font $fontSmall
 
 main input
 	position relative
 	top 50px
 	left 50px
-	width 75%
+	width 40%
 	line-height 25pt
 	font $font
 	display block
-	padding 15px
+	padding 10px
 	margin-top 15px
 	outline none
 	border 0px
