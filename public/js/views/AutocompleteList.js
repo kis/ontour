@@ -17,7 +17,6 @@ define(['views/AutocompleteItemView',
 				'keydown' : this.outsideHandler.bind(this)
 			});
 
-			this.listenTo(channel, 'autocompleteClose', this.close);
 			this.listenTo(channel, 'addArtistsData', this.addArtistsData);
 			this.listenTo(channel, 'addCitiesData', this.addCitiesData);
 			this.listenTo(channel, 'execProperty', this.execProperty);

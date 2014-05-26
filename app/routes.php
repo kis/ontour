@@ -25,4 +25,9 @@ Route::group(array('before' => 'auth'), function(){
     {
         return View::make('main');
     });
+
+    Route::get('/myevents', function()
+    {
+        return View::make('main');
+    });
 });

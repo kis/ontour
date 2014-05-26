@@ -14,7 +14,7 @@ define(['channel',
 		initialize: function() {
 			channel.trigger('reset');
 			this.listenTo(channel, 'getEvents', this.getEvents);
-			this.listenTo(channel, 'resetSearch', this.off);
+			this.listenTo(channel, 'index-route', this.off);
 			this.listenTo(this.model, 'change', this.render);
 		},
 

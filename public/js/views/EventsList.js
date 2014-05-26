@@ -24,7 +24,7 @@ define(['views/EventView',
 			this.listenTo(channel, 'addPaths', this.setPaths);
 			this.listenTo(channel, 'getEvents', this.reset);
 			this.listenTo(channel, 'reset', this.reset);
-			this.listenTo(channel, 'resetSearch', this.switchOff);
+			this.listenTo(channel, 'index-route', this.off);
 			this.listenTo(channel, 'switchMarkers', this.switchMarkers);
 			this.listenTo(channel, 'switchPaths', this.switchPaths);
 			this.listenTo(channel, 'gotop', this.gotop);
@@ -32,9 +32,13 @@ define(['views/EventView',
 			this.listenTo(channel, 'setHeight', this.setHeight);
 		},
 
+		off: function() {
+			this.reset();
+			this.$el.hide();
+		},
+
 		setParam: function(param) {
 			this.collection.param = param;
-
 			this.$el.show();
 		},
 
@@ -161,11 +165,6 @@ define(['views/EventView',
 			});
 
 			this.collection.reset();
-		},
-
-		switchOff: function() {
-			this.reset();
-			this.$el.hide();
 		},
 
 		scroll: function() {

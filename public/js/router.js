@@ -7,17 +7,22 @@ define(['backbone',
 
 		routes: {
 			''				: 'index',
-			'search/:query' : 'search'
+			'search/:query' : 'search',
+			'myevents'		: 'myevents'
 		},
 
 		index: function() {
-			channel.trigger('resetSearch');	
+			channel.trigger('index-route');	
 		},
 
 		search: function(query) {
 			if (query) {
 				channel.trigger('search', query);
 			}
+		},
+
+		myevents: function() {
+			channel.trigger('myevents');
 		}
 
 	});

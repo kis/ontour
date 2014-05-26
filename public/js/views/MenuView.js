@@ -35,12 +35,12 @@ define(['channel',
 			this.listenTo(channel, 'fieldInvalid', this.fieldInvalid);
 			this.listenTo(channel, 'search', this.search);
 			this.listenTo(channel, 'setActiveTag', this.setActiveTag);
-			this.listenTo(channel, 'resetSearch', this.reset);
+			this.listenTo(channel, 'index-route', this.off);
 			this.listenTo(this.model, 'change:activeTab', this.updateMenu);
 			this.listenTo(this.model, 'change:festivalsonly', this.updateF);
 		},
 
-		reset: function() {
+		off: function() {
 			this.model.set(this.model.defaults);
 			this.resetInput();
 		},

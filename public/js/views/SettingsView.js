@@ -2,8 +2,9 @@ define(['channel',
 		'vk',
 		'text', 
 		'text!templates/Settings.tmpl',
+		'router',
 		'marionette'
-], function(channel, vk, text, settingsTmpl) {
+], function(channel, vk, text, settingsTmpl, Router) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -26,6 +27,10 @@ define(['channel',
 			'click @ui.vk' 	 	 : 'vk'
 		},
 
+		initialize: function() {
+			this.listenTo(channel, 'myevents', this.myevents);
+		},
+
 		logout: function() {
 			document.location.replace("users/logout");
 		},
@@ -35,7 +40,11 @@ define(['channel',
 		},
 
 		myevents: function() {
-			channel.trigger('resetSearch', 'geo');
+			Router.navigate('myevents');
+
+			channel.trigger('index-route');
+			channel.trigger('setParam', 'geo');
+			channel.trigger('showControls');
 
 			var self = this;
 
