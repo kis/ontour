@@ -24,6 +24,7 @@ define(['models/Menu',
 		'collections/DateCollection',
 		'views/DateView',
 		'views/DateList',
+		'views/EventDetailsView',
 		'scrollbar',
 		'mousewheel'
 ], function(Menu, 
@@ -52,6 +53,7 @@ define(['models/Menu',
 			DateCollection,
 			DateView,
 			DateList,
+			EventDetailsView,
 			scrollbar,
 			mousewheel) {
 	'use strict';
@@ -87,6 +89,9 @@ define(['models/Menu',
 		}),
 		eventsList = new EventsList({
 			collection: new Events()
+		}),
+		eventDetails = new EventDetailsView({
+			model: new Event()
 		}),
 		autocompleteList = new AutocompleteList({
 			collection: new AutocompleteCollection()

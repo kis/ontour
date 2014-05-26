@@ -130,10 +130,12 @@ define(['text',
 				if(this.model.get('selected')) {
 					this.hidePopup();
 					this.model.set('selected', false);
+					channel.trigger('hideEventDetails');
 				} else {
 					this.showPopup();
 					this.model.set('selected', true);
 					map.getMap().panTo(this.model.get('marker').getLatLng());
+					channel.trigger('showEventDetails', this.model);
 				}
 			}
 			return false;

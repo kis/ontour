@@ -82,6 +82,7 @@ body
 	line-height 25pt
 	text-align center
 	font $font
+	border-bottom 1px solid $bg
 	display inline-block
 	color white
 	background rgba(16,49,90,0.5)
@@ -109,6 +110,7 @@ body
 	position absolute
 	top 214px
 	left 0px
+	border-left 1px solid $bg
 	width 350px
 	height 320px
 	background rgba(16,49,90,0.2)
@@ -227,7 +229,7 @@ body
 	position relative
 	width $sidebar_width
 	height 120px
-	border-bottom 1px solid #e8e0d8
+	border-bottom 1px solid $bg
 	padding $padding
 	background transparent
 	&:hover
@@ -262,6 +264,18 @@ body
 		background white
 		color rgba(16,49,90,1)
 		cursor pointer
+
+#event-detail
+	position absolute
+	bottom 15px
+	right 50px
+	width 300px
+	height 500px
+	display none
+	padding $padding
+	background $bg
+	color white
+	z-index 35
 
 /**
  * Status

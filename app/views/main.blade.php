@@ -37,6 +37,8 @@
             {{ HTML::image('nopic.png') }}
         </section>
 
+        <section id="event-detail"></section>
+
         <section id="map"></section>
 
         {{ HTML::script('js/lib/require.js', array('data-main' => '../js/main.js')) }}

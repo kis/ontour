@@ -1,9 +1,9 @@
-define(['backbone',
-		'channel'
-], function(Backbone, channel) {
+define(['channel',
+		'marionette'
+], function(channel) {
 	'use strict';	
 
-	var Router = Backbone.Router.extend({
+	var Router = Marionette.AppRouter.extend({
 
 		routes: {
 			''				: 'index',
