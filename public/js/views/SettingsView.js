@@ -8,9 +8,9 @@ define(['channel',
 
 	return Marionette.ItemView.extend({
 
-		itemViewContainer: '#settings',
+		el: '#settings',
 
-		template: _.template(settingsTmpl),
+		// template: _.template(settingsTmpl),
 
 		ui: {
 			logout   : '#logout',

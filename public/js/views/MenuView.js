@@ -1,8 +1,9 @@
 define(['channel',
 		'text', 
 		'text!templates/Menu.tmpl',
+		'router',
 		'marionette'
-], function(channel, text, menuTemplate) {
+], function(channel, text, menuTemplate, Router) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -34,8 +35,14 @@ define(['channel',
 			this.listenTo(channel, 'fieldInvalid', this.fieldInvalid);
 			this.listenTo(channel, 'search', this.search);
 			this.listenTo(channel, 'setActiveTag', this.setActiveTag);
+			this.listenTo(channel, 'resetSearch', this.reset);
 			this.listenTo(this.model, 'change:activeTab', this.updateMenu);
 			this.listenTo(this.model, 'change:festivalsonly', this.updateF);
+		},
+
+		reset: function() {
+			this.model.set(this.model.defaults);
+			this.resetInput();
 		},
 
 		onShow: function() {
@@ -72,11 +79,15 @@ define(['channel',
 			});
 		},
 
-		updateMenu: function() {
+		resetInput: function() {
 			this.ui.searchField.val('')
 				   .removeClass('invalid')
 				   .attr('placeholder', 'Enter ' + this.model.get('activeTab') + '..')
 				   .focus();
+		},
+
+		updateMenu: function() {
+			this.resetInput();
 
 			this.ui.tabs.removeClass('active');
 
@@ -123,6 +134,8 @@ define(['channel',
 			if (!this.model.get('value')) {
 				this.fieldInvalid();
 			} else {
+				Router.navigate("search/" + this.model.get('value'));
+
 				this.ui.searchField.removeClass("invalid").focus();
 				channel.trigger('getEvents', {
 					value : this.model.get('value'), 

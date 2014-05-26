@@ -61,7 +61,7 @@ define(['models/Menu',
 	app.addRegions({
 		menu         : '#search',
 		controls 	 : '#controls',
-		settings 	 : '#settings',
+		// settings 	 : '#settings',
 		autocomplete : '#autocomplete',
 		notification : '#notification',
 		search 		 : '#status',
@@ -146,7 +146,7 @@ define(['models/Menu',
 	app.addInitializer(function () {
 		app.menu.show(menuView);
 		app.controls.show(controlsView);
-		app.settings.show(settingsView);
+		// app.settings.show(settingsView);
 		app.notification.show(notificationView);
 		app.search.show(searchView);
 		app.events.show(eventsList);

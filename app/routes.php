@@ -20,4 +20,9 @@ Route::group(array('before' => 'auth'), function(){
     {
         return View::make('main');
     });
+
+    Route::get('/search/{query?}', function()
+    {
+        return View::make('main');
+    });
 });

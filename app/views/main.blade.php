@@ -29,10 +29,17 @@
 
         <dialog id="notification"></dialog>
 
-        <section id="settings"></section>
+        <section id="settings">
+            <a id="vk">Get VK audiolist</a>
+            <a id="myevents">My events</a>
+            <a id="profile">Profile</a>
+            <a id="logout">Logout</a>
+            {{ HTML::image('nopic.png') }}
+        </section>
 
         <section id="map"></section>
 
-        <script data-main="js/main.js" src="js/lib/require.js"></script>
+        {{ HTML::script('js/lib/require.js', array('data-main' => '../js/main.js')) }}
+
     </body>
 </html>

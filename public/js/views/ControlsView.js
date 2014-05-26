@@ -33,6 +33,7 @@ define(['channel',
 			this.listenTo(channel, 'gotop-show', this.gotopShow);
 			this.listenTo(channel, 'gotop-hide', this.gotopHide);
 			this.listenTo(channel, 'showControls', this.showControls);
+			this.listenTo(channel, 'resetSearch', this.hideControls);
 
 			this.listenTo(channel, 'setEventYear', this.setEventYear);
 			this.listenTo(channel, 'setEventMonth', this.setEventMonth);
@@ -71,6 +72,12 @@ define(['channel',
 		showControls: function() {
 			this.ui.layers.show();
 			this.ui.picker.show();
+		},
+
+		hideControls: function() {
+			this.ui.layers.hide();
+			this.ui.picker.hide();
+			this.ui.date.hide();
 		},
 
 		onShow: function() {

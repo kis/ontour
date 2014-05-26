@@ -47,4 +47,6 @@ requirejs(['app'], function(app) {
 	
 	app.start();
 
+	Backbone.history.start({pushState : true});
+
 });
