@@ -114,9 +114,7 @@ define(['models/Menu',
 				{name: 2014},
 				{name: 2015},
 				{name: 2016},
-				{name: 2017},
-				{name: 2018},
-				{name: 2019}
+				{name: 2017}
 			])
 		}),
 		monthList = new DateList({
