@@ -32,12 +32,12 @@ body
 	z-index 3
 
 #controls .layers
+	padding-bottom 15px
 	display none
 
 #controls a
 	cursor pointer
 	padding $padding
-	width 60px
 	margin-top 15px
 	line-height 25pt
 	text-align center
@@ -221,7 +221,7 @@ body
 	overflow hidden
 	font $font
 	color white
-	background-color rgba(16,49,90,0.5)
+	background transparent
 	margin 15px
 	display none
 	z-index 6
@@ -232,7 +232,7 @@ body
 	height 120px
 	border-bottom 1px solid $bg
 	padding $padding
-	background transparent
+	background-color rgba(16,49,90,0.5)
 	&:hover
 		background $bg
 		color rgb(210,200,191)
@@ -252,6 +252,24 @@ body
 	width 210px
 	font $font
 	margin 5px 5px 5px 80px
+
+.artist-data-detail
+	width 98%
+	font $font
+	margin 5px
+
+.artist-data-detail .main-details
+	height 70%
+
+.main-details .left
+	float left
+
+.main-details .right
+	float right
+
+.artist-data-detail address
+	position fixed
+	bottom 45px
 
 .save-event
 	position relative
@@ -411,4 +429,5 @@ body
 		padding 14px 12px 14px 12px
 		margin 2px 0 2px 0
 	#controls .layers
-		padding 16px
+		padding-top 17px
+		padding-bottom 16px
