@@ -18,7 +18,8 @@ class User extends Eloquent implements UserInterface {
 	protected $fillable = array(
         'password', 'email', 'login',
         'first_name', 'last_name', 'sex',
-        'location', 'phone', 'photo'
+        'location', 'phone', 'photo',
+        'confirmation', 'confirmed'
     );
 
 	public $timestamps = false;

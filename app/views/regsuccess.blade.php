@@ -15,7 +15,7 @@
             </header>
 
             <main id="success-area">
-                <dialog>You're ontour! <a href="login-page">Sign In!</a></dialog>
+                <dialog>You're ontour! Check your email for confirmation.</dialog>
             </main>
 
             <footer>

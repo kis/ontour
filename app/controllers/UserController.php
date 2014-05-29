@@ -24,14 +24,33 @@ class UserController extends BaseController {
         return View::make('profile', array('user' => User::find(Auth::user()->id)));
     }
 
+    public function getConfirmRegistration() {
+        $user = User::where('confirmation', Input::get('confirmation'))->get();
+
+        if ($user) {
+            return View::make('confirm')->with(['result' => 'User confirmed! Sign in!']);
+        } else {
+            return View::make('confirm')->with(['result' => 'Wrong confirmation link!']);
+        }
+    }
+
     public function postRegister() {
         $validator = Validator::make(Input::all(), User::$rules);
 
+        $confirm_link = str_random(16);
+
         if ($validator->passes()) {
             User::create([
-                'email'    => Input::get('email'),
-                'password' => Hash::make(Input::get('password'))
+                'email'        => Input::get('email'),
+                'password'     => Hash::make(Input::get('password')),
+                'confirmation' => $confirm_link,
+                'confirmed'    => false
             ]);
+
+            Mail::send('emails.auth.confirmation', ['link' => $confirm_link], function($message)
+            {
+                $message->to(Input::get('email'), 'Guest')->subject('Welcome to ontour!');
+            });
 
             return Redirect::to('users/reg-success');
         } else {
