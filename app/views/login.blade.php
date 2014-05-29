@@ -15,13 +15,22 @@
             </header>
 
             <main id="login-area">
-                <label>Sign In</label>
-                <form action="login" method="POST">
-                    <input id="email" name="email" type="text" placeholder="Enter email.." />
-                    <input id="password" name="password" type="password" placeholder="Enter password.." />
-                    <button id="submit" type="submit">Sign in</button>
+
+                <?php
+                    echo Form::label('form', 'Sign In');
+                ?>
+                    <div class="error">{{ $errors->first('result') }}</div>
+                <?php
+                    echo Form::open(array('action' => 'UserController@postLogin'));
+                    echo Form::email('email', '', array('placeholder' => 'Enter email..'));
+                    echo Form::password('password', array('placeholder' => 'Enter password..'));
+                    echo Form::submit('Sign in', array('id' => 'submit'));
+                ?>
                     <button id="forgot" type="submit" formaction="forgot">Forgot password?</button>
-                </form>
+                <?php
+                    echo Form::close();
+                ?>
+
             </main>
 
             <footer>

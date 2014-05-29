@@ -48,7 +48,7 @@ class UserController extends BaseController {
         if (Auth::attempt($userData)) {
             return Redirect::intended('/');
         } else {
-            return Redirect::to('users/login-page');
+            return Redirect::to('users/login-page')->withErrors(['result' => 'Wrong email or password!']);
         }
     }
 

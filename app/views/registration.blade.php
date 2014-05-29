@@ -15,13 +15,27 @@
             </header>
 
             <main id="registration-area">
-                <label>Sign Up</label>
-                <form action="register" method="POST" autocomplete="off">
-                    <input id="email" name="email" type="email" placeholder="Enter email.." autocomplete="off" value="" />
-                    <input id="password" name="password" type="password" placeholder="Enter password.." autocomplete="off" />
-                    <input id="password_confirmation" name="password_confirmation" type="password" placeholder="Repeat password.." autocomplete="off" />
-                    <button id="submit" type="submit">Sign up</button>
-                </form>
+
+                <?php
+                    echo Form::label('form', 'Sign Up');
+                    echo Form::open(array('action' => 'UserController@postRegister'));
+                    echo Form::email('email', '', array('placeholder' => 'Enter email..'));
+                ?>
+
+                    <div class="error">{{ $errors->first('email') }}</div>
+
+                <?php
+                    echo Form::password('password', array('placeholder' => 'Enter password..'));
+                    echo Form::password('password_confirmation', array('placeholder' => 'Confirm password..'));
+                ?>
+
+                    <div class="error">{{ $errors->first('password_confirmation') }}</div>
+
+                <?php
+                    echo Form::submit('Sign up', array('id' => 'submit'));
+                    echo Form::close();
+                ?>
+
             </main>
 
             <footer>
