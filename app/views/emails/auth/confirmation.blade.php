@@ -10,7 +10,7 @@
 <body>
 <section id="area">
     <main id="success-area">
-        <dialog>{{ $link }}</dialog>
+        <dialog><a href="{{ $link }}">{{ $link }}</a></dialog>
     </main>
 </section>
 </body>
