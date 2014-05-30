@@ -4,25 +4,88 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends BaseController {
 
+    /**
+     * Show registration page
+     */
+
     public function getRegistrationPage() {
         return View::make('registration');
     }
 
-    public function getRegSuccess() {
-        return View::make('regsuccess');
-    }
+    /**
+     * Show login page
+     */
 
     public function getLoginPage() {
         return View::make('login');
     }
 
-    public function postForgot() {
-        return View::make('forgot');
-    }
+    /**
+     * Show profile page
+     */
 
     public function getProfile() {
         return View::make('profile', array('user' => User::find(Auth::user()->id)));
     }
+
+    /**
+     * Show forgot password page
+     */
+
+    public function postForgot() {
+        return View::make('forgot');
+    }
+
+    /**
+     * Send reset password link to email
+     */
+
+    public function postSendResetLink() {
+        $user = User::where('email', Input::get('email'))->first();
+
+        if ($user) {
+            Password::remind(Input::only('email'), function($message)
+            {
+                $message->subject('Password Reminder');
+            });
+
+            return View::make('confirm')->with(['result' => 'Reset link have been sent!']);
+        } else {
+            return View::make('forgot')->withErrors(['email' => 'Wrong email!']);
+        }
+    }
+
+    /**
+     * Show reset password page
+     */
+
+    public function getReset($token = null) {
+        if (is_null($token)) App::abort(404);
+
+        return View::make('reset')->with(['token' => $token]);
+    }
+
+    /**
+     * Reset password
+     */
+
+    public function postReset() {
+        $validator = Validator::make(Input::all(), User::$rules);
+
+        if ($validator->passes()) {
+            $user->update([
+                'password' => Hash::make(Input::get('password')),
+            ]);
+
+            return Redirect::to('users/profile')->with('result', 'success');
+        }
+
+        return Redirect::to('users/profile')->with('result', 'fail');
+    }
+
+    /**
+     * Confirm registration
+     */
 
     public function getConfirm() {
         $user = User::where('confirmation', Input::get('link'))
@@ -37,6 +100,10 @@ class UserController extends BaseController {
             return View::make('confirm')->with(['result' => 'Wrong confirmation link!']);
         }
     }
+
+    /**
+     * Register
+     */
 
     public function postRegister() {
         $validator = Validator::make(Input::all(), User::$rules);
@@ -58,11 +125,15 @@ class UserController extends BaseController {
                 $message->to(Input::get('email'), 'Guest')->subject('Welcome to ontour!');
             });
 
-            return Redirect::to('users/reg-success');
+            return View::make('regsuccess');
         } else {
             return Redirect::to('users/registration-page')->withErrors($validator);
         }
     }
+
+    /**
+     * Login
+     */
 
     public function postLogin() {
         $userData = [
@@ -78,10 +149,18 @@ class UserController extends BaseController {
         }
     }
 
+    /**
+     * Logout
+     */
+
     public function getLogout() {
         Auth::logout();
         return Redirect::to('users/login-page');
     }
+
+    /**
+     * Edit profile
+     */
 
     public function postEdit() {
         $validator = Validator::make(Input::all(), User::$editRules);

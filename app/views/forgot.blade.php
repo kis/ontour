@@ -15,11 +15,20 @@
             </header>
 
             <main id="forgot-area">
-                <label>Enter your email</label>
-                <form action="sendpwd" method="POST" autocomplete="off">
-                    <input id="email" name="email" type="email" placeholder="Enter email.." autocomplete="off" value="" />
-                    <button id="submit" type="submit">Send password</button>
-                </form>
+
+                <?php
+                    echo Form::label('form', 'Enter your email');
+                    echo Form::open(array('action' => 'UserController@postSendResetLink'));
+                    echo Form::email('email', '', array('placeholder' => 'Enter email..'));
+                ?>
+
+                    <div class="error">{{ $errors->first('email') }}</div>
+
+                <?php
+                    echo Form::submit('Send reset link', array('id' => 'submit'));
+                    echo Form::close();
+                ?>
+
             </main>
 
             <footer>
