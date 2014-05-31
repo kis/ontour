@@ -10,14 +10,17 @@
 <body>
 <section id="area">
     <header id="homepage">
-        <a href="registration-page" id="signup">Sign up</a>
-        <a href="login-page" id="signin">Sign in</a>
+        <a href="../registration-page" id="signup">Sign up</a>
+        <a href="../login-page" id="signin">Sign in</a>
     </header>
 
     <main id="reset-area">
 
         <?php
             echo Form::label('form', 'Change password');
+        ?>
+            <div class="error">{{ $errors->first('result') }}</div>
+        <?php
             echo Form::open(array('action' => 'UserController@postReset'));
             echo Form::hidden('token', $token);
             echo Form::email('email', '', array('placeholder' => 'Enter email..'));

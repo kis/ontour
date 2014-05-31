@@ -70,17 +70,27 @@ class UserController extends BaseController {
      */
 
     public function postReset() {
-        $validator = Validator::make(Input::all(), User::$rules);
+        $credentials = Input::only(
+            'email', 'password', 'password_confirmation', 'token'
+        );
 
-        if ($validator->passes()) {
-            $user->update([
-                'password' => Hash::make(Input::get('password')),
-            ]);
+        $response = Password::reset($credentials, function($user, $password)
+        {
+            $user->password = Hash::make($password);
 
-            return Redirect::to('users/profile')->with('result', 'success');
+            $user->save();
+        });
+
+        switch ($response)
+        {
+            case Password::INVALID_PASSWORD:
+            case Password::INVALID_TOKEN:
+            case Password::INVALID_USER:
+                return Redirect::back()->withErrors(['result' => Lang::get($response)]);
+
+            case Password::PASSWORD_RESET:
+                return Redirect::to('/');
         }
-
-        return Redirect::to('users/profile')->with('result', 'fail');
     }
 
     /**
