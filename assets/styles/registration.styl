@@ -71,13 +71,29 @@ main
 	margin 15% 35%
 
 #profile-area
-	width 1200px 
+	width 900px 
 	height 780px
-	margin 6% 15%
+	margin 5% 25%
 
 #profile-stuff
-	width 550px
+	width 450px
 	float left
+
+#profile-stuff img
+	position relative
+	top 80px
+	left 50px
+	width 200px
+	float none
+	margin-bottom 65px
+	clear both
+
+#profile-stuff input[type="radio"]
+	display inline-block
+	width 50px
+
+#profile-stuff label[for="sex"]
+	display inline-block
 
 dialog
 	position absolute
@@ -99,7 +115,7 @@ label, #profile-stuff label
 	left 50px
 	font $fontTitle
 	color white
-	display inline-block
+	display block
 
 #profile-stuff label
 	font $font
@@ -118,40 +134,34 @@ main input
 	outline none
 	border 0px
 
-#submit
+main button
 	position relative
 	top 50px
 	left 50px
 	width 200px
 	cursor pointer
-	padding 15px
 	margin-top 15px
 	line-height 30pt
 	text-align center
+	outline none
+	display inline-block
+	border 0px	
+
+#submit, #reset
+	padding 15px
 	font $font
+	width 200px
 	outline none
 	display inline-block
 	color #0c1f38
-	border 0px
 	background #cadaee
 	&:hover
 		background #597077 !important
 
 #forgot
-	position relative
-	top 50px
-	left 50px
-	width 200px
-	cursor pointer
 	padding 5px
-	margin-top 15px
-	line-height 30pt
-	text-align center
 	font $fontSmall
-	outline none
-	display inline-block
 	color white
-	border 0px
 	background #0c1f38
 
 .active

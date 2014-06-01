@@ -22,25 +22,22 @@
             ?>
 
             <section id="profile-stuff">
-
                 <?php
+                    echo HTML::image('nopic.png', 'Profile image');
+
                     echo Form::label('login', 'Login');
                     echo Form::text('login');
 
                     echo Form::label('email', 'Email');
                     echo Form::email('email');
-
-                    echo Form::label('password', 'Password');
-                    echo Form::password('password');
-
-                    echo Form::label('password_confirmation', 'Confirm password');
-                    echo Form::password('password_confirmation');
                 ?>
-
+                    <button id="reset" type="submit" formaction="reset">Reset password</button><br/>                
+                <?php
+                    echo Form::submit('Save', array('id' => 'submit'));
+                ?>
             </section>
 
             <section id="profile-stuff">
-
                 <?php
                     echo Form::label('first_name', 'First name');
                     echo Form::text('first_name');
@@ -49,7 +46,11 @@
                     echo Form::text('last_name');
 
                     echo Form::label('sex', 'Sex');
+                    echo '<br/>';
+
+                    echo Form::label('sex', 'Male');
                     echo Form::radio('sex');
+                    echo Form::label('sex', 'Female');
                     echo Form::radio('sex');
 
                     echo Form::label('location', 'Location');
@@ -57,13 +58,9 @@
 
                     echo Form::label('phone', 'Phone');
                     echo Form::text('phone');
+                    echo Form::close();
                 ?>
-
             </section>
-
-            <?php
-                echo Form::submit('Save', array('id' => 'submit'));
-            ?>
 
         </main>
 
