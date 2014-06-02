@@ -14,8 +14,10 @@ define(['channel',
 			zr0njcqy
 			4l7djmvo*/
 
-			this.model.set('map', L.mapbox.map('map', 'examples.map-i87786ca').setView([0, 0], 2))
-				.get('map').zoomControl.setPosition('bottomright');
+			this.model.set('map', L.mapbox.map('map', 'examples.map-i87786ca', {
+				minZoom: 2,
+		        maxZoom: 14
+			}).setView([0, 0], 2)).get('map').zoomControl.setPosition('bottomright');
 
 			this.listenTo(channel, 'setView', this.setView);
 			this.listenTo(channel, 'resetCluster', this.resetCluster);
