@@ -102,6 +102,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->email;
     }
 
+    public function getPhoto()
+    {
+        return $this->photo ? 'uploads/user_'.Auth::user()->id.'/'.$this->photo : 'nopic.png';
+    }
+
     public function events()
     {
         return $this->hasMany('Event');

@@ -25,7 +25,7 @@
 
             <section id="profile-stuff">
                 <?php
-                    echo HTML::image('nopic.png', 'Profile image');
+                    echo HTML::image($user->getPhoto(), 'Profile image');
 
                     echo Form::file('userfile');
 
@@ -50,9 +50,15 @@
             <section id="profile-stuff">
                 <?php
                     echo Form::label('first_name', 'First name');
+                ?>
+                    <div class="error">{{ $errors->first('first_name') }}</div>
+                <?php
                     echo Form::text('first_name');
 
                     echo Form::label('last_name', 'Last name');
+                ?>
+                    <div class="error">{{ $errors->first('last_name') }}</div>
+                <?php
                     echo Form::text('last_name');
 
                     echo Form::label('sex', 'Sex');
@@ -64,9 +70,15 @@
                     echo Form::radio('sex', '0');
 
                     echo Form::label('location', 'Location');
+                ?>
+                    <div class="error">{{ $errors->first('location') }}</div>
+                <?php
                     echo Form::text('location');
 
                     echo Form::label('phone', 'Phone');
+                ?>
+                    <div class="error">{{ $errors->first('phone') }}</div>
+                <?php
                     echo Form::text('phone');
                     echo Form::close();
                 ?>
