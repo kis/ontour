@@ -18,20 +18,27 @@
 
             <?php
                 echo Form::label('form', 'Profile');
-                echo Form::model($user, array('action' => 'UserController@postEdit'));
+                echo Form::model($user, array('action' => 'UserController@postEdit', 'files' => true, 'method' => 'post'));
             ?>
+
+            <div class="error">{{ $errors->first('userfile') }}</div>
 
             <section id="profile-stuff">
                 <?php
                     echo HTML::image('nopic.png', 'Profile image');
 
+                    echo Form::file('userfile');
+
                     echo Form::label('login', 'Login');
                     echo Form::text('login');
 
                     echo Form::label('email', 'Email');
+                ?>
+                    <div class="error">{{ $errors->first('email') }}</div>
+                <?php
                     echo Form::email('email');
                 ?>
-                    <button id="reset" type="submit" formaction="reset">Reset password</button><br/>                
+                    <a href="change-password" id="reset">Reset password</a><br/>
                 <?php
                     echo Form::submit('Save', array('id' => 'submit'));
                 ?>

@@ -32,11 +32,11 @@ define(['channel',
 		},
 
 		logout: function() {
-			document.location.replace("users/logout");
+			document.location.replace("../users/logout");
 		},
 
 		profile: function() {
-			document.location.replace("users/profile");
+			document.location.replace("../users/profile");
 		},
 
 		myevents: function() {

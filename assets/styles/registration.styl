@@ -72,8 +72,8 @@ main
 
 #profile-area
 	width 900px 
-	height 780px
-	margin 5% 25%
+	height 710px
+	margin 7% 25%
 
 #profile-stuff
 	width 450px
@@ -83,10 +83,17 @@ main
 	position relative
 	top 80px
 	left 50px
-	width 200px
+	width 150px
 	float none
 	margin-bottom 65px
 	clear both
+
+#profile-stuff input[type="file"]
+	width 270px
+	float right
+	font $fontSmall
+	color white
+	display inline-block
 
 #profile-stuff input[type="radio"]
 	display inline-block
@@ -119,7 +126,7 @@ label, #profile-stuff label
 
 #profile-stuff label
 	font $font
-	margin-top 10px
+	margin-top 20px
 
 main input
 	position relative
@@ -134,7 +141,7 @@ main input
 	outline none
 	border 0px
 
-main button
+main button, #reset
 	position relative
 	top 50px
 	left 50px
@@ -147,10 +154,11 @@ main button
 	display inline-block
 	border 0px	
 
-#submit, #reset
+#submit
 	padding 15px
 	font $font
 	width 200px
+	cursor pointer
 	outline none
 	display inline-block
 	color #0c1f38
@@ -158,11 +166,12 @@ main button
 	&:hover
 		background #597077 !important
 
-#forgot
+#forgot, #reset
 	padding 5px
 	font $fontSmall
 	color white
 	background #0c1f38
+	text-decoration none
 
 .active
 	background rgba(16,49,90,1) !important

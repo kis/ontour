@@ -21,6 +21,38 @@ class UserController extends BaseController {
     }
 
     /**
+     * Show change password page
+     */
+
+    public function getChangePassword() {
+        return View::make('changepwd');
+    }
+
+    /**
+     * Change password
+     */
+
+    public function postChangePassword() {
+        $rules = [
+            'password'  => 'required | alpha_num | between:6,12 | confirmed',
+            'password_confirmation' => 'required | alpha_num | between:6,12'
+        ];
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->passes()) {
+
+            User::find(Auth::user()->id)->update([
+                'password' => Hash::make(Input::get('password'))
+            ]);
+
+            return Redirect::to('users/profile')->with('result', 'success');
+        }
+
+        return Redirect::to('users/change-password')->withErrors($validator);
+    }
+
+    /**
      * Show profile page
      */
 
@@ -176,22 +208,31 @@ class UserController extends BaseController {
         $validator = Validator::make(Input::all(), User::$editRules);
 
         if ($validator->passes()) {
+
+            $file = Input::file('userfile');
+
+            if ($file) {
+                $file_name = $file->getClientOriginalName();
+                $file->move(base_path().'/public/uploads/user_'.Auth::user()->id.'/', $file_name);
+            } else {
+                $file_name = '';
+            }
+
             User::find(Auth::user()->id)->update([
                 'login'      => Input::get('login'),
-                'password'   => Hash::make(Input::get('password')),
                 'email'      => Input::get('email'),
                 'first_name' => Input::get('first_name'),
                 'last_name'  => Input::get('last_name'),
                 'sex'        => Input::get('sex'),
                 'location'   => Input::get('location'),
                 'phone'      => Input::get('phone'),
-                'photo'      => Input::get('photo')
+                'photo'      => $file_name
             ]);
 
             return Redirect::to('users/profile')->with('result', 'success');
         }
 
-        return Redirect::to('users/profile')->with('result', 'fail');
+        return Redirect::to('users/profile')->withErrors($validator);
     }
 
-} 
+}
