@@ -253,6 +253,19 @@ body
 	font $font
 	margin 5px 5px 5px 80px
 
+.save-event
+	position relative
+	float right
+	right 20px
+	width 35px
+	color white
+	padding 5px
+	background transparent
+	&:hover
+		background white
+		color rgba(16,49,90,1)
+		cursor pointer
+
 .artist-data-detail
 	width 98%
 	font $font
@@ -267,22 +280,10 @@ body
 .main-details .right
 	float right
 
-.artist-data-detail address
+.artist-data-detail .address-details
+	width 290px
 	position fixed
 	bottom 45px
-
-.save-event
-	position relative
-	float right
-	right 20px
-	width 35px
-	color white
-	padding 5px
-	background transparent
-	&:hover
-		background white
-		color rgba(16,49,90,1)
-		cursor pointer
 
 #event-detail
 	position absolute
@@ -295,6 +296,13 @@ body
 	background $bg
 	color white
 	z-index 35
+
+#event-detail a
+	color white
+	word-wrap break-word
+	text-decoration none
+	&:hover
+		text-decoration underline
 
 /**
  * Status

@@ -44,12 +44,13 @@ define(['views/EventView',
 
 		addEvent: function(value) {
 			this.collection.add(new Event({
-				id: value.id,
-				title: value.title,
-				artists: value.artists,
-				date: value.startDate,
-				venue: value.venue,
-				image: value.image[2]['#text']
+				id 		: value.id,
+				title   : value.title,
+				artists : value.artists,
+				date    : value.startDate,
+				venue   : value.venue,
+				image   : value.image[2]['#text'],
+				url     : value.url
 			}));
 
 			this.$el.perfectScrollbar();

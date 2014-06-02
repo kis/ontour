@@ -1,17 +1,21 @@
 <div class="artist-data-detail">
-<div class="main-details">
-<div class="left"><%= title %></div>
-<div class="right"><%= (new Date(date)).toLocaleDateString('ru-RU') %></div><br/><br/>
-<%= artists.headliner %><br/><br/>
-<% if (typeof artists.artist !== 'string') {for(var i = 0; i < 32; i += 2) { %>
-   	<div class="left"><%= artists.artist[i] %></div>
-   	<div class="right"><%= artists.artist[++i] %></div><br/>
-<% }} %>
-</div>
-<address>
-<%= venue.name %><br/>
-<%= venue.location.street %><br/>
-<%= venue.location.city %><br/>
-<%= venue.location.country %><br/>
-</address>
+	<div class="main-details">
+		<div class="left"><%= title %></div>
+		<div class="right"><%= (new Date(date)).toLocaleDateString('ru-RU') %></div><br/><br/>
+		<a href="<%= url %>" target="_blank"><%= url %></a><br/><br/>
+		<%= artists.headliner %><br/><br/>
+		<% if (typeof artists.artist !== 'string') {for(var i = 0; i < 32; i += 2) { %>
+		   	<div class="left"><%= artists.artist[i] %></div>
+		   	<div class="right"><%= artists.artist[++i] %></div><br/>
+		<% }} %>
+	</div>
+	<div class="address-details">
+		<img src="<%= venue.image[2]['#text'] %>" class="artist-pic" /><br/>
+		<%= venue.name %><br/>
+		<%= venue.location.street %><br/>
+		<%= venue.location.city %><br/>
+		<%= venue.location.country %><br/>
+		<a href="<%= venue.url %>" target="_blank"><%= venue.url %></a><br/>
+		<a href="<%= venue.website %>" target="_blank"><%= venue.website %></a><br/>
+	</div>
 </div>

@@ -14,6 +14,7 @@ define(['backbone'], function(Backbone) {
 			marker: null,
 			popup: null,
 			path: null,
+			url: null,
 			selected: false,
 			filtered: true
 		},
