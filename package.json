@@ -8,6 +8,7 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-contrib-requirejs": "~0.4.3",
     "grunt-contrib-stylus": "~0.14.0",
+    "grunt-contrib-copy": "0.5.0",
     "rjs": "~4.0.2"
   },
   "author": "Kirill Styopkin kirillstyopkin@gmail.com",
