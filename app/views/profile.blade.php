@@ -30,6 +30,9 @@
                     echo Form::file('userfile');
 
                     echo Form::label('login', 'Login');
+                ?>
+                    <div class="error">{{ $errors->first('login') }}</div>
+                <?php
                     echo Form::text('login');
 
                     echo Form::label('email', 'Email');
@@ -56,9 +59,9 @@
                     echo '<br/>';
 
                     echo Form::label('sex', 'Male');
-                    echo Form::radio('sex');
+                    echo Form::radio('sex', '1');
                     echo Form::label('sex', 'Female');
-                    echo Form::radio('sex');
+                    echo Form::radio('sex', '0');
 
                     echo Form::label('location', 'Location');
                     echo Form::text('location');
