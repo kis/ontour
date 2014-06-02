@@ -27,7 +27,7 @@
                 <?php
                     echo HTML::image($user->getPhoto(), 'Profile image');
 
-                    echo Form::file('userfile');
+                    echo Form::file('photo');
 
                     echo Form::label('login', 'Login');
                 ?>

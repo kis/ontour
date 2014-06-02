@@ -30,7 +30,7 @@
         <dialog id="notification"></dialog>
 
         <section id="settings">
-            <a id="vk">Get VK audiolist</a>
+<!--            <a id="vk">Get VK audiolist</a>-->
             <a id="myevents">My events</a>
             <a id="profile">Profile</a>
             <a id="logout">Logout</a>

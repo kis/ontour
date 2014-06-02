@@ -209,7 +209,7 @@ class UserController extends BaseController {
 
         if ($validator->passes()) {
 
-            $file = Input::file('userfile');
+            $file = Input::file('photo');
 
             if ($file) {
                 $file_name = $file->getClientOriginalName();
@@ -218,7 +218,9 @@ class UserController extends BaseController {
                 $file_name = '';
             }
 
-            User::find(Auth::user()->id)->update([
+            $user = User::find(Auth::user()->id);
+
+            $user->update([
                 'login'      => Input::get('login'),
                 'email'      => Input::get('email'),
                 'first_name' => Input::get('first_name'),
@@ -226,7 +228,7 @@ class UserController extends BaseController {
                 'sex'        => Input::get('sex'),
                 'location'   => Input::get('location'),
                 'phone'      => Input::get('phone'),
-                'photo'      => $file_name
+                'photo'      => $file ? $file_name : $user->photo
             ]);
 
             return Redirect::to('users/profile')->with('result', 'success');
