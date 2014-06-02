@@ -77,17 +77,19 @@ define(['views/EventView',
 			this.hideMarkers();
 			this.hidePaths();
 
+			var self = this;
+
 			this.collection.each(function(event) {
 				var eventDate = new Date(event.get('date'));
 
 				if ((eventDate.getFullYear() == date.year || !date.year) &&
 					(eventDate.getMonth() == date.month || !date.month) &&
 					(eventDate.getDate() == date.day || !date.day)) {
-						if (event.get('marker')) {
+						if (event.get('marker') && self.collection.showMarkers) {
 							map.getCluster().addLayer(event.get('marker'));
 						}
 
-						if (event.get('path')) {
+						if (event.get('path') && self.collection.showPaths) {
 							map.getMap().addLayer(event.get('path'));
 						}
 

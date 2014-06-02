@@ -34,7 +34,7 @@
             <a id="myevents">My events</a>
             <a id="profile">Profile</a>
             <a id="logout">Logout</a>
-            {{ HTML::image('nopic.png') }}
+            {{ HTML::image(Auth::user()->getPhoto()) }}
         </section>
 
         <section id="event-detail"></section>
