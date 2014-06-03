@@ -41,7 +41,7 @@
 
         <section id="map"></section>
 
-        {{ HTML::script('js/lib/require.js', array('data-main' => '../js/main.js')) }}
+        {{ HTML::script('js/lib/require.js', array('data-main' => '../build/main.js')) }}
 
     </body>
 </html>

@@ -13,11 +13,21 @@ requirejs.config({
 			],
 			exports: 'Backbone'
 		},
+		/*babysitter: {
+		    exports: 'Backbone.Babysitter',
+		    deps: ['backbone']
+		},
+		wreqr: {
+		    exports: 'Backbone.Wreqr',
+		    deps: ['backbone']
+		},*/
 		marionette: {
 			deps: [
 				'jquery',
 				'underscore',
 				'backbone'
+				// 'babysitter',
+		        // 'wreqr'
 			],
 			exports: 'Marionette'
 		},
@@ -36,6 +46,8 @@ requirejs.config({
 		text 		: 'lib/text',
 		underscore  : 'lib/underscore-min',
 		backbone    : 'lib/backbone-min',
+		// babysitter  : 'lib/backbone.babysitter.min',
+		// wreqr  	 	: 'lib/backbone.wreqr.min',
 		marionette  : 'lib/backbone.marionette.min',
 		scrollbar   : 'lib/scrollbar.min',
 		mousewheel  : 'lib/jquery.mousewheel'

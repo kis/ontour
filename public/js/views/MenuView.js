@@ -3,7 +3,7 @@ define(['channel',
 		'text!templates/Menu.tmpl',
 		'router',
 		'marionette'
-], function(channel, text, menuTemplate, Router) {
+], function(channel, text, menuTemplate, Router, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({

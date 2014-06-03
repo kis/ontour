@@ -2,7 +2,7 @@ define(['views/AutocompleteItemView',
 		'models/AutocompleteItem',
 		'channel',
 		'marionette'
-], function(AutocompleteItemView, AutocompleteItem, channel) {
+], function(AutocompleteItemView, AutocompleteItem, channel, Marionette) {
 	'use strict';
 
 	return Marionette.CollectionView.extend({

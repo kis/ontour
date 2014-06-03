@@ -2,7 +2,7 @@ define(['channel',
 		'text', 
 		'text!templates/Controls.tmpl',
 		'marionette'
-], function(channel, text, controlsTmpl) {
+], function(channel, text, controlsTmpl, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({

@@ -3,7 +3,7 @@ define(['views/EventView',
 		'channel',
 		'map',
 		'marionette'
-], function(EventView, Event, channel, map) {
+], function(EventView, Event, channel, map, Marionette) {
 	'use strict';
 
 	return Marionette.CollectionView.extend({

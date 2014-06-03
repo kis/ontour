@@ -26,7 +26,8 @@ define(['models/Menu',
 		'views/DateList',
 		'views/EventDetailsView',
 		'scrollbar',
-		'mousewheel'
+		'mousewheel',
+		'marionette'
 ], function(Menu, 
 			Controls,
 			Event, 
@@ -55,7 +56,8 @@ define(['models/Menu',
 			DateList,
 			EventDetailsView,
 			scrollbar,
-			mousewheel) {
+			mousewheel,
+			Marionette) {
 	'use strict';
 
 	var app = new Marionette.Application();

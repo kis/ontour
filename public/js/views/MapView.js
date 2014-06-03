@@ -2,7 +2,7 @@ define(['channel',
 		'cluster',
 		'marionette', 
 		'mapbox'
-], function(channel, cluster) {
+], function(channel, cluster, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({

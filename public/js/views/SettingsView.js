@@ -4,7 +4,7 @@ define(['channel',
 		'text!templates/Settings.tmpl',
 		'router',
 		'marionette'
-], function(channel, vk, text, settingsTmpl, Router) {
+], function(channel, vk, text, settingsTmpl, Router, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({

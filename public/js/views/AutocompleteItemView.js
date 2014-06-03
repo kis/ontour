@@ -1,6 +1,6 @@
 define(['channel',
 		'marionette'
-], function(channel) {
+], function(channel, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({

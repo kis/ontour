@@ -28,8 +28,8 @@ module.exports = function (grunt) {
 				files: ['<%= php %>']
 			},
 			app: {
-			    files: 'public/js/**/*.js',
-			    tasks: ['copy', 'requirejs']
+				files: 'public/js/**/*.js',
+				tasks: ['copy', 'requirejs']
 			}
 		},
 		stylus: {
@@ -45,64 +45,38 @@ module.exports = function (grunt) {
 			}
 		},
 		requirejs: {
-			compile: {
+		    options: {
+				baseUrl: '.',
+				appDir: 'public/js',
+				mainConfigFile: 'public/js/main.js',
+				optimize: 'none',
+				generateSourceMaps: false,
+				preserveLicenseComments: false,
+				useStrict: true,
+				removeCombined: false,
+				modules: [
+			 		{
+			  			name: 'main',
+			  			exclude: [
+			  			    "lib/jquery.min",
+			  			    "lib/mapbox",
+			  			    "lib/text",
+			  			    "lib/underscore-min",
+			  			    "lib/backbone-min",
+			  			    "lib/backbone.babysitter.min",
+			  			    "lib/backbone.wreqr.min",
+			  			    "lib/backbone.marionette.min",
+			  			    "lib/scrollbar.min",
+			  			    "lib/jquery.mousewheel"
+			  			]
+			 		}
+				]
+		   	},
+		   	main: {
 				options: {
-					appDir: "public/",
-					baseUrl: "js",
-					mainConfigFile : "public/js/main.js",
-					dir: "public/build",
-					paths: {
-						jquery 		: 'lib/jquery.min', //'http://code.jquery.com/jquery-latest.min',
-						mapbox 		: 'lib/mapbox', //'https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox',
-						cluster 	: 'https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster',
-						vk  		: 'http://vkontakte.ru/js/api/openapi', 		
-						text 		: 'lib/text',
-						underscore  : 'lib/underscore-min',
-						backbone    : 'lib/backbone-min',
-						marionette  : 'lib/backbone.marionette.min',
-						scrollbar   : 'lib/scrollbar.min',
-						mousewheel  : 'lib/jquery.mousewheel'
-					},
-					shim: {
-						jquery: {
-							exports: '$',
-						},
-						underscore: {
-							exports: '_'
-						},
-						backbone: {
-							deps: [
-								'jquery',
-								'underscore'
-							],
-							exports: 'Backbone'
-						},
-						marionette: {
-							deps: [
-								'jquery',
-								'underscore',
-								'backbone'
-							],
-							exports: 'Marionette'
-						},
-						cluster: {
-							deps: [
-								'mapbox'
-							]
-						}
-					},
-					copy: {
-						requirejs: {
-							files: [
-						    	{
-						      		src: 'node_modules/requirejs/require.js',
-						      		dest: 'app/js/lib/require.js'
-						    	}
-						  	]
-						},
-					}
+			 		dir: 'public/build'
 				}
-			}
+		   	}
 		}
 	});
 
@@ -110,7 +84,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-stylus');
-	grunt.loadNpmTasks('grunt-contrib-copy');
+	// grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 
 	grunt.registerTask('default', ['requirejs']);

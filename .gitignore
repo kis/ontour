@@ -5,6 +5,7 @@ composer.phar
 /.idea
 /public/capo
 /public/uploads
+/public/build
 .env.local.php
 .env.php
 .DS_Store
