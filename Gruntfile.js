@@ -49,7 +49,7 @@ module.exports = function (grunt) {
 				baseUrl: '.',
 				appDir: 'public/js',
 				mainConfigFile: 'public/js/main.js',
-				optimize: 'none',
+				optimize: 'uglify',
 				generateSourceMaps: false,
 				preserveLicenseComments: false,
 				useStrict: true,
