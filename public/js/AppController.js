@@ -28,9 +28,7 @@ define(['App',
         'views/DateList',
         'views/EventDetailsView',
         'scrollbar',
-        'mousewheel',
-        'marionette',
-        'AppRouter'
+        'mousewheel'
 ], function (App, 
              Marionette, 
              Menu, 
@@ -61,9 +59,7 @@ define(['App',
              DateList,
              EventDetailsView,
              scrollbar,
-             mousewheel,
-             Marionette,
-             AppRouter) {
+             mousewheel) {
 
     return Marionette.Controller.extend({
 
