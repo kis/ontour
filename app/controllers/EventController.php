@@ -21,6 +21,10 @@ class EventController extends BaseController {
     }
 
     public function update() {
+        if (Auth::guest()) {
+            return ['result' => 'guest'];
+        }
+
         $validator = Validator::make(Input::all(), Event::$rules);
 
         if ($validator->passes()) {

@@ -22,26 +22,28 @@
         <section id="sidebar">
             <menu id="search"></menu>
             <section id="events"></section>
-
             <section id="controls"></section>
             <section id="status"></section>
         </section>
 
-        <dialog id="notification"></dialog>
-
         <section id="settings">
-<!--            <a id="vk">Get VK audiolist</a>-->
-            <a id="myevents">My events</a>
-            <a id="profile">Profile</a>
-            <a id="logout">Logout</a>
-            {{ HTML::image(Auth::user()->getPhoto()) }}
+            <?php
+                if (!Auth::guest()) {
+                    echo '<a id="myevents">My events</a>';
+                    echo HTML::link('../users/profile', 'Profile');
+                    echo HTML::link('../users/logout', 'Logout');
+                    echo HTML::image(Auth::user()->getPhoto());
+                } else {
+                    echo HTML::link('users/registration-page', 'Sign up');
+                    echo HTML::link('users/login-page', 'Sign in');
+                }
+            ?>
         </section>
 
+        <dialog id="notification"></dialog>
         <section id="event-detail"></section>
-
         <section id="map"></section>
 
         {{ HTML::script('../build/lib/require-min.js', array('data-main' => '../build/main.js')) }}
-
     </body>
 </html>

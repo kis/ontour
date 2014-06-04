@@ -56,11 +56,17 @@ define(['text',
 					App.vent.trigger('showNotification', 'Error!');
 				},
 				success: function(model, response) {
-					if (response.result == 'success') {
-						App.vent.trigger('showNotification', 'The event is saved!');
-					} else {
-						App.vent.trigger('showNotification', 'This event is already saved!');
-					}
+					switch (response.result) {
+						case 'success':
+							App.vent.trigger('showNotification', 'The event is saved!');
+							break;
+						case 'fail':
+							App.vent.trigger('showNotification', 'This event is already saved!');
+							break;
+						case 'guest':
+							App.vent.trigger('showNotification', 'Sign in!');
+							break;
+					}			
 				}	
 			});
 		},

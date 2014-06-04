@@ -13,29 +13,17 @@ define(['App',
 		// template: _.template(settingsTmpl),
 
 		ui: {
-			logout   : '#logout',
-			profile  : '#profile',
-			myevents : '#myevents'
+			myevents : '#myevents',
 			// vk		 : '#vk'
 		},
 
 		events: {
-			'click @ui.logout'   : 'logout',
-			'click @ui.profile'  : 'profile',
 			'click @ui.myevents' : 'myevents'
 			// 'click @ui.vk' 	 	 : 'vk'
 		},
 
 		initialize: function() {
 			this.listenTo(App.vent, 'myevents', this.myevents);
-		},
-
-		logout: function() {
-			document.location.replace("../users/logout");
-		},
-
-		profile: function() {
-			document.location.replace("../users/profile");
 		},
 
 		myevents: function() {
