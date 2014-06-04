@@ -1,8 +1,8 @@
-define(['channel',
+define(['App',
 		'text', 
 		'text!templates/Controls.tmpl',
 		'marionette'
-], function(channel, text, controlsTmpl, Marionette) {
+], function(App, text, controlsTmpl, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -30,14 +30,14 @@ define(['channel',
 		},
 
 		initialize: function() {
-			this.listenTo(channel, 'gotop-show', this.gotopShow);
-			this.listenTo(channel, 'gotop-hide', this.gotopHide);
-			this.listenTo(channel, 'showControls', this.showControls);
-			this.listenTo(channel, 'index-route', this.hideControls);
+			this.listenTo(App.vent, 'gotop-show', this.gotopShow);
+			this.listenTo(App.vent, 'gotop-hide', this.gotopHide);
+			this.listenTo(App.vent, 'showControls', this.showControls);
+			this.listenTo(App.vent, 'index-route', this.hideControls);
 
-			this.listenTo(channel, 'setEventYear', this.setEventYear);
-			this.listenTo(channel, 'setEventMonth', this.setEventMonth);
-			this.listenTo(channel, 'setEventDay', this.setEventDay);
+			this.listenTo(App.vent, 'setEventYear', this.setEventYear);
+			this.listenTo(App.vent, 'setEventMonth', this.setEventMonth);
+			this.listenTo(App.vent, 'setEventDay', this.setEventDay);
 
 			this.listenTo(this.model, 'change:year change:month change:day', this.filter);
 			this.listenTo(this.model, 'change:datepicker', this.showDatepicker);
@@ -96,7 +96,7 @@ define(['channel',
 		},
 
 		filter: function() {
-			channel.trigger('filter', {
+			App.vent.trigger('filter', {
 				year  : this.model.get('year'),
 				month : this.model.get('month'),
 				day   : this.model.get('day')
@@ -105,16 +105,16 @@ define(['channel',
 
 		switchMarkers: function() {
 			this.ui.markers.toggleClass('active');
-			channel.trigger('switchMarkers');
+			App.vent.trigger('switchMarkers');
 		},
 
 		switchPaths: function() {
 			this.ui.paths.toggleClass('active');
-			channel.trigger('switchPaths');
+			App.vent.trigger('switchPaths');
 		},
 
 		gotop: function() {
-			channel.trigger('gotop');
+			App.vent.trigger('gotop');
 		},
 
 		gotopShow: function() {

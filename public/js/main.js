@@ -42,11 +42,12 @@ requirejs.config({
 	}
 });
 
-requirejs(['app'], function(app) {
+requirejs(['App', 'AppRouter', 'AppController'], function(App, AppRouter, AppController) {
 	'use strict';
-	
-	app.start();
 
-	Backbone.history.start({pushState : true});
+	App.appRouter = new AppRouter({
+	    controller: new AppController()
+	});
 
+	App.start();
 });

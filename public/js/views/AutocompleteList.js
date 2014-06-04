@@ -1,8 +1,8 @@
 define(['views/AutocompleteItemView',
 		'models/AutocompleteItem',
-		'channel',
+		'App',
 		'marionette'
-], function(AutocompleteItemView, AutocompleteItem, channel, Marionette) {
+], function(AutocompleteItemView, AutocompleteItem, App, Marionette) {
 	'use strict';
 
 	return Marionette.CollectionView.extend({
@@ -17,9 +17,9 @@ define(['views/AutocompleteItemView',
 				'keydown' : this.outsideHandler.bind(this)
 			});
 
-			this.listenTo(channel, 'addArtistsData', this.addArtistsData);
-			this.listenTo(channel, 'addCitiesData', this.addCitiesData);
-			this.listenTo(channel, 'execProperty', this.execProperty);
+			this.listenTo(App.vent, 'addArtistsData', this.addArtistsData);
+			this.listenTo(App.vent, 'addCitiesData', this.addCitiesData);
+			this.listenTo(App.vent, 'execProperty', this.execProperty);
 
 			this.listenTo(this.collection, 'close', this.close);
 			this.listenTo(this.collection, 'repaint', this.repaint);
@@ -96,9 +96,9 @@ define(['views/AutocompleteItemView',
 				case 13:
 					//enter - get termin to input and search
 					if (typeof this.collection.getElement() != 'undefined') {
-						channel.trigger('search', this.collection.getElement().get('title'));
+						App.vent.trigger('search', this.collection.getElement().get('title'));
 					} else {
-						channel.trigger('fieldInvalid');
+						App.vent.trigger('fieldInvalid');
 					}
 
 					this.close();

@@ -1,10 +1,9 @@
-define(['channel',
+define(['App',
 		'text', 
 		'text!templates/Settings.tmpl',
-		'router',
 		'marionette'
 		// 'vk',
-], function(channel, text, settingsTmpl, Router, Marionette) {
+], function(App, text, settingsTmpl, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -28,7 +27,7 @@ define(['channel',
 		},
 
 		initialize: function() {
-			this.listenTo(channel, 'myevents', this.myevents);
+			this.listenTo(App.vent, 'myevents', this.myevents);
 		},
 
 		logout: function() {
@@ -40,11 +39,11 @@ define(['channel',
 		},
 
 		myevents: function() {
-			Router.navigate('myevents');
+			App.appRouter.navigate('myevents');
 
-			channel.trigger('index-route');
-			channel.trigger('setParam', 'geo');
-			channel.trigger('showControls');
+			App.vent.trigger('index-route');
+			App.vent.trigger('setParam', 'geo');
+			App.vent.trigger('showControls');
 
 			var self = this;
 
@@ -70,7 +69,7 @@ define(['channel',
 					format 	: 'json'
 				},
 				success: function(data) {
-					channel.trigger('addEvent', data.event);
+					App.vent.trigger('addEvent', data.event);
 				}	
 			});
 		}

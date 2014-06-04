@@ -1,9 +1,8 @@
 define(['text', 
 		'text!templates/Event.tmpl', 
-		'map',
-		'channel',
+		'App',
 		'marionette'
-], function(text, eventTemplate, map, channel, Marionette) {
+], function(text, eventTemplate, App, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -54,13 +53,13 @@ define(['text',
 			{
 				patch: true,
 				error: function() {
-					channel.trigger('showNotification', 'Error!');
+					App.vent.trigger('showNotification', 'Error!');
 				},
 				success: function(model, response) {
 					if (response.result == 'success') {
-						channel.trigger('showNotification', 'The event is saved!');
+						App.vent.trigger('showNotification', 'The event is saved!');
 					} else {
-						channel.trigger('showNotification', 'This event is already saved!');
+						App.vent.trigger('showNotification', 'This event is already saved!');
 					}
 				}	
 			});
@@ -87,9 +86,9 @@ define(['text',
 					L.marker([this.model.get('venue').location['geo:point']['geo:lat'], 
 							  this.model.get('venue').location['geo:point']['geo:long']],
 							{icon: this.model.get('icon')}));
-					// .addTo(map.getMap()));
+					// .addTo(App.map.getMap()));
 
-				map.getCluster().addLayer(this.model.get('marker'));
+				App.map.getCluster().addLayer(this.model.get('marker'));
 			}
 		},
 
@@ -120,7 +119,7 @@ define(['text',
 
 			var self = this;
 
-			map.$el.on('click', '.p'+this.model.get('id')+' .save-event', function() {
+			App.map.$el.on('click', '.p'+this.model.get('id')+' .save-event', function() {
 				self.save();
 			});
 
@@ -131,12 +130,12 @@ define(['text',
 				if(this.model.get('selected')) {
 					this.hidePopup();
 					this.model.set('selected', false);
-					channel.trigger('hideEventDetails');
+					App.vent.trigger('hideEventDetails');
 				} else {
 					this.showPopup();
 					this.model.set('selected', true);
-					map.getMap().panTo(this.model.get('marker').getLatLng());
-					channel.trigger('showEventDetails', this.model);
+					App.map.getMap().panTo(this.model.get('marker').getLatLng());
+					App.vent.trigger('showEventDetails', this.model);
 				}
 			}
 			return false;
@@ -144,7 +143,7 @@ define(['text',
 
 		showPopup: function() {
 			if (this.model.get('popup') != null && this.model.get('selected') == false) {
-				map.getMap().addLayer(this.model.get('popup'));
+				App.map.getMap().addLayer(this.model.get('popup'));
 				this.$el.addClass('selected');
 				return false;
 			}
@@ -152,7 +151,7 @@ define(['text',
 
 		hidePopup: function() {
 			if (this.model.get('popup') != null && this.model.get('selected') == false) {
-				map.getMap().removeLayer(this.model.get('popup'));
+				App.map.getMap().removeLayer(this.model.get('popup'));
 				this.$el.removeClass('selected');
 				return false;
 			}

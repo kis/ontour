@@ -1,7 +1,6 @@
-define(['map',
-		'channel',
+define(['App',
 		'marionette'
-], function(map, channel, Marionette) {
+], function(App, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -23,10 +22,10 @@ define(['map',
 				if (model == this.model) {
 					if (this.model.get('active')) {
 						this.model.set('active', false);
-						channel.trigger('setActiveTag', '');
+						App.vent.trigger('setActiveTag', '');
 					} else {
 						this.model.set('active', true);
-						channel.trigger('setActiveTag', this.model.get('name'));
+						App.vent.trigger('setActiveTag', this.model.get('name'));
 					}
 				} else {
 					model.set('active', false);

@@ -1,9 +1,8 @@
 define(['text', 
 		'text!templates/EventDetail.tmpl', 
-		'map',
-		'channel',
+		'App',
 		'marionette'
-], function(text, eventDetailTpl, map, channel, Marionette) {
+], function(text, eventDetailTpl, App, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -13,8 +12,8 @@ define(['text',
 		template: _.template(eventDetailTpl),
 
 		initialize: function() {
-			this.listenTo(channel, 'showEventDetails', this.showEventDetails);
-			this.listenTo(channel, 'hideEventDetails', this.hideEventDetails);
+			this.listenTo(App.vent, 'showEventDetails', this.showEventDetails);
+			this.listenTo(App.vent, 'hideEventDetails', this.hideEventDetails);
 		},
 
 		showEventDetails: function(model) {

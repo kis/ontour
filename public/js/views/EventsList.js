@@ -1,9 +1,8 @@
 define(['views/EventView',
 		'models/Event',
-		'channel',
-		'map',
+		'App',
 		'marionette'
-], function(EventView, Event, channel, map, Marionette) {
+], function(EventView, Event, App, Marionette) {
 	'use strict';
 
 	return Marionette.CollectionView.extend({
@@ -19,17 +18,17 @@ define(['views/EventView',
 		},
 
 		initialize: function() {
-			this.listenTo(channel, 'setParam', this.setParam);
-			this.listenTo(channel, 'addEvent', this.addEvent);
-			this.listenTo(channel, 'addPaths', this.setPaths);
-			this.listenTo(channel, 'getEvents', this.reset);
-			this.listenTo(channel, 'reset', this.reset);
-			this.listenTo(channel, 'index-route', this.off);
-			this.listenTo(channel, 'switchMarkers', this.switchMarkers);
-			this.listenTo(channel, 'switchPaths', this.switchPaths);
-			this.listenTo(channel, 'gotop', this.gotop);
-			this.listenTo(channel, 'filter', this.filter);
-			this.listenTo(channel, 'setHeight', this.setHeight);
+			this.listenTo(App.vent, 'setParam', this.setParam);
+			this.listenTo(App.vent, 'addEvent', this.addEvent);
+			this.listenTo(App.vent, 'addPaths', this.setPaths);
+			this.listenTo(App.vent, 'getEvents', this.reset);
+			this.listenTo(App.vent, 'reset', this.reset);
+			this.listenTo(App.vent, 'index-route', this.off);
+			this.listenTo(App.vent, 'switchMarkers', this.switchMarkers);
+			this.listenTo(App.vent, 'switchPaths', this.switchPaths);
+			this.listenTo(App.vent, 'gotop', this.gotop);
+			this.listenTo(App.vent, 'filter', this.filter);
+			this.listenTo(App.vent, 'setHeight', this.setHeight);
 		},
 
 		off: function() {
@@ -69,7 +68,7 @@ define(['views/EventView',
 				var latlng1 = event.get('marker').getLatLng();
 				var latlng2 = list[index+1].get('marker').getLatLng();
 
-				var polyline = L.polyline([latlng1, latlng2], {color: '#10315a', weight: 2, opacity: 1}).addTo(map.getMap());
+				var polyline = L.polyline([latlng1, latlng2], {color: '#10315a', weight: 2, opacity: 1}).addTo(App.map.getMap());
 				event.set('path', polyline);
 			});
 		},
@@ -87,11 +86,11 @@ define(['views/EventView',
 					(eventDate.getMonth() == date.month || !date.month) &&
 					(eventDate.getDate() == date.day || !date.day)) {
 						if (event.get('marker') && self.collection.showMarkers) {
-							map.getCluster().addLayer(event.get('marker'));
+							App.map.getCluster().addLayer(event.get('marker'));
 						}
 
 						if (event.get('path') && self.collection.showPaths) {
-							map.getMap().addLayer(event.get('path'));
+							App.map.getMap().addLayer(event.get('path'));
 						}
 
 						event.set('filtered', true);
@@ -116,7 +115,7 @@ define(['views/EventView',
 		showMarkers: function() {
 			this.collection.each(function(event) {
 				if(event.get('marker') && event.get('filtered')) {
-					map.getCluster().addLayer(event.get('marker'));
+					App.map.getCluster().addLayer(event.get('marker'));
 				}
 			});
 		},	
@@ -124,7 +123,7 @@ define(['views/EventView',
 		hideMarkers: function() {
 			this.collection.each(function(event) {
 				if(event.get('marker') && event.get('filtered')) {
-					map.getCluster().removeLayer(event.get('marker'));
+					App.map.getCluster().removeLayer(event.get('marker'));
 				}
 			});
 		},
@@ -142,7 +141,7 @@ define(['views/EventView',
 		showPaths: function() {
 			this.collection.each(function(event) {
 				if(event.get('path') && event.get('filtered')) {
-					map.getMap().addLayer(event.get('path'));
+					App.map.getMap().addLayer(event.get('path'));
 				}
 			});
 		},
@@ -150,7 +149,7 @@ define(['views/EventView',
 		hidePaths: function() {
 			this.collection.each(function(event) {
 				if(event.get('path') && event.get('filtered')) {
-					map.getMap().removeLayer(event.get('path'));
+					App.map.getMap().removeLayer(event.get('path'));
 				}
 			});
 		},
@@ -158,7 +157,7 @@ define(['views/EventView',
 		reset: function(event) {
 			this.collection.each(function(event) {
 				if(event.get('path')) {
-					map.getMap().removeLayer(event.get('path'));
+					App.map.getMap().removeLayer(event.get('path'));
 				}
 			});
 
@@ -167,9 +166,9 @@ define(['views/EventView',
 
 		scroll: function() {
 			if (this.$el.scrollTop() > this.$el.height()) {
-				channel.trigger('gotop-show');
+				App.vent.trigger('gotop-show');
 			} else {
-				channel.trigger('gotop-hide');
+				App.vent.trigger('gotop-hide');
 			}
 		},
 

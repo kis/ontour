@@ -1,9 +1,8 @@
-define(['channel',
+define(['App',
 		'text', 
 		'text!templates/Menu.tmpl',
-		'router',
-		'marionette'
-], function(channel, text, menuTemplate, Router, Marionette) {
+		'marionette',
+], function(App, text, menuTemplate, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -32,10 +31,10 @@ define(['channel',
 		},
 
 		initialize: function() {
-			this.listenTo(channel, 'fieldInvalid', this.fieldInvalid);
-			this.listenTo(channel, 'search', this.search);
-			this.listenTo(channel, 'setActiveTag', this.setActiveTag);
-			this.listenTo(channel, 'index-route', this.off);
+			this.listenTo(App.vent, 'fieldInvalid', this.fieldInvalid);
+			this.listenTo(App.vent, 'search', this.search);
+			this.listenTo(App.vent, 'setActiveTag', this.setActiveTag);
+			this.listenTo(App.vent, 'index-route', this.off);
 			this.listenTo(this.model, 'change:activeTab', this.updateMenu);
 			this.listenTo(this.model, 'change:festivalsonly', this.updateF);
 		},
@@ -102,20 +101,20 @@ define(['channel',
 			var self = this;
 
 			setTimeout(function() {
-				channel.trigger('setHeight', self.$el.height());
+				App.vent.trigger('setHeight', self.$el.height());
 			}, 200);
 		},
 
 		getAutocompleteData: function() {
 			if (this.model.get('activeTab') == 'artist') {
-				channel.trigger('addArtistsData', this.ui.searchField.val());
+				App.vent.trigger('addArtistsData', this.ui.searchField.val());
 			} else if (this.model.get('activeTab') == 'city') {
-				channel.trigger('addCitiesData', this.ui.searchField.val());
+				App.vent.trigger('addCitiesData', this.ui.searchField.val());
 			}
 		},
 
 		execAutocompleteProperty: function(e) {
-			channel.trigger('execProperty', e.keyCode);
+			App.vent.trigger('execProperty', e.keyCode);
 		},
 
 		search: function(item) {
@@ -134,10 +133,10 @@ define(['channel',
 			if (!this.model.get('value')) {
 				this.fieldInvalid();
 			} else {
-				Router.navigate("search/" + this.model.get('value'));
+				App.appRouter.navigate("search/" + this.model.get('value'));
 
 				this.ui.searchField.removeClass("invalid").focus();
-				channel.trigger('getEvents', {
+				App.vent.trigger('getEvents', {
 					value : this.model.get('value'), 
 					param : this.model.get('param'),
 					tag   : this.model.get('activeTag'),

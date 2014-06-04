@@ -1,8 +1,7 @@
-define(['channel',
-		'text', 
+define(['text', 
 		'text!templates/Settings.tmpl',
 		'marionette'
-], function(channel, text, settingsTmpl, Marionette) {
+], function(text, settingsTmpl, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({

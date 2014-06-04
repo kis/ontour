@@ -1,8 +1,8 @@
-define(['channel',
+define(['App',
 		'cluster',
 		'marionette', 
 		'mapbox'
-], function(channel, cluster, Marionette) {
+], function(App, cluster, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -19,8 +19,8 @@ define(['channel',
 		        maxZoom: 14
 			}).setView([0, 0], 2)).get('map').zoomControl.setPosition('bottomright');
 
-			this.listenTo(channel, 'setView', this.setView);
-			this.listenTo(channel, 'resetCluster', this.resetCluster);
+			this.listenTo(App.vent, 'setView', this.setView);
+			this.listenTo(App.vent, 'resetCluster', this.resetCluster);
 		},
 
 		resetCluster: function() {

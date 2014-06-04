@@ -1,6 +1,6 @@
-define(['channel',
+define(['App',
 		'marionette'
-], function(channel, Marionette) {
+], function(App, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -46,7 +46,7 @@ define(['channel',
 
 		search: function() {
 			this.bindUIElements();
-			channel.trigger('search', this.ui.item.text());
+			App.vent.trigger('search', this.ui.item.text());
 		}
 
 	});

@@ -1,6 +1,6 @@
-define(['channel',
+define(['App',
 		'marionette'
-], function(channel, Marionette) {
+], function(App, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -14,7 +14,7 @@ define(['channel',
 		},
 
 		initialize: function() {
-			this.listenTo(channel, 'showNotification', this.show);
+			this.listenTo(App.vent, 'showNotification', this.show);
 		},
 
 		show: function(notification) {

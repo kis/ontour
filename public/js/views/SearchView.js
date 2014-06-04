@@ -1,6 +1,6 @@
-define(['channel',
+define(['App',
 	    'marionette'
-], function(channel, Marionette) {
+], function(App, Marionette) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -12,9 +12,9 @@ define(['channel',
 		tplFinish   : _.template('<%= total %> / <%= total %>'),
 
 		initialize: function() {
-			channel.trigger('reset');
-			this.listenTo(channel, 'getEvents', this.getEvents);
-			this.listenTo(channel, 'index-route', this.off);
+			App.vent.trigger('reset');
+			this.listenTo(App.vent, 'getEvents', this.getEvents);
+			this.listenTo(App.vent, 'index-route', this.off);
 			this.listenTo(this.model, 'change', this.render);
 		},
 
@@ -36,14 +36,14 @@ define(['channel',
 		},
 
 		reset: function() {
-			channel.trigger('resetCluster');
+			App.vent.trigger('resetCluster');
 			this.model.set(this.model.defaults);
 		},
 
 		search: function(param) {
-			channel.trigger('setParam', param);
+			App.vent.trigger('setParam', param);
 			this.$el.show();
-			channel.trigger('showControls');
+			App.vent.trigger('showControls');
 		},
 
 		getEvents: function(search) {
@@ -76,7 +76,7 @@ define(['channel',
 						if (self.model.get('page') <= self.model.get('totalPages')) {
 							go();
 						} else {
-							channel.trigger('addPaths');
+							App.vent.trigger('addPaths');
 						}
 					}
 				});
@@ -97,13 +97,13 @@ define(['channel',
 			});
 
 			if (this.model.get('page') == this.model.get('totalPages') && /1$/.test(this.model.get('total'))) {
-				channel.trigger('addEvent', data.events.event);
+				App.vent.trigger('addEvent', data.events.event);
 			} else {
 				data.events.event.forEach(function(value, index, list) {
-					channel.trigger('addEvent', value);
+					App.vent.trigger('addEvent', value);
 					
 					if (self.model.get('page') == 1 && index == 0) {
-						channel.trigger('setView', list, param);
+						App.vent.trigger('setView', list, param);
 					}
 				});
 			}
