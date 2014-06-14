@@ -1,8 +1,8 @@
 define(['App',
 		'text', 
 		'text!templates/Settings.tmpl',
-		'marionette',
-		'vk'
+		'marionette'
+		// 'vk'
 ], function(App, text, settingsTmpl, Marionette) {
 	'use strict';
 
