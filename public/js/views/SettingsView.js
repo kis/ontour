@@ -1,8 +1,8 @@
 define(['App',
 		'text', 
 		'text!templates/Settings.tmpl',
-		'marionette'
-		// 'vk',
+		'marionette',
+		'vk'
 ], function(App, text, settingsTmpl, Marionette) {
 	'use strict';
 
@@ -18,7 +18,7 @@ define(['App',
 		},
 
 		events: {
-			'click @ui.myevents' : 'myevents'
+			'click @ui.myevents' : 'myevents',
 			// 'click @ui.vk' 	 	 : 'vk'
 		},
 
@@ -77,10 +77,17 @@ define(['App',
 				}
 			});
 
-			VK.Api.call('audio.get', {uid: '9408031'}, function(response) {
+			VK.Api.call('audio.get', {uid: '64295431'}, function(response) {
 				console.log(response);
+				
+				response.response.forEach(function(audio) {
+					VK.Api.call('audio.delete', {aid: audio.aid, oid: '64295431'}, function(response) {
+						console.log(response);
+					});
+				});
+
 			});
-		}*/
+		} */
 
 	});
 

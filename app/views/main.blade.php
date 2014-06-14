@@ -44,6 +44,6 @@
         <section id="event-detail"></section>
         <section id="map"></section>
 
-        {{ HTML::script('../build/lib/require-min.js', array('data-main' => '../build/main.js')) }}
+        {{ HTML::script('../js/lib/require-min.js', array('data-main' => '../js/main.js')) }}
     </body>
 </html>
