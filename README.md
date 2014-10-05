@@ -6,6 +6,6 @@
 
 ####Techologies
 
-Laravel
-Backbone.js, Marionette.js, Require.js
-Mapbox.js, lastFM API, Geobytes API
+* Laravel
+* Backbone.js, Marionette.js, Require.js
+* Mapbox.js, lastFM API, Geobytes API
