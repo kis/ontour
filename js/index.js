@@ -41,12 +41,14 @@ requirejs.config({
 	}
 });
 
-requirejs(['js/App', 'js/AppRouter', 'js/AppController'], function(App, AppRouter, AppController) {
-	'use strict';
+'use strict';
 
-	App.appRouter = new AppRouter({
-	    controller: new AppController()
-	});
+import App from 'js/App';
+import AppRouter from 'js/AppRouter';
+import AppController from 'js/AppController';
 
-	App.start();
+App.appRouter = new AppRouter({
+    controller: new AppController()
 });
+
+App.start();
