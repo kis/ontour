@@ -3,7 +3,6 @@ module.exports = function (grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		javascripts: ['public/js/**/**.js'],
 		styles: ['assets/styles/*.styl'],
-		php: ['app/**/**.php'],
 		jshint: {
 			client: ['Gruntfile.js', '<%= javascripts %>'],
 			options: {
@@ -23,9 +22,6 @@ module.exports = function (grunt) {
 			styles: {
 				files: ['<%= styles %>'],
 				tasks: ['stylus']
-			},
-			php: {
-				files: ['<%= php %>']
 			},
 			app: {
 				files: 'public/js/**/*.js',
@@ -84,7 +80,6 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-stylus');
-	// grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 
 	grunt.registerTask('default', ['requirejs']);

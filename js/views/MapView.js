@@ -1,9 +1,10 @@
 'use strict';
 
-import Marionette from 'marionette';
+import Backbone from 'backbone';
+import Marionette from '../../lib/backbone.marionette.min';
 import App from '../App';
-import cluster from 'cluster';
-import mapbox from 'mapbox';
+import cluster from '../../lib/leaflet.markercluster';
+import mapbox from '../../lib/mapbox';
 
 export default Marionette.ItemView.extend({
 

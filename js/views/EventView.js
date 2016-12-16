@@ -1,15 +1,15 @@
 'use strict';
 
-import Marionette from 'marionette';
+import Backbone from 'backbone';
+import Marionette from '../../lib/backbone.marionette.min';
 import App from '../App';
-import text from 'text';
-import eventTemplate from 'text!templates/Event.tmpl';
+import eventTemplate from '../templates/Event.tmpl';
 
 export default Marionette.ItemView.extend({
 
 	tagName: 'div id="event-item"',
 
-	template: _.template(eventTemplate),
+	template: eventTemplate,
 
 	ui: {
 		saveEvent : '.save-event'

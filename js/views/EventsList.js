@@ -1,9 +1,10 @@
 'use strict';
 
-import Marionette from 'marionette';
+import Backbone from 'backbone';
+import Marionette from '../../lib/backbone.marionette.min';
 import App from '../App';
-import EventView from 'views/EventView';
-import Event from 'models/Event';
+import EventView from './EventView';
+import Event from '../models/Event';
 
 export default Marionette.CollectionView.extend({
 

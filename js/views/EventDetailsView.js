@@ -1,15 +1,15 @@
 'use strict';
 
-import Marionette from 'marionette';
+import Backbone from 'backbone';
+import Marionette from '../../lib/backbone.marionette.min';
 import App from '../App';
-import text from 'text';
-import eventDetailTpl from 'text!templates/EventDetail.tmpl';
+import eventDetailTpl from '../templates/EventDetail.tmpl';
 
 export default Marionette.ItemView.extend({
 
 	el: '#event-detail',
 
-	template: _.template(eventDetailTpl),
+	template: eventDetailTpl,
 
 	initialize: function() {
 		this.listenTo(App.vent, 'showEventDetails', this.showEventDetails);

@@ -1,7 +1,7 @@
 'use strict';
 
 import Backbone from 'backbone';
-import AutocompleteItem from 'models/AutocompleteItem';
+import AutocompleteItem from '../models/AutocompleteItem';
 
 export default Backbone.Collection.extend({
 	model: AutocompleteItem,

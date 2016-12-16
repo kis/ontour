@@ -1,5 +1,6 @@
 'use strict';
 
+import Backbone from 'backbone';
 import Marionette from 'marionette';
 import App from '../App';
 

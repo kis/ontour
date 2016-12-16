@@ -1,15 +1,15 @@
 'use strict';
 
-import Marionette from 'marionette';
+import Backbone from 'backbone';
+import Marionette from '../../lib/backbone.marionette.min';
 import App from '../App';
-import text from 'text';
-import menuTemplate from 'text!templates/Menu.tmpl';
+import menuTemplate from '../templates/Menu.tmpl';
 
 export default Marionette.ItemView.extend({
 
 	itemViewContainer: '#search',
 
-	template: _.template(menuTemplate),
+	template: menuTemplate,
 
 	ui: {
 		tabs		  : '.tab',

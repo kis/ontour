@@ -1,6 +1,6 @@
 'use strict';	
 
-import Marionette from 'marionette';
+import Marionette from '../lib/backbone.marionette.min';
 
 const router = Marionette.AppRouter.extend({
 

@@ -1,13 +1,12 @@
 'use strict';
 
-import Marionette from "marionette";
+import Marionette from '../lib/backbone.marionette.min';
 
 const App = new Marionette.Application();
 
 App.addRegions({
 	menu         : '#search',
 	controls 	 : '#controls',
-	// settings 	 : '#settings',
 	autocomplete : '#autocomplete',
 	notification : '#notification',
 	search 		 : '#status',
