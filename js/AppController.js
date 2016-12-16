@@ -40,7 +40,6 @@ var contr = Marionette.Controller.extend({
         controlsView = new ControlsView({
             model: new Controls()
         }),
-        settingsView = new SettingsView(),
         searchView = new SearchView({
             model: new Search()
         }),

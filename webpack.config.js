@@ -26,8 +26,9 @@ module.exports = {
   },
   resolve: {
     alias: {
+      "mapbox": path.resolve(__dirname, "./lib/mapbox"),
+      "cluster": path.resolve(__dirname, "./lib/leaflet.markercluster"),
       "jquery": path.resolve(__dirname, "./lib/jquery.min"),
-      "underscore": path.resolve(__dirname, "./lib/underscore-min"),
       "backbone.wreqr": path.resolve(__dirname, "./lib/backbone.wreqr.min"),
       "backbone.babysitter": path.resolve(__dirname, "./lib/backbone.babysitter.min"),
       "backbone": path.resolve(__dirname, "./lib/backbone-min"),
@@ -50,7 +51,12 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin("./[name].css", { allChunks: true })
+    new ExtractTextPlugin("./[name].css", { allChunks: true }),
+    new webpack.ProvidePlugin({
+      $ : "jquery",
+      Backbone : "backbone",
+      _ : "underscore"
+    })
   ],
   postcss: function () {
     return [precss, cssnext, vars, nested, mixins, rand];
