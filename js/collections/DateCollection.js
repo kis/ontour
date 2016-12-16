@@ -1,11 +1,10 @@
-define(['backbone', 
-		'models/Date'
-], function(Backbone, Date) {
-	'use strict';
+'use strict';
 
-	return Backbone.Collection.extend({
-		model: Date,
+import Backbone from 'backbone';
+import Date from 'models/Date';
 
-		type: ''
-	});
+export default Backbone.Collection.extend({
+	model: Date,
+
+	type: ''
 });

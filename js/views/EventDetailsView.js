@@ -1,31 +1,29 @@
-define(['text', 
-		'text!templates/EventDetail.tmpl', 
-		'App',
-		'marionette'
-], function(text, eventDetailTpl, App, Marionette) {
-	'use strict';
+'use strict';
 
-	return Marionette.ItemView.extend({
+import Marionette from 'marionette';
+import App from '../App';
+import text from 'text';
+import eventDetailTpl from 'text!templates/EventDetail.tmpl';
 
-		el: '#event-detail',
+export default Marionette.ItemView.extend({
 
-		template: _.template(eventDetailTpl),
+	el: '#event-detail',
 
-		initialize: function() {
-			this.listenTo(App.vent, 'showEventDetails', this.showEventDetails);
-			this.listenTo(App.vent, 'hideEventDetails', this.hideEventDetails);
-		},
+	template: _.template(eventDetailTpl),
 
-		showEventDetails: function(model) {
-			this.$el.html(this.template(model.toJSON()));
-			this.$el.show();
-		},
+	initialize: function() {
+		this.listenTo(App.vent, 'showEventDetails', this.showEventDetails);
+		this.listenTo(App.vent, 'hideEventDetails', this.hideEventDetails);
+	},
 
-		hideEventDetails: function() {
-			this.$el.children().detach();
-			this.$el.hide();
-		}
+	showEventDetails: function(model) {
+		this.$el.html(this.template(model.toJSON()));
+		this.$el.show();
+	},
 
-	});
+	hideEventDetails: function() {
+		this.$el.children().detach();
+		this.$el.hide();
+	}
 
 });

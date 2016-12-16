@@ -1,43 +1,41 @@
-define(['App',
-		'marionette'
-], function(App, Marionette) {
-	'use strict';
+'use strict';
 
-	return Marionette.ItemView.extend({
+import Marionette from 'marionette';
+import App from '../App';
 
-		itemViewContainer: '#notification',
+export default Marionette.ItemView.extend({
 
-		template: _.template('<%= message %>'),
+	itemViewContainer: '#notification',
 
-		events: {
-			'click' : 'close'
-		},
+	template: _.template('<%= message %>'),
 
-		initialize: function() {
-			this.listenTo(App.vent, 'showNotification', this.show);
-		},
+	events: {
+		'click' : 'close'
+	},
 
-		show: function(notification) {
-			this.model.set({message: notification});
+	initialize: function() {
+		this.listenTo(App.vent, 'showNotification', this.show);
+	},
 
-			this.$el.show(100);
-			this.render();
+	show: function(notification) {
+		this.model.set({message: notification});
 
-			var self = this;
+		this.$el.show(100);
+		this.render();
 
-			setTimeout(function() {
-				self.close();
-			}, 1500);			
-		},
+		var self = this;
 
-		render: function() {
-			this.$el.html(this.template(this.model.toJSON()));
-		},
+		setTimeout(function() {
+			self.close();
+		}, 1500);			
+	},
 
-		close: function() {
-			this.$el.hide(100);
-		}
+	render: function() {
+		this.$el.html(this.template(this.model.toJSON()));
+	},
 
-	});
+	close: function() {
+		this.$el.hide(100);
+	}
 
 });

@@ -1,10 +1,8 @@
-define(['views/DateView',
-		'marionette'
-], function(DateView, Marionette) {
-	'use strict';
+'use strict';
 
-	return Marionette.CollectionView.extend({
-		itemView: DateView
-	});
+import Marionette from 'marionette';
+import DateView from './DateView';
 
+export default Marionette.CollectionView.extend({
+	itemView: DateView
 });

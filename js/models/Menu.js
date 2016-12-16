@@ -1,16 +1,15 @@
-define(['backbone'], function(Backbone) {
-	'use strict';
+'use strict';
 
-	return Backbone.Model.extend({
+import Backbone from 'backbone';
 
-		defaults: {
-			activeTab: 'artist',
-			value: '',
-			param: 'artist',
-			activeTag: '',
-			festivalsonly: 0
-		}
-		
-	});
+export default Backbone.Model.extend({
 
+	defaults: {
+		activeTab: 'artist',
+		value: '',
+		param: 'artist',
+		activeTag: '',
+		festivalsonly: 0
+	}
+	
 });

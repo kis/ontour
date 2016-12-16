@@ -1,13 +1,12 @@
-define(['backbone'], function(Backbone) {
-	'use strict';
+'use strict';
 
-	return Backbone.Model.extend({
-		
-		defaults: {
-			map: {},
-			cluster: {}
-		}
+import Backbone from 'backbone';
 
-	});
+export default Backbone.Model.extend({
+	
+	defaults: {
+		map: {},
+		cluster: {}
+	}
 
 });

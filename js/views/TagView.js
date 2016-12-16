@@ -1,51 +1,49 @@
-define(['App',
-		'marionette'
-], function(App, Marionette) {
-	'use strict';
+'use strict';
 
-	return Marionette.ItemView.extend({
+import Marionette from 'marionette';
+import App from '../App';
 
-		tagName: 'div class="tag"',
+export default Marionette.ItemView.extend({
 
-		template: _.template('<%= name %>'),
+	tagName: 'div class="tag"',
 
-		events: {
-			'click' : 'select'
-		},
+	template: _.template('<%= name %>'),
 
-		initialize: function() {
-			this.listenTo(this.model, 'change:active', this.activate);
-		},
+	events: {
+		'click' : 'select'
+	},
 
-		select: function() {
-			this.model.collection.models.forEach(function(model) {
-				if (model == this.model) {
-					if (this.model.get('active')) {
-						this.model.set('active', false);
-						App.vent.trigger('setActiveTag', '');
-					} else {
-						this.model.set('active', true);
-						App.vent.trigger('setActiveTag', this.model.get('name'));
-					}
+	initialize: function() {
+		this.listenTo(this.model, 'change:active', this.activate);
+	},
+
+	select: function() {
+		this.model.collection.models.forEach(function(model) {
+			if (model == this.model) {
+				if (this.model.get('active')) {
+					this.model.set('active', false);
+					App.vent.trigger('setActiveTag', '');
 				} else {
-					model.set('active', false);
+					this.model.set('active', true);
+					App.vent.trigger('setActiveTag', this.model.get('name'));
 				}
-			}, this);
-		},
-
-		activate: function() {
-			if (this.model.get('active')) {
-				this.$el.addClass('active');
 			} else {
-				this.$el.removeClass('active');
+				model.set('active', false);
 			}
-		},
+		}, this);
+	},
 
-		render: function() {
-			this.$el.html(this.template(this.model.toJSON()));
-			return this;
+	activate: function() {
+		if (this.model.get('active')) {
+			this.$el.addClass('active');
+		} else {
+			this.$el.removeClass('active');
 		}
+	},
 
-	});
+	render: function() {
+		this.$el.html(this.template(this.model.toJSON()));
+		return this;
+	}
 
 });

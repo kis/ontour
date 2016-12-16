@@ -1,15 +1,14 @@
-define(['backbone'], function(Backbone) {
-	'use strict';
+'use strict';
 
-	return Backbone.Model.extend({
+import Backbone from 'backbone';
 
-		defaults: {
-			year       : '',
-			month      : '',
-			day        : '',
-			datepicker : false
-		}
+export default Backbone.Model.extend({
 
-	});
+	defaults: {
+		year       : '',
+		month      : '',
+		day        : '',
+		datepicker : false
+	}
 
 });

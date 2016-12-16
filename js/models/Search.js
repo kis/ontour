@@ -1,14 +1,13 @@
-define(['backbone'], function(Backbone) {
-	'use strict';
+'use strict';
 
-	return Backbone.Model.extend({
+import Backbone from 'backbone';
 
-		defaults: {
-			page: 1,
-			total: 1,
-			totalPages: 1
-		}
+export default Backbone.Model.extend({
 
-	});
+	defaults: {
+		page: 1,
+		total: 1,
+		totalPages: 1
+	}
 
 });

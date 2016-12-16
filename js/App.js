@@ -1,29 +1,27 @@
-define(['marionette'
-], function(Marionette) {
-	'use strict';
+'use strict';
 
-	var App = new Marionette.Application();
+import Marionette from "marionette";
 
-	App.addRegions({
-		menu         : '#search',
-		controls 	 : '#controls',
-		// settings 	 : '#settings',
-		autocomplete : '#autocomplete',
-		notification : '#notification',
-		search 		 : '#status',
-		events 		 : '#events',
-		tags 		 : '#tags',
-		year 		 : '#years',
-		month 		 : '#months',
-		day 		 : '#days'
-	});
+const App = new Marionette.Application();
 
-	App.on("initialize:after", function(options) {
-		if (Backbone.history){
-	    	Backbone.history.start({pushState : true});
-	  	}
-	});
-
-	return App;
-
+App.addRegions({
+	menu         : '#search',
+	controls 	 : '#controls',
+	// settings 	 : '#settings',
+	autocomplete : '#autocomplete',
+	notification : '#notification',
+	search 		 : '#status',
+	events 		 : '#events',
+	tags 		 : '#tags',
+	year 		 : '#years',
+	month 		 : '#months',
+	day 		 : '#days'
 });
+
+App.on("initialize:after", function(options) {
+	if (Backbone.history){
+    	Backbone.history.start({pushState : true});
+  	}
+});
+
+export default App;

@@ -1,13 +1,12 @@
-define(['backbone'], function(Backbone) {
-	'use strict';
+'use strict';
 
-	return Backbone.Model.extend({
+import Backbone from 'backbone';
 
-		defaults: {
-			name   : 'pop',
-			active : false
-		}
-		
-	});
+export default Backbone.Model.extend({
 
+	defaults: {
+		name   : 'pop',
+		active : false
+	}
+	
 });

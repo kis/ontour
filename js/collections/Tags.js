@@ -1,9 +1,8 @@
-define(['backbone', 
-		'models/Tag'
-], function(Backbone, Tag) {
-	'use strict';
+'use strict';
 
-	return Backbone.Collection.extend({
-		model: Tag
-	});
+import Backbone from 'backbone';
+import Tag from 'models/Tag';
+
+export default Backbone.Collection.extend({
+	model: Tag
 });

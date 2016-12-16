@@ -1,18 +1,16 @@
-define(['backbone', 
-		'models/Event'
-], function(Backbone, Event) {
-	'use strict';
+'use strict';
 
-	return Backbone.Collection.extend({
-		model: Event,
+import Backbone from 'backbone';
+import Event from 'models/Event';
 
-		showMarkers: true,
+export default Backbone.Collection.extend({
+	model: Event,
 
-		showPaths: true,
+	showMarkers: true,
 
-		param: '',
+	showPaths: true,
 
-		url: '/events'
-		
-	});
+	param: '',
+
+	url: '/events'
 });

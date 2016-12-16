@@ -1,54 +1,52 @@
-define(['App',
-		'marionette'
-], function(App, Marionette) {
-	'use strict';
+'use strict';
 
-	return Marionette.ItemView.extend({
+import Marionette from 'marionette';
+import App from '../App';
 
-		tagName: 'div',
+export default Marionette.ItemView.extend({
 
-		template: _.template('<a><%= title %></a> <%= meta %>'),
+	tagName: 'div',
 
-		ui: {
-			item : 'a'
-		},
+	template: _.template('<a><%= title %></a> <%= meta %>'),
 
-		events: {
-			'mouseenter' : 'select',
-			'mouseleave' : 'deselect',
-			'click'		 : 'search'
-		},
+	ui: {
+		item : 'a'
+	},
 
-		render: function() {
-			this.$el.html(this.template(this.model.toJSON()));
-			return this;
-		},
+	events: {
+		'mouseenter' : 'select',
+		'mouseleave' : 'deselect',
+		'click'		 : 'search'
+	},
 
-		initialize: function() {
-			this.listenTo(this.model, 'change', this.hover);
-		},
+	render: function() {
+		this.$el.html(this.template(this.model.toJSON()));
+		return this;
+	},
 
-		select: function() {
-			this.model.set('selected', true);
-		},
+	initialize: function() {
+		this.listenTo(this.model, 'change', this.hover);
+	},
 
-		deselect: function() {
-			this.model.set('selected', false);
-		},
+	select: function() {
+		this.model.set('selected', true);
+	},
 
-		hover: function() {
-			if (this.model.get('selected')) {
-				this.$el.addClass('hover');
-			} else {
-				this.$el.removeClass('hover');
-			}
-		},
+	deselect: function() {
+		this.model.set('selected', false);
+	},
 
-		search: function() {
-			this.bindUIElements();
-			App.vent.trigger('search', this.ui.item.text());
+	hover: function() {
+		if (this.model.get('selected')) {
+			this.$el.addClass('hover');
+		} else {
+			this.$el.removeClass('hover');
 		}
+	},
 
-	});
+	search: function() {
+		this.bindUIElements();
+		App.vent.trigger('search', this.ui.item.text());
+	}
 
 });

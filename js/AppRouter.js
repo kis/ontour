@@ -1,15 +1,15 @@
-define(['marionette',
-], function(Marionette) {
-	'use strict';	
+'use strict';	
 
-	return Marionette.AppRouter.extend({
+import Marionette from 'marionette';
 
-		appRoutes: {
-			''				: 'index',
-			'search/:query' : 'search',
-			'myevents'		: 'myevents'
-		}
+const router = Marionette.AppRouter.extend({
 
-	});
+	appRoutes: {
+		''				: 'index',
+		'search/:query' : 'search',
+		'myevents'		: 'myevents'
+	}
 
 });
+
+export default router;

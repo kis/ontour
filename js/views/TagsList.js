@@ -1,14 +1,12 @@
-define(['views/TagView',
-		'marionette'
-], function(TagView, Marionette) {
-	'use strict';
+'use strict';
 
-	return Marionette.CollectionView.extend({
-		
-		itemViewContainer: '#tags',
+import Marionette from 'marionette';
+import TagView from './TagView';
 
-		itemView: TagView
+export default Marionette.CollectionView.extend({
+	
+	itemViewContainer: '#tags',
 
-	});
+	itemView: TagView
 
 });

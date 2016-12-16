@@ -1,12 +1,11 @@
-define(['backbone'], function(Backbone) {
-	'use strict';
+'use strict';
 
-	return Backbone.Model.extend({
+import Backbone from 'backbone';
 
-		defaults: {
-			message: 'Notification',
-		}
-		
-	});
+export default Backbone.Model.extend({
 
+	defaults: {
+		message: 'Notification',
+	}
+	
 });
