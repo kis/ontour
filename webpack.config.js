@@ -26,8 +26,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "mapbox": path.resolve(__dirname, "./lib/mapbox"),
-      "cluster": path.resolve(__dirname, "./lib/leaflet.markercluster"),
+      // "mapbox": path.resolve(__dirname, "./lib/mapbox"),
+      // "cluster": path.resolve(__dirname, "./lib/leaflet.markercluster"),
       "jquery": path.resolve(__dirname, "./lib/jquery.min"),
       "backbone.wreqr": path.resolve(__dirname, "./lib/backbone.wreqr.min"),
       "backbone.babysitter": path.resolve(__dirname, "./lib/backbone.babysitter.min"),

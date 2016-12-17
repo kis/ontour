@@ -73,11 +73,11 @@ export default Marionette.ItemView.extend({
 
 	addIcon: function() {
 		if (this.model.get('image')) {
-			var icon = L.icon({
-				iconUrl: this.model.get('image'),
-				iconSize: this.model.collection.param == 'geo' ? [75, 75] : [25, 25],
-				className: "dot"
-			});
+			// var icon = L.icon({
+			// 	iconUrl: this.model.get('image'),
+			// 	iconSize: this.model.collection.param == 'geo' ? [75, 75] : [25, 25],
+			// 	className: "dot"
+			// });
 
 			this.model.set('icon', icon);
 		}
@@ -88,13 +88,14 @@ export default Marionette.ItemView.extend({
 			this.model.get('venue').location['geo:point']['geo:long'] &&
 			this.model.get('icon')) {
 
-			this.model.set('marker', 
-				L.marker([this.model.get('venue').location['geo:point']['geo:lat'], 
-						  this.model.get('venue').location['geo:point']['geo:long']],
-						{icon: this.model.get('icon')}));
+			// let marker = L.marker([this.model.get('venue').location['geo:point']['geo:lat'], 
+			// 			  this.model.get('venue').location['geo:point']['geo:long']],
+			// 			{icon: this.model.get('icon')});
+
+			// this.model.set('marker', marker);
 				// .addTo(App.map.getMap()));
 
-			App.map.getCluster().addLayer(this.model.get('marker'));
+			// App.map.getCluster().addLayer(this.model.get('marker'));
 		}
 	},
 
@@ -104,16 +105,17 @@ export default Marionette.ItemView.extend({
 			return false;
 		}
 
-		this.model.set("popup", 
-			L.popup({
-				autoPan: false,
-				closeButton: false,
-				offset: L.point(0, this.model.collection.param == 'geo' ? -30 : -5),
-				closeOnClick: false,
-				className: 'p'+this.model.get('id')
-			})
-			.setLatLng(this.model.get('marker').getLatLng())
-			.setContent(this.template(this.model.toJSON())));
+		// let popup = L.popup({
+		// 		autoPan: false,
+		// 		closeButton: false,
+		// 		offset: L.point(0, this.model.collection.param == 'geo' ? -30 : -5),
+		// 		closeOnClick: false,
+		// 		className: 'p'+this.model.get('id')
+		// 	})
+		// 	.setLatLng(this.model.get('marker').getLatLng())
+		// 	.setContent(this.template(this.model.toJSON()));
+
+		// this.model.set("popup", popup);
 
 		var actions = {
 			mouseover: this.showPopup,

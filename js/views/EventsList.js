@@ -69,8 +69,8 @@ export default Marionette.CollectionView.extend({
 			var latlng1 = event.get('marker').getLatLng();
 			var latlng2 = list[index+1].get('marker').getLatLng();
 
-			var polyline = L.polyline([latlng1, latlng2], {color: '#10315a', weight: 2, opacity: 1}).addTo(App.map.getMap());
-			event.set('path', polyline);
+			// var polyline = L.polyline([latlng1, latlng2], {color: '#10315a', weight: 2, opacity: 1}).addTo(App.map.getMap());
+			// event.set('path', polyline);
 		});
 	},
 

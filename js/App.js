@@ -1,6 +1,6 @@
 'use strict';
 
-import Marionette from '../lib/backbone.marionette.min';
+import Marionette from 'marionette';
 
 const App = new Marionette.Application();
 
