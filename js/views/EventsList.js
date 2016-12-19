@@ -1,7 +1,7 @@
 'use strict';
 
 import Backbone from 'backbone';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import App from '../App';
 import EventView from './EventView';
 import Event from '../models/Event';

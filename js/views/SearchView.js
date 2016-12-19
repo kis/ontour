@@ -1,10 +1,11 @@
 'use strict';
 
 import Backbone from 'backbone';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
+import _ from 'underscore';
 import App from '../App';
 
-export default Marionette.ItemView.extend({
+export default Marionette.View.extend({
 	
 	itemViewContainer: '#status',
 
@@ -53,35 +54,37 @@ export default Marionette.ItemView.extend({
 
 		var self = this;
 
-		(function go() {
-			Backbone.ajax({
-				url: 'http://ws.audioscrobbler.com/2.0/',
-				type: 'GET',
-				data: {
-					method        : search.param + '.getevents',
-					location      : search.value,
-					artist        : search.value,
-					autocorrect   : 1,
-					festivalsonly : search.fest,
-					tag           : search.tag,
-					page 		  : self.model.get('page'),
-					limit	      : 10,
-					api_key  	  : 'dd349d2176d3b97b8162bb0c0e583b1c',
-					format 		  : 'json'
-				},
-				success: function(data) {
-					self.getEventsData(data, search.param);
+		fetchEvents(search);
+	},
 
-					self.model.set('page', self.model.get('page') + 1);
+	fetchEvents: function(search) {
+		Backbone.ajax({
+			url: 'http://ws.audioscrobbler.com/2.0/',
+			type: 'GET',
+			data: {
+				method        : search.param + '.getevents',
+				location      : search.value,
+				artist        : search.value,
+				autocorrect   : 1,
+				festivalsonly : search.fest,
+				tag           : search.tag,
+				page 		  : self.model.get('page'),
+				limit	      : 10,
+				api_key  	  : 'dd349d2176d3b97b8162bb0c0e583b1c',
+				format 		  : 'json'
+			},
+			success: function(data) {
+				self.getEventsData(data, search.param);
 
-					if (self.model.get('page') <= self.model.get('totalPages')) {
-						go();
-					} else {
-						App.vent.trigger('addPaths');
-					}
+				self.model.set('page', self.model.get('page') + 1);
+
+				if (self.model.get('page') <= self.model.get('totalPages')) {
+					fetchEvents(search);
+				} else {
+					App.vent.trigger('addPaths');
 				}
-			});
-		}());
+			}
+		});
 	},
 
 	getEventsData: function(data, param) {

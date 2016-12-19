@@ -1,12 +1,10 @@
 'use strict';
 
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 
 const App = new Marionette.Application();
 
-App.addRegions({
-	menu         : '#search',
-	controls 	 : '#controls',
+/*App.addRegions({
 	autocomplete : '#autocomplete',
 	notification : '#notification',
 	search 		 : '#status',
@@ -15,7 +13,7 @@ App.addRegions({
 	year 		 : '#years',
 	month 		 : '#months',
 	day 		 : '#days'
-});
+});*/
 
 App.on("initialize:after", function(options) {
 	if (Backbone.history){

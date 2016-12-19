@@ -1,6 +1,6 @@
 import App from './App';
 import Backbone from 'backbone';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import Menu from './models/Menu'; 
 import Controls from './models/Controls';
 import Event from './models/Event'; 
@@ -30,7 +30,7 @@ import EventDetailsView from './views/EventDetailsView';
 import scrollbar from '../lib/scrollbar.min';
 import mousewheel from '../lib/jquery.mousewheel';
 
-var contr = Marionette.Controller.extend({
+var contr = Marionette.Object.extend({
 
     initialize: function() {
 

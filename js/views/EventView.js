@@ -1,11 +1,11 @@
 'use strict';
 
 import Backbone from 'backbone';
-import Marionette from 'marionette';
+import Marionette from 'backbone.marionette';
 import App from '../App';
 import eventTemplate from '../templates/Event.tmpl';
 
-export default Marionette.ItemView.extend({
+export default Marionette.View.extend({
 
 	tagName: 'div id="event-item"',
 
