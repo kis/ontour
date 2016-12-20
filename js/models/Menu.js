@@ -1,15 +1,19 @@
 'use strict';
 
-import Backbone from 'backbone';
+import { Model } from 'backbone';
 
-export default Backbone.Model.extend({
+export default class Menu extends Model {
 
-	defaults: {
-		activeTab: 'artist',
-		value: '',
-		param: 'artist',
-		activeTag: '',
-		festivalsonly: 0
+	constructor(props) {
+		super(props);
+
+		this.defaults = {
+			activeTab: 'artist',
+			value: '',
+			param: 'artist',
+			activeTag: '',
+			festivalsonly: 0
+		};
 	}
 	
-});
+}

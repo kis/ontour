@@ -1,12 +1,16 @@
 'use strict';
 
-import Backbone from 'backbone';
+import { Model } from 'backbone';
 
-export default Backbone.Model.extend({
+export default class Date extends Model {
 
-	defaults: {
-		name   : 'day',
-		active : false
+	constructor(props) {
+		super(props);
+	
+		this.defaults = {
+			name   : 'day',
+			active : false
+		};
 	}
 	
-});
+}

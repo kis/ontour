@@ -1,26 +1,28 @@
 'use strict';
 
-import Backbone from 'backbone';
-import Marionette from 'backbone.marionette';
+import { View } from 'backbone.marionette';
 import _ from 'underscore';
-import App from '../App';
 
-export default Marionette.View.extend({
+export default class SearchView extends View {
 	
-	itemViewContainer: '#status',
+	constructor(props) {
+		super(props);
+		
+		this.itemViewContainer = '#status';
 
-	tplNotFound	: _.template('Not found'),
-	tplLoad     : _.template('<%= page * 10 %> / <%= total %>'),
-	tplFinish   : _.template('<%= total %> / <%= total %>'),
+		this.tplNotFound = _.template('Not found');
+		this.tplLoad     = _.template('<%= page * 10 %> / <%= total %>');
+		this.tplFinish   = _.template('<%= total %> / <%= total %>');
+	}
 
-	initialize: function() {
+	initialize() {
 		this.triggerMethod('reset');
 		this.on('getEvents', this.getEvents);
 		this.on('index-route', this.off);
 		this.listenTo(this.model, 'change', this.render);
-	},
+	}
 
-	render: function() {
+	render() {
 		if (this.model.get('page') < this.model.get('totalPages')) {
 			this.$el.html(this.tplLoad(this.model.toJSON()));
 		} else {
@@ -30,34 +32,34 @@ export default Marionette.View.extend({
 		if (!this.model.get('totalPages')) {
 			this.$el.html(this.tplNotFound());
 		}
-	},
+	}
 
-	off: function() {
+	off() {
 		this.reset();
 		this.$el.hide();
-	},
+	}
 
-	reset: function() {
+	reset() {
 		this.triggerMethod('resetCluster');
 		this.model.set(this.model.defaults);
-	},
+	}
 
-	search: function(param) {
+	search(param) {
 		this.triggerMethod('setParam', param);
 		this.$el.show();
 		this.triggerMethod('showControls');
-	},
+	}
 
-	getEvents: function(search) {
+	getEvents(search) {
 		this.reset();
 		this.search(search.param);
 
 		var self = this;
 
 		fetchEvents(search);
-	},
+	}
 
-	fetchEvents: function(search) {
+	fetchEvents(search) {
 		Backbone.ajax({
 			url: 'http://ws.audioscrobbler.com/2.0/',
 			type: 'GET',
@@ -85,9 +87,9 @@ export default Marionette.View.extend({
 				}
 			}
 		});
-	},
+	}
 
-	getEventsData: function(data, param) {
+	getEventsData(data, param) {
 		var self = this;
 
 		if (data.error == 8 || data.events.total == 0) {
@@ -113,4 +115,4 @@ export default Marionette.View.extend({
 		}
 	}
 
-});
+}

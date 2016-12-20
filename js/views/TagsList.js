@@ -1,13 +1,16 @@
 'use strict';
 
-import Backbone from 'backbone';
-import Marionette from 'backbone.marionette';
+import { CollectionView } from 'backbone.marionette';
 import TagView from './TagView';
 
-export default Marionette.CollectionView.extend({
+export default class TagsList extends CollectionView {
 	
-	itemViewContainer: '#tags',
+	constructor(props) {
+		super(props);
+		
+		this.itemViewContainer = '#tags';
 
-	itemView: TagView
+		this.itemView = TagView;
+	}
 
-});
+}

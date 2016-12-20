@@ -1,13 +1,17 @@
 'use strict';
 
-import Backbone from 'backbone';
+import { Model } from 'backbone';
 
-export default Backbone.Model.extend({
+export default class AutocompleteItem extends Model {
 
-	defaults: {
-		title: 'title',
-		meta: '',
-		selected: false
+	constructor(props) {
+		super(props);
+		
+		this.defaults = {
+			title: 'title',
+			meta: '',
+			selected: false
+		};
 	}
 
-});
+}

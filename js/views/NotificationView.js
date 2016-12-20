@@ -1,25 +1,27 @@
 'use strict';
 
-import Backbone from 'backbone';
-import Marionette from 'backbone.marionette';
+import { View } from 'backbone.marionette';
 import _ from 'underscore';
-import App from '../App';
 
-export default Marionette.View.extend({
+export default class NotificationView extends View {
 
-	itemViewContainer: '#notification',
+	constructor(props) {
+		super(props);
+		
+		this.itemViewContainer = '#notification';
 
-	template: _.template('<%= message %>'),
+		this.template = _.template('<%= message %>');
 
-	events: {
-		'click' : 'close'
-	},
+		this.events = {
+			'click' : 'close'
+		};
+	}
 
-	initialize: function() {
+	initialize() {
 		this.on('showNotification', this.show);
-	},
+	}
 
-	show: function(notification) {
+	show(notification) {
 		this.model.set({message: notification});
 
 		this.$el.show(100);
@@ -30,14 +32,14 @@ export default Marionette.View.extend({
 		setTimeout(function() {
 			self.close();
 		}, 1500);			
-	},
+	}
 
-	render: function() {
+	render() {
 		this.$el.html(this.template(this.model.toJSON()));
-	},
+	}
 
-	close: function() {
+	close() {
 		this.$el.hide(100);
 	}
 
-});
+}

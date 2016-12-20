@@ -5,6 +5,8 @@ import Marionette from 'backbone.marionette';
 const App = new Marionette.Application();
 
 /*App.addRegions({
+	menu         : '#search',
+	controls 	 : '#controls',
 	autocomplete : '#autocomplete',
 	notification : '#notification',
 	search 		 : '#status',

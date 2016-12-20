@@ -1,14 +1,18 @@
 'use strict';
 
-import Backbone from 'backbone';
+import { Model } from 'backbone';
 
-export default Backbone.Model.extend({
+export default class Controls extends Model {
 
-	defaults: {
-		year       : '',
-		month      : '',
-		day        : '',
-		datepicker : false
+	constructor(props) {
+		super(props);
+		
+		this.defaults = {
+			year       : '',
+			month      : '',
+			day        : '',
+			datepicker : false
+		};
 	}
 
-});
+}

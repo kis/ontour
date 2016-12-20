@@ -1,25 +1,27 @@
 'use strict';
 
-import Backbone from 'backbone';
-import Marionette from 'backbone.marionette';
+import { View } from 'backbone.marionette';
 import _ from 'underscore';
-import App from '../App';
 
-export default Marionette.View.extend({
+export default class DateView extends View {
 
-	tagName: 'div',
+	constructor(props) {
+		super(props);
 
-	template: _.template('<%= name %>'),
+		this.tagName = 'div';
 
-	events: {
-		'click' : 'select'
-	},
+		this.template = _.template('<%= name %>');
 
-	initialize: function() {
+		this.events = {
+			'click' : 'select'
+		};
+	}
+
+	initialize() {
 		this.listenTo(this.model, 'change:active', this.activate);
-	},
+	}
 
-	select: function() {
+	select() {
 		this.model.collection.models.forEach(function(model) {
 			if (model == this.model) {
 				if (this.model.get('active')) {
@@ -36,19 +38,19 @@ export default Marionette.View.extend({
 				model.set('active', false);
 			}
 		}, this);
-	},
+	}
 
-	activate: function() {
+	activate() {
 		if (this.model.get('active')) {
 			this.$el.addClass('active');
 		} else {
 			this.$el.removeClass('active');
 		}
-	},
+	}
 
-	render: function() {
+	render() {
 		this.$el.html(this.template(this.model.toJSON()));
 		return this;
 	}
 
-});
+}

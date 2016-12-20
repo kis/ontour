@@ -1,13 +1,17 @@
 'use strict';
 
-import Backbone from 'backbone';
+import { Model } from 'backbone';
 
-export default Backbone.Model.extend({
+export default class Search extends Model {
 
-	defaults: {
-		page: 1,
-		total: 1,
-		totalPages: 1
+	constructor(props) {
+		super(props);
+
+		this.defaults = {
+			page: 1,
+			total: 1,
+			totalPages: 1
+		};
 	}
 
-});
+}

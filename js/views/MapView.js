@@ -1,14 +1,16 @@
 'use strict';
 
-import Backbone from 'backbone';
-import Marionette from 'backbone.marionette';
-import App from '../App';
+import { View } from 'backbone.marionette';
 
-export default Marionette.View.extend({
+export default class MapView extends View {
 
-	el: '#map',
+	constructor(props) {
+		super(props);
 
-	initialize: function() {
+		this.el = '#map';
+	}
+
+	initialize() {
 		mapboxgl.accessToken = 'pk.eyJ1Ijoia2lyaWxsc3R5b3BraW4iLCJhIjoiZjA3MTRlZDQzYzYyZmQ1ZGMyZDZkNjlhMjliMjQ2YjUifQ.BmlYKQnKTUcpLi2vk2AxYA';
 		var map = new mapboxgl.Map({
 		    container: 'map', // container id
@@ -21,23 +23,23 @@ export default Marionette.View.extend({
 
 		this.on('setView', this.setView);
 		this.on('resetCluster', this.resetCluster);
-	},
+	}
 
-	resetCluster: function() {
+	resetCluster() {
 		// this.getMap().removeLayer(this.model.get('cluster'));
 		// this.model.set('cluster', new L.MarkerClusterGroup());
 		// this.getMap().addLayer(this.model.get('cluster'));
-	},
+	}
 
-	getCluster: function() {
+	getCluster() {
 		// return this.model.get('cluster');
-	},
+	}
 
-	getMap: function() {
+	getMap() {
 		return this.model.get('map');
-	},
+	}
 
-	setView: function(list, param) {
+	setView(list, param) {
 		var self = this;
 
 		for(var i = 0; i < list.length; i++) {
@@ -53,4 +55,4 @@ export default Marionette.View.extend({
 		}
 	}
 
-});
+}

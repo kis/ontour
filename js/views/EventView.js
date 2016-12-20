@@ -1,54 +1,57 @@
 'use strict';
 
-import Backbone from 'backbone';
-import Marionette from 'backbone.marionette';
+import { View } from 'backbone.marionette';
 import App from '../App';
 import eventTemplate from '../templates/Event.tmpl';
 
-export default Marionette.View.extend({
+export default class EventView extends View {
 
-	tagName: 'div id="event-item"',
+	constructor(props) {
+		super(props);
+		
+		this.tagName = 'div id="event-item"';
 
-	template: eventTemplate,
+		this.template = eventTemplate;
 
-	ui: {
-		saveEvent : '.save-event'
-	},
+		this.ui = {
+			saveEvent : '.save-event'
+		};
 
-	events: {
-		'click'     		  : 'selectEvent',
-		'mouseenter' 		  : 'showPopup',
-		'mouseleave'  		  : 'hidePopup',
-		'click @ui.saveEvent' : 'saveEvent'
-	},
+		this.events = {
+			'click'     		  : 'selectEvent',
+			'mouseenter' 		  : 'showPopup',
+			'mouseleave'  		  : 'hidePopup',
+			'click @ui.saveEvent' : 'saveEvent'
+		};
+	}
 
-	initialize: function() {
+	initialize() {
 		this.addIcon();
 		this.addMarker();
 		this.addPopup();
 
 		this.listenTo(this.model, 'change:filtered', this.filterEvent);
-	},
+	}
 
-	render: function() {
+	render() {
 		this.$el.html(this.template(this.model.toJSON()));
 		return this;
-	},
+	}
 
-	filterEvent: function() {
+	filterEvent() {
 		if (!this.model.get('filtered')) {
 			this.$el.hide();
 		} else {
 			this.$el.show();
 		}		
-	},
+	}
 
-	saveEvent: function(e) {
+	saveEvent(e) {
 		e.stopPropagation();
 		this.save();
-	},
+	}
 
-	save: function() {
+	save() {
 		this.model.save({event_id: this.model.get('id')},
 		{
 			patch: true,
@@ -69,9 +72,9 @@ export default Marionette.View.extend({
 				}			
 			}	
 		});
-	},
+	}
 
-	addIcon: function() {
+	addIcon() {
 		if (this.model.get('image')) {
 			// var icon = L.icon({
 			// 	iconUrl: this.model.get('image'),
@@ -81,9 +84,9 @@ export default Marionette.View.extend({
 
 			this.model.set('icon', icon);
 		}
-	},
+	}
 
-	addMarker: function() {
+	addMarker() {
 		if (this.model.get('venue').location['geo:point']['geo:lat'] && 
 			this.model.get('venue').location['geo:point']['geo:long'] &&
 			this.model.get('icon')) {
@@ -97,9 +100,9 @@ export default Marionette.View.extend({
 
 			// App.map.getCluster().addLayer(this.model.get('marker'));
 		}
-	},
+	}
 
-	addPopup: function() {
+	addPopup() {
 
 		if(this.model.get('marker') == null) {
 			return false;
@@ -131,9 +134,9 @@ export default Marionette.View.extend({
 			self.save();
 		});
 
-	},
+	}
 
-	selectEvent: function() {
+	selectEvent() {
 		if (this.model.get('popup') != null) {
 			if(this.model.get('selected')) {
 				this.hidePopup();
@@ -147,17 +150,17 @@ export default Marionette.View.extend({
 			}
 		}
 		return false;
-	},
+	}
 
-	showPopup: function() {
+	showPopup() {
 		if (this.model.get('popup') != null && this.model.get('selected') == false) {
 			App.map.getMap().addLayer(this.model.get('popup'));
 			this.$el.addClass('selected');
 			return false;
 		}
-	},
+	}
 
-	hidePopup: function() {
+	hidePopup() {
 		if (this.model.get('popup') != null && this.model.get('selected') == false) {
 			App.map.getMap().removeLayer(this.model.get('popup'));
 			this.$el.removeClass('selected');
@@ -165,4 +168,4 @@ export default Marionette.View.extend({
 		}
 	}
 
-});
+}

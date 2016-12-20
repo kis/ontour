@@ -1,57 +1,58 @@
 'use strict';
 
-import Backbone from 'backbone';
-import Marionette from 'backbone.marionette';
+import { View } from 'backbone.marionette';
 import _ from 'underscore';
-import App from '../App';
 
-var AutocompleteItemView = Marionette.View.extend({
+class AutocompleteItemView extends View {
 
-	tagName: 'div',
+	constructor(props) {
+		super(props);
 
-	template: _.template('<a><%= title %></a> <%= meta %>'),
+		this.tagName = 'div';
 
-	ui: {
-		item : 'a'
-	},
+		this.template = _.template('<a><%= title %></a> <%= meta %>');
 
-	events: {
-		'mouseenter' : 'select',
-		'mouseleave' : 'deselect',
-		'click'		 : 'search'
-	},
+		this.ui = {
+			item : 'a'
+		};
 
-	render: function() {
+		this.events = {
+			'mouseenter' : 'select',
+			'mouseleave' : 'deselect',
+			'click'		 : 'search'
+		};
+	}
+
+	render() {
 		this.$el.html(this.template(this.model.toJSON()));
 		return this;
-	},
+	}
 
-	initialize: function() {
+	initialize() {
 		this.listenTo(this.model, 'change', this.hover);
-	},
+	}
 
-	select: function() {
+	select() {
 		this.model.set('selected', true);
-	},
+	}
 
-	deselect: function() {
+	deselect() {
 		this.model.set('selected', false);
-	},
+	}
 
-	hover: function() {
+	hover() {
 		if (this.model.get('selected')) {
 			this.$el.addClass('hover');
 		} else {
 			this.$el.removeClass('hover');
 		}
-	},
+	}
 
-	search: function() {
+	search() {
 		this.bindUIElements();
-		// App.vent.trigger('search', this.ui.item.text());
 		this.triggerMethod('search', this.ui.item.text());
 	}
 
-});
+}
 
 export default AutocompleteItemView;

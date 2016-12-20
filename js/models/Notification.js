@@ -1,11 +1,15 @@
 'use strict';
 
-import Backbone from 'backbone';
+import { Model } from 'backbone';
 
-export default Backbone.Model.extend({
+export default class Notification extends Model {
 
-	defaults: {
-		message: 'Notification',
+	constructor(props) {
+		super(props);
+
+		this.defaults = {
+			message: 'Notification',
+		};
 	}
 	
-});
+}

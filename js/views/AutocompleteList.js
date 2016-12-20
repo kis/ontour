@@ -1,19 +1,17 @@
 'use strict';
 
-import Backbone from 'backbone';
-import Marionette from 'backbone.marionette';
+import { View } from 'backbone.marionette';
 import $ from 'jquery';
-import App from '../App';
 import AutocompleteItemView from './AutocompleteItemView';
 import AutocompleteItem from '../models/AutocompleteItem';
 
-export default Marionette.CollectionView.extend({
+export default class AutocompleteList extends View {
 
-	itemViewContainer: '#autocomplete',
+	itemViewContainer: '#autocomplete'
 
-	itemView: AutocompleteItemView,
+	itemView: AutocompleteItemView
 
-	initialize: function() {
+	initialize() {
 		$('body, html').on({
 			'click'   : this.close.bind(this),
 			'keydown' : this.outsideHandler.bind(this)
@@ -25,20 +23,20 @@ export default Marionette.CollectionView.extend({
 
 		this.listenTo(this.collection, 'close', this.close);
 		this.listenTo(this.collection, 'repaint', this.repaint);
-	},
+	}
 
-	repaint: function() {
+	repaint() {
 		this.collection.reset();
 		this.$el.hide().show();
-	},
+	}
 
-	close: function() {
+	close() {
 		this.collection.reset();
 		this.collection.currentElement = undefined;
 		this.$el.hide();
-	},
+	}
 
-	addArtistsData: function(artist) {
+	addArtistsData(artist) {
 		this.repaint();
 
 		var self = this;
@@ -69,9 +67,9 @@ export default Marionette.CollectionView.extend({
 				}
 			}
 		});
-	},
+	}
 
-	addCitiesData: function(city) {
+	addCitiesData(city) {
 		this.repaint();
 
 		var self = this;
@@ -90,9 +88,9 @@ export default Marionette.CollectionView.extend({
 				}
 			});
 		});
-	},
+	}
 
-	execProperty: function(key) {
+	execProperty(key) {
 
 		switch (key) {
 			case 13:
@@ -121,12 +119,12 @@ export default Marionette.CollectionView.extend({
 				break;
 		}
 
-	},
+	}
 
-	outsideHandler: function(e) {
+	outsideHandler(e) {
 		if (e.type == 'keydown' && e.keyCode == 27) {
 			this.close();
 		}
 	}
 
-});
+}

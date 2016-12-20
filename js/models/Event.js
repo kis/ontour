@@ -1,25 +1,29 @@
 'use strict';
 
-import Backbone from 'backbone';
+import { Model } from 'backbone';
 
-export default Backbone.Model.extend({
+export default class Event extends Model {
 
-	defaults: {
-		id: 'id',
-		title: 'title',
-		artists: 'artists',
-		date: 'date',
-		venue: 'venue',
-		image: null,
-		icon: null,
-		marker: null,
-		popup: null,
-		path: null,
-		url: null,
-		selected: false,
-		filtered: true
-	},
+	constructor(props) {
+		super(props);
 
-	url: '/events/:id'
+		this.defaults = {
+			id: 'id',
+			title: 'title',
+			artists: 'artists',
+			date: 'date',
+			venue: 'venue',
+			image: null,
+			icon: null,
+			marker: null,
+			popup: null,
+			path: null,
+			url: null,
+			selected: false,
+			filtered: true
+		};
 
-});
+		this.url = '/events/:id';
+	}
+
+}

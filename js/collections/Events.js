@@ -1,16 +1,22 @@
 'use strict';
 
-import Backbone from 'backbone';
+import { Collection } from 'backbone';
 import Event from '../models/Event';
 
-export default Backbone.Collection.extend({
-	model: Event,
+export default class Events extends Collection {
+	
+	constructor(props) {
+		super(props);
 
-	showMarkers: true,
+		this.model = Event;
 
-	showPaths: true,
+		this.showMarkers = true;
 
-	param: '',
+		this.showPaths = true;
 
-	url: '/events'
-});
+		this.param = '';
+
+		this.url = '/events';
+	}
+	
+}

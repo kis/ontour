@@ -1,91 +1,100 @@
 'use strict';
 
-import Backbone from 'backbone';
-import Marionette from 'backbone.marionette';
+import { View } from 'backbone.marionette';
 import App from '../App';
 import menuTemplate from '../templates/Menu.tmpl';
 
-export default Marionette.View.extend({
+export default class MenuView extends View {
 
-	itemViewContainer: '#search',
+	constructor(props) {
+		super(props);
 
-	template: menuTemplate,
+		this.itemViewContainer = '#search';
 
-	ui: {
-		tabs		  : '.tab',
-		tabArtist     : '#artist',
-		tabCity       : '#city',
-		searchField   : '.search-field',
-		tags		  : '#tags',
-		searchButton  : '.search-button',
-		festivals     : '.festivals'
-	},
+		this.regions = function() {
+			return {
+				menu: '#search'
+			};
+		};
 
-	events: {
-		'click @ui.tabArtist'     : 'setActiveTabArtist',
-		'click @ui.tabCity'		  : 'setActiveTabCity',
-		'input @ui.searchField'	  : 'getAutocompleteData',
-		'keydown @ui.searchField' : 'execAutocompleteProperty',
-		'click @ui.searchButton'  : 'getEvents',
-		'click @ui.festivals'     : 'setFestivalsonly'
-	},
+		this.template = menuTemplate;
 
-	initialize: function() {
+		this.ui = {
+			tabs		  : '.tab',
+			tabArtist     : '#artist',
+			tabCity       : '#city',
+			searchField   : '.search-field',
+			tags		  : '#tags',
+			searchButton  : '.search-button',
+			festivals     : '.festivals'
+		};
+
+		this.events = {
+			'click @ui.tabArtist'     : 'setActiveTabArtist',
+			'click @ui.tabCity'		  : 'setActiveTabCity',
+			'input @ui.searchField'	  : 'getAutocompleteData',
+			'keydown @ui.searchField' : 'execAutocompleteProperty',
+			'click @ui.searchButton'  : 'getEvents',
+			'click @ui.festivals'     : 'setFestivalsonly'
+		};
+	}
+
+	initialize() {
 		this.on('fieldInvalid', this.fieldInvalid);
 		this.on('search', this.search);
 		this.on('setActiveTag', this.setActiveTag);
 		this.on('index-route', this.off);
 		this.listenTo(this.model, 'change:activeTab', this.updateMenu);
 		this.listenTo(this.model, 'change:festivalsonly', this.updateF);
-	},
+	}
 
-	off: function() {
+	off() {
 		this.model.set(this.model.defaults);
 		this.resetInput();
-	},
+	}
 
-	onShow: function() {
+	onShow() {
 		this.ui.searchField.val('').focus();
-	},
+	}
 
-	setActiveTag: function(tag) {
+	setActiveTag(tag) {
 		this.model.set('activeTag', tag);
-	},
+	}
 
-	setFestivalsonly: function() {
+	setFestivalsonly() {
 		this.model.set('festivalsonly', this.model.get('festivalsonly') ? 0 : 1);
-	},
+	}
 
-	updateF: function() {
+	updateF() {
 		if (this.model.get('festivalsonly')) {
 			this.ui.festivals.addClass('active');
 		} else {
 			this.ui.festivals.removeClass('active');
 		}
-	},
+	}
 
-	setActiveTabArtist: function() {
+	setActiveTabArtist() {
 		this.model.set({
 			'activeTab' : 'artist',
 			'param'     : 'artist'
 		});
-	},
+	}
 
-	setActiveTabCity: function() {
+	setActiveTabCity() {
 		this.model.set({
 			'activeTab' : 'city',
 			'param'     : 'geo'
 		});
-	},
+	}
 
-	resetInput: function() {
+	resetInput() {
 		this.ui.searchField.val('')
 			   .removeClass('invalid')
 			   .attr('placeholder', 'Enter ' + this.model.get('activeTab') + '..')
 			   .focus();
-	},
+	}
 
-	updateMenu: function() {
+	updateMenu() {
 		this.resetInput();
 
 		this.ui.tabs.removeClass('active');
@@ -103,31 +112,31 @@ export default Marionette.View.extend({
 		setTimeout(function() {
 			this.triggerMethod('setHeight', self.$el.height());
 		}, 200);
-	},
+	}
 
-	getAutocompleteData: function() {
+	getAutocompleteData() {
 		if (this.model.get('activeTab') == 'artist') {
 			this.triggerMethod('addArtistsData', this.ui.searchField.val());
 		} else if (this.model.get('activeTab') == 'city') {
 			this.triggerMethod('addCitiesData', this.ui.searchField.val());
 		}
-	},
+	}
 
-	execAutocompleteProperty: function(e) {
+	execAutocompleteProperty(e) {
 		this.triggerMethod('execProperty', e.keyCode);
-	},
+	}
 
-	search: function(item) {
+	search(item) {
 		this.bindUIElements();
 		this.ui.searchField.val(item);
 		this.getEvents();
-	},
+	}
 
-	fieldInvalid: function() {
+	fieldInvalid() {
 		this.ui.searchField.addClass("invalid").focus();
-	},
+	}
 
-	getEvents: function() {
+	getEvents() {
 		this.model.set('value', this.ui.searchField.val());
 
 		if (!this.model.get('value')) {
@@ -145,4 +154,4 @@ export default Marionette.View.extend({
 		}
 	}
 
-});
+}

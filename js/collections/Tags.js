@@ -1,8 +1,14 @@
 'use strict';
 
-import Backbone from 'backbone';
+import { Collection } from 'backbone';
 import Tag from '../models/Tag';
 
-export default Backbone.Collection.extend({
-	model: Tag
-});
+export default class Tags extends Collection {
+	
+	constructor(props) {
+		super(props);
+
+		this.model = Tag;
+	}
+	
+}

@@ -1,29 +1,31 @@
 'use strict';
 
-import Backbone from 'backbone';
-import Marionette from 'backbone.marionette';
-import App from '../App';
+import { View } from 'backbone.marionette';
 import eventDetailTpl from '../templates/EventDetail.tmpl';
 
-export default Marionette.View.extend({
+export default class EventDetailsView extends View {
 
-	el: '#event-detail',
+	constructor(props) {
+		super(props);
 
-	template: eventDetailTpl,
+		this.el = '#event-detail';
 
-	initialize: function() {
+		this.template = eventDetailTpl;
+	}
+
+	initialize() {
 		this.on('showEventDetails', this.showEventDetails);
 		this.on('hideEventDetails', this.hideEventDetails);
-	},
+	}
 
-	showEventDetails: function(model) {
+	showEventDetails(model) {
 		this.$el.html(this.template(model.toJSON()));
 		this.$el.show();
-	},
+	}
 
-	hideEventDetails: function() {
+	hideEventDetails() {
 		this.$el.children().detach();
 		this.$el.hide();
 	}
 
-});
+}

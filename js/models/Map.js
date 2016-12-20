@@ -1,12 +1,16 @@
 'use strict';
 
-import Backbone from 'backbone';
+import { Model } from 'backbone';
 
-export default Backbone.Model.extend({
+export default class Map extends Model {
 	
-	defaults: {
-		map: {},
-		cluster: {}
+	constructor(props) {
+		super(props);
+		
+		this.defaults = {
+			map: {},
+			cluster: {}
+		};
 	}
 
-});
+}

@@ -1,24 +1,27 @@
 'use strict';
 
-import Backbone from 'backbone';
-import Marionette from 'backbone.marionette';
+import { CollectionView } from 'backbone.marionette';
 import App from '../App';
 import EventView from './EventView';
 import Event from '../models/Event';
 
-export default Marionette.CollectionView.extend({
+export default class EventsList extends CollectionView {
 
-	el: '#events',
+	constructor(props) {
+		super(props);
 
-	itemView: EventView,
-	
-	itemViewContainer: '#events',
+		this.el = '#events';
 
-	events: {
-		'scroll' : 'scroll'
-	},
+		this.itemView = EventView;
+		
+		this.itemViewContainer = '#events';
 
-	initialize: function() {
+		this.events = {
+			'scroll' : 'scroll'
+		};
+	}
+
+	initialize() {
 		this.on('setParam', this.setParam);
 		this.on('addEvent', this.addEvent);
 		this.on('addPaths', this.setPaths);
@@ -30,19 +33,19 @@ export default Marionette.CollectionView.extend({
 		this.on('gotop', this.gotop);
 		this.on('filter', this.filter);
 		this.on('setHeight', this.setHeight);
-	},
+	}
 
-	off: function() {
+	off() {
 		this.reset();
 		this.$el.hide();
-	},
+	}
 
-	setParam: function(param) {
+	setParam(param) {
 		this.collection.param = param;
 		this.$el.show();
-	},
+	}
 
-	addEvent: function(value) {
+	addEvent(value) {
 		this.collection.add(new Event({
 			id 		: value.id,
 			title   : value.title,
@@ -54,9 +57,9 @@ export default Marionette.CollectionView.extend({
 		}));
 
 		this.$el.perfectScrollbar();
-	},
+	}
 
-	setPaths: function(event) {
+	setPaths(event) {
 		if (this.collection.param == 'geo') {
 			return false;
 		}
@@ -72,9 +75,9 @@ export default Marionette.CollectionView.extend({
 			// var polyline = L.polyline([latlng1, latlng2], {color: '#10315a', weight: 2, opacity: 1}).addTo(App.map.getMap());
 			// event.set('path', polyline);
 		});
-	},
+	}
 
-	filter: function(date) {
+	filter(date) {
 		this.hideMarkers();
 		this.hidePaths();
 
@@ -101,9 +104,9 @@ export default Marionette.CollectionView.extend({
 		});
 
 		this.gotop();
-	},
+	}
 
-	switchMarkers: function() {
+	switchMarkers() {
 		if (this.collection.showMarkers) {
 			this.collection.showMarkers = false;
 			this.hideMarkers();
@@ -111,25 +114,25 @@ export default Marionette.CollectionView.extend({
 			this.collection.showMarkers = true;
 			this.showMarkers();
 		}
-	},
+	}
 
-	showMarkers: function() {
+	showMarkers() {
 		this.collection.each(function(event) {
 			if(event.get('marker') && event.get('filtered')) {
 				App.map.getCluster().addLayer(event.get('marker'));
 			}
 		});
-	},	
+	}
 
-	hideMarkers: function() {
+	hideMarkers() {
 		this.collection.each(function(event) {
 			if(event.get('marker') && event.get('filtered')) {
 				App.map.getCluster().removeLayer(event.get('marker'));
 			}
 		});
-	},
+	}
 
-	switchPaths: function() {
+	switchPaths() {
 		if (this.collection.showPaths) {
 			this.collection.showPaths = false;
 			this.hidePaths();
@@ -137,25 +140,25 @@ export default Marionette.CollectionView.extend({
 			this.collection.showPaths = true;
 			this.showPaths();
 		}
-	},
+	}
 
-	showPaths: function() {
+	showPaths() {
 		this.collection.each(function(event) {
 			if(event.get('path') && event.get('filtered')) {
 				App.map.getMap().addLayer(event.get('path'));
 			}
 		});
-	},
+	}
 
-	hidePaths: function() {
+	hidePaths() {
 		this.collection.each(function(event) {
 			if(event.get('path') && event.get('filtered')) {
 				App.map.getMap().removeLayer(event.get('path'));
 			}
 		});
-	},
+	}
 
-	reset: function(event) {
+	reset(event) {
 		this.collection.each(function(event) {
 			if(event.get('path')) {
 				App.map.getMap().removeLayer(event.get('path'));
@@ -163,24 +166,22 @@ export default Marionette.CollectionView.extend({
 		});
 
 		this.collection.reset();
-	},
+	}
 
-	scroll: function() {
+	scroll() {
 		if (this.$el.scrollTop() > this.$el.height()) {
 			this.triggerMethod('gotop-show');
 		} else {
 			this.triggerMethod('gotop-hide');
 		}
-	},
+	}
 
-	gotop: function() {
-		this.$el.animate({
-			'scrollTop': 0
-			}, 500, 'swing');
-	},
+	gotop() {
+		this.$el.animate({'scrollTop': 0}, 500, 'swing');
+	}
 
-	setHeight: function(menu_height) {
+	setHeight(menu_height) {
 		this.$el.css('height', $('#sidebar').height() - menu_height - 45);
 	}
 
-});
+}

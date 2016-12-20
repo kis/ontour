@@ -1,35 +1,37 @@
 'use strict';
 
-import Backbone from 'backbone';
-import Marionette from 'backbone.marionette';
-import App from '../App';
+import { View } from 'backbone.marionette';
 import controlsTmpl from '../templates/Controls.tmpl';
 
-export default Marionette.View.extend({
+export default class ControlsView extends View {
 
-	itemViewContainer: '#controls',
+	constructor(props) {
+		super(props);
 
-	template: controlsTmpl,
+		this.itemViewContainer = '#controls';
 
-	ui: {
-		gotop   : '#go-top',
-		slide   : '#slide',
-		layers	: '.layers',
-		paths   : '#paths',
-		markers : '#markers',
-		picker	: '#date-selector',
-		date	: '#date'
-	},
+		this.template = controlsTmpl;
 
-	events: {
-		'click @ui.slide'   : 'toggleSidebar',
-		'click @ui.markers' : 'switchMarkers',
-		'click @ui.paths'   : 'switchPaths',
-		'click @ui.gotop'   : 'gotop',
-		'click @ui.picker'  : 'toggleDatepicker'
-	},
+		this.ui = {
+			gotop   : '#go-top',
+			slide   : '#slide',
+			layers	: '.layers',
+			paths   : '#paths',
+			markers : '#markers',
+			picker	: '#date-selector',
+			date	: '#date'
+		};
 
-	initialize: function() {
+		this.events = {
+			'click @ui.slide'   : 'toggleSidebar',
+			'click @ui.markers' : 'switchMarkers',
+			'click @ui.paths'   : 'switchPaths',
+			'click @ui.gotop'   : 'gotop',
+			'click @ui.picker'  : 'toggleDatepicker'
+		};
+	}
+
+	initialize() {
 		this.on('gotop-show', this.gotopShow);
 		this.on('gotop-hide', this.gotopHide);
 		this.on('showControls', this.showControls);
@@ -41,13 +43,13 @@ export default Marionette.View.extend({
 
 		this.listenTo(this.model, 'change:year change:month change:day', this.filter);
 		this.listenTo(this.model, 'change:datepicker', this.showDatepicker);
-	},
+	}
 
-	toggleDatepicker: function() {
+	toggleDatepicker() {
 		this.model.set('datepicker', this.model.get('datepicker') ? false : true);
-	},
+	}
 
-	showDatepicker: function() {
+	showDatepicker() {
 		if (this.model.get('datepicker')) {
 			this.ui.picker.addClass('active');
 			this.ui.date.show();
@@ -55,78 +57,78 @@ export default Marionette.View.extend({
 			this.ui.picker.removeClass('active');
 			this.ui.date.hide();
 		}
-	},
+	}
 
-	setEventYear: function(year) {
+	setEventYear(year) {
 		this.model.set('year', year);
-	},
+	}
 
-	setEventMonth: function(month) {
+	setEventMonth(month) {
 		this.model.set('month', month);
-	},
+	}
 
-	setEventDay: function(day) {
+	setEventDay(day) {
 		this.model.set('day', day);
-	},
+	}
 
-	showControls: function() {
+	showControls() {
 		this.ui.layers.show();
 		this.ui.picker.show();
-	},
+	}
 
-	hideControls: function() {
+	hideControls() {
 		this.ui.layers.hide();
 		this.ui.picker.hide();
 		this.ui.date.hide();
 		this.ui.gotop.hide();
-	},
+	}
 
-	onShow: function() {
-		this.ui.gotop.css({
-			display: 'none'
-		});
-	},
-
-	toggleSidebar: function() {
-		$('#sidebar').css('left', (parseInt($('#sidebar').css('left'),10) == 0 ? -$('#sidebar').outerWidth() : 0));
-
-		if (this.ui.gotop.css('display') == 'block') {
-			this.ui.gotop.css({display: 'none'});
-		}
-	},
-
-	filter: function() {
-		this.triggerMethod('filter', {
-			year  : this.model.get('year'),
-			month : this.model.get('month'),
-			day   : this.model.get('day')
-		});
-	},
-
-	switchMarkers: function() {
-		this.ui.markers.toggleClass('active');
-		this.triggerMethod('switchMarkers');
-	},
-
-	switchPaths: function() {
-		this.ui.paths.toggleClass('active');
-		this.triggerMethod('switchPaths');
-	},
-
-	gotop: function() {
-		this.triggerMethod('gotop');
-	},
-
-	gotopShow: function() {
-		this.ui.gotop.css({
-			display: 'inline-block'
-		});
-	},
-
-	gotopHide: function() {
+	onShow() {
 		this.ui.gotop.css({
 			display: 'none'
 		});
 	}
 
-});
+	toggleSidebar() {
+		$('#sidebar').css('left', (parseInt($('#sidebar').css('left'),10) == 0 ? -$('#sidebar').outerWidth() : 0));
+
+		if (this.ui.gotop.css('display') == 'block') {
+			this.ui.gotop.css({display: 'none'});
+		}
+	}
+
+	filter() {
+		this.triggerMethod('filter', {
+			year  : this.model.get('year'),
+			month : this.model.get('month'),
+			day   : this.model.get('day')
+		});
+	}
+
+	switchMarkers() {
+		this.ui.markers.toggleClass('active');
+		this.triggerMethod('switchMarkers');
+	}
+
+	switchPaths() {
+		this.ui.paths.toggleClass('active');
+		this.triggerMethod('switchPaths');
+	}
+
+	gotop() {
+		this.triggerMethod('gotop');
+	}
+
+	gotopShow() {
+		this.ui.gotop.css({
+			display: 'inline-block'
+		});
+	}
+
+	gotopHide() {
+		this.ui.gotop.css({
+			display: 'none'
+		});
+	}
+
+}

@@ -1,12 +1,16 @@
 'use strict';
 
-import Backbone from 'backbone';
+import { Model } from 'backbone';
 
-export default Backbone.Model.extend({
+export default class Tag extends Model {
 
-	defaults: {
-		name   : 'pop',
-		active : false
+	constructor(props) {
+		super(props);
+
+		this.defaults = {
+			name   : 'pop',
+			active : false
+		};
 	}
 	
-});
+}
