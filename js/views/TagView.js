@@ -24,10 +24,10 @@ export default Marionette.View.extend({
 			if (model == this.model) {
 				if (this.model.get('active')) {
 					this.model.set('active', false);
-					App.vent.trigger('setActiveTag', '');
+					this.triggerMethod('setActiveTag', '');
 				} else {
 					this.model.set('active', true);
-					App.vent.trigger('setActiveTag', this.model.get('name'));
+					this.triggerMethod('setActiveTag', this.model.get('name'));
 				}
 			} else {
 				model.set('active', false);

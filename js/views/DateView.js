@@ -24,10 +24,10 @@ export default Marionette.View.extend({
 			if (model == this.model) {
 				if (this.model.get('active')) {
 					this.model.set('active', false);
-					App.vent.trigger('setEvent' + this.model.collection.type, '');
+					this.triggerMethod('setEvent' + this.model.collection.type, '');
 				} else {
 					this.model.set('active', true);
-					App.vent.trigger('setEvent' + this.model.collection.type, 
+					this.triggerMethod('setEvent' + this.model.collection.type, 
 						this.model.collection.type == 'Month' ? 
 							this.model.collection.indexOf(this.model) : 
 							this.model.get('name'));

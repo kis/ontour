@@ -19,8 +19,8 @@ export default Marionette.View.extend({
 
 		this.model.set('map', map);
 
-		this.listenTo(App.vent, 'setView', this.setView);
-		this.listenTo(App.vent, 'resetCluster', this.resetCluster);
+		this.on('setView', this.setView);
+		this.on('resetCluster', this.resetCluster);
 	},
 
 	resetCluster: function() {

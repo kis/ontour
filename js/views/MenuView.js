@@ -31,10 +31,10 @@ export default Marionette.View.extend({
 	},
 
 	initialize: function() {
-		this.listenTo(App.vent, 'fieldInvalid', this.fieldInvalid);
-		this.listenTo(App.vent, 'search', this.search);
-		this.listenTo(App.vent, 'setActiveTag', this.setActiveTag);
-		this.listenTo(App.vent, 'index-route', this.off);
+		this.on('fieldInvalid', this.fieldInvalid);
+		this.on('search', this.search);
+		this.on('setActiveTag', this.setActiveTag);
+		this.on('index-route', this.off);
 		this.listenTo(this.model, 'change:activeTab', this.updateMenu);
 		this.listenTo(this.model, 'change:festivalsonly', this.updateF);
 	},
@@ -101,20 +101,20 @@ export default Marionette.View.extend({
 		var self = this;
 
 		setTimeout(function() {
-			App.vent.trigger('setHeight', self.$el.height());
+			this.triggerMethod('setHeight', self.$el.height());
 		}, 200);
 	},
 
 	getAutocompleteData: function() {
 		if (this.model.get('activeTab') == 'artist') {
-			App.vent.trigger('addArtistsData', this.ui.searchField.val());
+			this.triggerMethod('addArtistsData', this.ui.searchField.val());
 		} else if (this.model.get('activeTab') == 'city') {
-			App.vent.trigger('addCitiesData', this.ui.searchField.val());
+			this.triggerMethod('addCitiesData', this.ui.searchField.val());
 		}
 	},
 
 	execAutocompleteProperty: function(e) {
-		App.vent.trigger('execProperty', e.keyCode);
+		this.triggerMethod('execProperty', e.keyCode);
 	},
 
 	search: function(item) {
@@ -136,7 +136,7 @@ export default Marionette.View.extend({
 			App.appRouter.navigate("search/" + this.model.get('value'));
 
 			this.ui.searchField.removeClass("invalid").focus();
-			App.vent.trigger('getEvents', {
+			this.triggerMethod('getEvents', {
 				value : this.model.get('value'), 
 				param : this.model.get('param'),
 				tag   : this.model.get('activeTag'),

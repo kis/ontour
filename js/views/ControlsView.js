@@ -30,14 +30,14 @@ export default Marionette.View.extend({
 	},
 
 	initialize: function() {
-		this.listenTo(App.vent, 'gotop-show', this.gotopShow);
-		this.listenTo(App.vent, 'gotop-hide', this.gotopHide);
-		this.listenTo(App.vent, 'showControls', this.showControls);
-		this.listenTo(App.vent, 'index-route', this.hideControls);
+		this.on('gotop-show', this.gotopShow);
+		this.on('gotop-hide', this.gotopHide);
+		this.on('showControls', this.showControls);
+		this.on('index-route', this.hideControls);
 
-		this.listenTo(App.vent, 'setEventYear', this.setEventYear);
-		this.listenTo(App.vent, 'setEventMonth', this.setEventMonth);
-		this.listenTo(App.vent, 'setEventDay', this.setEventDay);
+		this.on('setEventYear', this.setEventYear);
+		this.on('setEventMonth', this.setEventMonth);
+		this.on('setEventDay', this.setEventDay);
 
 		this.listenTo(this.model, 'change:year change:month change:day', this.filter);
 		this.listenTo(this.model, 'change:datepicker', this.showDatepicker);
@@ -96,7 +96,7 @@ export default Marionette.View.extend({
 	},
 
 	filter: function() {
-		App.vent.trigger('filter', {
+		this.triggerMethod('filter', {
 			year  : this.model.get('year'),
 			month : this.model.get('month'),
 			day   : this.model.get('day')
@@ -105,16 +105,16 @@ export default Marionette.View.extend({
 
 	switchMarkers: function() {
 		this.ui.markers.toggleClass('active');
-		App.vent.trigger('switchMarkers');
+		this.triggerMethod('switchMarkers');
 	},
 
 	switchPaths: function() {
 		this.ui.paths.toggleClass('active');
-		App.vent.trigger('switchPaths');
+		this.triggerMethod('switchPaths');
 	},
 
 	gotop: function() {
-		App.vent.trigger('gotop');
+		this.triggerMethod('gotop');
 	},
 
 	gotopShow: function() {

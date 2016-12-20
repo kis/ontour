@@ -2,6 +2,7 @@
 
 import Backbone from 'backbone';
 import Marionette from 'backbone.marionette';
+import $ from 'jquery';
 import App from '../App';
 import AutocompleteItemView from './AutocompleteItemView';
 import AutocompleteItem from '../models/AutocompleteItem';
@@ -18,9 +19,9 @@ export default Marionette.CollectionView.extend({
 			'keydown' : this.outsideHandler.bind(this)
 		});
 
-		this.listenTo(App.vent, 'addArtistsData', this.addArtistsData);
-		this.listenTo(App.vent, 'addCitiesData', this.addCitiesData);
-		this.listenTo(App.vent, 'execProperty', this.execProperty);
+		this.on('addArtistsData', this.addArtistsData);
+		this.on('addCitiesData', this.addCitiesData);
+		this.on('execProperty', this.execProperty);
 
 		this.listenTo(this.collection, 'close', this.close);
 		this.listenTo(this.collection, 'repaint', this.repaint);
@@ -97,9 +98,9 @@ export default Marionette.CollectionView.extend({
 			case 13:
 				//enter - get termin to input and search
 				if (typeof this.collection.getElement() != 'undefined') {
-					App.vent.trigger('search', this.collection.getElement().get('title'));
+					this.triggerMethod('search', this.collection.getElement().get('title'));
 				} else {
-					App.vent.trigger('fieldInvalid');
+					this.triggerMethod('fieldInvalid');
 				}
 
 				this.close();

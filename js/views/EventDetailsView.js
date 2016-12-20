@@ -12,8 +12,8 @@ export default Marionette.View.extend({
 	template: eventDetailTpl,
 
 	initialize: function() {
-		this.listenTo(App.vent, 'showEventDetails', this.showEventDetails);
-		this.listenTo(App.vent, 'hideEventDetails', this.hideEventDetails);
+		this.on('showEventDetails', this.showEventDetails);
+		this.on('hideEventDetails', this.hideEventDetails);
 	},
 
 	showEventDetails: function(model) {

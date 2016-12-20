@@ -14,9 +14,9 @@ export default Marionette.View.extend({
 	tplFinish   : _.template('<%= total %> / <%= total %>'),
 
 	initialize: function() {
-		App.vent.trigger('reset');
-		this.listenTo(App.vent, 'getEvents', this.getEvents);
-		this.listenTo(App.vent, 'index-route', this.off);
+		this.triggerMethod('reset');
+		this.on('getEvents', this.getEvents);
+		this.on('index-route', this.off);
 		this.listenTo(this.model, 'change', this.render);
 	},
 
@@ -38,14 +38,14 @@ export default Marionette.View.extend({
 	},
 
 	reset: function() {
-		App.vent.trigger('resetCluster');
+		this.triggerMethod('resetCluster');
 		this.model.set(this.model.defaults);
 	},
 
 	search: function(param) {
-		App.vent.trigger('setParam', param);
+		this.triggerMethod('setParam', param);
 		this.$el.show();
-		App.vent.trigger('showControls');
+		this.triggerMethod('showControls');
 	},
 
 	getEvents: function(search) {
@@ -81,7 +81,7 @@ export default Marionette.View.extend({
 				if (self.model.get('page') <= self.model.get('totalPages')) {
 					fetchEvents(search);
 				} else {
-					App.vent.trigger('addPaths');
+					this.triggerMethod('addPaths');
 				}
 			}
 		});
@@ -101,13 +101,13 @@ export default Marionette.View.extend({
 		});
 
 		if (this.model.get('page') == this.model.get('totalPages') && /1$/.test(this.model.get('total'))) {
-			App.vent.trigger('addEvent', data.events.event);
+			this.triggerMethod('addEvent', data.events.event);
 		} else {
 			data.events.event.forEach(function(value, index, list) {
-				App.vent.trigger('addEvent', value);
+				this.triggerMethod('addEvent', value);
 				
 				if (self.model.get('page') == 1 && index == 0) {
-					App.vent.trigger('setView', list, param);
+					this.triggerMethod('setView', list, param);
 				}
 			});
 		}

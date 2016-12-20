@@ -19,17 +19,17 @@ export default Marionette.CollectionView.extend({
 	},
 
 	initialize: function() {
-		this.listenTo(App.vent, 'setParam', this.setParam);
-		this.listenTo(App.vent, 'addEvent', this.addEvent);
-		this.listenTo(App.vent, 'addPaths', this.setPaths);
-		this.listenTo(App.vent, 'getEvents', this.reset);
-		this.listenTo(App.vent, 'reset', this.reset);
-		this.listenTo(App.vent, 'index-route', this.off);
-		this.listenTo(App.vent, 'switchMarkers', this.switchMarkers);
-		this.listenTo(App.vent, 'switchPaths', this.switchPaths);
-		this.listenTo(App.vent, 'gotop', this.gotop);
-		this.listenTo(App.vent, 'filter', this.filter);
-		this.listenTo(App.vent, 'setHeight', this.setHeight);
+		this.on('setParam', this.setParam);
+		this.on('addEvent', this.addEvent);
+		this.on('addPaths', this.setPaths);
+		this.on('getEvents', this.reset);
+		this.on('reset', this.reset);
+		this.on('index-route', this.off);
+		this.on('switchMarkers', this.switchMarkers);
+		this.on('switchPaths', this.switchPaths);
+		this.on('gotop', this.gotop);
+		this.on('filter', this.filter);
+		this.on('setHeight', this.setHeight);
 	},
 
 	off: function() {
@@ -167,9 +167,9 @@ export default Marionette.CollectionView.extend({
 
 	scroll: function() {
 		if (this.$el.scrollTop() > this.$el.height()) {
-			App.vent.trigger('gotop-show');
+			this.triggerMethod('gotop-show');
 		} else {
-			App.vent.trigger('gotop-hide');
+			this.triggerMethod('gotop-hide');
 		}
 	},
 

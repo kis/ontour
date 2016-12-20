@@ -16,7 +16,7 @@ export default Marionette.View.extend({
 	},
 
 	initialize: function() {
-		this.listenTo(App.vent, 'showNotification', this.show);
+		this.on('showNotification', this.show);
 	},
 
 	show: function(notification) {

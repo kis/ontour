@@ -5,7 +5,7 @@ import Marionette from 'backbone.marionette';
 import _ from 'underscore';
 import App from '../App';
 
-export default Marionette.View.extend({
+var AutocompleteItemView = Marionette.View.extend({
 
 	tagName: 'div',
 
@@ -48,7 +48,10 @@ export default Marionette.View.extend({
 
 	search: function() {
 		this.bindUIElements();
-		App.vent.trigger('search', this.ui.item.text());
+		// App.vent.trigger('search', this.ui.item.text());
+		this.triggerMethod('search', this.ui.item.text());
 	}
 
 });
+
+export default AutocompleteItemView;

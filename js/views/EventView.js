@@ -53,18 +53,18 @@ export default Marionette.View.extend({
 		{
 			patch: true,
 			error: function() {
-				App.vent.trigger('showNotification', 'Error!');
+				this.triggerMethod('showNotification', 'Error!');
 			},
 			success: function(model, response) {
 				switch (response.result) {
 					case 'success':
-						App.vent.trigger('showNotification', 'The event is saved!');
+						this.triggerMethod('showNotification', 'The event is saved!');
 						break;
 					case 'fail':
-						App.vent.trigger('showNotification', 'This event is already saved!');
+						this.triggerMethod('showNotification', 'This event is already saved!');
 						break;
 					case 'guest':
-						App.vent.trigger('showNotification', 'Sign in!');
+						this.triggerMethod('showNotification', 'Sign in!');
 						break;
 				}			
 			}	
@@ -138,12 +138,12 @@ export default Marionette.View.extend({
 			if(this.model.get('selected')) {
 				this.hidePopup();
 				this.model.set('selected', false);
-				App.vent.trigger('hideEventDetails');
+				this.triggerMethod('hideEventDetails');
 			} else {
 				this.showPopup();
 				this.model.set('selected', true);
 				App.map.getMap().panTo(this.model.get('marker').getLatLng());
-				App.vent.trigger('showEventDetails', this.model);
+				this.triggerMethod('showEventDetails', this.model);
 			}
 		}
 		return false;

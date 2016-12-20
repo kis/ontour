@@ -27,8 +27,6 @@ import DateCollection from './collections/DateCollection';
 import DateView from './views/DateView';
 import DateList from './views/DateList';
 import EventDetailsView from './views/EventDetailsView';
-import scrollbar from '../lib/scrollbar.min';
-import mousewheel from '../lib/jquery.mousewheel';
 
 var contr = Marionette.Object.extend({
 
@@ -107,16 +105,16 @@ var contr = Marionette.Object.extend({
 
         App.map = new MapView({model: new Map()});
 
-        App.menu.show(menuView);
-        App.controls.show(controlsView);
-        App.notification.show(notificationView);
-        App.search.show(searchView);
-        App.events.show(eventsList);
-        App.autocomplete.show(autocompleteList);
-        App.tags.show(tagsList);
-        App.year.show(yearList);
-        App.month.show(monthList);
-        App.day.show(dayList);
+        App.menu = menuView;
+        App.controls = controlsView;
+        App.notification = notificationView;
+        App.search = searchView;
+        App.events = eventsList;
+        App.autocomplete = autocompleteList;
+        App.tags = tagsList;
+        App.year = yearList;
+        App.month = monthList;
+        App.day = dayList;
     },
 
     index: function() {
