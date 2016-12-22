@@ -104,8 +104,10 @@ var contr = Marionette.Object.extend({
         }
 
         App.map = new MapView({model: new Map()});
-
         App.menu = menuView;
+
+        menuView.render();
+
         App.controls = controlsView;
         App.notification = notificationView;
         App.search = searchView;

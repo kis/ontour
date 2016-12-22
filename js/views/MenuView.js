@@ -9,15 +9,15 @@ export default class MenuView extends View {
 	constructor(props) {
 		super(props);
 
-		this.itemViewContainer = '#search';
+		// this.itemViewContainer = '#search';
 
-		this.regions = function() {
-			return {
-				menu: '#search'
-			};
+		this.el = '#search';
+
+		this.regions = {
+			menu: '#search'
 		};
 
-		this.template = menuTemplate;
+		this.template = menuTemplate({activeTab: 'artist'});
 
 		this.ui = {
 			tabs		  : '.tab',
